@@ -1,0 +1,10 @@
+#ASCII-000{
+    font-weight: 700;
+    text-size-adjust: auto;
+    font-size: 8px;
+    display: flex;
+    /* justify-content: center; */
+    /* align-items: center; */
+    overflow-x: hidden;
+    white-space: pre;
+}

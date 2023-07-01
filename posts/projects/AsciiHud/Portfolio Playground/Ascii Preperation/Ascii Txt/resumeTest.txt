@@ -1,0 +1,89 @@
+<--------------------------  Please resize your application window to see this on just one line! -------------------------->
+        _____  _____  ____   _____  _____  _____    _____  _____  _____  _____  __     _____    _____  _____  _____ 
+       |  _  ||   | ||    \ | __  ||   __||  _  |  |   __||  _  ||   __||     ||  |   |     |  | __  ||  _  ||     |
+       |     || | | ||  |  ||    -||   __||     |  |   __||     ||__   ||  |  ||  |__ |  |  |  |    -||     ||  |  |
+       |__|__||_|___||____/ |__|__||_____||__|__|  |__|   |__|__||_____||_____||_____||_____|  |__|__||__|__||_____|
+
+        raoandrea@gmail.com /∆\ +39 349 3866549 /∆\ behance.net/andreaefferao /∆\ it.linkedin.com/in/andreaefferao
+
+     # Creative coding # Interaction design # Sound design # Data visualization # Motion design # Information design #
+
+/¯\_/¯\_/¯\_/¯\_/¯\_/¯\_/¯\_/¯\_/¯\_/¯\_/¯\_/¯\_/¯\_/¯\_/¯\_/¯\_/¯\_/¯\_/¯\_/¯\_/¯\_/¯\_/¯\_/¯\_/¯\_/¯\_/¯\_/¯\_/¯\_/¯\_/¯
+
+Hello and thank you for opening my readme, which also happens to be my resume. 
+I am currently a Communication Design student at the Master course of IUAV University of Venice, and an aspiring Interaction designer.
+I am currently looking for an internship in Europe.
+
+                                              
+### Education and selected works ###
+
+ Scientific high school degree ----------| 2007 |             LEGENDA: fields 
+                                         |      |                 ~ Sound design
+ Mechatronics engineering |--------------| 2008 |                 / Programming
+         Padua University |              |      |                 x Interaction design
+                        / |              | 2009 |                 # Video / animation
+                                         |      |                 ∆ Information design
+ Music and new Technologies |------------| 2010 |                 • Graphic / Visual design
+       Vicenza Conservatory |            |      |
+                    ~ / x # |            | 2011 |------------------------------------------01-| FluendoCrescente ~~~~ ////
+                            |            |      |
+First level academic dipoma |------------| 2012 |-----------------------------------------------02-| R.E.M. ~~~~~ ///// xx
+Master course: Communication Design |----|      |
+          IUAV University of Venice |    | 2013 |-----------------03-| Les Invocations du Vide [thesis] ~~~~~~ ///// xxxxx
+                          / x # ∆ • |    |      |-----------------------------------------04-| SpaceSonic IV //////// xxxx
+                                         |      |--------------------------------------05-| Social Dinner ////// xxxxxx ##
+                                         |      |--------------------------------------------------06-| PASSWORD* ########
+                                         |      |------------------------------------------07-| Words in a Day ∆∆∆∆ /// ••
+                                         |      |
+                                         | 2014 |-------------------------08-| Agorà interactive installation //// ••• xxx
+                                         |      |-----------09-| Atlas of Contemporary Technology - Vanishing ∆∆∆∆∆ •••• /
+                                         |      |-10-| Deep into the animal exctinction - visualization ∆∆∆∆ //// xxxx ••• 
+                                         |      |-----------11-| Deep into the animal exctinction - sonification ~~~~~ ///
+                                         |      |--------------------------------12-| A matter of Dimensions ###### •• ~~~
+                                         |      |-------------------------------13-| The Structure - by RedBull /// xxx ~~ 
+                                         |      |
+                                         |      |
+                                         | 2015 |-------14-| Atlas of Contemporary Networks - Interplanetary ∆∆∆∆∆∆ •••• /
+                                         |      |-----------------------------------------15-| @AtlasDSN ////// xxx # ∆∆ •
+                                         |      |
+
+>01- First electronic music piece I composed and realized. All sounds were synthezied by programming in Csound.
+>02- Music piece for double bass and live electronics, all the sound treatments were in real time and controlled by the sound from the instrument.
+>03- Music piece for a singer/performer and live electronics. The real time elaborations on the voice are controlled by the movements of the performer.
+>04- Max/MSP software to control and play music in a four-room environment, with spatialization and a control interface designed for iPad.
+>05- Visual installation for the Syracuse film festival. The audience controlled a live version of “The last dinner” with their hands.
+>06- Design, realization and live direction for the visual side of a fashion show.
+>07- data visualization about the words a student writes while preparing the exams
+>08- Live projection that reacts to the people passing by.
+>09- “Vanishing” chapter for the illustrated “Atlas of Contemporary Technology”, from the research to the drawings and visualizations.
+>10- Interactive adata visualization to give a glimpse of all endangered animal species. [featured on Leap Motion website]
+>11- Music piece generated by the history of the Red List of endangered species. [featured on Cycling ‘74 website]
+>12- Animation short movie.
+>13- Interactive and immersive installation sponsored by RedBull for the Robot festival in Bologna.
+>14-“Interplanetary” chapter for the illustrated “Atlas of Contemporary networks”, from the research to the drawings and visualizations.
+>15- An interactive installation about what “if you could communicate with spacecrafts via Twitter through the NASA Deep Space Network?”
+
+
+### Software Skills ###
+                                  |¯¯\                               __                               ______
+  ####    Cycling '74             |__/                              |__|__                           |      |  Adobe
+    #     Max/MSP/Jitter          |        Processing                  |__|   Nodebox                |  Au  |  Audition
+   #                              | • •                                                              |______|
+
+
+                                                                    _______ 
+ ______                            //|¯|                           | /¯¯¯\ |                          ______ 
+|      |  Adobe                   // | |   Resolume                |(     )|  Apple                  |      |  Adobe
+|  Pr  |  Premiere Pro            ===| |=  Arena                   | \___/ |  Logic Pro              |  Ae  |  After Effects
+|______|                             |_|                           |  ===  |                         |______|
+                                                                   |_______|
+                                   
+
+ ______                           OOOO••                            ______                            ______  
+|      |  Adobe                  OOO••••O  MAXON                   |      |   Adobe                  |      |  Adobe
+|  Ai  |  Illustrator            OOOO••OO  Cinema4D                |  Ps  |   Photoshop              |  Id  |  InDesign
+|______|                           OOOO                            |______|                          |______|
+
+
+                                                                                           Made with care and Sublime Text 2
+<----------------------------------------------------------  EOF  --------------------------------------------------------->

@@ -1,0 +1,331 @@
+/* Cygnito Mono Pro - Font Family */
+/* ------------------------------------------------- */
+/* ----------------000 - Pro Normal------------------*/
+/* Cygnito Mono Pro - Normal - Light - 000 */
+@font-face {
+  font-family: 'CygnitoMono-000';
+  src: url('./Assets/Cygnito Mono Pro/Cygnito Mono Pro - Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+/* Cygnito Mono Pro - Normal - Regular - 000 */
+@font-face {
+  font-family: 'CygnitoMono-000';
+  src: url('./Assets/Cygnito Mono Pro/Cygnito Mono Pro - Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* Cygnito Mono Pro - Normal - Bold - 000 */
+@font-face {
+  font-family: 'CygnitoMono-000';
+  src: url('./Assets/Cygnito Mono Pro/Cygnito Mono Pro - Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------------001 - Pro Alternate----------------/
+/* Cygnito Mono Pro - Alternate - Light - 001 */
+@font-face {
+  font-family: 'CygnitoMono-001';
+  src: url('./Assets/Cygnito Mono Pro/Cygnito Mono Pro - Light Alternate.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+/* Cygnito Mono Pro - Alternate - Regular - 001 */
+@font-face {
+font-family: 'CygnitoMono-001';
+src: url('./Assets/Cygnito Mono Pro/Cygnito Mono Pro - Regular Alternate.otf') format('opentype');
+font-weight: 400;
+font-style: normal;
+font-display: swap;
+}
+/* Cygnito Mono Pro - Alternate - Bold - 001 */
+@font-face {
+  font-family: 'CygnitoMono-001';
+  src: url('./Assets/Cygnito Mono Pro/Cygnito Mono Pro - Bold Alternate.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* -----------------002 - Pro Dotted-----------------/
+/* Cygnito Mono Pro - Dotted - Light - 002 */
+@font-face {
+font-family: 'CygnitoMono-002';
+src: url('./Assets/Cygnito Mono Pro/Cygnito Mono Pro - Light Dotted.otf') format('opentype');
+font-weight: 300;
+font-style: normal;
+font-display: swap;
+}
+/* Cygnito Mono Pro - Dotted - Regular - 002 */
+@font-face {
+  font-family: 'CygnitoMono-002';
+  src: url('./Assets/Cygnito Mono Pro/Cygnito Mono Pro - Regular Dotted.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* Cygnito Mono Pro - Dotted - Bold - 002 */
+@font-face {
+  font-family: 'CygnitoMono-002';
+  src: url('./Assets/Cygnito Mono Pro/Cygnito Mono Pro - Bold Dotted.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* -------------003 - Pro Dotted Rounded-------------*/
+/* Cygnito Mono Pro - Dotted Rounded - Light - 003 */
+@font-face {
+  font-family: 'CygnitoMono-003';
+  src: url('./Assets/Cygnito Mono Pro/Cygnito Mono Pro - Light Dotted Rounded.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Cygnito Mono Pro - Dotted Rounded - Regular - 003 */
+@font-face {
+  font-family: 'CygnitoMono-003';
+  src: url('./Assets/Cygnito Mono Pro/Cygnito Mono Pro - Regular Dotted Rounded.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Cygnito Mono Pro - Dotted Rounded - Bold - 003 */
+@font-face {
+  font-family: 'CygnitoMono-003';
+  src: url('./Assets/Cygnito Mono Pro/Cygnito Mono Pro - Bold Dotted Rounded.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ----------004 - Pro Dotted Semi Rounded-----------*/
+/* Cygnito Mono Pro - Dotted Semi Rounded - Light - 004 */
+@font-face {
+  font-family: 'CygnitoMono-004';
+  src: url('./Assets/Cygnito Mono Pro/Cygnito Mono Pro - Light Dotted Semi Rounded.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Cygnito Mono Pro - Dotted Semi Rounded - Regular - 004 */
+@font-face {
+  font-family: 'CygnitoMono-004';
+  src: url('./Assets/Cygnito Mono Pro/Cygnito Mono Pro - Regular Dotted Semi Rounded.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Cygnito Mono Pro - Dotted Semi Rounded - Bold - 004 */
+@font-face {
+  font-family: 'CygnitoMono-004';
+  src: url('./Assets/Cygnito Mono Pro/Cygnito Mono Pro - Bold Dotted Semi Rounded.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ----------------005 - Pro Rounded-----------------*/
+/* Cygnito Mono Pro - Rounded - Light - 005 */
+@font-face {
+  font-family: 'CygnitoMono-005';
+  src: url('./Assets/Cygnito Mono Pro/Cygnito Mono Pro - Light Rounded.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Cygnito Mono Pro - Rounded - Regular - 005 */
+@font-face {
+  font-family: 'CygnitoMono-005';
+  src: url('./Assets/Cygnito Mono Pro/Cygnito Mono Pro - Regular Rounded.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Cygnito Mono Pro - Rounded - Bold - 005 */
+@font-face {
+  font-family: 'CygnitoMono-005';
+  src: url('./Assets/Cygnito Mono Pro/Cygnito Mono Pro - Bold Rounded.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* -----------006 - Pro Rounded Alternate------------*/
+/* Cygnito Mono Pro - Rounded Alternate - Light - 006 */
+@font-face {
+  font-family: 'CygnitoMono-006';
+  src: url('./Assets/Cygnito Mono Pro/Cygnito Mono Pro - Light Rounded Alternate.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Cygnito Mono Pro - Rounded Alternate - Regular - 006 */
+@font-face {
+  font-family: 'CygnitoMono-006';
+  src: url('./Assets/Cygnito Mono Pro/Cygnito Mono Pro - Regular Rounded Alternate.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Cygnito Mono Pro - Rounded Alternate - Bold - 006 */
+@font-face {
+  font-family: 'CygnitoMono-006';
+  src: url('./Assets/Cygnito Mono Pro/Cygnito Mono Pro - Bold Rounded Alternate.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --------------007 - Pro Semi Rounded--------------*/
+/* Cygnito Mono Pro - Semi Rounded - Light - 007 */
+@font-face {
+  font-family: 'CygnitoMono-007';
+  src: url('./Assets/Cygnito Mono Pro/Cygnito Mono Pro - Light Semi Rounded.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Cygnito Mono Pro - Semi Rounded - Regular - 007 */
+@font-face {
+  font-family: 'CygnitoMono-007';
+  src: url('./Assets/Cygnito Mono Pro/Cygnito Mono Pro - Regular Semi Rounded.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Cygnito Mono Pro - Semi Rounded - Bold - 007 */
+@font-face {
+  font-family: 'CygnitoMono-007';
+  src: url('./Assets/Cygnito Mono Pro/Cygnito Mono Pro - Bold Semi Rounded.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --------008 - Pro Semi Rounded Alternate----------*/
+/* Cygnito Mono Pro - Semi Rounded Alternate - Light - 008 */
+@font-face {
+  font-family: 'CygnitoMono-008';
+  src: url('./Assets/Cygnito Mono Pro/Cygnito Mono Pro - Light Semi Rounded Alternate.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Cygnito Mono Pro - Semi Rounded Alternate - Regular - 008 */
+@font-face {
+  font-family: 'CygnitoMono-008';
+  src: url('./Assets/Cygnito Mono Pro/Cygnito Mono Pro - Regular Semi Rounded Alternate.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Cygnito Mono Pro - Semi Rounded Alternate - Bold - 008 */
+@font-face {
+  font-family: 'CygnitoMono-008';
+  src: url('./Assets/Cygnito Mono Pro/Cygnito Mono Pro - Bold Semi Rounded Alternate.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ----------------009 - Pro Stencil-----------------*/
+/* Cygnito Mono Pro - Stencil - Light - 009 */
+@font-face {
+  font-family: 'CygnitoMono-009';
+  src: url('./Assets/Cygnito Mono Pro/Cygnito Mono Pro - Light Stencil.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Cygnito Mono Pro - Stencil - Regular - 009 */
+@font-face {
+  font-family: 'CygnitoMono-009';
+  src: url('./Assets/Cygnito Mono Pro/Cygnito Mono Pro - Regular Stencil.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Cygnito Mono Pro - Stencil - Bold - 009 */
+@font-face {
+  font-family: 'CygnitoMono-009';
+  src: url('./Assets/Cygnito Mono Pro/Cygnito Mono Pro - Bold Stencil.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* -------------010 - Pro Stencil Rounded------------*/
+/* Cygnito Mono Pro - Stencil Rounded - Light - 010 */
+@font-face {
+  font-family: 'CygnitoMono-010';
+  src: url('./Assets/Cygnito Mono Pro/Cygnito Mono Pro - Light Stencil Rounded.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Cygnito Mono Pro - Stencil Rounded - Regular - 010 */
+@font-face {
+  font-family: 'CygnitoMono-010';
+  src: url('./Assets/Cygnito Mono Pro/Cygnito Mono Pro - Regular Stencil Rounded.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Cygnito Mono Pro - Stencil Rounded - Bold - 010 */
+@font-face {
+  font-family: 'CygnitoMono-010';
+  src: url('./Assets/Cygnito Mono Pro/Cygnito Mono Pro - Bold Stencil Rounded.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ----------011 - Pro Stencil Semi Rounded----------*/
+/* Cygnito Mono Pro - Stencil Semi Rounded - Light - 011 */
+@font-face {
+  font-family: 'CygnitoMono-011';
+  src: url('./Assets/Cygnito Mono Pro/Cygnito Mono Pro - Light Stencil Semi Rounded.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Cygnito Mono Pro - Stencil Semi Rounded - Regular - 011 */
+@font-face {
+  font-family: 'CygnitoMono-011';
+  src: url('./Assets/Cygnito Mono Pro/Cygnito Mono Pro - Regular Stencil Semi Rounded.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Cygnito Mono Pro - Stencil Semi Rounded - Bold - 011 */
+@font-face {
+  font-family: 'CygnitoMono-011';
+  src: url('./Assets/Cygnito Mono Pro/Cygnito Mono Pro - Bold Stencil Semi Rounded.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
