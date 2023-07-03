@@ -7,7 +7,9 @@ export default function Home() {
     <div className="h-full w-full overflow-y-hidden">
       <div
         className={`bg-black h-[calc(100vh-129px)] overflow-x-hidden text-center relative ${border} ${hud}`}
-      ></div>
+      >
+        
+      </div>
       <div
         className={`flex justify-between items-center h-[75px] bottom-0 text-center ${border} ${hud}`}
       ></div>
