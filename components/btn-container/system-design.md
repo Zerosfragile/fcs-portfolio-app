@@ -99,11 +99,7 @@ const BtnExpandableItem = ({ label, event, link }) => {
     } else if (link) {
       if (route.startsWith("http://") || route.startsWith("https://")) {
         window.open(link, '_blank');
-      } else {
-        // Use Next.js routing for internal links
-        // Example assuming your Next.js route structure
-        // is already defined in the `pages` directory
-        // Replace "link" with your actual Next.js route
+ 
         Router.push(link);
       }
     }
