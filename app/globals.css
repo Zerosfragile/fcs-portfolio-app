@@ -16,6 +16,15 @@
   }
 }
 
+@layer components {
+  .hud {
+    @apply w-auto m-[18px] rounded-[18.75px];
+  }
+  .hud-border {
+    @apply w-auto m-[18px] rounded-[18.75px] border border-offwhite/[.33];
+  }
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -25,3 +34,4 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
