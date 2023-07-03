@@ -7,18 +7,18 @@ module.exports = {
   ],
   theme: {
     colors: {
-      offwhite: {
+      OffWhite: {
         dark: '#b3b3b3',
         DEFAULT: '#e2e2e2',
         light: '#f0fbff'
       },
-      grey: {
+      LunarGrey: {
         darkest: '#202020',
         dark: '#393939',
         DEFAULT: '#595959',
-        light: '##8B8B8B'
+        light: '#8B8B8B'
       },
-      black: {
+      VoidBlack: {
         DEFAULT: '#000000',
         light: '#111111',
         lightest: '#131313'

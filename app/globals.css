@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('./fonts.css');
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -21,7 +23,7 @@
     @apply w-auto m-[18px] rounded-[18.75px];
   }
   .hud-border {
-    @apply w-auto m-[18px] rounded-[18.75px] border border-offwhite/[.33];
+    @apply w-auto m-[18px] rounded-[18.75px] border border-OffWhite/[.33];
   }
 }
 
