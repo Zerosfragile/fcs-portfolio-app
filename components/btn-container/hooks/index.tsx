@@ -10,7 +10,7 @@ export const useIndexPrefix = (children: any) => {
       if (!child.props.prefix) {
         const newProps = {
           ...child.props,
-          prefix: String(index + 1).padStart(2, "0") + " //",
+          prefix: { text: String(index + 1).padStart(2, "0") + " // " },
         };
         return React.cloneElement(child, newProps);
       }
