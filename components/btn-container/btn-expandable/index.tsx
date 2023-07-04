@@ -1,11 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useMediaQuery } from "react-responsive";
+import { useDynamicLabel } from "../hooks";
 
 export type Props = {
   children?: React.ReactNode;
   prefix?: {
-    breakpoint?: number;
+    breakpoint: number;
     text: string;
   };
   labels?: {
@@ -13,7 +13,6 @@ export type Props = {
     text: string;
   }[];
   defaultLabel: string;
-  // onClick(): void;
 };
 
 const BtnExpandable = (props: Props) => {
@@ -22,14 +21,6 @@ const BtnExpandable = (props: Props) => {
     children,
     defaultLabel,
   } = props;
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   const labels = [
     { breakpoint: 480, text: "Mobile" },
@@ -37,16 +28,7 @@ const BtnExpandable = (props: Props) => {
     { breakpoint: 1024, text: "Desktop" },
   ];
 
-  const getLabelText = () => {
-    for (let i = 0; i < labels.length; i++) {
-      if (windowWidth < labels[i].breakpoint) {
-        return labels[i].text;
-      }
-    }
-    return defaultLabel;
-  };
-
-  const dynamicLabel = prefix.text + getLabelText();
+  const dynamicLabel = useDynamicLabel({ labels, prefix, defaultLabel });
 
   return (
     <button className="text-size-auto max-h-45 mx-[11.25px] my-0 rounded-[6px] border border-solid border-OffWhite/[0] bg-LunarGrey-darkest/[.9] px-[18px] pb-[7.5px] pt-[9.75px] font-[CygnitoMono-011] text-[11.25px] font-normal uppercase leading-extra-tight text-OffWhite transition-all duration-500 hover:text-OffWhite-light hover:shadow-glow">
