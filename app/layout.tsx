@@ -19,14 +19,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div className="h-full w-full overflow-y-hidden">
-          <div
-            className={`bg-black h-[calc(100vh-129px)] overflow-x-hidden text-center relative hud-border`}
-          >
+          <div className="bg-black hud-border relative h-[calc(100vh-129px)] overflow-x-hidden text-center">
             {children}
           </div>
-          <div
-            className={`flex justify-between items-center h-[75px] bottom-0 text-center hud-border`}
-          >
+          <div className="hud-border bottom-0 flex h-[75px] items-center justify-between text-center">
             <BtnContainer>
               <BtnExpandable
                 defaultLabel={"TEST"}

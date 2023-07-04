@@ -15,7 +15,7 @@ const BtnContainer = (props: Props) => {
   const { direction = "horizontal", children } = props;
   const indexedChildren = useIndexPrefix(children);
   return (
-    <div className="flex justify-center items-center my-0 mx-[18px] relative">
+    <div className="relative mx-[18px] my-0 flex items-center justify-center">
       {indexedChildren}
       <BtnBack />
     </div>

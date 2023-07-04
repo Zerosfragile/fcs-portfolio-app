@@ -20,7 +20,7 @@ const BtnExpandable = (props: Props) => {
     { breakpoint: 1024, text: "Desktop" },
   ];
   return (
-    <button className="text-OffWhite font-[CygnitoMono-011] leading-extra-tight uppercase font-normal text-size-auto text-[11.25px] hover:shadow-glow hover:text-OffWhite-light transition-all duration-500 bg-LunarGrey-darkest/[.9] rounded-[6px] pt-[9.75px] pb-[7.5px] px-[18px] border border-solid border-OffWhite/[0] my-0 mx-[11.25px] max-h-45">
+    <button className="text-size-auto max-h-45 mx-[11.25px] my-0 rounded-[6px] border border-solid border-OffWhite/[0] bg-LunarGrey-darkest/[.9] px-[18px] pb-[7.5px] pt-[9.75px] font-[CygnitoMono-011] text-[11.25px] font-normal uppercase leading-extra-tight text-OffWhite transition-all duration-500 hover:text-OffWhite-light hover:shadow-glow">
       {prefix} test
     </button>
   );
