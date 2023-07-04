@@ -14,11 +14,11 @@ type Props = {
 };
 
 const BtnExpandable = (props: Props) => {
-  const { children } = props;
+  const { prefix = "", threshold = 1100, children } = props;
  
     return (
       <button className="text-OffWhite font-[CygnitoMono-011] leading-extra-tight uppercase font-normal text-size-auto text-[11.25px] hover:shadow-glow hover:text-OffWhite-light transition-all duration-500 bg-LunarGrey-darkest/[.9] rounded-[6px] pt-[9.75px] pb-[7.5px] px-[18px] border border-solid border-OffWhite/[0] my-0 mx-[11.25px] max-h-45">
-        test
+        {prefix} test
       </button>
     );
 };

@@ -28,13 +28,18 @@ export default function RootLayout({
             className={`flex justify-between items-center h-[75px] bottom-0 text-center hud-border`}
           >
             <BtnContainer>
-              <BtnExpandable 
-                defaultLabel={'TEST'} 
+              <BtnExpandable
+                defaultLabel={"TEST"}
                 onClick={function (): void {
-                  throw new Error('Function not implemented.');
-                } }
-              >
-              </BtnExpandable>
+                  throw new Error("Function not implemented.");
+                }}
+              />
+              <BtnExpandable
+                defaultLabel={"TEST"}
+                onClick={function (): void {
+                  throw new Error("Function not implemented.");
+                }}
+              />
             </BtnContainer>
           </div>
         </div>
