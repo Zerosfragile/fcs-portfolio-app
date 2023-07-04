@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-type Props = {
+export type Props = {
   children?: React.ReactNode;
   prefix?: string;
   threshold?: number;
