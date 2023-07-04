@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react";
 import BtnExpandable, { Props as BtnExpandableProps } from "./btn-expandable";
-import { useIndexPrefix }from "./hooks";
+import { useIndexPrefix } from "./hooks";
 
 type Props = {
   children?: React.ReactNode;
@@ -11,7 +11,6 @@ const BtnBack = () => {
   return <div></div>;
 };
 
-
 const BtnContainer = (props: Props) => {
   const { direction = "horizontal", children } = props;
   const indexedChildren = useIndexPrefix(children);
@@ -21,6 +20,6 @@ const BtnContainer = (props: Props) => {
       <BtnBack />
     </div>
   );
-}
+};
 
 export default BtnContainer;

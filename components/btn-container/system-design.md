@@ -10,12 +10,12 @@ Mainly used for layout and positioning purposes, and it has some responsibility 
 
 ```jsx
 <BtnContainer direction="horizontal">
-  <BtnExpandable/>
-  <BtnExpandable/>
+  <BtnExpandable />
+  <BtnExpandable />
   <BtnExpandable>
-    <BtnExpandableItem/>
-    <BtnExpandableItem/>
-    <BtnExpandableItem/>
+    <BtnExpandableItem />
+    <BtnExpandableItem />
+    <BtnExpandableItem />
   </BtnExpandable>
 </BtnContainer>
 ```
@@ -40,21 +40,21 @@ Mainly used for layout and positioning purposes, and it has some responsibility 
 Here is an example of how these props could be used:
 
 ```jsx
-<BtnExpandable 
-  prefix="01 //" 
-  threshold={1100} 
+<BtnExpandable
+  prefix="01 //"
+  threshold={1100}
   labels={[
-    { breakpoint: 480, text: 'Mobile' },
-    { breakpoint: 768, text: 'Tablet' },
-    { breakpoint: 1024, text: 'Desktop' },
-  ]} 
-  defaultLabel="Default" 
+    { breakpoint: 480, text: "Mobile" },
+    { breakpoint: 768, text: "Tablet" },
+    { breakpoint: 1024, text: "Desktop" },
+  ]}
+  defaultLabel="Default"
 />
 ```
 
 ## BtnBack
 
-An animated backdrop that appears when a `BTN-EXPANDABLE` button is hovered, then disappears when the hover ends. It also displays a set of `BTN-EXPANDABLE-ITEM`s at a certain stage of its animation sequence, and these are hidden if the screen size is below a certain breakpoint. 
+An animated backdrop that appears when a `BTN-EXPANDABLE` button is hovered, then disappears when the hover ends. It also displays a set of `BTN-EXPANDABLE-ITEM`s at a certain stage of its animation sequence, and these are hidden if the screen size is below a certain breakpoint.
 
 ### Props
 
@@ -67,14 +67,15 @@ An animated backdrop that appears when a `BTN-EXPANDABLE` button is hovered, the
 Here's how these props might be used in JSX:
 
 ```jsx
-<BtnBack 
-  isTriggered={isHoveringBtnExpandable} 
-  items={expandableItems} 
+<BtnBack
+  isTriggered={isHoveringBtnExpandable}
+  items={expandableItems}
   breakpoint={480}
 />
 ```
 
 ## BtnExpandableItem
+
 ### Props
 
 1. **`label`**: The label text for the button.
@@ -90,7 +91,7 @@ Here's how these props might be used in JSX:
 Here's an example implementation of the `BTN-EXPANDABLE-ITEM` component, following the plan mentioned above:
 
 ```jsx
-import Link from 'next/link';
+import Link from "next/link";
 
 const BtnExpandableItem = ({ label, event, link }) => {
   const handleClick = () => {
@@ -98,18 +99,14 @@ const BtnExpandableItem = ({ label, event, link }) => {
       event();
     } else if (link) {
       if (route.startsWith("http://") || route.startsWith("https://")) {
-        window.open(link, '_blank');
- 
+        window.open(link, "_blank");
+
         Router.push(link);
       }
     }
   };
 
-  return (
-    <button onClick={handleClick}>
-      {label}
-    </button>
-  );
+  return <button onClick={handleClick}>{label}</button>;
 };
 
 export default BtnExpandableItem;
