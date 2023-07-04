@@ -4,12 +4,8 @@
 
 Mainly used for layout and positioning purposes, and it has some responsibility in calculating the total width of the system.
 
-### Props
-
-1. **`direction`**: While your use case has all buttons in a line (presumably horizontally), other developers might want a different direction. This prop could accept values like `"horizontal"` or `"vertical"`.
-
-```jsx
-<BtnContainer direction="horizontal">
+```tsx
+<BtnContainer>
   <BtnExpandable />
   <BtnExpandable />
   <BtnExpandable>

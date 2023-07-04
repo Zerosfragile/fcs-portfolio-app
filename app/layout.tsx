@@ -1,7 +1,8 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
-import BtnContainer from "@/components/btn-container";
-import BtnExpandable from "@/components/btn-container/btn-expandable";
+import BtnContainer from "@/components/hud-nav-system/exposed";
+import BtnExpandable from "@/components/hud-nav-system/internal/hn-btn";
+import BtnExpandableItem from "@/components/hud-nav-system/internal/hn-item";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,8 +25,19 @@ export default function RootLayout({
           </div>
           <div className="hud-border bottom-0 flex h-[75px] items-center justify-between text-center">
             <BtnContainer>
-              <BtnExpandable defaultLabel={"TEST"} />
-              <BtnExpandable defaultLabel={"TEST"} />
+              <BtnExpandable
+                labels={[{ breakpoint: 850, text: "About" }]}
+                defaultLabel="About Me"
+                route="/About"
+              >
+                <BtnExpandableItem label="Blog Posts" route="/Blog" />
+                <BtnExpandableItem
+                  label="Git Hub"
+                  route="https://github.com/Zerosfragile"
+                />
+                <BtnExpandableItem label="More" route="/About" />
+              </BtnExpandable>
+              <BtnExpandable defaultLabel="Projects" route="" />
             </BtnContainer>
           </div>
         </div>

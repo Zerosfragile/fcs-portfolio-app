@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import { useDynamicLabel } from "../hooks";
-import TypingLabel from "../typing-label";
+import { useDynamicLabel } from "./hooks";
+import TypingLabel from "./hn-btnlabel";
 
 export type Props = {
   children?: React.ReactNode;
@@ -13,6 +13,7 @@ export type Props = {
     breakpoint: number;
     text: string;
   }[];
+  route: string;
   defaultLabel: string;
 };
 
@@ -20,14 +21,9 @@ const BtnExpandable = (props: Props) => {
   const {
     prefix = { breakpoint: 1100, text: "" },
     children,
+    labels,
     defaultLabel,
   } = props;
-
-  const labels = [
-    { breakpoint: 480, text: "Mobile" },
-    { breakpoint: 768, text: "Tablet" },
-    { breakpoint: 1024, text: "Desktop" },
-  ];
 
   const dynamicLabel = useDynamicLabel({ labels, prefix, defaultLabel });
 
