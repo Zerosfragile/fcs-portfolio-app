@@ -1,8 +1,6 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
-import BtnContainer from "@/components/hud-nav-system/exposed";
-import BtnExpandable from "@/components/hud-nav-system/internal/hn-btn";
-import BtnExpandableItem from "@/components/hud-nav-system/internal/hn-item";
+import HUDN from "@/components/hud-nav-system";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,21 +22,26 @@ export default function RootLayout({
             {children}
           </div>
           <div className="hud-border bottom-0 flex h-[75px] items-center justify-between text-center">
-            <BtnContainer>
-              <BtnExpandable
+            {/* <HUDN.container>
+              <HUDN.btn
                 labels={[{ breakpoint: 850, text: "About" }]}
                 defaultLabel="About Me"
                 route="/About"
               >
-                <BtnExpandableItem label="Blog Posts" route="/Blog" />
-                <BtnExpandableItem
+                <HUDN.item label="Blog Posts" route="/Blog" />
+                <HUDN.item
                   label="Git Hub"
                   route="https://github.com/Zerosfragile"
                 />
-                <BtnExpandableItem label="More" route="/About" />
-              </BtnExpandable>
-              <BtnExpandable defaultLabel="Projects" route="" />
-            </BtnContainer>
+                <HUDN.item label="More" route="/About" />
+              </HUDN.btn>
+              <HUDN.btn defaultLabel="Projects" route="" />
+            </HUDN.container> */}
+            <HUDN.container>
+              <HUDN.btn title="Title 1" subtitle="Subtitle 1" />
+              <HUDN.btn title="Title 2" subtitle="Subtitle 2" />
+              <HUDN.btn title="Title 3" subtitle="Subtitle 3" />
+            </HUDN.container>
           </div>
         </div>
       </body>
