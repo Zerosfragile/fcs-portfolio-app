@@ -1,7 +1,8 @@
 "use client";
-import React, { isValidElement, useState } from "react";
+import React, { isValidElement, useEffect, useRef, useState } from "react";
 import HnBack from "../internal/hn-back";
 import { AnimatePresence, motion } from "framer-motion";
+import { useIndexPrefix } from "../internal/hooks";
 
 type Props = {
   children?: React.ReactNode;
@@ -9,43 +10,68 @@ type Props = {
 
 const Container = (props: Props) => {
   const { children } = props;
-  const [selectedId, setSelectedId] = useState<number | null>(null);
+  const [selectedBtn, setSelectedBtn] = useState<HTMLDivElement | null>(null);
+  const [selectedSites, setSelectedSites] = useState<
+    | {
+        title: string;
+        route: string;
+      }[]
+    | null
+  >(null);
 
-  const items = React.Children.toArray(children)
-    .filter(React.isValidElement)
-    .map((child, index) => {
-      // child.props.children is now an array of two elements
-      const [title, subtitle] = child.props.children;
-      return { id: index, title, subtitle };
-    });
+  const indexedChildren = useIndexPrefix(children);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  // const indexedChildren = useIndexPrefix(children);
+  useEffect(() => {
+    console.log(selectedBtn?.innerText);
+  }, [selectedBtn]);
+
+  // console.log("render"); // triggers twice on mount then once every time selectedBtn changes,
+
   return (
-    <div>
-      <AnimatePresence>
-        {selectedId !== null && (
-          <motion.div layoutId={String(selectedId)}>
-            <motion.h5>{items[selectedId].subtitle}</motion.h5>
-            <motion.h2>{items[selectedId].title}</motion.h2>
-            <motion.button onClick={() => setSelectedId(null)} />
-          </motion.div>
-        )}
-      </AnimatePresence>
+    <div
+      ref={containerRef}
+      className="relative mx-[18px] flex items-center justify-center"
+    >
+      {React.Children.toArray(indexedChildren)
+        .filter(React.isValidElement)
+        .map((child, index) => {
+          let btnRef: HTMLDivElement | null = null;
 
-      <div className="relative mx-[18px] my-0 flex items-center justify-center">
-        {items.map((item) => (
-          <motion.div
-            key={item.id}
-            layoutId={String(item.id)}
-            onMouseEnter={() => setSelectedId(item.id)}
-          >
-            <motion.h5>{item.subtitle}</motion.h5>
-            <motion.h2>{item.title}</motion.h2>
-          </motion.div>
-        ))}
-        {/* {indexedChildren} */}
-        <HnBack isTriggered={false} breakpoint={0} items={[]} />
-      </div>
+          const setRef = (node: HTMLDivElement) => {
+            btnRef = node;
+          };
+
+          const handleHover = (event: React.MouseEvent<HTMLDivElement>) => {
+            event.stopPropagation();
+            setSelectedBtn(btnRef); // causes the use effect log to trigger twice
+            setSelectedSites(
+              (
+                child as React.ReactElement<
+                  any,
+                  string | React.JSXElementConstructor<any>
+                >
+              ).props.sites
+            );
+          };
+
+          return (
+            <div
+              key={index}
+              ref={setRef}
+              onMouseEnter={handleHover}
+              className="z-10"
+            >
+              {child}
+            </div>
+          );
+        })}
+      <HnBack
+        selected={{ btn: selectedBtn, set: setSelectedBtn }}
+        sites={selectedSites}
+        container={containerRef}
+        breakpoint={0}
+      />
     </div>
   );
 };

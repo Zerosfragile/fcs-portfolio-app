@@ -22,25 +22,44 @@ export default function RootLayout({
             {children}
           </div>
           <div className="hud-border bottom-0 flex h-[75px] items-center justify-between text-center">
-            {/* <HUDN.container>
+            <HUDN.container>
               <HUDN.btn
                 labels={[{ breakpoint: 850, text: "About" }]}
                 defaultLabel="About Me"
                 route="/About"
-              >
-                <HUDN.item label="Blog Posts" route="/Blog" />
-                <HUDN.item
-                  label="Git Hub"
-                  route="https://github.com/Zerosfragile"
-                />
-                <HUDN.item label="More" route="/About" />
-              </HUDN.btn>
-              <HUDN.btn defaultLabel="Projects" route="" />
-            </HUDN.container> */}
-            <HUDN.container>
-              <HUDN.btn title="Title 1" subtitle="Subtitle 1" />
-              <HUDN.btn title="Title 2" subtitle="Subtitle 2" />
-              <HUDN.btn title="Title 3" subtitle="Subtitle 3" />
+                sites={[
+                  {
+                    title: "Blog Posts",
+                    route: "/blog",
+                  },
+                  {
+                    title: "Github",
+                    route: "https://github.com/Zerosfragile",
+                  },
+                  {
+                    title: "More",
+                    route: "/about",
+                  },
+                ]}
+              />
+              <HUDN.btn
+                defaultLabel="Projects"
+                route=""
+                sites={[
+                  {
+                    title: "Ascii-Hud",
+                    route: "https://fragileservices.com",
+                  },
+                  {
+                    title: "Playground",
+                    route: "/projects/playground",
+                  },
+                  {
+                    title: "More",
+                    route: "/projects",
+                  },
+                ]}
+              />
             </HUDN.container>
           </div>
         </div>
