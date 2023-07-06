@@ -1,78 +1,60 @@
 "use client";
-import React, { isValidElement, useEffect, useRef, useState } from "react";
+import React, {
+  Dispatch,
+  SetStateAction,
+  createContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import HnBack from "../internal/hn-back";
-import { AnimatePresence, motion } from "framer-motion";
 import { useIndexPrefix } from "../internal/hooks";
 
 type Props = {
   children?: React.ReactNode;
 };
 
+export type HNSite = {
+  title: string;
+  route: string;
+};
+export type HNContextType = {
+  selectedBtn: any | null;
+  setSelectedBtn: Dispatch<SetStateAction<any | null>>;
+  selectedSites: HNSite[] | null;
+  setSelectedSites: Dispatch<SetStateAction<HNSite[] | null>>;
+};
+
+export const HNContext = createContext<HNContextType | null>(null);
+
 const Container = (props: Props) => {
   const { children } = props;
-  const [selectedBtn, setSelectedBtn] = useState<HTMLDivElement | null>(null);
-  const [selectedSites, setSelectedSites] = useState<
-    | {
-        title: string;
-        route: string;
-      }[]
-    | null
-  >(null);
+  const [selectedBtn, setSelectedBtn] = useState<HTMLButtonElement | null>(
+    null
+  );
+  const [selectedSites, setSelectedSites] = useState<HNSite[] | null>(null);
 
   const indexedChildren = useIndexPrefix(children);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    console.log(selectedBtn?.innerText);
+    console.log(selectedBtn);
   }, [selectedBtn]);
 
-  // console.log("render"); // triggers twice on mount then once every time selectedBtn changes,
+  console.log("render");
 
   return (
-    <div
-      ref={containerRef}
-      className="relative mx-[18px] flex items-center justify-center"
+    <HNContext.Provider
+      value={{ selectedBtn, setSelectedBtn, selectedSites, setSelectedSites }}
     >
-      {React.Children.toArray(indexedChildren)
-        .filter(React.isValidElement)
-        .map((child, index) => {
-          let btnRef: HTMLDivElement | null = null;
-
-          const setRef = (node: HTMLDivElement) => {
-            btnRef = node;
-          };
-
-          const handleHover = (event: React.MouseEvent<HTMLDivElement>) => {
-            event.stopPropagation();
-            setSelectedBtn(btnRef); // causes the use effect log to trigger twice
-            setSelectedSites(
-              (
-                child as React.ReactElement<
-                  any,
-                  string | React.JSXElementConstructor<any>
-                >
-              ).props.sites
-            );
-          };
-
-          return (
-            <div
-              key={index}
-              ref={setRef}
-              onMouseEnter={handleHover}
-              className="z-10"
-            >
-              {child}
-            </div>
-          );
-        })}
-      <HnBack
-        selected={{ btn: selectedBtn, set: setSelectedBtn }}
-        sites={selectedSites}
-        container={containerRef}
-        breakpoint={0}
-      />
-    </div>
+      <div
+        ref={containerRef}
+        className="relative mx-[18px] flex items-center justify-center"
+      >
+        {indexedChildren}
+        <HnBack container={containerRef} breakpoint={0} />
+      </div>
+    </HNContext.Provider>
   );
 };
 
