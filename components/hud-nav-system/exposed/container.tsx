@@ -9,6 +9,7 @@ import React, {
 } from "react";
 import HnBack from "../internal/hn-back";
 import { useIndexPrefix } from "../internal/hooks";
+import { LayoutGroup } from "framer-motion";
 
 type Props = {
   children?: React.ReactNode;
@@ -18,42 +19,36 @@ export type HNSite = {
   title: string;
   route: string;
 };
+
 export type HNContextType = {
-  selectedBtn: any | null;
-  setSelectedBtn: Dispatch<SetStateAction<any | null>>;
-  selectedSites: HNSite[] | null;
-  setSelectedSites: Dispatch<SetStateAction<HNSite[] | null>>;
+  selectedID: string;
+  setSelectedID: Dispatch<SetStateAction<string>>;
 };
 
 export const HNContext = createContext<HNContextType | null>(null);
 
 const Container = (props: Props) => {
   const { children } = props;
-  const [selectedBtn, setSelectedBtn] = useState<HTMLButtonElement | null>(
-    null
-  );
-  const [selectedSites, setSelectedSites] = useState<HNSite[] | null>(null);
+  const [selectedID, setSelectedID] = useState("null");
 
   const indexedChildren = useIndexPrefix(children);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    console.log(selectedBtn);
-  }, [selectedBtn]);
-
-  console.log("render");
-
   return (
     <HNContext.Provider
-      value={{ selectedBtn, setSelectedBtn, selectedSites, setSelectedSites }}
+      value={{
+        selectedID,
+        setSelectedID,
+      }}
     >
-      <div
-        ref={containerRef}
-        className="relative mx-[18px] flex items-center justify-center"
-      >
-        {indexedChildren}
-        <HnBack container={containerRef} breakpoint={0} />
-      </div>
+      <LayoutGroup>
+        <div
+          ref={containerRef}
+          className="relative mx-[18px] flex items-center justify-center"
+        >
+          {indexedChildren}
+        </div>
+      </LayoutGroup>
     </HNContext.Provider>
   );
 };
