@@ -44,7 +44,7 @@ export default function RootLayout({
               />
               <HUDN.btn
                 defaultLabel="Projects"
-                route=""
+                route="/Projects"
                 sites={[
                   {
                     title: "Ascii-Hud",
@@ -57,6 +57,20 @@ export default function RootLayout({
                   {
                     title: "More",
                     route: "/projects",
+                  },
+                ]}
+              />
+              <HUDN.btn
+                defaultLabel="Resume"
+                route="/Resume"
+                sites={[
+                  {
+                    title: "PDF View",
+                    route: "/resume/pdf",
+                  },
+                  {
+                    title: "More",
+                    route: "/resume",
                   },
                 ]}
               />

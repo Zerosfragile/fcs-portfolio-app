@@ -49,15 +49,17 @@ const Btn = (props: Props) => {
     transition: {
       scale: { type: "spring", bounce: 0.25, duration: 0.5 },
       width: { delay: 0, times: [0, 0.5, 1], duration: 1 },
-      left: { delay: 0.5, duration: 0.5 },
-      height: { delay: 1, duration: 0.5 },
-      bottom: { delay: 1, duration: 0.5 },
+      left: { delay: 0, times: [0, 0.5, 1], duration: 1 },
+      height: { delay: 1, times: [0, 0.5, 1], duration: 0.5 },
+      bottom: { delay: 1, times: [0, 0.5, 1], duration: 0.5 },
     },
   });
 
   useEffect(() => {
     console.log(containerSize);
+    console.log(componentSize);
     if (componentSize && containerSize) {
+      const offsetLeft = componentSize.left ? componentSize.left * -1 : null;
       setAnimationSequence((prev) => ({
         ...prev,
         animate: {
@@ -66,7 +68,7 @@ const Btn = (props: Props) => {
             componentSize.width,
             containerSize.width,
           ],
-          left: componentSize.left ? componentSize.left * -1 : 0,
+          left: [0, 0, offsetLeft],
           height: "300%",
         },
       }));
