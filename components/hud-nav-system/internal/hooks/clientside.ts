@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, RefObject } from "react";
 
 export const useWindowWidth = () => {
   const isClient = typeof window === "object";
@@ -55,4 +55,50 @@ export const useDynamicLabel = ({
   };
 
   return getLabelPrefix(getLabelText);
+};
+
+interface Size {
+  width: number | null;
+  height: number | null;
+  left: number | null;
+}
+
+export const useComponentSize = (ref: RefObject<HTMLElement>): Size => {
+  const [componentSize, setComponentSize] = useState<Size>({
+    width: null,
+    height: null,
+    left: null,
+  });
+  const component = ref.current;
+
+  useEffect(() => {
+    const updateSize = () => {
+      if (component) {
+        setComponentSize({
+          width: component.offsetWidth,
+          height: component.offsetHeight,
+          left: component.offsetLeft,
+        });
+      }
+    };
+
+    updateSize(); // Initial update
+
+    let resizeObserver: ResizeObserver | null = null;
+
+    if (component) {
+      resizeObserver = new ResizeObserver(updateSize);
+      resizeObserver.observe(component);
+    }
+
+    return () => {
+      if (resizeObserver && component) {
+        resizeObserver.unobserve(component);
+        resizeObserver.disconnect();
+      }
+      window.removeEventListener("resize", updateSize); // Cleanup
+    };
+  }, [component]);
+
+  return componentSize;
 };

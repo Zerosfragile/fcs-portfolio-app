@@ -3,7 +3,8 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { useDynamicLabel } from "../internal/hooks";
 import TypingLabel from "../internal/hn-btnlabel";
 import { HNContext } from "./container";
-import { motion, useAnimationControls } from "framer-motion";
+import { motion, useAnimationControls, useMotionValue } from "framer-motion";
+import { useComponentSize } from "../internal/hooks/clientside";
 
 export type Props = {
   prefix?: {
@@ -40,27 +41,37 @@ const Btn = (props: Props) => {
   }
 
   const { selectedID, setSelectedID, container } = context;
-
-  const animationSequence = {
+  const componentSize = useComponentSize(ref);
+  const containerSize = useComponentSize(container);
+  const [animationSequence, setAnimationSequence] = useState({
     initial: {},
-    animate: {
-      width: ref?.current?.parentElement
-        ? ref.current.parentElement.offsetWidth
-        : "100%",
-      height: "300%",
-      left: ref?.current ? ref.current.offsetLeft * -1 : 0,
-      bottom: ref?.current?.parentElement
-        ? ref.current.parentElement.offsetHeight * -0.25
-        : 0,
-    },
+    animate: {},
     transition: {
       scale: { type: "spring", bounce: 0.25, duration: 0.5 },
-      width: { delay: 0.5, duration: 0.5 },
+      width: { delay: 0, times: [0, 0.5, 1], duration: 1 },
       left: { delay: 0.5, duration: 0.5 },
       height: { delay: 1, duration: 0.5 },
       bottom: { delay: 1, duration: 0.5 },
     },
-  };
+  });
+
+  useEffect(() => {
+    console.log(containerSize);
+    if (componentSize && containerSize) {
+      setAnimationSequence((prev) => ({
+        ...prev,
+        animate: {
+          width: [
+            componentSize.width,
+            componentSize.width,
+            containerSize.width,
+          ],
+          left: componentSize.left ? componentSize.left * -1 : 0,
+          height: "300%",
+        },
+      }));
+    }
+  }, [containerSize, componentSize]);
 
   return (
     <>

@@ -1,6 +1,7 @@
 "use client";
 import React, {
   Dispatch,
+  RefObject,
   SetStateAction,
   createContext,
   useEffect,
@@ -24,7 +25,7 @@ export type HNContextType = {
   setIsVisible: Dispatch<SetStateAction<boolean>>;
   selectedID: string;
   setSelectedID: Dispatch<SetStateAction<string>>;
-  container: HTMLDivElement | null;
+  container: RefObject<HTMLElement>;
 };
 
 export const HNContext = createContext<HNContextType | null>(null);
@@ -44,7 +45,7 @@ const Container = (props: Props) => {
         setIsVisible,
         selectedID,
         setSelectedID,
-        container: containerRef.current,
+        container: containerRef,
       }}
     >
       <LayoutGroup>
