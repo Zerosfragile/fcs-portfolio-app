@@ -5,7 +5,6 @@ import TypingLabel from "../internal/hn-btnlabel";
 import { HNContext } from "./container";
 import { motion } from "framer-motion";
 import { useComponentSize } from "../internal/hooks/clientside";
-import { useMeasure } from "react-use-measure";
 
 export type Props = {
   prefix?: {
