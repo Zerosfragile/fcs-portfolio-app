@@ -3,8 +3,9 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { useDynamicLabel } from "../internal/hooks";
 import TypingLabel from "../internal/hn-btnlabel";
 import { HNContext } from "./container";
-import { motion, useAnimationControls, useMotionValue } from "framer-motion";
+import { motion } from "framer-motion";
 import { useComponentSize } from "../internal/hooks/clientside";
+import { useMeasure } from "react-use-measure";
 
 export type Props = {
   prefix?: {
@@ -41,10 +42,11 @@ const Btn = (props: Props) => {
   }
 
   const { selectedID, setSelectedID, container } = context;
+
   const componentSize = useComponentSize(ref);
   const containerSize = useComponentSize(container);
   const [animationSequence, setAnimationSequence] = useState({
-    initial: {},
+    initial: { top: "-25%" },
     animate: {},
     transition: {
       scale: { type: "spring", bounce: 0.25, duration: 0.5 },
@@ -52,14 +54,24 @@ const Btn = (props: Props) => {
       left: { delay: 0, times: [0, 0.5, 1], duration: 1 },
       height: { delay: 1, times: [0, 0.5, 1], duration: 0.5 },
       bottom: { delay: 1, times: [0, 0.5, 1], duration: 0.5 },
+      top: { delay: 1, duration: 0.5 },
     },
   });
 
   useEffect(() => {
-    console.log(containerSize);
-    console.log(componentSize);
+    // console.log("container: ");
+    // console.log(containerSize);
+    console.log("component " + defaultLabel + " : ");
+    // console.log(componentSize);
     if (componentSize && containerSize) {
-      const offsetLeft = componentSize.left ? componentSize.left * -1 : null;
+      const offsetLeft =
+        componentSize.left && containerSize.width
+          ? componentSize.left * -1
+          : null;
+      console.log(offsetLeft);
+      const bottom = containerSize.height
+        ? -(containerSize.height * 0.5) / 2
+        : null;
       setAnimationSequence((prev) => ({
         ...prev,
         animate: {
@@ -70,10 +82,12 @@ const Btn = (props: Props) => {
           ],
           left: [0, 0, offsetLeft],
           height: "300%",
+          bottom: bottom,
+          top: null,
         },
       }));
     }
-  }, [containerSize, componentSize]);
+  }, [containerSize, componentSize, defaultLabel]);
 
   return (
     <>
@@ -97,7 +111,7 @@ const Btn = (props: Props) => {
           <motion.div
             layoutId="HN-BACK"
             className="
-              absolute left-0 top-[-25%] -z-10 flex h-[150%] w-full 
+              absolute -z-10 flex h-[150%] w-full 
               flex-col rounded-[6px] bg-VoidBlack-light opacity-100
             "
             initial={animationSequence.initial}

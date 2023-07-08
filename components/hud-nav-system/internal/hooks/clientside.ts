@@ -69,10 +69,10 @@ export const useComponentSize = (ref: RefObject<HTMLElement>): Size => {
     height: null,
     left: null,
   });
-  const component = ref.current;
 
   useEffect(() => {
     const updateSize = () => {
+      const component = ref.current;
       if (component) {
         setComponentSize({
           width: component.offsetWidth,
@@ -84,21 +84,18 @@ export const useComponentSize = (ref: RefObject<HTMLElement>): Size => {
 
     updateSize(); // Initial update
 
-    let resizeObserver: ResizeObserver | null = null;
+    const observer = new MutationObserver(updateSize);
+    const config = { attributes: true, childList: true, subtree: true };
 
+    const component = ref.current;
     if (component) {
-      resizeObserver = new ResizeObserver(updateSize);
-      resizeObserver.observe(component);
+      observer.observe(component, config);
     }
 
     return () => {
-      if (resizeObserver && component) {
-        resizeObserver.unobserve(component);
-        resizeObserver.disconnect();
-      }
-      window.removeEventListener("resize", updateSize); // Cleanup
+      observer.disconnect();
     };
-  }, [component]);
+  }, [ref]);
 
   return componentSize;
 };
