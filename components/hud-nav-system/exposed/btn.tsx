@@ -45,15 +45,15 @@ const Btn = (props: Props) => {
   const componentSize = useComponentSize(ref);
   const containerSize = useComponentSize(container);
   const [animationSequence, setAnimationSequence] = useState({
-    initial: { top: "-25%" },
+    initial: { top: "-25%", height: "150%" },
     animate: {},
     transition: {
       scale: { type: "spring", bounce: 0.25, duration: 0.5 },
       width: { delay: 0, times: [0, 0.5, 1], duration: 1 },
       left: { delay: 0, times: [0, 0.5, 1], duration: 1 },
-      height: { delay: 1, times: [0, 0.5, 1], duration: 0.5 },
-      bottom: { delay: 1, times: [0, 0.5, 1], duration: 0.5 },
-      top: { delay: 1, duration: 0.5 },
+      // height: { delay: 1, times: [0, 0.5, 1], duration: 0.5 },
+      // bottom: { delay: 1, times: [0, 0.5, 1], duration: 0.5 },
+      // top: { delay: 1, duration: 0.5 },
     },
   });
 
@@ -68,9 +68,9 @@ const Btn = (props: Props) => {
           ? componentSize.left * -1
           : null;
       console.log(offsetLeft);
-      const bottom = containerSize.height
-        ? -(containerSize.height * 0.5) / 2
-        : null;
+      // const bottom = containerSize.height
+      //   ? -(containerSize.height * 0.5) / 2
+      //   : 0;
       setAnimationSequence((prev) => ({
         ...prev,
         animate: {
@@ -80,9 +80,9 @@ const Btn = (props: Props) => {
             containerSize.width,
           ],
           left: [0, 0, offsetLeft],
-          height: "300%",
-          bottom: bottom,
-          top: null,
+          // height: "300%",
+          // bottom: bottom,
+          // top: null,
         },
       }));
     }
