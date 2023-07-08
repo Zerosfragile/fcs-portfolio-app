@@ -7,7 +7,6 @@ import React, {
   useRef,
   useState,
 } from "react";
-import HnBack from "../internal/hn-back";
 import { useIndexPrefix } from "../internal/hooks";
 import { LayoutGroup } from "framer-motion";
 
@@ -21,14 +20,18 @@ export type HNSite = {
 };
 
 export type HNContextType = {
+  isVisible: boolean;
+  setIsVisible: Dispatch<SetStateAction<boolean>>;
   selectedID: string;
   setSelectedID: Dispatch<SetStateAction<string>>;
+  container: HTMLDivElement | null;
 };
 
 export const HNContext = createContext<HNContextType | null>(null);
 
 const Container = (props: Props) => {
   const { children } = props;
+  const [isVisible, setIsVisible] = useState(false);
   const [selectedID, setSelectedID] = useState("null");
 
   const indexedChildren = useIndexPrefix(children);
@@ -37,8 +40,11 @@ const Container = (props: Props) => {
   return (
     <HNContext.Provider
       value={{
+        isVisible,
+        setIsVisible,
         selectedID,
         setSelectedID,
+        container: containerRef.current,
       }}
     >
       <LayoutGroup>

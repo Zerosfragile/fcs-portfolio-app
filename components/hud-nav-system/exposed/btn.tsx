@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { useDynamicLabel } from "../internal/hooks";
 import TypingLabel from "../internal/hn-btnlabel";
 import { HNContext } from "./container";
-import { motion } from "framer-motion";
+import { motion, useAnimationControls } from "framer-motion";
 
 export type Props = {
   prefix?: {
@@ -39,7 +39,28 @@ const Btn = (props: Props) => {
     throw new Error("Component must be used within a HNContext.Provider");
   }
 
-  const { selectedID, setSelectedID } = context;
+  const { selectedID, setSelectedID, container } = context;
+
+  const animationSequence = {
+    initial: {},
+    animate: {
+      width: ref?.current?.parentElement
+        ? ref.current.parentElement.offsetWidth
+        : "100%",
+      height: "300%",
+      left: ref?.current ? ref.current.offsetLeft * -1 : 0,
+      bottom: ref?.current?.parentElement
+        ? ref.current.parentElement.offsetHeight * -0.25
+        : 0,
+    },
+    transition: {
+      scale: { type: "spring", bounce: 0.25, duration: 0.5 },
+      width: { delay: 0.5, duration: 0.5 },
+      left: { delay: 0.5, duration: 0.5 },
+      height: { delay: 1, duration: 0.5 },
+      bottom: { delay: 1, duration: 0.5 },
+    },
+  };
 
   return (
     <>
@@ -61,12 +82,14 @@ const Btn = (props: Props) => {
         </div>
         {defaultLabel === selectedID && (
           <motion.div
-            layoutId="underline"
+            layoutId="HN-BACK"
             className="
               absolute left-0 top-[-25%] -z-10 flex h-[150%] w-full 
               flex-col rounded-[6px] bg-VoidBlack-light opacity-100
             "
-            transition={{ type: "spring", bounce: 0.25, duration: 0.5 }}
+            initial={animationSequence.initial}
+            animate={animationSequence.animate}
+            transition={animationSequence.transition}
             onMouseLeave={() => setSelectedID("null")}
           ></motion.div>
         )}
