@@ -10,9 +10,7 @@ import React, {
 } from "react";
 import { useIndexPrefix } from "../internal/hooks";
 import { LayoutGroup, motion, useAnimationControls } from "framer-motion";
-import HNBack from "../internal/hn-back";
 import { useRouter } from "next/router";
-import { Url } from "next/dist/shared/lib/router/router";
 
 type Props = {
   children?: React.ReactNode;
@@ -37,8 +35,6 @@ export const HNContext = createContext<HNContextType | null>(null);
 
 const Container = (props: Props) => {
   const { children, eventHandlers } = props;
-  const btnRefs = useRef({});
-  // const containerRef = useRef();
   const [isVisible, setIsVisible] = useState(false);
   const [selectedID, setSelectedID] = useState("null");
 
