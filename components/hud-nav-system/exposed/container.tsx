@@ -59,24 +59,9 @@ const Container = (props: Props) => {
     clearTimeout(timeout2);
     clearTimeout(timeout3);
 
-    // Reset the background div to its initial state
-    // const btnBack = backRef.current;
     setIsVisible(false);
     controls.start({ opacity: 0, height: "150%" });
-    // btnBack.innerHTML = "";
   };
-
-  // Needs to be applied through context provider to btns
-  // ref={(btnRef) => {
-  //   if (btnRef) {
-  //     // Save a reference to each button for use in handleMouseEnter
-  //     btnRefs.current[child.props.id] = btnRef;
-  //   }
-  // }}
-  // onMouseEnter={() =>
-  //   handleMouseEnter(btnRefs.current[child.props.id], child.props.sites)
-  // }
-  // onClick={() => handleClick(child.props.route, child.props.event)}
 
   useEffect(() => {
     const container = containerRef.current;
