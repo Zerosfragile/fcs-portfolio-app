@@ -1,8 +1,6 @@
 "use client";
 import React, {
-  Dispatch,
   RefObject,
-  SetStateAction,
   createContext,
   useEffect,
   useRef,
@@ -23,20 +21,25 @@ export type HNSite = {
 };
 
 export type HNContextType = {
-  isVisible: boolean;
-  setIsVisible: Dispatch<SetStateAction<boolean>>;
-  selectedID: string;
-  setSelectedID: Dispatch<SetStateAction<string>>;
-  container: RefObject<HTMLDivElement>;
+  // isVisible: boolean;
+  // setIsVisible: Dispatch<SetStateAction<boolean>>;
+  // selectedID: string;
+  // setSelectedID: Dispatch<SetStateAction<string>>;
+  // container: RefObject<HTMLDivElement>;
   handleMouseEnter: any;
 };
+
+const INITIAL_HEIGHT = "150%";
+const ANIMATION_DELAY = 500; // milliseconds
+const LINK_REVEAL_DELAY = 100; // milliseconds
+const LINK_HEIGHT = 45; // pixels
+const BTN_PADDING = 25; // pixels
 
 export const HNContext = createContext<HNContextType | null>(null);
 
 const Container = (props: Props) => {
   const { children, eventHandlers } = props;
   const [isVisible, setIsVisible] = useState(false);
-  const [selectedID, setSelectedID] = useState("null");
 
   const indexedChildren = useIndexPrefix(children);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -56,7 +59,7 @@ const Container = (props: Props) => {
     clearTimeout(timeout3);
 
     setIsVisible(false);
-    controls.start({ opacity: 0, height: "150%" });
+    controls.start({ opacity: 0, height: INITIAL_HEIGHT });
   };
 
   useEffect(() => {
@@ -78,13 +81,11 @@ const Container = (props: Props) => {
         }[]
       | []
   ) => {
-    // if (!btn.current) return;
-
     console.log(btn);
     controls.start({
       opacity: 100,
-      width: btn.offsetWidth + 25,
-      left: btn.offsetLeft - 25 / 2,
+      width: btn.offsetWidth + BTN_PADDING,
+      left: btn.offsetLeft - BTN_PADDING / 2,
     });
     setSiteLinks(sites);
     clearTimeout(timeout1);
@@ -99,9 +100,9 @@ const Container = (props: Props) => {
         });
       }
       timeout2 = setTimeout(() => {
-        let backHeight = "150%";
+        let backHeight = INITIAL_HEIGHT;
         if (sites.length > 0) {
-          backHeight = (sites.length + 1) * 45 + `px`;
+          backHeight = (sites.length + 1) * LINK_HEIGHT + `px`;
         }
         controls.start({
           bottom: containerRef.current
@@ -111,19 +112,14 @@ const Container = (props: Props) => {
         });
         timeout3 = setTimeout(() => {
           setIsVisible(true);
-        }, 100);
-      }, 500);
-    }, 500);
+        }, LINK_REVEAL_DELAY);
+      }, ANIMATION_DELAY);
+    }, ANIMATION_DELAY);
   };
 
   return (
     <HNContext.Provider
       value={{
-        isVisible,
-        setIsVisible,
-        selectedID,
-        setSelectedID,
-        container: containerRef,
         handleMouseEnter,
       }}
     >
