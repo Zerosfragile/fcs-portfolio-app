@@ -14,6 +14,8 @@ export const useIndexPrefix = (children: any) => {
             breakpoint: 1100,
             text: String(index).padStart(2, "0") + " // ",
           },
+          id: index + child.props.defaultLabel,
+          key: index,
         };
         return React.cloneElement(child, newProps);
       }
