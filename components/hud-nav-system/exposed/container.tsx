@@ -29,8 +29,7 @@ export type HNContextType = {
 
 export const HNContext = createContext<HNContextType | null>(null);
 
-const Container = (props: Props) => {
-  const { children } = props;
+const Container = ({ children, eventHandlers }: Props) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const indexedChildren = useIndexPrefix(children);
   const { handleMouseEnter, handleMouseLeave, HNBControls } =
@@ -41,14 +40,6 @@ const Container = (props: Props) => {
     route: string | undefined,
     eventKey: string | undefined
   ) => {
-    const eventHandlers: EventHandlers = {
-      showEmail: () => {
-        console.log("email btn pressed");
-      },
-      refresh: () => {
-        console.log("refresh btn pressed");
-      },
-    };
     if (route) {
       if (route.startsWith("http://") || route.startsWith("https://")) {
         // External URL: open in a new tab
@@ -57,7 +48,7 @@ const Container = (props: Props) => {
         // Internal route: handle using Next.js routing
         router.push(route);
       }
-    } else if (eventKey && eventHandlers[eventKey]) {
+    } else if (eventKey && eventHandlers && eventHandlers[eventKey]) {
       //Handle Function
       eventHandlers[eventKey]();
     }
