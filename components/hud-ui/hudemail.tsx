@@ -9,6 +9,7 @@ type Props = {
 };
 
 const wait = () => new Promise((resolve) => setTimeout(resolve, 1000));
+const submitEmail = () => {};
 
 const HudEmail = ({ open }: Props) => (
   <Dialog.Root open={open.state}>
@@ -23,12 +24,13 @@ const HudEmail = ({ open }: Props) => (
           className="flex min-h-full flex-col"
         >
           <div className="flex flex-row-reverse">
-            <span
+            <Dialog.Close
+              aria-label="Close"
               className="cursor-pointer font-[CygnitoMono-011] text-[11.25px] font-normal text-OffWhite-dark hover:text-OffWhite hover:underline max-md:text-[10px]"
               onClick={() => open.set((prev) => !prev)}
             >
               Close
-            </span>
+            </Dialog.Close>
           </div>
           <input
             id="Name"
@@ -85,3 +87,8 @@ const HudEmail = ({ open }: Props) => (
 );
 
 export default HudEmail;
+
+//Todo
+// Mount - Unmount Animations
+//? Child animations
+//Form SubmitEmail function
