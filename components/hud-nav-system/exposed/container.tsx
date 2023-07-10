@@ -1,14 +1,12 @@
 "use client";
-import React, { Ref, createContext, useRef } from "react";
+import React, { createContext, useRef } from "react";
 import {
-  HNBControls,
   useIndexPrefix,
   useHandleHNA,
   HandleMouseEnter,
 } from "../internal/hooks";
-import { LayoutGroup, motion } from "framer-motion";
+import { LayoutGroup } from "framer-motion";
 import { useRouter } from "next/router";
-import { HNSite } from "..";
 import HNBack from "../internal/hn-back";
 
 type Props = {
