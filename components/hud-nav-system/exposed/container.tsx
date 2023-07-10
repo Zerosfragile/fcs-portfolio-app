@@ -4,31 +4,66 @@ import {
   useIndexPrefix,
   useHandleHNA,
   HandleMouseEnter,
+  handleRoute,
 } from "../internal/hooks";
 import { LayoutGroup } from "framer-motion";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import HNBack from "../internal/hn-back";
 
 type Props = {
   children?: React.ReactNode;
-  eventHandlers: any;
+  // eventHandlers?: any;
 };
 export type HNContextType = {
   handleMouseEnter: HandleMouseEnter;
+  handleClick: (
+    route: string | undefined,
+    eventKey: string | undefined
+  ) => void;
 };
 export const HNContext = createContext<HNContextType | null>(null);
 
 const Container = (props: Props) => {
-  const { children, eventHandlers } = props;
+  const { children } = props;
   const containerRef = useRef<HTMLDivElement>(null);
   const indexedChildren = useIndexPrefix(children);
   const { handleMouseEnter, handleMouseLeave, HNBControls } =
     useHandleHNA(containerRef);
+  const router = useRouter();
+
+  const handleClick = (
+    route: string | undefined,
+    eventKey: string | undefined
+  ) => {
+    const eventHandlers = {
+      showEmail: () => {
+        console.log("email btn pressed");
+      },
+      refresh: () => {
+        console.log("refresh btn pressed");
+      },
+    };
+    if (route) {
+      // Handle Route
+      // console.log(route);
+      if (route.startsWith("http://") || route.startsWith("https://")) {
+        // External URL: open in a new tab
+        window.open(route, "_blank");
+      } else {
+        // Internal route: handle using Next.js routing
+        router.push(route);
+      }
+    } else if (eventKey && eventHandlers[eventKey]) {
+      //Handle Function
+      eventHandlers[eventKey]();
+    }
+  };
 
   return (
     <HNContext.Provider
       value={{
         handleMouseEnter,
+        handleClick,
       }}
     >
       <LayoutGroup>

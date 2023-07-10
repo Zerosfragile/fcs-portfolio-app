@@ -1,3 +1,4 @@
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context";
 import React from "react";
 
 export const useIndexPrefix = (children: any) => {
@@ -35,11 +36,7 @@ export const useIndexPrefix = (children: any) => {
   return addIndexPrefix();
 };
 
-import { useRouter } from "next/router";
-
-export const useHandleRoute = (route: string): void | Promise<boolean> => {
-  const router = useRouter();
-
+export const handleRoute = (route: string, router: AppRouterInstance) => {
   if (!route) {
     throw new Error("Route parameter is required.");
   }

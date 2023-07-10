@@ -92,7 +92,6 @@ export const useHandleHNA = (
     btn: RefObject<HTMLButtonElement | null>,
     sites: HNSite[] | []
   ) => {
-    console.log(btn);
     resizeToBtn(btn, controls, settings.BTN_PADDING);
     setSiteLinks(sites);
     clearTimeout(timeout1);

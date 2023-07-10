@@ -13,7 +13,8 @@ export type HNBreakpointText = {
 
 export type HNSite = {
   title: string;
-  route: string;
-};
+  route?: string;
+  event?: string;
+} & ({ event: string } | { route: string });
 
 export default HUDN;

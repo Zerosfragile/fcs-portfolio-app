@@ -20,18 +20,18 @@ const Btn = (props: Props) => {
     sites = [],
     labels,
     defaultLabel,
+    route,
+    event,
   } = props;
 
   const dynamicLabel = useDynamicLabel({ labels, prefix, defaultLabel });
   const ref = useRef<HTMLButtonElement | null>(null);
 
   const context = useContext(HNContext);
-
   if (!context) {
     throw new Error("Component must be used within a HNContext.Provider");
   }
-
-  const { handleMouseEnter } = context;
+  const { handleMouseEnter, handleClick } = context;
 
   return (
     <button
@@ -48,6 +48,7 @@ const Btn = (props: Props) => {
         const screenWidth = window.innerWidth;
         handleMouseEnter(ref, screenWidth > breakpoint ? sites : []);
       }}
+      onClick={() => handleClick(route, event)}
     >
       <TypingLabel text={dynamicLabel} />
     </button>
