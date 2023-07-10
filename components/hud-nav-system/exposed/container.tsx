@@ -10,9 +10,13 @@ import { LayoutGroup } from "framer-motion";
 import { useRouter } from "next/navigation";
 import HNBack from "../internal/hn-back";
 
+interface EventHandlers {
+  [key: string]: () => void;
+}
+
 type Props = {
   children?: React.ReactNode;
-  // eventHandlers?: any;
+  eventHandlers?: EventHandlers;
 };
 export type HNContextType = {
   handleMouseEnter: HandleMouseEnter;
@@ -35,7 +39,7 @@ const Container = (props: Props) => {
     route: string | undefined,
     eventKey: string | undefined
   ) => {
-    const eventHandlers = {
+    const eventHandlers: EventHandlers = {
       showEmail: () => {
         console.log("email btn pressed");
       },
@@ -44,8 +48,6 @@ const Container = (props: Props) => {
       },
     };
     if (route) {
-      // Handle Route
-      // console.log(route);
       if (route.startsWith("http://") || route.startsWith("https://")) {
         // External URL: open in a new tab
         window.open(route, "_blank");
