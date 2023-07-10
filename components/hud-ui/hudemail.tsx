@@ -10,13 +10,33 @@ type Props = {
 
 const EmailForm = ({ afterSave }: { afterSave: () => void }) => {
   const [saving, setSaving] = React.useState(false);
+  const openEmailClient = ({
+    name,
+    email,
+    message,
+  }: {
+    name: string;
+    email: string;
+    message: string;
+  }) => {
+    const emailBody = `Name: ${name}\nEmail: ${email}\n\nMessage: ${message}`;
+    window.location.href = `mailto:info@FragileServices.com?subject=Contact from ${name}&body=${encodeURIComponent(
+      emailBody
+    )}`;
+  };
+
   async function submitEmail(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    let data = Object.fromEntries(new FormData(event.currentTarget));
-    console.log(data);
+    let data = Object.fromEntries(new FormData(event.currentTarget)) as {
+      name: string;
+      email: string;
+      message: string;
+    };
     setSaving(true);
+    openEmailClient(data);
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    afterSave;
+    setSaving(false);
+    afterSave();
   }
 
   return (
@@ -111,8 +131,3 @@ const HudEmail = ({ open }: Props) => {
 };
 
 export default HudEmail;
-
-//Todo
-// Mount - Unmount Animations
-//? Child animations
-//Form SubmitEmail function
