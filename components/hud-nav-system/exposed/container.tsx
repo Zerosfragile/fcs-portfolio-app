@@ -7,9 +7,14 @@ import React, {
   useState,
 } from "react";
 import { useIndexPrefix } from "../internal/hooks";
-import { LayoutGroup, motion, useAnimationControls } from "framer-motion";
+import {
+  AnimationControls,
+  LayoutGroup,
+  motion,
+  useAnimationControls,
+} from "framer-motion";
 import { useRouter } from "next/router";
-
+import { useHandleHNA } from "../internal/hooks/animationHandler";
 type Props = {
   children?: React.ReactNode;
   eventHandlers: any;
@@ -39,83 +44,12 @@ export const HNContext = createContext<HNContextType | null>(null);
 
 const Container = (props: Props) => {
   const { children, eventHandlers } = props;
-  const [isVisible, setIsVisible] = useState(false);
-
   const indexedChildren = useIndexPrefix(children);
   const containerRef = useRef<HTMLDivElement>(null);
   const backRef = useRef<HTMLDivElement>(null);
-  const controls = useAnimationControls();
-  const [siteLinks, setSiteLinks] = useState<
-    { title: string; route: string }[]
-  >([]);
-  // Declare timeout variables to clear timeouts when component unmounts, to avoid memory leaks.
-  let timeout1: NodeJS.Timeout | undefined;
-  let timeout2: NodeJS.Timeout | undefined;
-  let timeout3: NodeJS.Timeout | undefined;
 
-  const handleMouseLeave = () => {
-    clearTimeout(timeout1);
-    clearTimeout(timeout2);
-    clearTimeout(timeout3);
-
-    setIsVisible(false);
-    controls.start({ opacity: 0, height: INITIAL_HEIGHT });
-  };
-
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    container.addEventListener("mouseleave", handleMouseLeave);
-    return () => {
-      container.removeEventListener("mouseleave", handleMouseLeave);
-    };
-  }, []);
-
-  const handleMouseEnter = (
-    btn: RefObject<HTMLButtonElement | null>,
-    sites:
-      | {
-          title: string;
-          route: string;
-        }[]
-      | []
-  ) => {
-    console.log(btn);
-    controls.start({
-      opacity: 100,
-      width: btn.offsetWidth + BTN_PADDING,
-      left: btn.offsetLeft - BTN_PADDING / 2,
-    });
-    setSiteLinks(sites);
-    clearTimeout(timeout1);
-    clearTimeout(timeout2);
-    clearTimeout(timeout3);
-
-    timeout1 = setTimeout(() => {
-      if (containerRef.current) {
-        controls.start({
-          width: containerRef.current.offsetWidth,
-          left: -0.5,
-        });
-      }
-      timeout2 = setTimeout(() => {
-        let backHeight = INITIAL_HEIGHT;
-        if (sites.length > 0) {
-          backHeight = (sites.length + 1) * LINK_HEIGHT + `px`;
-        }
-        controls.start({
-          bottom: containerRef.current
-            ? containerRef.current.offsetHeight * -0.25
-            : 0,
-          height: backHeight,
-        });
-        timeout3 = setTimeout(() => {
-          setIsVisible(true);
-        }, LINK_REVEAL_DELAY);
-      }, ANIMATION_DELAY);
-    }, ANIMATION_DELAY);
-  };
+  const { handleMouseEnter, handleMouseLeave, HNBack } =
+    useHandleHNA(containerRef);
 
   return (
     <HNContext.Provider
@@ -132,16 +66,16 @@ const Container = (props: Props) => {
           <motion.div
             ref={backRef}
             onMouseLeave={handleMouseLeave}
-            animate={controls}
+            animate={HNBack.animation}
             className="absolute left-[-0.5px] z-0 flex h-[150%] flex-col rounded-[6px] bg-VoidBlack-light opacity-100"
           >
-            {siteLinks.map(
+            {HNBack.sites.links.map(
               (item: { title: string; route: string }, index: number) => (
                 <motion.a
                   key={index}
                   initial={{ opacity: 0 }}
                   animate={{
-                    opacity: isVisible ? 1 : 0,
+                    opacity: HNBack.sites.state ? 1 : 0,
                     transition: { duration: 0.1 },
                   }}
                   href={item.route}
