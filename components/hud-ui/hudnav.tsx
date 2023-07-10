@@ -1,19 +1,10 @@
 import HUDN, { EventHandlers } from "@/components/hud-nav-system";
 
-interface HudNavProps {
-  eventHandlers?: EventHandlers;
-}
+type Props = {
+  eventHandlers: EventHandlers;
+};
 
-const HudNav = ({
-  eventHandlers = {
-    showEmail: () => {
-      console.log("email btn pressed");
-    },
-    refresh: () => {
-      console.log("refresh btn pressed");
-    },
-  },
-}: HudNavProps) => {
+const HudNav = ({ eventHandlers }: Props) => {
   return (
     <>
       <HUDN.container eventHandlers={eventHandlers}>
@@ -69,7 +60,7 @@ const HudNav = ({
           ]}
         />
       </HUDN.container>
-      <HUDN.container>
+      <HUDN.container eventHandlers={eventHandlers}>
         <HUDN.btn
           prefix={{
             breakpoint: 1100,
