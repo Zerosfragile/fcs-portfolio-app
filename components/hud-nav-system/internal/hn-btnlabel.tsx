@@ -46,7 +46,7 @@ const TypingLabel: React.FC<TypingLabelProps> = ({ text, speed = 100 }) => {
     };
   }, [text, speed]);
 
-  return <label>{displayedText}</label>;
+  return <label className="truncate">{displayedText}</label>;
 };
 
 export default TypingLabel;

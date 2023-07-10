@@ -9,9 +9,10 @@ export type Props = {
   prefix?: HNBreakpointText;
   labels?: HNBreakpointText[];
   sites?: HNSite[];
-  route: string;
+  event?: string;
+  route?: string;
   defaultLabel: string;
-};
+} & ({ event: string } | { route: string });
 
 const Btn = (props: Props) => {
   const {
@@ -42,7 +43,11 @@ const Btn = (props: Props) => {
           pt-[9.75px] font-[CygnitoMono-011] text-[11.25px] font-normal uppercase leading-extra-tight 
           text-OffWhite transition-all duration-500 hover:text-OffWhite-light hover:shadow-glow
         "
-      onMouseEnter={() => handleMouseEnter(ref, sites)}
+      onMouseEnter={() => {
+        const breakpoint = 1100; // Set your desired breakpoint value
+        const screenWidth = window.innerWidth;
+        handleMouseEnter(ref, screenWidth > breakpoint ? sites : []);
+      }}
     >
       <TypingLabel text={dynamicLabel} />
     </button>
