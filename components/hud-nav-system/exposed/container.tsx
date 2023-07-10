@@ -10,7 +10,7 @@ import { LayoutGroup } from "framer-motion";
 import { useRouter } from "next/navigation";
 import HNBack from "../internal/hn-back";
 
-interface EventHandlers {
+export interface EventHandlers {
   [key: string]: () => void;
 }
 
@@ -18,6 +18,7 @@ type Props = {
   children?: React.ReactNode;
   eventHandlers?: EventHandlers;
 };
+
 export type HNContextType = {
   handleMouseEnter: HandleMouseEnter;
   handleClick: (
@@ -25,6 +26,7 @@ export type HNContextType = {
     eventKey: string | undefined
   ) => void;
 };
+
 export const HNContext = createContext<HNContextType | null>(null);
 
 const Container = (props: Props) => {

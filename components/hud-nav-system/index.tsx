@@ -17,4 +17,6 @@ export type HNSite = {
   event?: string;
 } & ({ event: string } | { route: string });
 
+export type { EventHandlers } from "./exposed/container";
+
 export default HUDN;
