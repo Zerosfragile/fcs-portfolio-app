@@ -1,19 +1,9 @@
 import { RefObject, useState, useEffect } from "react";
 import { AnimationControls, useAnimationControls } from "framer-motion";
 import { HNSite } from "../../exposed/container"; // Replace this with the actual path to your HNSite type
-type SettingsType = {
-  INITIAL_HEIGHT: string;
-  ANIMATION_DELAY: number;
-  LINK_REVEAL_DELAY: number;
-  LINK_HEIGHT: number;
-  BTN_PADDING: number;
-};
 
-export const useHandleHNA = (
-  containerRef: RefObject<HTMLDivElement>,
-  settings?: SettingsType
-) => {
-  settings = settings || {
+export const useHandleHNA = (containerRef: RefObject<HTMLDivElement>) => {
+  const settings = {
     INITIAL_HEIGHT: "150%",
     ANIMATION_DELAY: 500, // milliseconds
     LINK_REVEAL_DELAY: 100, // milliseconds
@@ -48,7 +38,7 @@ export const useHandleHNA = (
   ) => {
     if (containerRef.current) {
       controls.start({
-        width: containerRef.current.offsetWidth,
+        width: "100%",
         left: -0.5,
       });
     }
