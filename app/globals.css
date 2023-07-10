@@ -20,10 +20,27 @@
 
 @layer components {
   .hud {
-    @apply w-auto m-[18px] rounded-[18.75px];
+    @apply m-[18px] w-auto rounded-[18.75px];
   }
   .hud-border {
-    @apply w-auto m-[18px] rounded-[18.75px] border border-OffWhite/[.33];
+    @apply m-[18px] w-auto rounded-[18.75px] border border-OffWhite/[.33];
+  }
+}
+
+@keyframes dialog-show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 100;
+  }
+}
+@keyframes dialog-hide {
+  from {
+    opacity: 100;
+  }
+  to {
+    opacity: 0;
   }
 }
 
