@@ -81,15 +81,15 @@ const EmailForm = ({ afterSave }: { afterSave: () => void }) => {
           required={true}
         ></textarea>
 
-        <div className="flex justify-between max-md:flex-wrap">
-          <span className="cursor-pointer font-[CygnitoMono-011] text-[11.25px] font-normal text-OffWhite transition-all duration-100 ease-linear hover:text-OffWhite-dark max-md:text-[10px]">
+        <div className="flex justify-between max-lg:flex-wrap">
+          <span className="cursor-pointer font-[CygnitoMono-011] text-[11.25px] font-normal text-OffWhite transition-all duration-100 ease-linear hover:text-OffWhite-dark max-lg:text-[10px]">
             info@FragileServices.com
           </span>
           <button
             type="submit"
             className="
-                duration-250 transition-margin duration-1 rounded-md border-2 border-LunarGrey bg-transparent px-[18px] pb-[7.5px] pt-[9.75px] font-[CygnitoMono-011] 
-                text-[11.25px] font-normal text-OffWhite-dark transition-all ease-linear hover:border-OffWhite-dark hover:text-OffWhite group-disabled:cursor-default group-disabled:opacity-50 max-md:mx-0 max-md:my-4 max-md:w-full max-md:text-xs
+                duration-250 transition-margin duration-1 truncate rounded-md border-2 border-LunarGrey bg-transparent px-[18px] pb-[7.5px] pt-[9.75px] font-[CygnitoMono-011] 
+                text-[11.25px] font-normal  text-OffWhite-dark transition-all ease-linear hover:border-OffWhite-dark hover:text-OffWhite group-disabled:cursor-default group-disabled:opacity-50 max-lg:mx-0 max-lg:my-4 max-lg:w-full max-lg:text-xs
               "
             name="submit"
           >
@@ -110,8 +110,8 @@ const HudEmail = ({ open }: Props) => {
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-20 bg-VoidBlack/[.25] backdrop-blur-sm data-[state=closed]:animate-[dialog-hide_1000ms] data-[state=open]:animate-[dialog-show_1000ms]" />
         <Dialog.Content
-          className="hud-border fixed left-1/2 top-1/2 z-30 flex h-1/2 w-6/12 -translate-x-1/2 -translate-y-1/2 flex-col p-12 backdrop-blur 
-        data-[state=closed]:animate-[dialog-hide_1000ms] data-[state=open]:animate-[dialog-show_1000ms] max-md:p-5 "
+          className="hud-border fixed left-1/2 top-1/2 z-30 flex h-1/2 w-6/12 -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden p-12 
+        backdrop-blur data-[state=closed]:animate-[dialog-hide_1000ms] data-[state=open]:animate-[dialog-show_1000ms] max-md:p-5"
         >
           <Dialog.Title className="hidden">HUD-Email</Dialog.Title>
           <div className="flex flex-row-reverse">
