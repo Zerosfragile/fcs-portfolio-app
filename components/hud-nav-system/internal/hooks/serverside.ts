@@ -34,3 +34,31 @@ export const useIndexPrefix = (children: any) => {
 
   return addIndexPrefix();
 };
+
+import { useRouter } from "next/router";
+
+export const useHandleRoute = (route: string): void | Promise<boolean> => {
+  const router = useRouter();
+
+  if (!route) {
+    throw new Error("Route parameter is required.");
+  }
+
+  const isInternalRoute = /^\/([a-zA-Z0-9-_]+\/?)*$/.test(route); // Internal route pattern validation
+
+  if (
+    !isInternalRoute &&
+    !route.startsWith("http://") &&
+    !route.startsWith("https://")
+  ) {
+    throw new Error(`Invalid route: ${route}`);
+  }
+
+  if (route.startsWith("http://") || route.startsWith("https://")) {
+    // External URL: open in a new tab
+    window.open(route, "_blank");
+  } else {
+    // Internal route: handle using Next.js routing
+    return router.push(route);
+  }
+};
