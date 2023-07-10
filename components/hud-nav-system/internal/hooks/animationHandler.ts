@@ -7,7 +7,7 @@ export type HandleMouseEnter = (
   sites: HNSite[] | []
 ) => void;
 
-export type HNBack = {
+export type HNBControls = {
   sites: {
     links: HNSite[] | [];
     state: boolean;
@@ -15,7 +15,18 @@ export type HNBack = {
   animation: AnimationControls;
 };
 
-export const useHandleHNA = (containerRef: RefObject<HTMLDivElement>) => {
+interface UseHandleHNAResult {
+  handleMouseEnter: (
+    btn: RefObject<HTMLButtonElement | null>,
+    sites: HNSite[] | []
+  ) => void;
+  handleMouseLeave: () => void;
+  HNBControls: HNBControls;
+}
+
+export const useHandleHNA = (
+  containerRef: RefObject<HTMLDivElement>
+): UseHandleHNAResult => {
   const settings = {
     INITIAL_HEIGHT: "150%",
     ANIMATION_DELAY: 500, // milliseconds
@@ -118,10 +129,10 @@ export const useHandleHNA = (containerRef: RefObject<HTMLDivElement>) => {
     };
   }, []);
 
-  const HNBack: HNBack = {
+  const HNBControls: HNBControls = {
     sites: { links: siteLinks, state: isVisible },
     animation: controls,
   };
 
-  return { handleMouseEnter, handleMouseLeave, HNBack };
+  return { handleMouseEnter, handleMouseLeave, HNBControls };
 };
