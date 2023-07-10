@@ -1,5 +1,6 @@
 "use client";
-import { useState, useEffect, RefObject } from "react";
+import { useState, useEffect } from "react";
+import { HNBreakpointText } from "../..";
 
 export const useWindowWidth = () => {
   const isClient = typeof window === "object";
@@ -22,8 +23,8 @@ export const useWindowWidth = () => {
 };
 
 interface DynamicLabelOptions {
-  labels?: { breakpoint: number; text: string }[];
-  prefix: { breakpoint: number; text: string };
+  labels?: HNBreakpointText[];
+  prefix: HNBreakpointText;
   defaultLabel: string;
 }
 
@@ -55,47 +56,4 @@ export const useDynamicLabel = ({
   };
 
   return getLabelPrefix(getLabelText);
-};
-
-interface Size {
-  width: number | null;
-  height: number | null;
-  left: number | null;
-}
-
-export const useComponentSize = (ref: RefObject<HTMLElement>): Size => {
-  const [componentSize, setComponentSize] = useState<Size>({
-    width: null,
-    height: null,
-    left: null,
-  });
-
-  useEffect(() => {
-    const updateSize = () => {
-      const component = ref.current;
-      if (component) {
-        setComponentSize({
-          width: component.offsetWidth,
-          height: component.offsetHeight,
-          left: component.offsetLeft,
-        });
-      }
-    };
-
-    updateSize(); // Initial update
-
-    const observer = new MutationObserver(updateSize);
-    const config = { attributes: true, childList: true, subtree: true };
-
-    const component = ref.current;
-    if (component) {
-      observer.observe(component, config);
-    }
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [ref]);
-
-  return componentSize;
 };

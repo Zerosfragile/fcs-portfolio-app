@@ -6,4 +6,14 @@ const HUDN = {
   btn: Btn, //nav expandable button
 };
 
+export type HNBreakpointText = {
+  breakpoint: number;
+  text: string;
+};
+
+export type HNSite = {
+  title: string;
+  route: string;
+};
+
 export default HUDN;

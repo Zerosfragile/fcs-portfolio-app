@@ -3,20 +3,12 @@ import React, { useContext, useRef } from "react";
 import { useDynamicLabel } from "../internal/hooks";
 import TypingLabel from "../internal/hn-btnlabel";
 import { HNContext } from "./container";
+import { HNBreakpointText, HNSite } from "..";
 
 export type Props = {
-  prefix?: {
-    breakpoint: number;
-    text: string;
-  };
-  labels?: {
-    breakpoint: number;
-    text: string;
-  }[];
-  sites?: {
-    title: string;
-    route: string;
-  }[];
+  prefix?: HNBreakpointText;
+  labels?: HNBreakpointText[];
+  sites?: HNSite[];
   route: string;
   defaultLabel: string;
 };
@@ -50,7 +42,7 @@ const Btn = (props: Props) => {
           pt-[9.75px] font-[CygnitoMono-011] text-[11.25px] font-normal uppercase leading-extra-tight 
           text-OffWhite transition-all duration-500 hover:text-OffWhite-light hover:shadow-glow
         "
-      onMouseEnter={() => handleMouseEnter(ref.current, sites)}
+      onMouseEnter={() => handleMouseEnter(ref, sites)}
     >
       <TypingLabel text={dynamicLabel} />
     </button>

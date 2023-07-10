@@ -1,6 +1,19 @@
 import { RefObject, useState, useEffect } from "react";
 import { AnimationControls, useAnimationControls } from "framer-motion";
-import { HNSite } from "../../exposed/container"; // Replace this with the actual path to your HNSite type
+import { HNSite } from "../../"; // Replace this with the actual path to your HNSite type
+
+export type HandleMouseEnter = (
+  btn: RefObject<HTMLButtonElement | null>,
+  sites: HNSite[] | []
+) => void;
+
+export type HNBack = {
+  sites: {
+    links: HNSite[] | [];
+    state: boolean;
+  };
+  animation: AnimationControls;
+};
 
 export const useHandleHNA = (containerRef: RefObject<HTMLDivElement>) => {
   const settings = {
@@ -25,11 +38,13 @@ export const useHandleHNA = (containerRef: RefObject<HTMLDivElement>) => {
     controls: AnimationControls,
     padding: number
   ) => {
-    controls.start({
-      opacity: 100,
-      width: button.offsetWidth + padding,
-      left: button.offsetLeft - padding / 2,
-    });
+    if (button.current) {
+      controls.start({
+        opacity: 100,
+        width: button.current.offsetWidth + padding,
+        left: button.current.offsetLeft - padding / 2,
+      });
+    }
   };
 
   const expandToContainer = (
@@ -103,7 +118,7 @@ export const useHandleHNA = (containerRef: RefObject<HTMLDivElement>) => {
     };
   }, []);
 
-  const HNBack = {
+  const HNBack: HNBack = {
     sites: { links: siteLinks, state: isVisible },
     animation: controls,
   };
