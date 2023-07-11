@@ -52,7 +52,7 @@ export const getBlogData = (key?: string, numPosts?: number): BlogData => {
           ? `/posts/${folder}/preview-${slug}.png`
           : "/posts/missing.png";
 
-        return { ...data, slug: file, preview: previewImage } as PostData;
+        return { ...data, slug: slug, preview: previewImage } as PostData;
       })
       .filter((post) => post !== null) as PostData[];
 
