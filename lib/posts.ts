@@ -32,6 +32,7 @@ export const getBlogData = (key?: string, numPosts?: number): BlogData => {
     const posts = files
       .filter((file) => file.endsWith(".md"))
       .map((file) => {
+        const slug = file.replace(".md", "");
         const filePath = path.join(currentDirectory, file);
         const markdownFile = fs.readFileSync(filePath, "utf8");
         const { data } = matter(markdownFile);
@@ -42,14 +43,13 @@ export const getBlogData = (key?: string, numPosts?: number): BlogData => {
         }
 
         const previewImagePath = path.join(
-          process.cwd(),
           "public",
           "posts",
-          currentDirectory,
-          `preview-${file}`
+          folder,
+          `preview-${slug}.png`
         );
         const previewImage = fs.existsSync(previewImagePath)
-          ? `posts/${currentDirectory}/preview-${file}`
+          ? `/posts/${folder}/preview-${slug}.png`
           : "/posts/missing.png";
 
         return { ...data, slug: file, preview: previewImage } as PostData;
