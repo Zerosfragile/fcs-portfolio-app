@@ -1,6 +1,7 @@
 import { getBlogData, getPost } from "@/lib/posts";
 import React from "react";
 import { notFound } from "next/navigation";
+import MarkdownPost from "@/components/hud-ui/markdown";
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
   const posts = getBlogData();
@@ -33,5 +34,5 @@ export default async function projectPost({
     return notFound();
   }
 
-  return <div>{post.data.content}</div>;
+  return <MarkdownPost content={post.data.content} />;
 }
