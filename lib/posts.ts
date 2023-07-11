@@ -67,19 +67,33 @@ export const getBlogData = (key?: string, numPosts?: number): BlogData => {
   return blogData;
 };
 
-export const getPost = ({ folder, id }: { folder: string; id: string }) => {
-  const filePath = path.join(process.cwd(), folder, id + ".md");
-  const markdownFile = fs.readFileSync(filePath, "utf8");
-  const { content, data } = matter(markdownFile);
+export const getPost = (id: string) => {
+  const postsDirectory = path.join(process.cwd(), "_posts");
+  const postFolders = fs.readdirSync(postsDirectory);
+  let postData = null;
+
+  postFolders.some((folder) => {
+    const filePath = path.join(postsDirectory, folder, id + ".md");
+    if (fs.existsSync(filePath)) {
+      const markdownFile = fs.readFileSync(filePath, "utf8");
+      const { content, data } = matter(markdownFile);
+
+      postData = {
+        content,
+        title: data.title,
+        route: data.route,
+        tags: data.tags,
+        date: data.date,
+      };
+
+      return true; // Stops the iteration once the file is found
+    }
+
+    return false;
+  });
 
   return {
-    postData: {
-      content,
-      title: data.title,
-      route: data.route,
-      tags: data.tags,
-      date: data.date,
-    },
+    data: postData,
     revalidate: 10,
   };
 };
