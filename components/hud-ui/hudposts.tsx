@@ -4,6 +4,7 @@ import React, { useRef, RefObject, useState, useEffect } from "react";
 import Image from "next/image";
 import { PostData, BlogData } from "@/lib/posts";
 import { getBlogData } from "@/lib/posts.ts";
+import { TypingLabel } from "../hud-nav-system";
 
 const Card = ({ data }) => {
   const { title, subtitle, preview, route, slug } = data;
@@ -62,7 +63,15 @@ const HudPosts = ({ posts }: Props) => {
   }, []);
 
   if (!postData) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex w-full items-center justify-center">
+        <div className="hud-border group m-[18px] flex min-w-[calc(100%-36px)] flex-wrap justify-center gap-4 p-[25px]">
+          <p className="text-center font-[CygnitoMono-011] text-sm font-light leading-5 text-OffWhite/[0.66]">
+            <TypingLabel text={" Initializing Data Link..."} />
+          </p>
+        </div>
+      </div>
+    );
   }
   return (
     <div className="flex w-full items-center justify-center">
