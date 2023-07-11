@@ -34,5 +34,5 @@ export default async function projectPost({
     return notFound();
   }
 
-  return <MarkdownPost content={post.data.content} />;
+  return <MarkdownPost data={post.data} />;
 }
