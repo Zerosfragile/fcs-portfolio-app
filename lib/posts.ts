@@ -11,7 +11,7 @@ export interface PostData {
   date: string;
   tags: string[];
   draft: boolean;
-  slug: string;
+  id: string;
   preview: string;
 }
 
@@ -32,7 +32,7 @@ export const getBlogData = (key?: string, numPosts?: number): BlogData => {
     const posts = files
       .filter((file) => file.endsWith(".md"))
       .map((file) => {
-        const slug = file.replace(".md", "");
+        const id = file.replace(".md", "");
         const filePath = path.join(currentDirectory, file);
         const markdownFile = fs.readFileSync(filePath, "utf8");
         const { data } = matter(markdownFile);
@@ -46,13 +46,13 @@ export const getBlogData = (key?: string, numPosts?: number): BlogData => {
           "public",
           "posts",
           folder,
-          `preview-${slug}.png`
+          `preview-${id}.png`
         );
         const previewImage = fs.existsSync(previewImagePath)
-          ? `/posts/${folder}/preview-${slug}.png`
+          ? `/posts/${folder}/preview-${id}.png`
           : "/posts/missing.png";
 
-        return { ...data, slug: slug, preview: previewImage } as PostData;
+        return { ...data, id: id, preview: previewImage } as PostData;
       })
       .filter((post) => post !== null) as PostData[];
 
@@ -65,4 +65,21 @@ export const getBlogData = (key?: string, numPosts?: number): BlogData => {
   });
 
   return blogData;
+};
+
+export const getPost = ({ folder, id }: { folder: string; id: string }) => {
+  const filePath = path.join(process.cwd(), folder, id + ".md");
+  const markdownFile = fs.readFileSync(filePath, "utf8");
+  const { content, data } = matter(markdownFile);
+
+  return {
+    postData: {
+      content,
+      title: data.title,
+      route: data.route,
+      tags: data.tags,
+      date: data.date,
+    },
+    revalidate: 10,
+  };
 };

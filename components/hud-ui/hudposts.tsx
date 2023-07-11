@@ -6,12 +6,19 @@ import { PostData, BlogData } from "@/lib/posts";
 import { getBlogData } from "@/lib/posts.ts";
 import { TypingLabel } from "../hud-nav-system";
 
-const Card = ({ data }) => {
-  const { title, subtitle, preview, route, slug } = data;
-
+const Card = ({
+  data: { title, subtitle, preview, id },
+}: {
+  data: {
+    title: string;
+    subtitle: string;
+    id: string;
+    preview: string;
+  };
+}) => {
   return (
     <a
-      href={`/projects/${slug}`}
+      href={`/projects/${id}`}
       className="
         card-hover-glow relative flex h-[260px] w-[300px] cursor-pointer flex-col rounded-[10px] 
         bg-OffWhite/[.33]

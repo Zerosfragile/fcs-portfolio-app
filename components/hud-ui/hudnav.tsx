@@ -11,11 +11,11 @@ const HudNav = ({ eventHandlers }: Props) => {
         <HUDN.btn
           labels={[{ breakpoint: 850, text: "About" }]}
           defaultLabel="About Me"
-          route="/About"
+          route="/about"
           sites={[
             {
               title: "Blog Posts",
-              route: "/Blog",
+              route: "/blog",
             },
             {
               title: "Github",
@@ -23,13 +23,13 @@ const HudNav = ({ eventHandlers }: Props) => {
             },
             {
               title: "More",
-              route: "/About",
+              route: "/about",
             },
           ]}
         />
         <HUDN.btn
           defaultLabel="Projects"
-          route="/Projects"
+          route="/projects"
           sites={[
             {
               title: "Ascii-Hud",
@@ -37,25 +37,25 @@ const HudNav = ({ eventHandlers }: Props) => {
             },
             {
               title: "Playground",
-              route: "/Projects/playground",
+              route: "/projects/playground",
             },
             {
               title: "More",
-              route: "/Projects",
+              route: "/projects",
             },
           ]}
         />
         <HUDN.btn
           defaultLabel="Resume"
-          route="/Resume"
+          route="/resume"
           sites={[
             {
               title: "PDF View",
-              route: "/Resume/pdf",
+              route: "/resume/pdf",
             },
             {
               title: "More",
-              route: "/Resume",
+              route: "/resume",
             },
           ]}
         />
