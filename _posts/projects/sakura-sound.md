@@ -2,8 +2,8 @@
 title: "SakuraSound"
 subtitle: "Your Personal AI Assistant for Music Playlists Based on Your Mood, Powered by OpenAI and Spotify Integration"
 route: "https://sakurasound.vercel.app"
-date: '2023-05-01'
-tags: ['AI', 'API', 'Spotify']
+date: "2023-05-01"
+tags: ["AI", "API", "Spotify"]
 draft: false
 ---
 
@@ -23,7 +23,8 @@ We take an intentional approach to avoid excessive text, focusing instead on pro
 
 SakuraSound is a cutting-edge platform for music discovery, utilizing artificial intelligence and machine learning to provide users with personalized music recommendations. It leverages Spotify's data to understand user preferences and generate unique features for a richer music discovery experience. At the heart of SakuraSound's offering a recommendation algorithm, powered by natural language processing and advanced machine learning algorithms, can provide highly personalized recommendations based on a user's listening history, genre preferences, mood, and more. In addition to its powerful recommendation engine, SakuraSound also offers a social component that allows users to connect with other music enthusiasts and discover new music together. With its intuitive interface and engaging personal assistant, SakuraSound is the ultimate destination for anyone who loves music.
 
-![Post Preview](/projects/SakuraSound/preview.png)
+![Post Preview](/posts/projects/preview-sakura-sound.png)
+
 ### Technologies
 
 - [React](#react): A popular JavaScript library for building user interfaces.
@@ -32,7 +33,6 @@ SakuraSound is a cutting-edge platform for music discovery, utilizing artificial
 - [Framer Motion](#framer-motion): A library for creating fluid animations and gestures in React applications with a focus on performance and ease of use.
 - [Spotify API](#spotify-api): A set of APIs provided by Spotify that allow developers to build applications that interact with the Spotify music service, providing access to metadata and features such as search, playback, and user authentication.
 - [OAuth](#oauth): An open standard for authentication and authorization that enables third-party applications to access user data from web services such as Google, Facebook, and Twitter, without requiring users to give away their login credentials.
-
 
 ### Project Inspiration and Motivation
 
@@ -74,7 +74,7 @@ SakuraSound's recommendation algorithm leverages a hybrid model combining collab
 
 The algorithm also employs strategies to minimize computational load, thereby optimizing costs. For example, it uses Spotify's existing engine to refine the scope of possible songs, then ingests potential songs based on that data.
 
-## III.  Technical Considerations
+## III. Technical Considerations
 
 Technical considerations include finding the balance between adhering to Spotify's terms of service and achieving the project's objectives. Also, the system is designed to handle large amounts of data and heavy computational loads, especially as the machine learning models require substantial data for optimal performance.
 

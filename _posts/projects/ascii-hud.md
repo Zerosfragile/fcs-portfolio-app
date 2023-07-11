@@ -2,8 +2,8 @@
 title: "Ascii-Hud"
 subtitle: "Visualizing Dynamic Matrix Transformations with Responsive Rendering"
 route: "https://fragileservices.com"
-date: '2023-05-01'
-tags: ['js', 'graphics', 'design']
+date: "2023-05-01"
+tags: ["js", "graphics", "design"]
 draft: false
 ---
 
@@ -26,17 +26,21 @@ The system architecture can be divided into three main components: the front-end
 #### Front-End UI
 
 The front-end user interface is built using HTML and CSS, with dynamic behavior handled by JavaScript. The user interface allows users to input matrices and transformation parameters, and displays the resulting visualization in real-time. The Matrix is rendered using a `SVG` element with the individual lines being `text` elements.
-![UI Preview](/projects/AsciiHud/preview.png)
+![UI Preview](/posts/projects/preview-ascii-hud.png)
 
 Abstract Architecture
 
 ```html
 <div class="HUD-001">
   <div class="CARD-001">
-      <svg id="ASCII-000"viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"></svg>
+    <svg
+      id="ASCII-000"
+      viewBox="0 0 200 200"
+      xmlns="http://www.w3.org/2000/svg"
+    ></svg>
   </div>
   <div class="CARD-002">
-      <BtnContainer class="BTN-CONTAINER" />
+    <BtnContainer class="BTN-CONTAINER" />
   </div>
 </div>
 ```
@@ -49,22 +53,21 @@ Abstract Architecture
 
 ```js
 const storageHandler = {
-  saveMatrix: function(matrix) {
-    localStorage.setItem('input-matrix', JSON.stringify(matrix));
+  saveMatrix: function (matrix) {
+    localStorage.setItem("input-matrix", JSON.stringify(matrix));
   },
-  loadMatrix: function() {
-    const matrix = localStorage.getItem('input-matrix');
+  loadMatrix: function () {
+    const matrix = localStorage.getItem("input-matrix");
     return matrix ? JSON.parse(matrix) : null;
   },
-  saveTransformationParams: function(params) {
-    localStorage.setItem('transformation-params', JSON.stringify(params));
+  saveTransformationParams: function (params) {
+    localStorage.setItem("transformation-params", JSON.stringify(params));
   },
-  loadTransformationParams: function() {
-    const params = localStorage.getItem('transformation-params');
+  loadTransformationParams: function () {
+    const params = localStorage.getItem("transformation-params");
     return params ? JSON.parse(params) : null;
-  }
+  },
 };
-
 ```
 
 This code snippet demonstrates how the `storageHandler` object abstracts away the details of local storage operations and provides a simple interface for the rest of the system to save and load data. The `saveMatrix` and `loadMatrix` methods handle the input matrix data, while the `saveTransformationParams` and `loadTransformationParams` methods handle the transformation parameters. The methods use `localStorage` APIs to store and retrieve data, and they handle JSON serialization and deserialization to ensure that the data is stored in a format that can be easily read and parsed by the rest of the system.
@@ -80,7 +83,7 @@ The computation component is implemented using web workers, which allows for asy
 Abstract Architecture
 
 ```js
-  // Compute Matrix Density with a radial gradient
+// Compute Matrix Density with a radial gradient
 function computeRadialDensityMatrix(data, x, y, frame) {
   // perform matrix transformations
   // return transformed matrix data
@@ -126,11 +129,10 @@ async function executeAnimationQueue(dimensions) {
 }
 
 // Define a Dimensions object to manage the size and layout of the visualization
-function Dimensions(svgId = 'svg') {
+function Dimensions(svgId = "svg") {
   // Define properties and methods to manage the size and layout of the visualization
   // ...
 }
-
 ```
 
 This code snippet demonstrates how the rendering component manages the queue of animations and utilizes a `Dimensions` object to manage the size and layout of the visualization. The `queueAnimation` function is used to add animations to the queue, and the `executeAnimationQueue` function is used to execute the animations in the queue. The `Dimensions` object defines properties and methods to manage the size and layout of the visualization, and ensures that the visualization is always responsive to changes in the viewport size.
@@ -178,11 +180,11 @@ V1.1
 
 - [Design Page - 006](https://github.com/Zerosfragile/000-Playground/blob/main/Design%20Page%20-%20006/script.js): Initial implementation using nested `div` elements.
 - [Design Page - 007](https://github.com/Zerosfragile/000-Playground/blob/main/Design%20Page%20-%20007/script.js): Full code for `div` Implementation.
-V1.2
+  V1.2
 - [Design Page - 009](https://github.com/Zerosfragile/000-Playground/blob/main/Design%20Page%20-%20009/script.js): Canvas Implementation where the mouse effects the position of characters in the matrix.
 - [Design Page - 010](https://github.com/Zerosfragile/000-Playground/blob/main/Design%20Page%20-%20010/script.js): Further experimentation with Canvas Implementation.
 - [Design Page - 016](https://github.com/Zerosfragile/000-Playground/blob/main/Design%20Page%20-%20016/script.js): More experimentation with canvas animation.
-V1.3
+  V1.3
 - [Design Page - 027](https://github.com/Zerosfragile/000-Playground/blob/main/Design%20Page%20-%20027/script.js): Grid Implementation using a grid to get the responsiveness needed out of the rendering system.
 
 ### V1.2
@@ -199,7 +201,7 @@ Experimenting with new matrix transformations.
 
 Uses some basic trigonometry to apply a whirlpool-like transformation to a heightmap matrix.
 
-For each point in the matrix, we calculate its distance from the center using the Pythagorean theorem **(Math.sqrt(dx *dx + dy* dy))**, and its angle from the center using **Math.atan2(dy, dx)**. This gives us a polar coordinate representation of the point's position relative to the center of the matrix.
+For each point in the matrix, we calculate its distance from the center using the Pythagorean theorem **(Math.sqrt(dx _dx + dy_ dy))**, and its angle from the center using **Math.atan2(dy, dx)**. This gives us a polar coordinate representation of the point's position relative to the center of the matrix.
 To apply the whirlpool transformation, we first calculate a **whirlpoolDistance** value based on the **distance** of the point from the center and the **frame** parameter. This creates the spiral effect of the whirlpool by increasing the distance from the center over time. We also add a sine wave to create some undulation in the spiral.
 
 We then calculate a **whirlpoolAngle** value based on the **angle** of the point from the center and the **frame** parameter. This creates the rotation effect of the whirlpool by changing the angle of the point over time. You can modify the constant multiplying the **whirlpoolDistance** to adjust the rate of spin on the effect.
@@ -244,22 +246,22 @@ I also added some more functional functions that adjusted the font size and for 
 ```js
 // Initialization
 async function Initialization() {
-    await setViewBox();
-    await setPortLines();
-    await setMatrix();
+  await setViewBox();
+  await setPortLines();
+  await setMatrix();
 }
 
 async function AsciiAnimate() {
-    updateFontDimensionsX(fontDimensions, 15);
-    // updateFontDimensionsX(fontDimensions, 100);
+  updateFontDimensionsX(fontDimensions, 15);
+  // updateFontDimensionsX(fontDimensions, 100);
 
-    await animateDensity();
-    await animateWhirlpool();
-    // await animateRippleWave();
-    console.log("done");
-    // updateFontDimensionsX(fontDimensions, 15);
-    // await animateDensity();
-    // await animateWhirlpool();
+  await animateDensity();
+  await animateWhirlpool();
+  // await animateRippleWave();
+  console.log("done");
+  // updateFontDimensionsX(fontDimensions, 15);
+  // await animateDensity();
+  // await animateWhirlpool();
 }
 
 Initialization();

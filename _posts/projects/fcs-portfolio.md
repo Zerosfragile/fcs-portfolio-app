@@ -2,8 +2,8 @@
 title: "FCS-Portfolio"
 subtitle: "My Personal Portfolio Showcasing my Latest Projects"
 route: "/"
-date: '2023-05-01'
-tags: ['next.js', 'node.js', 'react']
+date: "2023-05-01"
+tags: ["next.js", "node.js", "react"]
 draft: false
 ---
 
@@ -16,10 +16,9 @@ THIS DOCUMENT SERVES TO OUTLINE THE ARCHITECTURE, BACKGROUND, DESIGN PROCESS, SY
 ### Project Overview
 
 This project was aimed at creating a digital space where I could easily display information about myself, and my latest projects. I used Next.js and used this project to get familiar with react and using node.js packages.
-![Post Preview](/projects/FCSPortfolio/preview.png)
+![Post Preview](/posts/projects/preview-fcs-portfolio.png)
 
 ## II. Architecture
-
 
 ABSTRACT FOLDER ARCHITECTURE
 

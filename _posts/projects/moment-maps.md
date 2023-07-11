@@ -2,8 +2,8 @@
 title: "MomentMaps"
 subtitle: "Connect, Pin, Remember. A social media app that's all about sharing stories, exploring the world, and reconnecting with cherished memories."
 route: "https://www.momentmaps.ca"
-date: '2023-05-22'
-tags: ['Maps', 'API', 'SQL']
+date: "2023-05-22"
+tags: ["Maps", "API", "SQL"]
 draft: false
 ---
 
@@ -33,7 +33,7 @@ Scroll through time on MomentMaps and dive into a vibrant global community of me
 
 ### Project Overview
 
-![Post Preview](/projects/MomentMaps/preview.png)
+![Post Preview](/posts/projects/preview-moment-maps.png)
 
 ## II. Abstract Architecture
 
@@ -55,7 +55,7 @@ MomentMaps
     └── seed
 ```
 
-## III.  Technical Considerations
+## III. Technical Considerations
 
 In this project, we leverage Next.js on Vercel with React to create a seamless user experience. To integrate the mapping functionality, we utilize the powerful Google Maps API, allowing users to pin their moments to specific locations on the map. Additionally, we leverage the new Vercel SQL Storage Database to efficiently store and manage user data, ensuring a smooth and reliable performance.
 
