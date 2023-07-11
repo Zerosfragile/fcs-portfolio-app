@@ -32,6 +32,10 @@ module.exports = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "gradient-card-before":
+          "radial-gradient(800px circle at var(--mouse-x) var(--mouse-y),rgba(255, 255, 255, 0.01), transparent 40%)",
+        "gradient-card-after":
+          "radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.4), transparent 40%)",
       },
       boxShadow: {
         glow: "inset 0 0 0 1px rgba(140, 140, 140, 0.1)",

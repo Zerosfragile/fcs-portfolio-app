@@ -15,7 +15,7 @@ const HudNav = ({ eventHandlers }: Props) => {
           sites={[
             {
               title: "Blog Posts",
-              route: "/blog",
+              route: "/Blog",
             },
             {
               title: "Github",
@@ -23,7 +23,7 @@ const HudNav = ({ eventHandlers }: Props) => {
             },
             {
               title: "More",
-              route: "/about",
+              route: "/About",
             },
           ]}
         />
@@ -37,11 +37,11 @@ const HudNav = ({ eventHandlers }: Props) => {
             },
             {
               title: "Playground",
-              route: "/projects/playground",
+              route: "/Projects/playground",
             },
             {
               title: "More",
-              route: "/projects",
+              route: "/Projects",
             },
           ]}
         />
@@ -51,11 +51,11 @@ const HudNav = ({ eventHandlers }: Props) => {
           sites={[
             {
               title: "PDF View",
-              route: "/resume/pdf",
+              route: "/Resume/pdf",
             },
             {
               title: "More",
-              route: "/resume",
+              route: "/Resume",
             },
           ]}
         />

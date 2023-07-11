@@ -25,6 +25,12 @@
   .hud-border {
     @apply m-[18px] w-auto rounded-[18.75px] border border-OffWhite/[.33];
   }
+  .card-hover-glow {
+    @apply before:absolute before:left-0 before:top-0 before:h-full before:w-full before:rounded-[10px] before:bg-gradient-card-before before:opacity-0 before:transition-opacity before:duration-500 before:content-['']
+        after:absolute after:left-0 after:top-0 after:h-full after:w-full after:rounded-[10px] after:bg-gradient-card-after after:opacity-0 after:transition-opacity after:duration-500  after:content-['']
+        hover:before:opacity-100 
+        group-hover:after:opacity-100;
+  }
 }
 
 @keyframes dialog-show {
