@@ -61,7 +61,7 @@ At this point, I went back and did some simple refactoring and revisited the [Ta
 
 The FCS-Portfolio is a personal portfolio website that showcases my latest projects. The website is built using Next.js, Node.js, and React, with the content being sourced from markdown files. The metadata within the markdown files, such as the title, subtitle, date, tags, and draft status, is parsed using the [gray-matter](https://www.npmjs.com/package/gray-matter) package.
 
-### Dynamic Route and Static Post Generation
+### Static Post Generation
 
 The FCS-Portfolio features a dynamic route that enables the creator to add new projects to the website easily. By using the [MarkdownIt](https://www.npmjs.com/package/markdown-it) package, I'm able to write markdown content for each project and generate corresponding static posts.
 
