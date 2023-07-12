@@ -8,7 +8,7 @@ export type DotNavItem = {
 
 type Props = {
   data: DotNavItem[];
-  focusedSection: string;
+  focusedSection?: string;
 };
 
 const toRomanNumeral = (num: number): string => {

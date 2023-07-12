@@ -79,10 +79,38 @@ export default async function projectPost({
 
   // return <MarkdownPost data={post.data} />;
   return (
-    <div className="hud-border relative h-full">
-      <HudDotNav data={navItems} />
+    <div className="hud-border relative flex h-full justify-end">
+      <nav className="cubic fixed left-0 top-[20%] m-0 ml-16 flex w-[300px] flex-col">
+        <p className="font-[CygnitoMono-011] text-[15px] font-bold uppercase text-LunarGrey">
+          <span className="opacity-75">Project: </span> {post.data.title}
+        </p>
+        <p className="font-[CygnitoMono-011] text-[15px] font-bold uppercase text-LunarGrey">
+          <span className="opacity-75">DATE: </span> {post.data.date}
+        </p>
+        <div className="my-[20px] flex max-w-[80%] flex-wrap justify-start gap-x-4 gap-y-1">
+          {post.data.tags.map((tag, index) => (
+            <span
+              key={index}
+              className="rounded-[5px] border border-OffWhite/[.33] px-[1.5em] py-[0.25em] text-center font-[CygnitoMono-011] text-[10px] font-bold uppercase leading-[1em] text-LunarGrey-light"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+        <HudDotNav data={navItems} />
+        <a
+          href={post.data.route}
+          className="
+            transition-margin ease min-w-[50px] max-w-[180px] rounded-xl border border-OffWhite bg-OffWhite px-8 py-1 text-center
+            font-[CygnitoMono-011] text-[15px] font-bold uppercase text-VoidBlack-lightest no-underline
+            transition-all duration-[250ms] hover:bg-transparent hover:text-OffWhite/[.66]
+          "
+        >
+          Vist Project
+        </a>
+      </nav>
       <article
-        className="hud-border prose prose-stone my-6 w-full p-11"
+        className="hud-border prose prose-stone right-0 my-6 max-w-[calc(100%-350px)] overflow-x-hidden p-11"
         dangerouslySetInnerHTML={{ __html: htmlMarkdown }}
       ></article>
     </div>
