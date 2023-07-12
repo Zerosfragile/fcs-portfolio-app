@@ -158,7 +158,7 @@ const MarkdownPost = ({
   });
 
   return (
-    <div className={styles.container}>
+    <div className="hud-border relative w-auto overflow-x-hidden bg-VoidBlack">
       <Link href="/">
         <img
           id="img001"

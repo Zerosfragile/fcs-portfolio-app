@@ -2,7 +2,7 @@
 "use client";
 import React, { useRef, RefObject, useState, useEffect } from "react";
 import Image from "next/image";
-import { PostData, BlogData } from "@/lib/posts";
+import { PostMetaData, BlogData } from "@/lib/posts";
 import { getBlogData } from "@/lib/posts.ts";
 import { TypingLabel } from "../hud-nav-system";
 
@@ -88,7 +88,7 @@ const HudPosts = ({ posts }: Props) => {
         onMouseMove={(e) => handleMouseMove(e, cardParentRef)}
       >
         {postData[posts] &&
-          postData[posts].map((projectsData: PostData, index: number) => (
+          postData[posts].map((projectsData: PostMetaData, index: number) => (
             <Card key={index} data={projectsData} />
           ))}
       </div>

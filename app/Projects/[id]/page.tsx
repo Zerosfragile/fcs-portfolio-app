@@ -2,6 +2,9 @@ import { getBlogData, getPost } from "@/lib/posts";
 import React from "react";
 import { notFound } from "next/navigation";
 import MarkdownPost from "@/components/hud-ui/markdown";
+import remarkHtml from "remark-html";
+import { unified } from "unified";
+import remarkParse from "remark-parse";
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
   const posts = getBlogData();
@@ -30,9 +33,25 @@ export default async function projectPost({
     return notFound();
   }
   const post = getPost(id);
+
   if (!post.data) {
     return notFound();
   }
 
-  return <MarkdownPost data={post.data} />;
+  const vMarkdown = await unified()
+    .use(remarkParse)
+    .use(remarkHtml)
+    .process(post.data.content);
+
+  const htmlMarkdown = String(vMarkdown);
+
+  // return <MarkdownPost data={post.data} />;
+  return (
+    <>
+      <article
+        className="prose prose-stone"
+        dangerouslySetInnerHTML={{ __html: htmlMarkdown }}
+      ></article>
+    </>
+  );
 }

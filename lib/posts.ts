@@ -4,7 +4,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
-export interface PostData {
+export interface PostMetaData {
   title: string;
   subtitle: string;
   route: string;
@@ -16,7 +16,7 @@ export interface PostData {
 }
 
 export interface BlogData {
-  [key: string]: PostData[];
+  [key: string]: PostMetaData[];
 }
 
 export const getBlogData = (key?: string, numPosts?: number): BlogData => {
@@ -52,9 +52,9 @@ export const getBlogData = (key?: string, numPosts?: number): BlogData => {
           ? `/posts/${folder}/preview-${id}.png`
           : "/posts/missing.png";
 
-        return { ...data, id: id, preview: previewImage } as PostData;
+        return { ...data, id: id, preview: previewImage } as PostMetaData;
       })
-      .filter((post) => post !== null) as PostData[];
+      .filter((post) => post !== null) as PostMetaData[];
 
     // Sort posts by date
     posts.sort(
@@ -67,7 +67,20 @@ export const getBlogData = (key?: string, numPosts?: number): BlogData => {
   return blogData;
 };
 
-export const getPost = (id: string) => {
+interface PostData {
+  content: string;
+  title: string;
+  route: string;
+  tags: string[];
+  date: string;
+}
+
+interface Post {
+  data: PostData | null;
+  revalidate: number;
+}
+
+export const getPost = (id: string): Post => {
   const postsDirectory = path.join(process.cwd(), "_posts");
   const postFolders = fs.readdirSync(postsDirectory);
   let postData = null;
