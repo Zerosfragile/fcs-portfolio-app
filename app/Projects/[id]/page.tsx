@@ -110,7 +110,7 @@ export default async function projectPost({
         </a>
       </nav>
       <article
-        className="hud-border prose prose-stone right-0 my-6 max-w-[calc(100%-350px)] overflow-x-hidden p-11"
+        className="hud-border prose prose-offwhite my-6 max-w-[calc(100%-350px)] overflow-x-hidden p-11"
         dangerouslySetInnerHTML={{ __html: htmlMarkdown }}
       ></article>
     </div>
