@@ -6,6 +6,7 @@ import remarkHtml from "remark-html";
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 import HudDotNav, { DotNavItem } from "@/components/hud-ui/huddotnav";
+import { JSDOM } from "jsdom";
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
   const posts = getBlogData();
@@ -21,6 +22,36 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
   // return {
   //   title: post.title,
   // };
+}
+
+async function extractHeaders(content: string): Promise<DotNavItem[]> {
+  const dom = new JSDOM(content);
+  let navItems: DotNavItem[] = [];
+  const h2Elements = dom.window.document.getElementsByTagName("h2");
+  for (let i = 0; i < h2Elements.length; i++) {
+    let navItem: DotNavItem = {
+      label: h2Elements[i].textContent || "",
+      id: h2Elements[i].id,
+    };
+    let sibling = h2Elements[i].nextElementSibling;
+    let subitems: DotNavItem[] = [];
+    while (sibling) {
+      if (sibling.tagName.toLowerCase() === "h3") {
+        subitems.push({
+          label: sibling.textContent || "",
+          id: sibling.id,
+        });
+      } else if (sibling.tagName.toLowerCase() === "h2") {
+        break;
+      }
+      sibling = sibling.nextElementSibling;
+    }
+    if (subitems.length > 0) {
+      navItem.subitems = subitems;
+    }
+    navItems.push(navItem);
+  }
+  return navItems;
 }
 
 export default async function projectPost({
@@ -44,40 +75,10 @@ export default async function projectPost({
     .use(remarkHtml)
     .process(post.data.content);
 
-  const htmlMarkdown = String(vMarkdown);
+  const htmlMarkdown = String(vMarkdown); //extract from here, will be html
+  const navItems = await extractHeaders(htmlMarkdown);
+  console.log(navItems);
 
-  const navItems: DotNavItem[] = [
-    {
-      label: "Home",
-      id: "home",
-    },
-    {
-      label: "Products",
-      id: "products",
-      subitems: [
-        {
-          label: "Electronics",
-          id: "electronics",
-        },
-        {
-          label: "Clothing",
-          id: "clothing",
-          subitems: [
-            {
-              label: "Men",
-              id: "men",
-            },
-            {
-              label: "Women",
-              id: "women",
-            },
-          ],
-        },
-      ],
-    },
-  ];
-
-  // return <MarkdownPost data={post.data} />;
   return (
     <div className="hud-border relative flex h-full justify-end">
       <nav className="cubic fixed left-0 top-[20%] m-0 ml-16 flex w-[300px] flex-col">
@@ -110,7 +111,7 @@ export default async function projectPost({
         </a>
       </nav>
       <article
-        className="hud-border prose prose-offwhite my-6 max-w-[calc(100%-350px)] overflow-x-hidden p-11"
+        className="hud-border prose prose-offwhite my-6 max-w-[calc(100%-350px)] overflow-x-hidden p-11 max-lg:border-hidden xl:mx-[25%]"
         dangerouslySetInnerHTML={{ __html: htmlMarkdown }}
       ></article>
     </div>

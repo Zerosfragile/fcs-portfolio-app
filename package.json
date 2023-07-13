@@ -18,6 +18,7 @@
     "eslint-config-next": "13.4.7",
     "framer-motion": "^10.12.18",
     "gray-matter": "^4.0.3",
+    "jsdom": "^22.1.0",
     "markdown-it": "^13.0.1",
     "markdown-it-emoji": "^2.0.2",
     "next": "13.4.7",
