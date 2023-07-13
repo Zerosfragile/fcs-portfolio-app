@@ -49,7 +49,7 @@ module.exports = {
       typography: ({ theme }) => ({
         offwhite: {
           css: {
-            color: "#e2e2e2A8",
+            color: "#e2e2e254",
             fontFamily: "CygnitoMono-011",
             textTransform: "uppercase",
             fontWeight: "300",
@@ -58,6 +58,7 @@ module.exports = {
               color: "#e2e2e2",
               fontWeight: "700",
               textAlign: "center",
+              margin: "1em 0",
             },
             h2: {
               color: "#e2e2e2",
@@ -66,19 +67,19 @@ module.exports = {
               padding: "1em 0",
             },
             h3: {
-              color: "#e2e2e2",
+              color: "#e2e2e2CC",
               fontWeight: "700",
             },
             h4: {
-              color: "#e2e2e2",
+              color: "#e2e2e2BF",
               fontWeight: "700",
             },
             h5: {
-              color: "#e2e2e2",
+              color: "#e2e2e2BF",
               fontWeight: "700",
             },
             h6: {
-              color: "#e2e2e2",
+              color: "#e2e2e2BF",
               fontWeight: "700",
             },
             li: {
@@ -95,7 +96,7 @@ module.exports = {
               },
             },
             strong: {
-              color: "#b3b3b3",
+              color: "#e2e2e280",
               fontWeight: "700",
             },
             pre: {
@@ -121,7 +122,7 @@ module.exports = {
               },
             },
             code: {
-              color: "#e2e2e254",
+              color: "#e2e2e2A8",
             },
           },
         },

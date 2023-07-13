@@ -2,11 +2,19 @@ import { getBlogData, getPost } from "@/lib/posts";
 import React from "react";
 import { notFound } from "next/navigation";
 import MarkdownPost from "@/components/hud-ui/markdown";
-import remarkHtml from "remark-html";
+
+import HudDotNav, { DotNavItem } from "@/components/hud-ui/huddotnav";
+
+// Markdown Parsing Packages
 import { unified } from "unified";
 import remarkParse from "remark-parse";
-import HudDotNav, { DotNavItem } from "@/components/hud-ui/huddotnav";
-import { JSDOM } from "jsdom";
+import remarkRehype from "remark-rehype";
+import rehypeRaw from "rehype-raw";
+import rehypeSanitize from "rehype-sanitize";
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeStringify from "rehype-stringify";
+import rehypeExtractHeaders from "@/lib/rehypeExtractHeaders";
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
   const posts = getBlogData();
@@ -22,36 +30,6 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
   // return {
   //   title: post.title,
   // };
-}
-
-async function extractHeaders(content: string): Promise<DotNavItem[]> {
-  const dom = new JSDOM(content);
-  let navItems: DotNavItem[] = [];
-  const h2Elements = dom.window.document.getElementsByTagName("h2");
-  for (let i = 0; i < h2Elements.length; i++) {
-    let navItem: DotNavItem = {
-      label: h2Elements[i].textContent || "",
-      id: h2Elements[i].id,
-    };
-    let sibling = h2Elements[i].nextElementSibling;
-    let subitems: DotNavItem[] = [];
-    while (sibling) {
-      if (sibling.tagName.toLowerCase() === "h3") {
-        subitems.push({
-          label: sibling.textContent || "",
-          id: sibling.id,
-        });
-      } else if (sibling.tagName.toLowerCase() === "h2") {
-        break;
-      }
-      sibling = sibling.nextElementSibling;
-    }
-    if (subitems.length > 0) {
-      navItem.subitems = subitems;
-    }
-    navItems.push(navItem);
-  }
-  return navItems;
 }
 
 export default async function projectPost({
@@ -70,17 +48,26 @@ export default async function projectPost({
     return notFound();
   }
 
-  const vMarkdown = await unified()
+  const processor = unified()
     .use(remarkParse)
-    .use(remarkHtml)
-    .process(post.data.content);
+    .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeRaw)
+    .use(rehypeSanitize)
+    .use(rehypeSlug)
+    .use(rehypeAutolinkHeadings)
+    .use(rehypeExtractHeaders, { headings: ["h2", "h3", "h4"] })
+    .use(rehypeStringify);
 
-  const htmlMarkdown = String(vMarkdown); //extract from here, will be html
-  const navItems = await extractHeaders(htmlMarkdown);
-  console.log(navItems);
+  const result = processor.runSync(processor.parse(post.data.content));
+
+  const navItems: DotNavItem[] = result.data?.headers
+    ? (result.data as any).headers
+    : [];
+
+  const htmlMarkdown = processor.stringify(result);
 
   return (
-    <div className="hud-border relative flex h-full justify-end">
+    <div className="hud-border relative flex h-full min-h-[calc(100vh-38px)] justify-end">
       <nav className="cubic fixed left-0 top-[20%] m-0 ml-16 flex w-[300px] flex-col">
         <p className="font-[CygnitoMono-011] text-[15px] font-bold uppercase text-LunarGrey">
           <span className="opacity-75">Project: </span> {post.data.title}
