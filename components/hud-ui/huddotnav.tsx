@@ -54,7 +54,7 @@ const HudDotNav = ({ data, focusedSection }: Props) => {
             href={`#${id}`}
             className="text-LunarGrey hover:text-OffWhite-dark"
           >
-            {label}
+            {label.replace(/^([IVXLCDM]+)?\.\s+/i, "")}
           </a>
         </li>
         <ul>
