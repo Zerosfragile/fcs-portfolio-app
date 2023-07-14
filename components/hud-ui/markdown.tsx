@@ -1,9 +1,27 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import MarkdownIt from "markdown-it";
-import emoji from "markdown-it-emoji";
+import React, {
+  createElement,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import styles from "./markdown.module.css";
 import Link from "next/link";
+import HudDotNav, { DotNavItem } from "@/components/hud-ui/huddotnav";
+
+// Markdown Parsing Packages
+import { unified } from "unified";
+import remarkParse from "remark-parse";
+import remarkRehype from "remark-rehype";
+
+import rehypeSanitize from "rehype-sanitize";
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeStringify from "rehype-stringify";
+import rehypeExtractHeaders from "@/lib/rehypeExtractHeaders";
+import useCurrentHeading from "@/components/hud-ui/hooks/useCurrentHeading";
+import rehypeReact from "rehype-react";
 
 type Props = {
   data: {
@@ -15,42 +33,7 @@ type Props = {
   };
 };
 
-const md = new MarkdownIt();
-md.use(emoji);
-md.renderer.rules.heading_open = function (tokens, idx, options, env, self) {
-  const headerClass = `header-${tokens[idx].tag}`;
-  return `<${tokens[idx].tag} class="${headerClass}" id="${tokens[idx].content
-    .replace(/\s+/g, "-")
-    .toLowerCase()}">`;
-};
-
-const toRomanNumeral = (num) => {
-  const romanNumerals = [
-    ["M", 1000],
-    ["CM", 900],
-    ["D", 500],
-    ["CD", 400],
-    ["C", 100],
-    ["XC", 90],
-    ["L", 50],
-    ["XL", 40],
-    ["X", 10],
-    ["IX", 9],
-    ["V", 5],
-    ["IV", 4],
-    ["I", 1],
-  ];
-  let result = "";
-  romanNumerals.forEach(([letter, value]) => {
-    while (num >= value) {
-      result += letter;
-      num -= value;
-    }
-  });
-  return result;
-};
-
-const normalizeList = (list) => {
+const normalizeList = (list: number[]) => {
   var min = Math.min(...list);
   var max = Math.max(...list);
   return list.map(function (value) {
@@ -61,150 +44,74 @@ const normalizeList = (list) => {
 const MarkdownPost = ({
   data: { content, date, tags, route, title },
 }: Props) => {
-  const headings: any[] = [];
-  const [focusedSection, setFocusedSection] = useState(null);
+  const processor = unified()
+    .use(remarkParse)
+    .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeSanitize)
+    .use(rehypeSlug)
+    .use(rehypeAutolinkHeadings)
+    .use(rehypeReact, { createElement });
 
-  md.renderer.rules.heading_open = function (tokens, idx, options, env, self) {
-    const headerClass = `header-${tokens[idx].tag}`;
-    const content = tokens[idx + 1].content;
-    const slug = content.replace(/\s+/g, "-").toLowerCase();
-    headings.push({ level: tokens[idx].tag, content, slug });
-    return `<${tokens[idx].tag} class="${headerClass}" id="${slug}">`;
-  };
+  const htmlMarkdown = processor.processSync(content).result;
 
-  let html = "";
-  if (typeof content === "string") {
-    html = md.render(content);
-  } else {
-    console.error("Content is not a string:", content);
-  }
-  const filteredHeadings = headings.filter(
-    (h) => h.level === "h2" || h.level === "h3"
-  );
+  // const navItems: DotNavItem[] = result.data?.headers
+  //   ? (result.data as any).headers
+  //   : [];
 
-  const handleScroll = () => {
-    // Get the current scroll position
-    const scrollTop = window.pageYOffset;
-
-    const documentHeight = document.documentElement.scrollHeight;
-    const windowHeight = window.innerHeight;
-    const maxScrollableHeight = documentHeight - windowHeight;
-
-    // Calculate the top positions of each heading section
-    const sectionTops = filteredHeadings.map((h) => {
-      const element = document.getElementById(h.slug);
-      return element ? element.getBoundingClientRect().top + scrollTop : 0;
-    });
-
-    // Normalize values to ensure focusability and smooth transitions between sections
-    const normalizedScrollTop = (scrollTop / maxScrollableHeight).toFixed(4);
-    const normalizedSectionTops = normalizeList(sectionTops).map(function (
-      value
-    ) {
-      return Number(value.toFixed(2));
-    });
-
-    // Find the focusedIndex based on the closest normalizedSectionTop value
-    let focusedIndex = 0;
-    for (let i = normalizedSectionTops.length - 1; i >= 0; i--) {
-      if (normalizedScrollTop >= normalizedSectionTops[i]) {
-        focusedIndex = i;
-        break;
-      }
-    }
-
-    // Update the focusedSection state
-    setFocusedSection(focusedIndex);
-  };
+  const [headingElements, setHeadingElements] = useState<Element[]>([]);
+  const [currentHeading, setCurrentHeading] = useState<string | null>(null);
+  const articleRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  let secIndex = 1;
-  let itemIndex = 1;
-  const dotNavItems = filteredHeadings.map((h, i) => {
-    const focusedStyle =
-      i === focusedSection ? { opacity: "0.9", color: "var(--Grey)" } : {};
-    let dotNavItem;
-    if (h.level === "h2") {
-      const matches = h.content.match(/^([IVXLCDM]+)\.\s+(.*)/i);
-      const romanNumeral = matches ? toRomanNumeral(matches[1]) + ". " : "";
-      dotNavItem = (
-        <li key={h.slug} className={styles.header}>
-          SEC.{toRomanNumeral(secIndex)}.{" "}
-          <a href={`#${h.slug}`} style={focusedStyle}>
-            {h.content.replace(/^([IVXLCDM]+)?\.\s+/i, "")}
-          </a>
-        </li>
+    const headingSelector = ["h2", "h3"].join(", ");
+    if (articleRef.current) {
+      const headers = Array.from(
+        articleRef.current.querySelectorAll(headingSelector)
       );
-      secIndex++;
-      itemIndex = 1;
-    } else if (h.level === "h3") {
-      dotNavItem = (
-        <li key={h.slug}>
-          {toRomanNumeral(secIndex - 1)}.{toRomanNumeral(itemIndex)}{" "}
-          <a href={`#${h.slug}`} style={focusedStyle}>
-            {h.content}
-          </a>
-        </li>
-      );
-      itemIndex++;
+      console.log(headers.every((header) => header.isConnected));
+      console.log(headers);
+      setHeadingElements(headers);
     }
-    return dotNavItem;
-  });
+  }, [articleRef]);
 
   return (
-    <div className="hud-border relative w-auto overflow-x-hidden bg-VoidBlack">
-      <Link href="/">
-        <img
-          id="img001"
-          src="/images/001-Down_Hands.png"
-          alt=""
-          className={styles.IMG001}
-        />
-      </Link>
-      <div className={styles.spacer}></div>
-      <div className={styles.nav}>
-        <div>
-          <div className={styles.info}>
-            <span>Project: </span>
-            {title}
-          </div>
-          <div className={styles.info}>
-            <span>DATE: </span>
-            {date}
-          </div>
-          <div className={styles.tags}>
-            {tags.map((tag, index) => (
-              <span key={index} className={styles.tag}>
-                {tag}
-              </span>
-            ))}
-          </div>
+    <div className="hud-border relative flex h-full min-h-[calc(100vh-38px)] justify-end">
+      <nav className="cubic fixed left-0 top-[20%] m-0 ml-16 flex w-[300px] flex-col">
+        <p className="font-[CygnitoMono-011] text-[15px] font-bold uppercase text-LunarGrey">
+          <span className="opacity-75">Project: </span> {title}
+        </p>
+        <p className="font-[CygnitoMono-011] text-[15px] font-bold uppercase text-LunarGrey">
+          <span className="opacity-75">DATE: </span> {date}
+        </p>
+        <div className="my-[20px] flex max-w-[80%] flex-wrap justify-start gap-x-4 gap-y-1">
+          {tags.map((tag, index) => (
+            <span
+              key={index}
+              className="rounded-[5px] border border-OffWhite/[.33] px-[1.5em] py-[0.25em] text-center font-[CygnitoMono-011] text-[10px] font-bold uppercase leading-[1em] text-LunarGrey-light"
+            >
+              {tag}
+            </span>
+          ))}
         </div>
-
-        <nav className={styles.DotNav}>
-          <ul>{dotNavItems}</ul>
-        </nav>
-        <a href={route} className={styles.vistBtn}>
+        {/* <HudDotNav data={navItems} focusedSection={currentHeading} /> */}
+        <a
+          href={route}
+          className="
+            transition-margin ease min-w-[50px] max-w-[180px] rounded-xl border border-OffWhite bg-OffWhite px-8 py-1 text-center
+            font-[CygnitoMono-011] text-[15px] font-bold uppercase text-VoidBlack-lightest no-underline
+            transition-all duration-[250ms] hover:bg-transparent hover:text-OffWhite/[.66]
+          "
+        >
           Vist Project
         </a>
-      </div>
-      <div
-        className={styles.markdown}
-        dangerouslySetInnerHTML={{ __html: html }}
-      />
-      <a href="#img001">
-        <img
-          src="/images/002-Large_Thumbs_Up.png"
-          alt=""
-          className={styles.IMG002}
-        />
-      </a>
+      </nav>
+      <article
+        ref={articleRef}
+        className="hud-border prose prose-offwhite my-6 max-w-[calc(100%-350px)] overflow-x-hidden p-11 max-lg:border-hidden xl:mx-[25%]"
+        // dangerouslySetInnerHTML={{ __html: htmlMarkdown }}
+      >
+        {htmlMarkdown}
+      </article>
     </div>
   );
 };

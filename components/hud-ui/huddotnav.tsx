@@ -8,7 +8,7 @@ export type DotNavItem = {
 
 type Props = {
   data: DotNavItem[];
-  focusedSection?: string;
+  focusedSection?: string | null;
 };
 
 const toRomanNumeral = (num: number): string => {
@@ -41,7 +41,7 @@ const HudDotNav = ({ data, focusedSection }: Props) => {
   const dotNavItems = data.map((item, index) => {
     const { label, id, subitems } = item;
     const isActiveSection = focusedSection === id;
-    const activeStyle = isActiveSection ? "text-OffWhite-dark opacity-90" : "";
+    const activeStyle = isActiveSection ? "text-OffWhite opacity-90" : "";
 
     return (
       <>
@@ -74,7 +74,7 @@ const HudDotNav = ({ data, focusedSection }: Props) => {
                   {toRomanNumeral(index + 1)}.{toRomanNumeral(subIndex + 1)}{" "}
                   <a
                     href={`#${subitem.id}`}
-                    className="text-LunarGrey hover:text-OffWhite-dark"
+                    className={`${activeSubitemStyle} text-LunarGrey hover:text-OffWhite-dark`}
                   >
                     {subitem.label}
                   </a>
