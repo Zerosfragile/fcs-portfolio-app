@@ -15,6 +15,7 @@ import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeStringify from "rehype-stringify";
 import rehypeExtractHeaders from "@/lib/rehypeExtractHeaders";
+import useCurrentHeading from "@/components/hud-ui/hooks/useCurrentHeading";
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
   const posts = getBlogData();
