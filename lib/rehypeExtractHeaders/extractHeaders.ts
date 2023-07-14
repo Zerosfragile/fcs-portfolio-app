@@ -1,16 +1,10 @@
-import { HeadingNode, HeadingTagName, DotNavItem } from "./types";
+import { StackItem, HeadingTagName, DotNavItem } from "./types";
 import { Node } from "hast";
 import { selectAll } from "hast-util-select";
 import { toString } from "hast-util-to-string";
 
 interface ExtractHeadersOptions {
   headings: HeadingTagName[];
-}
-
-interface StackItem {
-  level: number;
-  header: DotNavItem;
-  position: number;
 }
 
 export function extractHeaders({
