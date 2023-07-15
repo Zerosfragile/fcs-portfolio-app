@@ -1,3 +1,4 @@
+import { DotNavItem } from "@/lib/extractHeaders/types";
 import { SetStateAction, useEffect, useState } from "react";
 
 export type HeadingTagName = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
@@ -10,7 +11,7 @@ export const normalizeList = (list: number[]) => {
   });
 };
 
-export const handleScroll = (headingElements: any[]) => {
+export const handleScroll = (headingElements: DotNavItem[]) => {
   const scrollTop = window.scrollY;
 
   const documentHeight = document.documentElement.scrollHeight;
@@ -18,13 +19,9 @@ export const handleScroll = (headingElements: any[]) => {
   const maxScrollableHeight = documentHeight - windowHeight;
 
   // Calculate the top positions of each heading section
-  const sectionTops = headingElements.map(
-    (element: {
-      getBoundingClientRect: () => { (): any; new (): any; top: number };
-    }) => {
-      return element ? element.getBoundingClientRect().top + scrollTop : 0;
-    }
-  );
+  const sectionTops = headingElements.map((element: DotNavItem) => {
+    return element.offsetTop ? element.offsetTop + scrollTop : 0;
+  });
 
   // Normalize values to ensure focusability and smooth transitions between sections
   const normalizedScrollTop = parseFloat(
@@ -46,7 +43,7 @@ export const handleScroll = (headingElements: any[]) => {
   return heading;
 };
 
-const useCurrentHeading = (headingElements: any[]) => {
+const useCurrentHeading = (headingElements: DotNavItem[]) => {
   const [currentHeading, setCurrentHeading] = useState<string | null>(null);
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -64,44 +61,3 @@ const useCurrentHeading = (headingElements: any[]) => {
 };
 
 export default useCurrentHeading;
-
-// useEffect(() => {
-//   const handleScroll = () => {
-//     const scrollTop = window.scrollY;
-
-//     const documentHeight = document.documentElement.scrollHeight;
-//     const windowHeight = window.innerHeight;
-//     const maxScrollableHeight = documentHeight - windowHeight;
-
-//     // Calculate the top positions of each heading section
-//     const sectionTops = headingElements.map((element) => {
-//       console.log(element.getBoundingClientRect().top);
-//       return element ? element.getBoundingClientRect().top + scrollTop : 0;
-//     });
-
-//     // Normalize values to ensure focusability and smooth transitions between sections
-//     const normalizedScrollTop = parseFloat(
-//       (scrollTop / maxScrollableHeight).toFixed(4)
-//     );
-//     const normalizedSectionTops = normalizeList(sectionTops).map(function (
-//       value: number
-//     ) {
-//       return Number(value.toFixed(2));
-//     });
-
-//     let heading = null;
-//     for (let i = normalizedSectionTops.length - 1; i >= 0; i--) {
-//       if (normalizedScrollTop >= normalizedSectionTops[i]) {
-//         heading = headingElements[i]?.id;
-//         console.log(headingElements[i]?.id);
-//         break;
-//       }
-//     }
-//     setCurrentHeading(heading);
-//   };
-
-//   window.addEventListener("scroll", handleScroll);
-//   return () => {
-//     window.removeEventListener("scroll", handleScroll);
-//   };
-// }, [headingElements]);
