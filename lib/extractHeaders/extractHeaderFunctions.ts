@@ -1,3 +1,4 @@
+import { ReactElement } from "react";
 import { StackItem, HeadingTagName, DotNavItem } from "./types";
 import { Node } from "hast";
 import { selectAll } from "hast-util-select";
@@ -7,7 +8,15 @@ interface ExtractHeadersOptions {
   headings: HeadingTagName[];
 }
 
-export function extractHeaders({
+interface ExtractReactHeadersOptions extends ExtractHeadersOptions {
+  node: ReactElement;
+}
+
+interface ExtractHTMLHeadersOptions extends ExtractHeadersOptions {
+  elements: HTMLElement[];
+}
+
+export function extractHASTHeaders({
   headings = ["h2", "h3"],
 }: ExtractHeadersOptions) {
   return (tree: Node) => {
@@ -69,4 +78,51 @@ function processNode(
       position: node.position.start.offset,
     });
   }
+}
+
+export function extractHTMLHeaders({
+  elements,
+  headings = ["h2", "h3"],
+}: ExtractHTMLHeadersOptions) {
+  const extractedHeaders: DotNavItem[] = [];
+  const lowerCaseHeadings = headings.map((heading) => heading.toLowerCase());
+
+  let lastParentItems = Array(lowerCaseHeadings.length).fill(null);
+
+  elements.forEach((element) => {
+    if (!(element instanceof HTMLElement)) {
+      return;
+    }
+
+    const newItem = {
+      label: element.innerText,
+      id: element.id,
+      offsetTop: element.offsetTop,
+    };
+
+    const index = lowerCaseHeadings.indexOf(element.tagName.toLowerCase());
+    if (index === -1) {
+      return;
+    }
+
+    if (index === 0) {
+      extractedHeaders.push(newItem);
+    } else {
+      const parentItem = lastParentItems[index - 1];
+      if (!parentItem) {
+        return;
+      }
+      if (!parentItem.subitems) {
+        parentItem.subitems = [];
+      }
+      parentItem.subitems.push(newItem);
+    }
+
+    lastParentItems[index] = newItem;
+    for (let i = index + 1; i < lastParentItems.length; i++) {
+      lastParentItems[i] = null;
+    }
+  });
+
+  return extractedHeaders;
 }

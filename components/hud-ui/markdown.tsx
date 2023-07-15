@@ -9,19 +9,18 @@ import React, {
 import styles from "./markdown.module.css";
 import Link from "next/link";
 import HudDotNav, { DotNavItem } from "@/components/hud-ui/huddotnav";
+import { extractHTMLHeaders } from "@/lib/extractHeaders";
 
 // Markdown Parsing Packages
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
-
 import rehypeSanitize from "rehype-sanitize";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypeStringify from "rehype-stringify";
-import rehypeExtractHeaders from "@/lib/rehypeExtractHeaders";
-import useCurrentHeading from "@/components/hud-ui/hooks/useCurrentHeading";
 import rehypeReact from "rehype-react";
+import { HeadingTagName } from "@/lib/extractHeaders/types";
+import useCurrentHeading from "./hooks/useCurrentHeading";
 
 type Props = {
   data: {
@@ -54,23 +53,19 @@ const MarkdownPost = ({
 
   const htmlMarkdown = processor.processSync(content).result;
 
-  // const navItems: DotNavItem[] = result.data?.headers
-  //   ? (result.data as any).headers
-  //   : [];
-
-  const [headingElements, setHeadingElements] = useState<Element[]>([]);
-  const [currentHeading, setCurrentHeading] = useState<string | null>(null);
+  const [headingElements, setHeadingElements] = useState<DotNavItem[]>([]);
+  const currentHeading = useCurrentHeading(headingElements);
   const articleRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const headingSelector = ["h2", "h3"].join(", ");
+    const headingSelector: HeadingTagName[] = ["h2", "h3"];
     if (articleRef.current) {
       const headers = Array.from(
-        articleRef.current.querySelectorAll(headingSelector)
+        articleRef.current.querySelectorAll(headingSelector.join(", "))
+      ) as HTMLElement[];
+      setHeadingElements(
+        extractHTMLHeaders({ elements: headers, headings: headingSelector })
       );
-      console.log(headers.every((header) => header.isConnected));
-      console.log(headers);
-      setHeadingElements(headers);
     }
   }, [articleRef]);
 
@@ -93,7 +88,7 @@ const MarkdownPost = ({
             </span>
           ))}
         </div>
-        {/* <HudDotNav data={navItems} focusedSection={currentHeading} /> */}
+        <HudDotNav data={headingElements} focusedSection={currentHeading} />
         <a
           href={route}
           className="
@@ -108,7 +103,6 @@ const MarkdownPost = ({
       <article
         ref={articleRef}
         className="hud-border prose prose-offwhite my-6 max-w-[calc(100%-350px)] overflow-x-hidden p-11 max-lg:border-hidden xl:mx-[25%]"
-        // dangerouslySetInnerHTML={{ __html: htmlMarkdown }}
       >
         {htmlMarkdown}
       </article>

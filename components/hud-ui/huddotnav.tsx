@@ -3,6 +3,7 @@ import React from "react";
 export type DotNavItem = {
   label: string; // label name as a string
   id: string; // used to navigate to header
+  offsetTop?: number;
   subitems?: DotNavItem[]; // array of subitems, each of type DotNavItem
 };
 
