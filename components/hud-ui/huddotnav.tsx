@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 export type DotNavItem = {
   label: string; // label name as a string
@@ -45,7 +45,7 @@ const HudDotNav = ({ data, focusedSection }: Props) => {
     const activeStyle = isActiveSection ? "text-OffWhite-dark opacity-80" : "";
 
     return (
-      <>
+      <Fragment key={id}>
         <li
           key={id}
           className={`list-none font-[CygnitoMono-002] text-[14px] font-light uppercase text-OffWhite-dark opacity-75 transition-all duration-[250ms] hover:text-[15px] hover:opacity-100  ${activeStyle}`}
@@ -83,7 +83,7 @@ const HudDotNav = ({ data, focusedSection }: Props) => {
               );
             })}
         </ul>
-      </>
+      </Fragment>
     );
   });
 
