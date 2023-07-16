@@ -90,7 +90,7 @@ The FCS-Portfolio website currently provides a functional platform for showcasin
 - Home page UI improvements: Enhancing the design of the home page to make it more visually appealing and user-friendly.
 - SEO: Improving the website's search engine optimization to increase visibility and attract more visitors to the website.
 
-### Reflection on Design Process
+### Design Process Reflection
 
 Reflecting on the design process, I am proud of what I have accomplished so far. While I am satisfied with the current functionality of the website, there are several areas for improvement that I would like to explore in the future.
 

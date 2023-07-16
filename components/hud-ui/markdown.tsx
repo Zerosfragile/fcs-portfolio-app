@@ -73,7 +73,7 @@ const MarkdownPost = ({
 
   return (
     <div className="hud-border relative flex h-full min-h-[calc(100vh-38px)] justify-end">
-      <nav className="cubic fixed left-0 top-[20%] m-0 ml-16 flex w-[300px] flex-col">
+      <nav className="cubic fixed left-0 top-[20%] m-0 ml-16 flex w-[280px] flex-col max-sm:hidden">
         <p className="font-[CygnitoMono-011] text-[15px] font-bold uppercase text-LunarGrey">
           <span className="opacity-75">Project: </span> {title}
         </p>
@@ -104,9 +104,19 @@ const MarkdownPost = ({
       </nav>
       <article
         ref={articleRef}
-        className="hud-border prose prose-offwhite my-6 max-w-[calc(100%-350px)] overflow-x-hidden p-11 max-lg:border-hidden xl:mx-[25%]"
+        className="hud-border prose prose-offwhite my-6 overflow-x-hidden p-11 max-lg:border-hidden sm:max-w-[calc(100%-350px)] 2xl:ml-[calc(280px+4rem-8px)] 2xl:mr-[15%]"
       >
         {htmlMarkdown}
+        <a
+          href={route}
+          className="
+            transition-margin ease w-full rounded-xl border border-OffWhite bg-OffWhite px-8 py-2 text-center
+            font-[CygnitoMono-011] text-[15px] font-bold uppercase text-VoidBlack-lightest no-underline
+            transition-all duration-[250ms] hover:bg-transparent hover:text-OffWhite/[.66] sm:hidden
+          "
+        >
+          Vist Project
+        </a>
       </article>
     </div>
   );
