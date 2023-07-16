@@ -38,7 +38,7 @@ const Btn = (props: Props) => {
       ref={ref}
       key={defaultLabel}
       className="
-          text-size-auto max-h-45 relative z-10 mx-[11.25px] my-0 min-h-[33.25px] rounded-[6px] 
+          text-size-auto max-h-45 relative z-50 mx-[11.25px] my-0 min-h-[33.25px] rounded-[6px] 
           border border-solid border-OffWhite/[0] bg-LunarGrey-darkest/[.9] px-[18px] pb-[7.5px] 
           pt-[9.75px] font-[CygnitoMono-011] text-[11.25px] font-normal uppercase leading-extra-tight 
           text-OffWhite transition-all duration-500 hover:text-OffWhite-light hover:shadow-glow
