@@ -42,7 +42,7 @@ const HudDotNav = ({ data, focusedSection }: Props) => {
   const dotNavItems = data.map((item, index) => {
     const { label, id, subitems } = item;
     const isActiveSection = focusedSection === id;
-    const activeStyle = isActiveSection ? "text-OffWhite opacity-90" : "";
+    const activeStyle = isActiveSection ? "text-OffWhite-dark opacity-80" : "";
 
     return (
       <>
@@ -53,7 +53,7 @@ const HudDotNav = ({ data, focusedSection }: Props) => {
           SEC.{toRomanNumeral(index + 1)}.{" "}
           <a
             href={`#${id}`}
-            className="text-LunarGrey hover:text-OffWhite-dark"
+            className={`text-LunarGrey hover:text-OffWhite-dark ${activeStyle}`}
           >
             {label.replace(/^([IVXLCDM]+)?\.\s+/i, "")}
           </a>
@@ -63,7 +63,7 @@ const HudDotNav = ({ data, focusedSection }: Props) => {
             subitems.map((subitem, subIndex) => {
               const isActiveSubitem = focusedSection === subitem.id;
               const activeSubitemStyle = isActiveSubitem
-                ? "text-OffWhite-dark opacity-90"
+                ? "text-OffWhite-dark opacity-80"
                 : "";
 
               return (

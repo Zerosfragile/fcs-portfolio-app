@@ -20,7 +20,9 @@ import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeReact from "rehype-react";
 import { HeadingTagName } from "@/lib/extractHeaders/types";
-import useCurrentHeading from "./hooks/useCurrentHeading";
+import useCurrentHeading, {
+  flattenDotNavItems,
+} from "./hooks/useCurrentHeading";
 
 type Props = {
   data: {
@@ -54,7 +56,7 @@ const MarkdownPost = ({
   const htmlMarkdown = processor.processSync(content).result;
 
   const [headingElements, setHeadingElements] = useState<DotNavItem[]>([]);
-  const currentHeading = useCurrentHeading(headingElements);
+  const currentHeading = useCurrentHeading(flattenDotNavItems(headingElements));
   const articleRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

@@ -11,7 +11,7 @@ export const normalizeList = (list: number[]) => {
   });
 };
 
-function flattenDotNavItems(items: DotNavItem[]): DotNavItem[] {
+export function flattenDotNavItems(items: DotNavItem[]): DotNavItem[] {
   let flatItems: DotNavItem[] = [];
 
   items.forEach((item) => {
@@ -30,7 +30,6 @@ function flattenDotNavItems(items: DotNavItem[]): DotNavItem[] {
 }
 
 export const handleScroll = (headingElements: DotNavItem[]) => {
-  console.log(headingElements);
   const scrollTop = window.scrollY;
 
   const documentHeight = document.documentElement.scrollHeight;
@@ -64,19 +63,18 @@ export const handleScroll = (headingElements: DotNavItem[]) => {
 
 const useCurrentHeading = (headingElements: DotNavItem[]) => {
   const [currentHeading, setCurrentHeading] = useState<string | null>(null);
-  const flatHeaders = flattenDotNavItems(headingElements);
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
-      setCurrentHeading(handleScroll(flatHeaders));
+      setCurrentHeading(handleScroll(headingElements));
     });
 
     return () => {
       window.removeEventListener("scroll", () => {
-        setCurrentHeading(handleScroll(flatHeaders));
+        setCurrentHeading(handleScroll(headingElements));
       });
     };
-  }, [flatHeaders]);
+  }, [headingElements]);
 
   return currentHeading;
 };
