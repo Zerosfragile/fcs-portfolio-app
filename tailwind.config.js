@@ -46,6 +46,18 @@ module.exports = {
       transitionTimingFunction: {
         cubic: "cubic-bezier(.4, 0, .2, 1)",
       },
+      animation: {
+        "shake-slow": "shake 3s infinite",
+      },
+      keyframes: {
+        shake: {
+          "5%": { transform: `rotate(5deg)` },
+          "0%": { transform: `rotate(0deg)` },
+          "10%": { transform: `rotate(-5deg)` },
+          "15%": { transform: `rotate(0deg)` },
+          "100%": { transform: `rotate(0deg)` },
+        },
+      },
       typography: ({ theme }) => ({
         offwhite: {
           css: {
