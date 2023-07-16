@@ -26,6 +26,7 @@ export default function Home() {
             height={650}
             className="opacity-50 max-sm:hidden"
             style={{ objectFit: "contain" }}
+            priority
           />
           <div className="ease flex w-[90%] justify-between font-[CygnitoMono-011] font-light text-OffWhite/[.33] duration-500 ease-cubic max-sm:mt-8">
             <p>CODE</p>
@@ -40,6 +41,7 @@ export default function Home() {
             width={150}
             height={150}
             style={{ objectFit: "contain" }}
+            priority
           />
         </div>
 
