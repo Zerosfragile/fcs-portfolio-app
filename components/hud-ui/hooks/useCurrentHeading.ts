@@ -11,7 +11,26 @@ export const normalizeList = (list: number[]) => {
   });
 };
 
+function flattenDotNavItems(items: DotNavItem[]): DotNavItem[] {
+  let flatItems: DotNavItem[] = [];
+
+  items.forEach((item) => {
+    flatItems.push({
+      label: item.label,
+      id: item.id,
+      offsetTop: item.offsetTop,
+    });
+
+    if (item.subitems) {
+      flatItems = flatItems.concat(flattenDotNavItems(item.subitems));
+    }
+  });
+
+  return flatItems;
+}
+
 export const handleScroll = (headingElements: DotNavItem[]) => {
+  console.log(headingElements);
   const scrollTop = window.scrollY;
 
   const documentHeight = document.documentElement.scrollHeight;
@@ -45,17 +64,19 @@ export const handleScroll = (headingElements: DotNavItem[]) => {
 
 const useCurrentHeading = (headingElements: DotNavItem[]) => {
   const [currentHeading, setCurrentHeading] = useState<string | null>(null);
+  const flatHeaders = flattenDotNavItems(headingElements);
+
   useEffect(() => {
     window.addEventListener("scroll", () => {
-      setCurrentHeading(handleScroll(headingElements));
+      setCurrentHeading(handleScroll(flatHeaders));
     });
-    // Cleanup function to remove the event listener
+
     return () => {
       window.removeEventListener("scroll", () => {
-        setCurrentHeading(handleScroll(headingElements));
+        setCurrentHeading(handleScroll(flatHeaders));
       });
     };
-  }, [headingElements]);
+  }, [flatHeaders]);
 
   return currentHeading;
 };
