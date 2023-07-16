@@ -31,6 +31,8 @@ const Card = ({
             alt={`${title} preview`}
             height={140}
             width={265}
+            priority
+            className="h-auto w-full"
           />
         </div>
         <div className="flex grow flex-col items-center justify-start overflow-hidden rounded-md px-[5px] py-0">
