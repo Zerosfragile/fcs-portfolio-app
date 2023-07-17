@@ -1,11 +1,19 @@
+import { wrap } from "module";
 import React, { useEffect, useState } from "react";
 
 interface TypingLabelProps {
   text: string;
   speed?: number;
+  size?: "sm" | "md" | "lg" | "xl";
+  wrap?: boolean;
 }
 
-const TypingLabel: React.FC<TypingLabelProps> = ({ text, speed = 100 }) => {
+const TypingLabel: React.FC<TypingLabelProps> = ({
+  text,
+  speed = 100,
+  wrap,
+  size,
+}) => {
   const [displayedText, setDisplayedText] = useState("");
 
   useEffect(() => {
@@ -46,7 +54,14 @@ const TypingLabel: React.FC<TypingLabelProps> = ({ text, speed = 100 }) => {
     };
   }, [text, speed]);
 
-  return <label className="truncate">{displayedText}</label>;
+  let styles = "";
+  if (!wrap) {
+    styles += " truncate";
+  }
+  if (size) {
+    styles += ` text-${size}`;
+  }
+  return <label className={`${styles}`}>{displayedText}</label>;
 };
 
 export default TypingLabel;
