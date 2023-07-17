@@ -1,4 +1,4 @@
-import { RefObject, useState, useEffect } from "react";
+import { RefObject, useState, useEffect, useRef } from "react";
 import { AnimationControls, useAnimationControls } from "framer-motion";
 import { HNSite } from "../../"; // Replace this with the actual path to your HNSite type
 
@@ -40,9 +40,9 @@ export const useHandleHNA = (
   const controls = useAnimationControls();
 
   // Declare timeout variables to clear timeouts when component unmounts, to avoid memory leaks.
-  let timeout1: NodeJS.Timeout | undefined;
-  let timeout2: NodeJS.Timeout | undefined;
-  let timeout3: NodeJS.Timeout | undefined;
+  const timeout1 = useRef<NodeJS.Timeout | undefined>();
+  const timeout2 = useRef<NodeJS.Timeout | undefined>();
+  const timeout3 = useRef<NodeJS.Timeout | undefined>();
 
   const resizeToBtn = (
     button: RefObject<HTMLButtonElement | null>,
@@ -94,15 +94,15 @@ export const useHandleHNA = (
   ) => {
     resizeToBtn(btn, controls, settings.BTN_PADDING);
     setSiteLinks(sites);
-    clearTimeout(timeout1);
-    clearTimeout(timeout2);
-    clearTimeout(timeout3);
+    clearTimeout(timeout1.current);
+    clearTimeout(timeout2.current);
+    clearTimeout(timeout3.current);
 
-    timeout1 = setTimeout(() => {
+    timeout1.current = setTimeout(() => {
       expandToContainer(containerRef, controls);
-      timeout2 = setTimeout(() => {
+      timeout2.current = setTimeout(() => {
         expandToLinks(sites, containerRef, controls);
-        timeout3 = setTimeout(() => {
+        timeout3.current = setTimeout(() => {
           setIsVisible(true);
         }, settings.LINK_REVEAL_DELAY);
       }, settings.ANIMATION_DELAY);
@@ -110,9 +110,9 @@ export const useHandleHNA = (
   };
 
   const handleMouseLeave = () => {
-    clearTimeout(timeout1);
-    clearTimeout(timeout2);
-    clearTimeout(timeout3);
+    clearTimeout(timeout1.current);
+    clearTimeout(timeout2.current);
+    clearTimeout(timeout3.current);
 
     setIsVisible(false);
     controls.start({ opacity: 0, height: settings.INITIAL_HEIGHT });
@@ -125,6 +125,9 @@ export const useHandleHNA = (
     container.addEventListener("mouseleave", handleMouseLeave);
     return () => {
       container.removeEventListener("mouseleave", handleMouseLeave);
+      clearTimeout(timeout1.current);
+      clearTimeout(timeout2.current);
+      clearTimeout(timeout3.current);
     };
   }, []);
 
