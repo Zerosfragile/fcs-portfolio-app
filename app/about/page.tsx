@@ -5,7 +5,7 @@ import { useState } from "react";
 import HudEmail from "@/components/hud-ui/hudemail";
 import HudPosts from "@/components/hud-ui/hudposts";
 
-export default function Home() {
+export default function About() {
   const [openEmail, setOpenEmail] = useState(false);
 
   const eventHandlers = {
