@@ -65,7 +65,7 @@ export default function Projects() {
                 <img
                   key={project.id}
                   src={project.preview}
-                  className=" cursor-crosshair object-cover blur-md transition-all duration-1000 ease-linear hover:blur-none"
+                  className=" cursor-crosshair object-cover blur-md transition-all duration-500 ease-linear hover:blur-none"
                 />
               ))}
               <motion.div
