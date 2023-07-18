@@ -80,7 +80,7 @@ export default function Projects() {
                 <Image
                   key={project.id}
                   src={project.preview}
-                  className="cursor-crosshair object-cover blur-md transition-all duration-500 ease-linear hover:blur-none"
+                  className="object-cover blur-md transition-all duration-500 ease-linear hover:blur-none"
                   alt={""}
                   width={3000}
                   height={1500}
