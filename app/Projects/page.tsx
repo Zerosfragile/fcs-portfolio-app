@@ -1,11 +1,11 @@
 "use client";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { BlogData, getBlogData } from "@/lib/posts";
-import { TypingLabel } from "@/components/hud-nav-system";
+import { useEffect, useRef, useState } from "react";
+import { BlogData, PostMetaData, getBlogData } from "@/lib/posts";
+import HUDN, { TypingLabel } from "@/components/hud-nav-system";
 import { motion } from "framer-motion";
-import { useRouter } from "next/router";
 import Infolay from "@/components/hud-ui/hudinfolay";
+import { Card, handleCardMouseMove } from "@/components/hud-ui/hudposts";
 
 async function getPostData() {
   const postData: BlogData = await getBlogData();
@@ -13,17 +13,32 @@ async function getPostData() {
 }
 
 export default function Projects() {
-  const [openEmail, setOpenEmail] = useState(false);
-
-  const eventHandlers = {
-    showEmail: () => {
-      console.log(openEmail);
-      setOpenEmail((prev) => !prev);
-    },
-  };
-
+  const [allProjects, setAllProjects] = useState(false);
   const [postData, setPostData] = useState<BlogData | null>(null);
   const [index, setIndex] = useState(0);
+  const cardParentRef = useRef<HTMLDivElement>(null);
+
+  const eventHandlers = {
+    prevProject: () => {
+      const newIndex =
+        postData && postData["projects"] && index - 1 < 0
+          ? postData["projects"].length - 1
+          : index - 1;
+      setIndex(newIndex);
+    },
+    nextProject: () => {
+      const newIndex =
+        postData &&
+        postData["projects"] &&
+        index + 1 == postData["projects"].length
+          ? 0
+          : index + 1;
+      setIndex(newIndex);
+    },
+    toggleAllProjects: () => {
+      setAllProjects(!allProjects);
+    },
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -55,7 +70,7 @@ export default function Projects() {
           max-md:h-[calc(100vh-130px-2em)]
         "
       >
-        {postData["projects"] && (
+        {!allProjects && postData["projects"] && (
           <>
             <motion.div
               animate={{ x: `-${index * 100}%` }}
@@ -87,9 +102,49 @@ export default function Projects() {
             </motion.div>
           </>
         )}
+        {allProjects && postData["projects"] && (
+          <div
+            className="flex h-full w-full flex-wrap gap-4 p-[25px]"
+            ref={cardParentRef}
+            onMouseMove={(e) => handleCardMouseMove(e, cardParentRef)}
+          >
+            {postData["projects"].map(
+              (projectsData: PostMetaData, index: number) => (
+                <Card key={index} data={projectsData} />
+              )
+            )}
+          </div>
+        )}
       </div>
-      <button onClick={() => setIndex(index - 1)}>back</button>
-      <button onClick={() => setIndex(index + 1)}>forward</button>
+      <div className="hud-border max-md:align-center bottom-0 flex h-[75px] items-center justify-between text-center max-md:h-[calc(calc(75px+2em))] max-md:flex-wrap max-md:justify-center max-md:overflow-hidden max-md:p-4">
+        <HUDN.container eventHandlers={eventHandlers}>
+          <HUDN.btn
+            labels={[{ breakpoint: 850, text: "PREV" }]}
+            defaultLabel="Previous Project"
+            event="prevProject"
+          />
+          <HUDN.btn defaultLabel="Next" event="nextProject" />
+        </HUDN.container>
+        <HUDN.container eventHandlers={eventHandlers}>
+          <HUDN.btn
+            prefix={{
+              breakpoint: 1100,
+              text: "03 // ",
+            }}
+            labels={[{ breakpoint: 850, text: "View All" }]}
+            defaultLabel="Toggle View"
+            event="toggleAllProjects"
+          />
+          <HUDN.btn
+            prefix={{
+              breakpoint: 1100,
+              text: "04 // ",
+            }}
+            defaultLabel="Home"
+            route="/"
+          />
+        </HUDN.container>
+      </div>
     </>
   );
 }

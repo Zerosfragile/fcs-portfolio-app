@@ -6,7 +6,7 @@ import { PostMetaData, BlogData } from "@/lib/posts";
 import { getBlogData } from "@/lib/posts.ts";
 import { TypingLabel } from "../hud-nav-system";
 
-const Card = ({
+export const Card = ({
   data: { title, subtitle, preview, id },
 }: {
   data: {
@@ -87,7 +87,7 @@ const HudPosts = ({ posts }: Props) => {
       <div
         className="hud-border group m-[18px] flex min-w-[calc(100%-36px)] flex-wrap justify-center gap-4 p-[25px]"
         ref={cardParentRef}
-        onMouseMove={(e) => handleMouseMove(e, cardParentRef)}
+        onMouseMove={(e) => handleCardMouseMove(e, cardParentRef)}
       >
         {postData[posts] &&
           postData[posts].map((projectsData: PostMetaData, index: number) => (
@@ -98,7 +98,7 @@ const HudPosts = ({ posts }: Props) => {
   );
 };
 
-const handleMouseMove = (
+export const handleCardMouseMove = (
   e: React.MouseEvent<HTMLDivElement, MouseEvent>,
   ref: RefObject<HTMLDivElement>
 ) => {
