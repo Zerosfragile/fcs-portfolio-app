@@ -45,21 +45,10 @@ export default function Projects() {
     const fetchData = async () => {
       const data = await getPostData();
       setPostData(data);
+      setIndex(0);
     };
 
     fetchData();
-    infoLayControls.start({
-      height: "100%",
-      left: `${index * 100}%`,
-      opacity: 100,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        left: { duration: 0 },
-        height: { duration: 1 },
-        opacity: { duration: 0.75 },
-      },
-    });
   }, []);
 
   useEffect(() => {
@@ -124,7 +113,7 @@ export default function Projects() {
                 />
               ))}
               <motion.div
-                initial={{ height: 0, opacity: 0 }}
+                initial={{ height: "100%", opacity: 100 }}
                 animate={infoLayControls}
                 className="absolute left-0 top-1/2 z-0 flex w-6/12 -translate-y-1/2 flex-col overflow-hidden border-r border-dashed border-OffWhite/[.15]"
               >
