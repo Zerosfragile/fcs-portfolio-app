@@ -77,10 +77,13 @@ export default function Projects() {
               className="flex h-full"
             >
               {postData["projects"].map((project, i) => (
-                <img
+                <Image
                   key={project.id}
                   src={project.preview}
-                  className=" cursor-crosshair object-cover blur-md transition-all duration-500 ease-linear hover:blur-none"
+                  className="cursor-crosshair object-cover blur-md transition-all duration-500 ease-linear hover:blur-none"
+                  alt={""}
+                  width={3000}
+                  height={1500}
                 />
               ))}
               <motion.div
