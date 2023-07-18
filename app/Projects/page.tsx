@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { BlogData, PostMetaData, getBlogData } from "@/lib/posts";
 import HUDN, { TypingLabel } from "@/components/hud-nav-system";
-import { motion } from "framer-motion";
+import { motion, useAnimationControls } from "framer-motion";
 import Infolay from "@/components/hud-ui/hudinfolay";
 import { Card, handleCardMouseMove } from "@/components/hud-ui/hudposts";
 
@@ -17,6 +17,7 @@ export default function Projects() {
   const [postData, setPostData] = useState<BlogData | null>(null);
   const [index, setIndex] = useState(0);
   const cardParentRef = useRef<HTMLDivElement>(null);
+  const infoLayControls = useAnimationControls();
 
   const eventHandlers = {
     prevProject: () => {
@@ -47,7 +48,38 @@ export default function Projects() {
     };
 
     fetchData();
+    infoLayControls.start({
+      height: "100%",
+      left: `${index * 100}%`,
+      opacity: 100,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        left: { duration: 0 },
+        height: { duration: 1 },
+        opacity: { duration: 0.75 },
+      },
+    });
   }, []);
+
+  useEffect(() => {
+    infoLayControls.set({
+      opacity: 0,
+      height: 0,
+      left: `${index * 100}%`,
+      transition: { duration: 0 },
+    });
+    infoLayControls.start({
+      height: "100%",
+      opacity: 100,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        height: { duration: 1 },
+        opacity: { duration: 0.75 },
+      },
+    });
+  }, [index, infoLayControls]);
 
   console.log(postData);
 
@@ -75,6 +107,11 @@ export default function Projects() {
             <motion.div
               animate={{ x: `-${index * 100}%` }}
               className="flex h-full"
+              transition={{
+                ease: "linear",
+                duration: 1,
+                x: { duration: 0.5 },
+              }}
             >
               {postData["projects"].map((project, i) => (
                 <Image
@@ -87,12 +124,9 @@ export default function Projects() {
                 />
               ))}
               <motion.div
-                initial={{ height: `0px` }}
-                animate={{ height: `100%`, left: `${index * 100}%` }}
-                className="
-                      absolute left-0 top-1/2 z-0 flex w-6/12 -translate-y-1/2 
-                      flex-col overflow-hidden border-r border-dashed border-OffWhite/[.15]
-                    "
+                initial={{ height: 0, opacity: 0 }}
+                animate={infoLayControls}
+                className="absolute left-0 top-1/2 z-0 flex w-6/12 -translate-y-1/2 flex-col overflow-hidden border-r border-dashed border-OffWhite/[.15]"
               >
                 {postData["projects"][index] && (
                   <Infolay
