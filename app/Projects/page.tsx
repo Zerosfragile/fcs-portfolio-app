@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BlogData, PostMetaData, getBlogData } from "@/lib/posts";
 import HUDN, { EventHandlers, TypingLabel } from "@/components/hud-nav-system";
 import {
@@ -9,89 +9,18 @@ import {
   useAnimationControls,
   wrap,
 } from "framer-motion";
-import Infolay from "@/components/hud-ui/hudinfolay";
-import { Card, handleCardMouseMove } from "@/components/hud-ui/hudposts";
+import {
+  HudPostsCard,
+  handleCardMouseMove,
+  HudCarousel,
+  HudInfolay,
+} from "@/components/hud-ui";
 import Link from "next/link";
 
 async function getPostData() {
   const postData: BlogData = await getBlogData();
   return postData;
 }
-
-const swipeConfidenceThreshold = 10000;
-const swipePower = (offset: number, velocity: number) => {
-  return Math.abs(offset) * velocity;
-};
-
-const ProjectCarousel = ({
-  control,
-  data,
-}: {
-  control: {
-    page: number;
-    direction: number;
-    set: Dispatch<SetStateAction<[number, number]>>;
-  };
-  data: PostMetaData[];
-}) => {
-  const { page, direction } = control;
-  const variants = {
-    enter: (direction: number) => {
-      return {
-        x: direction > 0 ? 1000 : -1000,
-        opacity: 0,
-      };
-    },
-    center: {
-      zIndex: 1,
-      x: 0,
-      opacity: 1,
-    },
-    exit: (direction: number) => {
-      return {
-        zIndex: 0,
-        x: direction < 0 ? 1000 : -1000,
-        opacity: 0,
-      };
-    },
-  };
-  const paginate = (newDirection: number) => {
-    control.set([page + newDirection, newDirection]);
-  };
-
-  const imageIndex = wrap(0, data.length, page);
-
-  return (
-    <AnimatePresence initial={false} custom={direction}>
-      <motion.img
-        key={page}
-        src={data[imageIndex].preview}
-        custom={direction}
-        variants={variants}
-        initial="enter"
-        animate="center"
-        exit="exit"
-        className="h-full w-full object-cover blur-xl transition-all duration-500 ease-linear hover:blur-none"
-        transition={{
-          x: { type: "spring", stiffness: 300, damping: 30 },
-          opacity: { duration: 0.2 },
-        }}
-        drag="x"
-        dragConstraints={{ left: 0, right: 0 }}
-        dragElastic={1}
-        onDragEnd={(e, { offset, velocity }) => {
-          const swipe = swipePower(offset.x, velocity.x);
-
-          if (swipe < -swipeConfidenceThreshold) {
-            paginate(1);
-          } else if (swipe > swipeConfidenceThreshold) {
-            paginate(-1);
-          }
-        }}
-      />
-    </AnimatePresence>
-  );
-};
 
 const BtnContainer = ({ eventHandlers }: { eventHandlers: EventHandlers }) => {
   return (
@@ -165,7 +94,7 @@ const Loading = () => {
 };
 
 export default function Projects() {
-  const [postData, setPostData] = useState<BlogData | null>(null);
+  const [postData, setPostData] = useState<PostMetaData[] | null>(null);
   const [allProjects, setAllProjects] = useState(false);
   const [[page, direction], setPage] = useState([0, 0]);
   const cardParentRef = useRef<HTMLDivElement>(null);
@@ -208,12 +137,12 @@ export default function Projects() {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getPostData();
-      setPostData(data);
+      setPostData(data["projects"]);
     };
     fetchData();
   }, []);
 
-  const imageIndex = postData ? wrap(0, postData["projects"].length, page) : 0;
+  const imageIndex = postData ? wrap(0, postData.length, page) : 0;
 
   if (!postData) {
     return <Loading />;
@@ -227,11 +156,11 @@ export default function Projects() {
         "
       >
         <AnimatePresence>
-          {!allProjects && postData["projects"] && (
+          {!allProjects && postData ? (
             <>
-              <ProjectCarousel
+              <HudCarousel
                 control={{ page: page, direction: direction, set: setPage }}
-                data={postData["projects"]}
+                images={postData.map((project) => project.preview)}
               />
               <motion.div
                 initial={{ height: "100%", opacity: 100 }}
@@ -239,17 +168,16 @@ export default function Projects() {
                 exit={{ opacity: 0 }}
                 className="absolute left-0 top-1/2 z-0 flex w-6/12 -translate-y-1/2 flex-col overflow-hidden border-r border-dashed border-OffWhite/[.15]"
               >
-                {postData["projects"][imageIndex] && (
-                  <Infolay
-                    route={`/projects/${postData["projects"][imageIndex].id}`}
-                    title={postData["projects"][imageIndex].title}
-                    subtitle={postData["projects"][imageIndex].subtitle}
+                {postData[imageIndex] && (
+                  <HudInfolay
+                    route={`/projects/${postData[imageIndex].id}`}
+                    title={postData[imageIndex].title}
+                    subtitle={postData[imageIndex].subtitle}
                   />
                 )}
               </motion.div>
             </>
-          )}
-          {allProjects && postData["projects"] && (
+          ) : (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 100 }}
@@ -258,11 +186,9 @@ export default function Projects() {
               ref={cardParentRef}
               onMouseMove={(e) => handleCardMouseMove(e, cardParentRef)}
             >
-              {postData["projects"].map(
-                (projectsData: PostMetaData, index: number) => (
-                  <Card key={index} data={projectsData} />
-                )
-              )}
+              {postData.map((projectsData: PostMetaData, index: number) => (
+                <HudPostsCard key={index} data={projectsData} />
+              ))}
             </motion.div>
           )}
         </AnimatePresence>

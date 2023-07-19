@@ -1,11 +1,5 @@
 "use client";
-import React, {
-  createElement,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { createElement, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import HudDotNav, { DotNavItem } from "@/components/hud-ui/huddotnav";
@@ -42,7 +36,7 @@ const normalizeList = (list: number[]) => {
   });
 };
 
-const MarkdownPost = ({
+const HudMarkdown = ({
   data: { content, date, tags, route, title },
 }: Props) => {
   const processor = unified()
@@ -147,4 +141,4 @@ const MarkdownPost = ({
   );
 };
 
-export default MarkdownPost;
+export default HudMarkdown;

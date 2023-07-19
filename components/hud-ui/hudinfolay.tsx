@@ -8,7 +8,7 @@ type infoOverlayProps = {
   subtitle: string;
 };
 
-const Infolay = ({ route, title, subtitle }: infoOverlayProps) => {
+const HudInfolay = ({ route, title, subtitle }: infoOverlayProps) => {
   return (
     <div className="h-full cursor-default p-12 backdrop-blur-md">
       <div className="ease flex w-[100%] justify-between font-[CygnitoMono-011] font-light text-OffWhite/[.33] duration-500 ease-cubic hover:text-OffWhite/[.66] max-sm:mt-8">
@@ -62,4 +62,4 @@ const Infolay = ({ route, title, subtitle }: infoOverlayProps) => {
   );
 };
 
-export default Infolay;
+export default HudInfolay;

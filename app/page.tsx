@@ -1,9 +1,7 @@
 "use client";
-import HudNav from "@/components/hud-ui/hudnav";
 import Image from "next/image";
 import { useState } from "react";
-import HudEmail from "@/components/hud-ui/hudemail";
-import HudPosts from "@/components/hud-ui/hudposts";
+import { HudEmail, HudPosts, HudNav } from "@/components/hud-ui";
 
 export default function Home() {
   const [openEmail, setOpenEmail] = useState(false);
