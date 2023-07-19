@@ -2,19 +2,22 @@
 title: "Beyond Conformity and Stifled Minds"
 subtitle: "A Philosophical Critique of Worker-Centric Western Education"
 route: "/"
-date: '2023-07-01'
-tags: ['Philosophy', 'Critique', 'Education']
+date: "2023-07-01"
+tags: ["Philosophy", "Critique", "Education"]
 draft: false
 ---
+
 # Beyond Conformity and Stifled Minds - A Philosophical Critique of Worker-Centric Western Education
-****
+
+---
+
 ## I. Introduction
 
 The Western education system, with its foundations rooted in the industrial era, has long been a subject of debate and critique. Originally designed to meet the demands of mass production and conformity, this system now faces increasing scrutiny for its limitations and shortcomings in fostering creativity, critical thinking, and individual growth. The purpose of this essay is to delve into the flaws of the Western education system, highlighting its industrial origins, its impact on students, and the need for comprehensive reform. By examining the rigid structures, outdated methodologies, and suppression of individuality, we can better understand the urgency to redefine education for the modern era. Ultimately, this essay aims to advocate for an education system that prioritizes personal exploration, critical thinking, and the development of well-rounded individuals in an ever-evolving world.
 
 ### "Guernica" by Pablo Picasso: A Metaphor for Oppression and the Urgency of Education Reform
 
-!["Guernica" by Pablo Picasso](https://cdn.shopify.com/s/files/1/0849/4704/files/guernica_sartle.jpg?v=1582528493)
+!["Guernica" by Pablo Picasso](/posts/papers/preview-beyond-conformity.png)
 
 #### The Significance of "Guernica"
 
@@ -34,7 +37,6 @@ The edifice of the Western education system has been built on the foundation of 
 
 It is no secret that the Western school system was constructed as an industrial model. Originally designed to suit the needs of the Industrial Revolution, it was primarily intended to cultivate a compliant workforce adept at performing specific tasks. The education system was made to mirror the industrial processes, focusing on homogeneity and efficiency over individuality and creativity. As such, a hierarchical, uniform, and authoritative structure was established, emphasizing obedience and conformity over independent thinking.
 
-  
 ### The Industrial Focus of American and Canadian Education Systems
 
 Such a system is particularly visible in the American and Canadian context, wherein the education model predominantly aims at creating industry-specific workers, disregarding broader subjects such as humanities, arts, or social sciences as valid career paths. Subjects of study are tailored to suit the needs of specific industries, with little regard for fostering critical thinking or encouraging personal growth. Students are often compelled to conform to the societal 'norms,' undermining their individuality and diversity of interests.
@@ -62,19 +64,19 @@ In today's era, marked by rapid technological advancements and an evolving job m
 ## V. Conclusion
 
 In conclusion, the Western education system, while historically serving the needs of the industrial age, is now in dire need of comprehensive reformation. Its persistent focus on producing a compliant workforce, at the expense of nurturing versatile individuals, warrants a radical reevaluation. It is high time that we redefine education not as a mere tool for labor production but as a platform for fostering creativity, encouraging critical thinking, and championing individuality.
- 
-**** 
+
+---
 
 ## Rough Draft
 
-The western school system, at it's core, was constructed to breed and indoctrinate workers. This has resulted in fundamental flaws that persist despite efforts to adapt the system, lingering as a toxin, destroying the will of students and stifling their personal journey and growth, a violation so personal that it is a great sin. 
+The western school system, at it's core, was constructed to breed and indoctrinate workers. This has resulted in fundamental flaws that persist despite efforts to adapt the system, lingering as a toxin, destroying the will of students and stifling their personal journey and growth, a violation so personal that it is a great sin.
 
-I've come really dislike the Canadian school system, and western ideas on education systems, as rapid advances in technology have begun to expose their dated approach.  (I want a detailed and convincing evidence based section on the following) The western school system is one which was constructed to breed and indoctrinate workers.  As it's grown, this purpose, which was once at its core, lingers as a toxin. 
+I've come really dislike the Canadian school system, and western ideas on education systems, as rapid advances in technology have begun to expose their dated approach. (I want a detailed and convincing evidence based section on the following) The western school system is one which was constructed to breed and indoctrinate workers. As it's grown, this purpose, which was once at its core, lingers as a toxin.
 
-This results in a system which puts educational emphasis on training that is narrowly tailored to producing a workforce for specific industries, with minimal emphasis on developing critical thinking, creativity, or personal growth. It's a limited curriculum that teaches a twisted, propagandized version of history, neglecting broader subjects such as humanities, social sciences, or arts as valid career paths. This indoctrination over independent thinking heavily emphasizes conformity, obedience, and unquestioning acceptance of authority rather than encouraging independent thinking, analysis, and open-mindedness, it suggests an intent to indoctrinate workers rather than fostering intellectual curiosity and autonomy. The courses use repetitive and rigid training methods, with little room for innovation, creativity, or critical problem-solving skills,  breeding workers for specific tasks rather than cultivating adaptable and versatile individuals. Their system has a lack of opportunities for individuals to progress, upskill, or pursue higher education beyond their assigned roles, indicating a deliberate effort to maintain a static workforce without encouraging personal growth or upward mobility. It disregards individuality, personal interests, and well-being, treating workers merely as cogs in a machine, a focus on breeding workers rather than nurturing individuals with diverse needs and aspirations. Furthermore, from an early age it introduces systemic control, strict hierarchies, and punitive measures to maintain control over individuals, potentially suppressing dissent and inhibiting personal development. 
+This results in a system which puts educational emphasis on training that is narrowly tailored to producing a workforce for specific industries, with minimal emphasis on developing critical thinking, creativity, or personal growth. It's a limited curriculum that teaches a twisted, propagandized version of history, neglecting broader subjects such as humanities, social sciences, or arts as valid career paths. This indoctrination over independent thinking heavily emphasizes conformity, obedience, and unquestioning acceptance of authority rather than encouraging independent thinking, analysis, and open-mindedness, it suggests an intent to indoctrinate workers rather than fostering intellectual curiosity and autonomy. The courses use repetitive and rigid training methods, with little room for innovation, creativity, or critical problem-solving skills, breeding workers for specific tasks rather than cultivating adaptable and versatile individuals. Their system has a lack of opportunities for individuals to progress, upskill, or pursue higher education beyond their assigned roles, indicating a deliberate effort to maintain a static workforce without encouraging personal growth or upward mobility. It disregards individuality, personal interests, and well-being, treating workers merely as cogs in a machine, a focus on breeding workers rather than nurturing individuals with diverse needs and aspirations. Furthermore, from an early age it introduces systemic control, strict hierarchies, and punitive measures to maintain control over individuals, potentially suppressing dissent and inhibiting personal development.
 
-(Personal experience section next) As I've gone and branched out of this system, I've faced noticeable disdain from those within. Tell them you'd like to explore things your own way, and the look of unsupportive doubt and disgust follows. Tell them how much you value them, and think highly of their academic system, and watch them let you beg at their feet. Here lies my biggest problem with their system, it violates one of my core values. This value is the belief in letting people explore and figure out their own journey and path. I believe it's the one of the rights any human has, one so personal that attempting to violate it is  a sin. If one does not directly impact you, why are so intent on their failure? How are you so sure they cannot? What gives you the right of judgement?  
+(Personal experience section next) As I've gone and branched out of this system, I've faced noticeable disdain from those within. Tell them you'd like to explore things your own way, and the look of unsupportive doubt and disgust follows. Tell them how much you value them, and think highly of their academic system, and watch them let you beg at their feet. Here lies my biggest problem with their system, it violates one of my core values. This value is the belief in letting people explore and figure out their own journey and path. I believe it's the one of the rights any human has, one so personal that attempting to violate it is a sin. If one does not directly impact you, why are so intent on their failure? How are you so sure they cannot? What gives you the right of judgement?
 
 I understand attempts to reform the system, that many schools and educators actively strive to promote critical thinking, individuality, and independent thought. However, my point is that the entire system is inherently flawed BECAUSE it was solely intended to breed workers. So despite efforts to adapt the system, they've been in vain, because of the original CORE values. Like a house built on sand, any endeavor founded on a weak or faulty base is destined to crumble under the weight of its own ambitions.
 
-Life is so long, education is a lifelong journey. To attempt to restrict an individual learning about a specific topic is an attempt to destroy their will. This is a means to suppress dissent and maintain a sense of order that benefits those in power. Their system disproportionately produces unhappy, `productive`  workers. This oppressive approach could previously be justified by job security, however, as more and more disruptive technologies emerge, and the markets begin to shift focus to personalization, creativity and as worker conditions deteriorate, this is no longer the case. It creates a mismatch between the skills developed within the school system and the evolving demands of the job market. This disconnect creates a sense of uncertainty and insecurity among students and workers, leading to unhappiness about their future prospects despite their, notably unrewarded, productivity within the system. 
+Life is so long, education is a lifelong journey. To attempt to restrict an individual learning about a specific topic is an attempt to destroy their will. This is a means to suppress dissent and maintain a sense of order that benefits those in power. Their system disproportionately produces unhappy, `productive` workers. This oppressive approach could previously be justified by job security, however, as more and more disruptive technologies emerge, and the markets begin to shift focus to personalization, creativity and as worker conditions deteriorate, this is no longer the case. It creates a mismatch between the skills developed within the school system and the evolving demands of the job market. This disconnect creates a sense of uncertainty and insecurity among students and workers, leading to unhappiness about their future prospects despite their, notably unrewarded, productivity within the system.
