@@ -1,9 +1,14 @@
 "use client";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import { BlogData, PostMetaData, getBlogData } from "@/lib/posts";
 import HUDN, { EventHandlers, TypingLabel } from "@/components/hud-nav-system";
-import { AnimatePresence, motion, useAnimationControls } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useAnimationControls,
+  wrap,
+} from "framer-motion";
 import Infolay from "@/components/hud-ui/hudinfolay";
 import { Card, handleCardMouseMove } from "@/components/hud-ui/hudposts";
 import Link from "next/link";
@@ -13,68 +18,78 @@ async function getPostData() {
   return postData;
 }
 
+const swipeConfidenceThreshold = 10000;
+const swipePower = (offset: number, velocity: number) => {
+  return Math.abs(offset) * velocity;
+};
+
 const ProjectCarousel = ({
-  index,
+  control,
   data,
 }: {
-  index: number;
+  control: {
+    page: number;
+    direction: number;
+    set: Dispatch<SetStateAction<[number, number]>>;
+  };
   data: PostMetaData[];
 }) => {
-  const infoLayControls = useAnimationControls();
-  useEffect(() => {
-    infoLayControls.set({
-      opacity: 0,
-      height: 0,
-      left: `${index * 100}%`,
-      transition: { duration: 0 },
-    });
-    infoLayControls.start({
-      height: "100%",
-      opacity: 100,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        height: { duration: 1, delay: 0.5 },
-        opacity: { duration: 0.75 },
-      },
-    });
-  }, [index, infoLayControls]);
+  const { page, direction } = control;
+  const variants = {
+    enter: (direction: number) => {
+      return {
+        x: direction > 0 ? 1000 : -1000,
+        opacity: 0,
+      };
+    },
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+    },
+    exit: (direction: number) => {
+      return {
+        zIndex: 0,
+        x: direction < 0 ? 1000 : -1000,
+        opacity: 0,
+      };
+    },
+  };
+  const paginate = (newDirection: number) => {
+    control.set([page + newDirection, newDirection]);
+  };
+
+  const imageIndex = wrap(0, data.length, page);
+
   return (
-    <motion.div
-      animate={{ x: `-${index * 100}%` }}
-      className="group flex h-full"
-      exit={{ opacity: 0 }}
-      transition={{
-        ease: "linear",
-        duration: 1,
-        x: { duration: 0.5 },
-      }}
-    >
-      {data.map((project, i) => (
-        <Image
-          key={project.id}
-          src={project.preview}
-          className="object-cover blur-xl transition-all duration-500 ease-linear group-hover:blur-none"
-          alt={""}
-          width={3000}
-          height={1500}
-        />
-      ))}
-      <motion.div
-        initial={{ height: "100%", opacity: 100 }}
-        animate={infoLayControls}
-        exit={{ opacity: 0 }}
-        className="absolute left-0 top-1/2 z-0 flex w-6/12 -translate-y-1/2 flex-col overflow-hidden border-r border-dashed border-OffWhite/[.15]"
-      >
-        {data[index] && (
-          <Infolay
-            route={`/projects/${data[index].id}`}
-            title={data[index].title}
-            subtitle={data[index].subtitle}
-          />
-        )}
-      </motion.div>
-    </motion.div>
+    <AnimatePresence initial={false} custom={direction}>
+      <motion.img
+        key={page}
+        src={data[imageIndex].preview}
+        custom={direction}
+        variants={variants}
+        initial="enter"
+        animate="center"
+        exit="exit"
+        className="h-full w-full object-cover blur-xl transition-all duration-500 ease-linear hover:blur-none"
+        transition={{
+          x: { type: "spring", stiffness: 300, damping: 30 },
+          opacity: { duration: 0.2 },
+        }}
+        drag="x"
+        dragConstraints={{ left: 0, right: 0 }}
+        dragElastic={1}
+        onDragEnd={(e, { offset, velocity }) => {
+          const swipe = swipePower(offset.x, velocity.x);
+
+          if (swipe < -swipeConfidenceThreshold) {
+            paginate(1);
+          } else if (swipe > swipeConfidenceThreshold) {
+            paginate(-1);
+          }
+        }}
+      />
+    </AnimatePresence>
   );
 };
 
@@ -152,25 +167,16 @@ const Loading = () => {
 export default function Projects() {
   const [postData, setPostData] = useState<BlogData | null>(null);
   const [allProjects, setAllProjects] = useState(false);
-  const [index, setIndex] = useState(0);
+  const [[page, direction], setPage] = useState([0, 0]);
   const cardParentRef = useRef<HTMLDivElement>(null);
+  const infoLayControls = useAnimationControls();
 
   const eventHandlers = {
     prevProject: () => {
-      const newIndex =
-        postData && postData["projects"] && index - 1 < 0
-          ? postData["projects"].length - 1
-          : index - 1;
-      setIndex(newIndex);
+      paginate(-1);
     },
     nextProject: () => {
-      const newIndex =
-        postData &&
-        postData["projects"] &&
-        index + 1 == postData["projects"].length
-          ? 0
-          : index + 1;
-      setIndex(newIndex);
+      paginate(1);
     },
     toggleAllProjects: () => {
       setAllProjects(!allProjects);
@@ -178,14 +184,36 @@ export default function Projects() {
   };
 
   useEffect(() => {
+    infoLayControls.set({
+      opacity: 0,
+      height: 0,
+      transition: { duration: 0 },
+    });
+    infoLayControls.start({
+      height: "100%",
+      opacity: 100,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        height: { duration: 1, delay: 0.5 },
+        opacity: { duration: 0.75 },
+      },
+    });
+  }, [page, infoLayControls]);
+
+  const paginate = (newDirection: number) => {
+    setPage([page + newDirection, newDirection]);
+  };
+
+  useEffect(() => {
     const fetchData = async () => {
       const data = await getPostData();
       setPostData(data);
-      setIndex(0);
     };
-
     fetchData();
   }, []);
+
+  const imageIndex = postData ? wrap(0, postData["projects"].length, page) : 0;
 
   if (!postData) {
     return <Loading />;
@@ -200,7 +228,26 @@ export default function Projects() {
       >
         <AnimatePresence>
           {!allProjects && postData["projects"] && (
-            <ProjectCarousel index={index} data={postData["projects"]} />
+            <>
+              <ProjectCarousel
+                control={{ page: page, direction: direction, set: setPage }}
+                data={postData["projects"]}
+              />
+              <motion.div
+                initial={{ height: "100%", opacity: 100 }}
+                animate={infoLayControls}
+                exit={{ opacity: 0 }}
+                className="absolute left-0 top-1/2 z-0 flex w-6/12 -translate-y-1/2 flex-col overflow-hidden border-r border-dashed border-OffWhite/[.15]"
+              >
+                {postData["projects"][imageIndex] && (
+                  <Infolay
+                    route={`/projects/${postData["projects"][imageIndex].id}`}
+                    title={postData["projects"][imageIndex].title}
+                    subtitle={postData["projects"][imageIndex].subtitle}
+                  />
+                )}
+              </motion.div>
+            </>
           )}
           {allProjects && postData["projects"] && (
             <motion.div
