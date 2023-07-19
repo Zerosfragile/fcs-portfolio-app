@@ -1,54 +1,43 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
-import { HudEmail, HudPosts, HudNav } from "@/components/hud-ui";
+import { TypingLabel } from "@/components/hud-nav-system";
+import Link from "next/link";
 
 export default function About() {
-  const [openEmail, setOpenEmail] = useState(false);
-
-  const eventHandlers = {
-    showEmail: () => {
-      console.log(openEmail);
-      setOpenEmail((prev) => !prev);
-    },
-  };
-
   return (
     <>
-      <div className="bg-black hud-border ease relative h-[calc(100vh-129px)] overflow-x-hidden text-center duration-500 ease-cubic max-md:h-[calc(100vh-130px-2em)]">
-        <div className="flex w-full flex-col items-center justify-center">
-          <Image
-            src="/images/FCS-Text-Logo-White.png"
-            alt=""
-            width={1700}
-            height={650}
-            className="opacity-50 max-sm:hidden"
-            style={{ objectFit: "contain" }}
-            priority
-          />
-          <div className="ease flex w-[90%] justify-between font-[CygnitoMono-011] font-light text-OffWhite/[.33] duration-500 ease-cubic max-sm:mt-8">
-            <p>CODE</p>
-            <p>PROJECTS</p>
-            <p>DESIGN</p>
-          </div>
-          <Image
-            src="/images/001-Down_Hands.png"
-            alt=""
-            className="ease opacity-25 invert duration-500 ease-cubic
-             hover:opacity-75 max-sm:m-4 max-sm:w-[80px]"
-            width={150}
-            height={150}
-            style={{ objectFit: "contain" }}
-            priority
-          />
+      <div
+        className="
+          bg-black hud-border ease relative flex h-[calc(100vh-39px)] justify-center overflow-x-hidden
+          text-center duration-500 ease-cubic
+        "
+      >
+        <div className="ease m-8 flex h-fit w-full cursor-default justify-between font-[CygnitoMono-011] font-light text-OffWhite/[.05] duration-500 ease-cubic hover:text-OffWhite/[.15]">
+          <p>CODE</p>
+          <p>PROJECTS</p>
+          <p>DESIGN</p>
         </div>
-
-        <HudPosts posts={"projects"} />
+        <div className="group absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+          <Link
+            href={"/"}
+            className="  flex flex-col items-center justify-center"
+          >
+            <Image
+              src={"/images/056-Modern_Icons.png"}
+              alt={""}
+              width={75}
+              height={75}
+              className="opacity-10 invert transition-all duration-500 ease-linear group-hover:opacity-50"
+            />
+          </Link>
+          <p
+            className="m-6
+          font-[CygnitoMono-011] text-[11.25px] font-normal uppercase text-OffWhite/[.33] transition-all duration-500 ease-linear group-hover:text-OffWhite/[.66]"
+          >
+            <TypingLabel text={" Initializing Data Link..."} />
+          </p>
+        </div>
       </div>
-      <div className="hud-border max-md:align-center bottom-0 flex h-[75px] items-center justify-between text-center max-md:h-[calc(calc(75px+2em))] max-md:flex-wrap max-md:justify-center max-md:overflow-hidden max-md:p-4">
-        <HudNav eventHandlers={eventHandlers} />
-      </div>
-      <HudEmail open={{ state: openEmail, set: setOpenEmail }} />
     </>
   );
 }

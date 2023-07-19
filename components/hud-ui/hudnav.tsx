@@ -47,15 +47,15 @@ const HudNav = ({ eventHandlers }: Props) => {
         />
         <HUDN.btn
           defaultLabel="Resume"
-          route="/resume"
+          route="/about/resume"
           sites={[
             {
               title: "PDF View",
-              route: "/resume/pdf",
+              route: "/about/resume/pdf",
             },
             {
               title: "More",
-              route: "/resume",
+              route: "/about/resume",
             },
           ]}
         />
