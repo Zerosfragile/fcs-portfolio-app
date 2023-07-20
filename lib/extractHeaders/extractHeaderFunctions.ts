@@ -34,7 +34,7 @@ export function extractHASTHeaders({
 function getNodes(headings: HeadingTagName[], tree: Node): Node[] {
   const nodes: Node[] = [];
   headings.forEach((heading) => {
-    const selectedNodes = selectAll(heading, tree) as Node[];
+    const selectedNodes = selectAll(heading, tree as unknown as Node) as Node[];
     nodes.push(...selectedNodes);
   });
   return nodes.sort(
