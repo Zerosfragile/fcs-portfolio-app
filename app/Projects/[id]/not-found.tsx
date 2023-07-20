@@ -19,7 +19,7 @@ export default function NotFound() {
       </div>
       <div className="group absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
         <Link
-          href={"/projects"}
+          href={"/Projects"}
           className="  flex flex-col items-center justify-center"
         >
           <Image

@@ -29,7 +29,7 @@ const HudNav = ({ eventHandlers }: Props) => {
         />
         <HUDN.btn
           defaultLabel="Projects"
-          route="/projects"
+          route="/Projects"
           sites={[
             {
               title: "Ascii-Hud",
@@ -37,11 +37,11 @@ const HudNav = ({ eventHandlers }: Props) => {
             },
             {
               title: "Playground",
-              route: "/projects/playground",
+              route: "/Projects/playground",
             },
             {
               title: "More",
-              route: "/projects",
+              route: "/Projects",
             },
           ]}
         />
