@@ -48,9 +48,11 @@ export const getBlogData = (key?: string, numPosts?: number): BlogData => {
           folder,
           `preview-${id}.png`
         );
-        const previewImage = fs.existsSync(previewImagePath)
-          ? `/posts/${folder}/preview-${id}.png`
-          : "/posts/missing.png";
+        // const previewImage = fs.existsSync(previewImagePath)
+        //   ? `/posts/${folder}/preview-${id}.png`
+        //   : "/posts/missing.png";
+
+        const previewImage = `/posts/${folder}/preview-${id}.png`;
 
         return { ...data, id: id, preview: previewImage } as PostMetaData;
       })
