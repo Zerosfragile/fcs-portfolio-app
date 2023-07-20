@@ -58,7 +58,7 @@ function processNode(
   if (node.tagName && node.position?.start.offset !== undefined) {
     const level = headings.indexOf(node.tagName as HeadingTagName);
     const item: DotNavItem = {
-      label: toString(node),
+      label: toString(node as any),
       id: (node.properties?.id as string) || "",
     };
 
