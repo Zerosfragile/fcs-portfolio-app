@@ -16,6 +16,13 @@ interface ExtractHTMLHeadersOptions extends ExtractHeadersOptions {
   elements: HTMLElement[];
 }
 
+interface ExtendedNode extends Node {
+  tagName?: string;
+  properties?: {
+    id?: string;
+  };
+}
+
 export function extractHASTHeaders({
   headings = ["h2", "h3"],
 }: ExtractHeadersOptions) {
@@ -34,7 +41,7 @@ export function extractHASTHeaders({
 function getNodes(headings: HeadingTagName[], tree: Node): Node[] {
   const nodes: Node[] = [];
   headings.forEach((heading) => {
-    const selectedNodes = selectAll(heading, tree) as Node[];
+    const selectedNodes = selectAll(heading, tree as any) as Node[];
     nodes.push(...selectedNodes);
   });
   return nodes.sort(
@@ -43,7 +50,7 @@ function getNodes(headings: HeadingTagName[], tree: Node): Node[] {
 }
 
 function processNode(
-  node: Node,
+  node: ExtendedNode,
   headerStack: StackItem[],
   headers: DotNavItem[],
   headings: HeadingTagName[]
