@@ -182,7 +182,7 @@ export default function Projects() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 100 }}
               exit={{ opacity: 0 }}
-              className="flex h-full w-full flex-wrap gap-4 p-[25px]"
+              className="flex h-full w-full flex-wrap gap-4 p-[25px] justify-center"
               ref={cardParentRef}
               onMouseMove={(e) => handleCardMouseMove(e, cardParentRef)}
             >
