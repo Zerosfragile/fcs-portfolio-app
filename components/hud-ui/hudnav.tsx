@@ -75,7 +75,7 @@ const HudNav = ({ eventHandlers }: Props) => {
             },
             {
               title: "Github",
-              route: "https://github.com/Zerosfragile",
+              route: "https://github.com/zerofcs",
             },
             {
               title: "Linkedin",
