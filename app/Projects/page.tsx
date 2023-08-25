@@ -166,7 +166,7 @@ export default function Projects() {
                 initial={{ height: "100%", opacity: 100 }}
                 animate={infoLayControls}
                 exit={{ opacity: 0 }}
-                className="absolute left-0 top-1/2 z-0 flex w-6/12 -translate-y-1/2 flex-col overflow-hidden border-r border-dashed border-OffWhite/[.15]"
+                className="absolute left-0 top-1/2 z-0 w-6/12 -translate-y-1/2 flex-col overflow-hidden border-r border-dashed border-OffWhite/[.15] hidden md:flex"
               >
                 {postData[imageIndex] && (
                   <HudInfolay
@@ -176,6 +176,40 @@ export default function Projects() {
                   />
                 )}
               </motion.div>
+              <div className="group absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <Link
+          href={`/projects/${postData[imageIndex].id}`}
+          className="  flex flex-col items-center justify-center md:hidden"
+        >
+          <Image
+            src={"/images/056-Modern_Icons.png"}
+            alt={""}
+            width={75}
+            height={75}
+            className="opacity-10 invert transition-all duration-500 ease-linear group-hover:opacity-50"
+          />
+        </Link>
+        <p
+          className="m-6
+          font-[CygnitoMono-011] text-[11.25px] font-normal uppercase text-OffWhite/[.33] transition-all duration-500 md:hidden ease-linear group-hover:text-OffWhite/[.66]"
+        >
+          Vist Project
+        </p>
+      </div>
+      <div
+        className="
+          z-10 flex flex-col items-end justify-end  text-right font-[CygnitoMono-011]
+          text-[11.25px] font-normal transition-all duration-100 ease-linear max-lg:text-[10px]
+          absolute bottom-0 right-0 m-4 md:hidden
+        "
+      >
+        <h1 className="text-[50px] text-OffWhite/[.50]">
+        {postData[imageIndex].title}
+        </h1>
+        <div className="min-h-5 text-OffWhite/[.33]">
+        {postData[imageIndex].subtitle}
+        </div>
+      </div>
             </>
           ) : (
             <motion.div

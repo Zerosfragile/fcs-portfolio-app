@@ -76,12 +76,12 @@ const HudMarkdown = ({
           height={250}
           className="
             ease absolute top-0 z-20 m-2 w-[10%] min-w-[150px] opacity-25 invert duration-500 ease-cubic
-            hover:animate-shake-slow hover:opacity-75 max-sm:m-4 max-sm:min-w-[100px]
+            hover:animate-shake-slow hover:opacity-75 max-md:m-4 max-md:min-w-[100px]
           "
         />
       </Link>
       <div className="hud-border relative flex h-full min-h-[calc(100vh-38px)] justify-end">
-        <nav className="cubic fixed left-0 top-[20%] m-0 ml-16 flex w-[280px] flex-col max-sm:hidden">
+        <nav className="cubic fixed left-0 top-[20%] m-0 ml-16 flex w-[280px] flex-col max-md:hidden">
           <p className="font-[CygnitoMono-011] text-[15px] font-bold uppercase text-LunarGrey">
             <span className="opacity-75">Project: </span> {title}
           </p>
@@ -112,7 +112,7 @@ const HudMarkdown = ({
         </nav>
         <article
           ref={articleRef}
-          className="hud-border prose prose-offwhite my-6 overflow-x-hidden p-11 max-lg:border-hidden sm:max-w-[calc(100%-350px)] 2xl:ml-[calc(280px+4rem-8px)] 2xl:mr-[15%] 2xl:prose-h1:text-[4em]"
+          className="hud-border prose prose-offwhite my-6 overflow-x-hidden p-11 max-lg:border-hidden md:max-w-[calc(100%-350px)] 2xl:ml-[calc(280px+4rem-8px)] 2xl:mr-[15%] 2xl:prose-h1:text-[4em]"
         >
           {htmlMarkdown}
           <a
@@ -120,7 +120,7 @@ const HudMarkdown = ({
             className="
             transition-margin ease w-full rounded-xl border border-OffWhite bg-OffWhite px-8 py-2 text-center
             font-[CygnitoMono-011] text-[15px] font-bold uppercase text-VoidBlack-lightest no-underline
-            transition-all duration-[250ms] hover:bg-transparent hover:text-OffWhite/[.66] sm:hidden
+            transition-all duration-[250ms] hover:bg-transparent hover:text-OffWhite/[.66] md:hidden
           "
           >
             Vist Project
@@ -133,7 +133,7 @@ const HudMarkdown = ({
             alt=""
             width={250}
             height={250}
-            className="ease absolute bottom-0 right-0 m-2 w-[10%] min-w-[150px] max-w-[10%] opacity-25 invert duration-500 ease-cubic hover:animate-shake-slow hover:opacity-75 max-sm:min-w-[100px]"
+            className="ease absolute bottom-0 right-0 m-2 w-[10%] min-w-[150px] max-w-[10%] opacity-25 invert duration-500 ease-cubic hover:animate-shake-slow hover:opacity-75 max-md:min-w-[100px]"
           />
         </a>
       </div>

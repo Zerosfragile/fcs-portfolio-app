@@ -54,7 +54,7 @@ const HudCarousel = ({
         initial="enter"
         animate="center"
         exit="exit"
-        className="h-full w-full object-cover blur-xl transition-all duration-500 ease-linear hover:blur-none"
+        className="h-full w-full object-cover md:blur-xl blur-sm transition-all duration-500 ease-linear md:hover:blur-none"
         transition={{
           x: { type: "spring", stiffness: 300, damping: 30 },
           opacity: { duration: 0.2 },
