@@ -109,6 +109,6 @@ export const getPost = (id: string): Post => {
 
   return {
     data: postData,
-    revalidate: 10,
+    revalidate: 86400,
   };
 };
