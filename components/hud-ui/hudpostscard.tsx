@@ -7,6 +7,8 @@ export const HudPostsCard = ({
 }: {
   data: PostMetaData;
 }) => {
+
+  console.log(preview)
   return (
     <a
       href={`/projects/${id}`}
