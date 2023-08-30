@@ -18,7 +18,7 @@ export const HudPostsCard = ({
       "
     >
       <div className="absolute inset-[1px] z-[2] flex grow flex-col rounded-[10px] bg-VoidBlack p-[10px]">
-        <div className="flex h-[140px] items-center justify-center overflow-hidden">
+        <div className="flex h-[140px] items-center justify-center overflow-hidden rounded-sm">
           <Image
             src={preview}
             alt={`${title} preview`}
@@ -28,7 +28,7 @@ export const HudPostsCard = ({
             className="h-auto w-full"
           />
         </div>
-        <div className="flex grow flex-col items-center justify-start overflow-hidden rounded-md px-[5px] py-0">
+        <div className="flex grow flex-col items-center justify-start overflow-hidden rounded-md px-[5px] pt-2">
           <h3 className="text-center font-[CygnitoMono-011] text-[1.1em] font-light leading-5 text-OffWhite/[0.66]">
             {title}
           </h3>
