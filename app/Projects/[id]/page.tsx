@@ -6,17 +6,6 @@ import { HudMarkdown } from "@/components/hud-ui";
 export async function generateMetadata({ params }: { params: { id: string } }) {
   const posts = getBlogData();
   const { id } = params;
-  // const post = posts.find((post) => post.id === id);
-
-  // if (!post) {
-  //   return {
-  //     title: "Post Not Found",
-  //   };
-  // }
-
-  // return {
-  //   title: post.title,
-  // };
 }
 
 export default async function projectPost({
