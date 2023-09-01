@@ -115,7 +115,7 @@ export const getPost = (id: string): Post => {
         date: data.date,
       };
 
-      console.log(postData);
+      if (OUTPUTLOG) {console.log(postData)};
 
       return true; // Stops the iteration once the file is found
     }
