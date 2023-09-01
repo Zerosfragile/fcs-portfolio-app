@@ -99,13 +99,21 @@ interface Post {
 export const getPost = (id: string): Post => {
   const postsDirectory = path.join(process.cwd(), "_posts");
   const postFolders = fs.readdirSync(postsDirectory);
-  let postData = null;
+  let postData: null | PostData = null;
 
   postFolders.some((folder) => {
     const filePath = path.join(postsDirectory, folder, id + ".md");
     if (fs.existsSync(filePath)) {
       const markdownFile = fs.readFileSync(filePath, "utf8");
       const { content, data } = matter(markdownFile);
+
+      if (data.route.startsWith('www.')) {
+        // Log the error message
+        console.error(`Invalid Route Format: The provided route "${data.route}" starts with "www.", which is treated as an internal route. 
+        Internal routes should be in the format "/route". External routes should start with "https://" or "http://".`);
+
+        return true; // Stops the iteration once the file is found
+      }
 
       postData = {
         content,
