@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { AnimatePresence, motion, wrap } from "framer-motion";
 import { Dispatch, SetStateAction } from "react";
 
@@ -5,18 +6,23 @@ const swipeConfidenceThreshold = 10000;
 const swipePower = (offset: number, velocity: number) => {
   return Math.abs(offset) * velocity;
 };
-
-const HudCarousel = ({
-  control,
-  images,
-}: {
+ 
+interface HudCarouselProps extends Pick<React.HTMLAttributes<HTMLImageElement>, 'className'> {
   control: {
     page: number;
     direction: number;
     set: Dispatch<SetStateAction<[number, number]>>;
   };
   images: string[];
-}) => {
+}
+
+
+
+const HudCarousel = ({
+  control,
+  images,
+  className,
+}: HudCarouselProps) => {
   const { page, direction } = control;
   const variants = {
     enter: (direction: number) => {
@@ -54,7 +60,7 @@ const HudCarousel = ({
         initial="enter"
         animate="center"
         exit="exit"
-        className="h-full w-full object-cover md:blur-xl blur-sm transition-all duration-500 ease-linear md:hover:blur-none"
+        className={cn("h-full w-full object-cover md:blur-xl blur-sm transition-all duration-500 ease-linear md:hover:blur-none",className)}
         transition={{
           x: { type: "spring", stiffness: 300, damping: 30 },
           opacity: { duration: 0.2 },
