@@ -2,9 +2,37 @@
 import Image from "next/image";
 import { TypingLabel } from "@/components/hud-nav-system";
 import Link from "next/link";
-import { Dispatch, SetStateAction, useState } from "react";
-import { AnimatePresence, easeInOut, motion } from "framer-motion";
-import { cn } from "@/lib/utils";
+import {
+  Dispatch,
+  JSXElementConstructor,
+  PromiseLikeOfReactNode,
+  ReactElement,
+  ReactNode,
+  ReactPortal,
+  SetStateAction,
+  useRef,
+  useState,
+} from "react";
+import {
+  AnimatePresence,
+  MotionValue,
+  easeInOut,
+  motion,
+  useMotionValue,
+  useTransform,
+} from "framer-motion";
+import {
+  cn,
+  formatNumberWithLeadingZeros,
+  useHorizontalScroll,
+  useHorizontalScroll2,
+} from "@/lib/utils";
+import {
+  TeamMember,
+  teamMembers,
+  teamMembers as user,
+} from "@/lib/extractHeaders/types";
+import { StaticImport } from "next/dist/shared/lib/get-img-props";
 
 export default function About() {
   const [loading, setLoading] = useState(false);
@@ -18,38 +46,123 @@ export default function About() {
         showNav ? "h-[calc(100vh-129px)]" : "h-[calc(100vh-39px)]"
       )}
     >
-      <AnimatePresence mode="wait">
-        {userInit ? (
-          <motion.div
-            key="content"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 100 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1, delay: 0, ease: "easeInOut" }}
-          >
-            <AboutContent setShowNav={setShowNav} />
-          </motion.div>
-        ) : (
-          <motion.div
-            key="initQuote"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 100 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1, delay: 0, ease: "easeInOut" }}
-          >
-            <QuoteInitializing setInit={setUserInit} />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <div className="w-full h-full">
+        <AnimatePresence mode="wait">
+          {userInit ? (
+            <motion.div
+              key="content"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 100 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1, delay: 0, ease: "easeInOut" }}
+              // className="w-full h-full"
+            >
+              <AboutContent setShowNav={setShowNav} />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="initQuote"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 100 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1, delay: 0, ease: "easeInOut" }}
+            >
+              <QuoteInitializing setInit={setUserInit} />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </div>
   );
 }
 
-const UserCard = () => {
+const UserCard = ({
+  x,
+  y,
+  user,
+}: {
+  x: MotionValue<number>;
+  y: MotionValue<number>;
+  user: TeamMember;
+}) => {
+  const rotateX = useTransform(y, [0, 400], [15, -15]);
+  const rotateY = useTransform(x, [0, 520], [-15, 15]);
+
+  const rotateCardX = useTransform(y, [0, 400], [10, -10]);
+  const rotateCardY = useTransform(x, [0, 520], [-10, 10]);
+
+  function handleMouse(event: {
+    currentTarget: { getBoundingClientRect: () => any };
+    clientX: number;
+    clientY: number;
+  }) {
+    const rect = event.currentTarget.getBoundingClientRect();
+
+    x.set(event.clientX - rect.left);
+    y.set(event.clientY - rect.top);
+  }
   return (
-    <div>
-      <div>hi</div>
-    </div>
+    <motion.div
+      className="bg-OffWhite/90 text-VoidBlack w-[500px] h-[800px] p-2 font-[CygnitoMono-011] uppercase relative rounded-md hud-border perspective-[400px]"
+      style={{
+        width: 500,
+        height: 800,
+        rotateX: rotateCardX,
+        rotateY: rotateCardY,
+      }}
+    >
+      <div className="text-4xl font-bold  w-full flex border-VoidBlack rounded-md select-none">
+        <div className="text-left">Fragile Creative Services</div>
+        <Image
+          src={user.profilePicture}
+          alt={`${user.firstName} profile picture`}
+          className="ease duration-500 ease-cubic rounded-lg grayscale hover:grayscale-0"
+          width={80}
+          height={80}
+          style={{ objectFit: "contain" }}
+          priority
+        />
+      </div>
+      <div className="w-full text-left select-none">
+        <p>{user.dateJoined}</p>
+        <p>{user.title}</p>
+        <p>{formatNumberWithLeadingZeros(user.id, 3)}</p>
+      </div>
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none">
+        <h1 className="text-[450px]">
+          {formatNumberWithLeadingZeros(user.id, 2)}
+        </h1>
+      </div>
+      <motion.div
+        style={{
+          display: "flex",
+          placeItems: "center",
+          placeContent: "center",
+          userSelect: "none",
+          width: 484,
+          height: 520,
+          rotateX: rotateX,
+          rotateY: rotateY,
+        }}
+      >
+        <Image
+          src={user.image}
+          alt={user.image.split("/")[3]}
+          className="ease duration-500 ease-cubic select-none "
+          width={400}
+          height={300}
+          style={{ objectFit: "contain" }}
+          priority
+          onDragStart={(e) => e.preventDefault()}
+        />
+      </motion.div>
+      <div className=" font-bold absolute bottom-0 right-0 p-2 text-right select-none">
+        <div className="pl-[50%] text-[11.25px]">{user.description}</div>
+        <div className="text-6xl">
+          {user.firstName} {user.lastName}
+        </div>
+      </div>
+    </motion.div>
   );
 };
 
@@ -58,19 +171,51 @@ const AboutContent = ({
 }: {
   setShowNav: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const teamMembers = [
-    {
-      id: 0,
-      dateJoined: "2021-09-01",
-      firstName: "Marcus",
-      lastName: "Lim",
-      title: "Founder",
-      description:
-        "I want to tell a story unheard, with words so inspiring, the very gravity of their pull slows time.",
-      image: "/images/001-Down_Hands.png",
-    },
-  ];
-  return <div onClick={() => setShowNav((prev) => !prev)}>hello</div>;
+  const x = useMotionValue(200);
+  const y = useMotionValue(200);
+
+  function handleMouse(event: {
+    currentTarget: { getBoundingClientRect: () => any };
+    clientX: number;
+    clientY: number;
+  }) {
+    const rect = event.currentTarget.getBoundingClientRect();
+
+    x.set(event.clientX - rect.left);
+    y.set(event.clientY - rect.top);
+  }
+
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const handleWheelScroll = (e: React.WheelEvent<HTMLDivElement>) => {
+    const container = scrollRef.current;
+    if (container) {
+      if (e.deltaY > 0) {
+        container.scrollLeft += 100;
+      } else {
+        container.scrollLeft -= 100;
+      }
+    }
+  };
+
+  return (
+    <motion.div
+      // onClick={() => setShowNav((prev) => !prev)}
+      className="py-20 px-10 w-full h-full"
+      onMouseMove={handleMouse}
+      onWheel={handleWheelScroll}
+      ref={scrollRef}
+    >
+      <motion.div
+        className="w-fit flex overflow-x-auto cursor-grab h-full items-center"
+        drag="x"
+        dragConstraints={scrollRef}
+      >
+        {teamMembers.map((user) => (
+          <UserCard key={user.id} x={x} y={y} user={user} />
+        ))}
+      </motion.div>
+    </motion.div>
+  );
 };
 
 const QuoteInitializing = ({
@@ -84,7 +229,7 @@ const QuoteInitializing = ({
         initial={{ opacity: 0 }}
         animate={{ opacity: 100, y: 0 }}
         transition={{ duration: 1, delay: 3.5, ease: "easeInOut" }}
-        onClick={() => setInit(true)}
+        // onClick={() => setInit(true)} //! REMOVE When Finished
         className="flex flex-col items-center justify-center p-6 w-full"
       >
         <Image
@@ -157,4 +302,5 @@ const Initializing = ({
     </div>
   );
 };
+
 //About me
