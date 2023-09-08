@@ -2,78 +2,108 @@
 import Image from "next/image";
 import { TypingLabel } from "@/components/hud-nav-system";
 import Link from "next/link";
-import {
-  Dispatch,
-  JSXElementConstructor,
-  PromiseLikeOfReactNode,
-  ReactElement,
-  ReactNode,
-  ReactPortal,
-  SetStateAction,
-  useRef,
-  useState,
-} from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import {
   AnimatePresence,
   MotionValue,
-  easeInOut,
   motion,
   useMotionValue,
   useTransform,
 } from "framer-motion";
-import {
-  cn,
-  formatNumberWithLeadingZeros,
-  useHorizontalScroll,
-  useHorizontalScroll2,
-} from "@/lib/utils";
+import { cn, formatNumberWithLeadingZeros } from "@/lib/utils";
 import {
   TeamMember,
   teamMembers,
   teamMembers as user,
 } from "@/lib/extractHeaders/types";
-import { StaticImport } from "next/dist/shared/lib/get-img-props";
+
 import { useRouter } from "next/navigation";
+import { HudEmail, HudNavAbout } from "@/components/hud-ui";
 
 export default function About() {
   const [loading, setLoading] = useState(false);
   const [userInit, setUserInit] = useState(false);
   const [showNav, setShowNav] = useState(false);
+  const [openEmail, setOpenEmail] = useState(false);
+
+  const eventHandlers = {
+    showEmail: () => {
+      console.log(openEmail);
+      setOpenEmail((prev) => !prev);
+    },
+    toggle: () => {
+      console.log(showNav);
+      setShowNav((prev) => !prev);
+    },
+  };
+
+  useEffect(() => {
+    console.log(showNav);
+  }, [showNav]);
+
   if (loading) return <Initializing />;
   return (
-    <div
-      className={cn(
-        "bg-black hud-border ease relative flex justify-center overflow-x-hidden text-center duration-500 ease-cubic",
-        showNav ? "h-[calc(100vh-129px)]" : "h-[calc(100vh-39px)]"
-      )}
-    >
-      <div className="w-full h-full">
-        <AnimatePresence mode="wait">
-          {userInit ? (
-            <motion.div
-              key="content"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 100 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1, delay: 0, ease: "easeInOut" }}
-              // className="w-full h-full"
-            >
-              <AboutContent setShowNav={setShowNav} />
-            </motion.div>
-          ) : (
-            <motion.div
-              key="initQuote"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 100 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1, delay: 0, ease: "easeInOut" }}
-            >
-              <QuoteInitializing setInit={setUserInit} />
-            </motion.div>
-          )}
-        </AnimatePresence>
+    <>
+      <div
+        className={cn(
+          "bg-black hud-border ease relative flex justify-center overflow-x-hidden text-center duration-500 ease-cubic",
+          showNav
+            ? "h-[calc(100vh-129px)] max-md:h-[calc(100vh-130px-2em)]"
+            : "h-[calc(100vh-39px)]"
+        )}
+      >
+        <div className="w-full h-full">
+          <AnimatePresence mode="wait">
+            {userInit ? (
+              <motion.div
+                key="content"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 100 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 1, delay: 0, ease: "easeInOut" }}
+              >
+                <AboutContent setShowNav={setShowNav} />
+                <button
+                  className="text-size-auto max-h-45 relative z-50 mx-[11.25px] my-0 min-h-[33.25px] rounded-[6px] 
+                  border border-solid border-OffWhite/[0] bg-LunarGrey-darkest/[.9] px-[18px] pb-[7.5px] 
+                  pt-[9.75px] font-[CygnitoMono-011] text-[11.25px] font-normal uppercase leading-extra-tight 
+                 text-OffWhite transition-all duration-500 hover:text-OffWhite-light hover:shadow-glow"
+                  onClick={() => setShowNav((prev) => !prev)}
+                >
+                  Show Nav
+                </button>
+              </motion.div>
+            ) : (
+              <motion.div
+                key="initQuote"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 100 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 1, delay: 0, ease: "easeInOut" }}
+              >
+                <QuoteInitializing setInit={setUserInit} />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
-    </div>
+      {/* <div className="h-[75px] w-full overflow-hidden"> */}
+      <AnimatePresence mode="wait">
+        {showNav && (
+          <motion.div
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 100, y: 0 }}
+            exit={{ opacity: 0, y: 100 }}
+            transition={{ duration: 1, delay: 0, ease: "easeInOut" }}
+            className="hud-border max-md:align-center bottom-0 flex h-[75px] items-center justify-between text-center max-md:h-[calc(calc(75px+2em))] max-md:flex-wrap max-md:justify-center max-md:overflow-hidden max-md:p-4"
+          >
+            <HudNavAbout eventHandlers={eventHandlers} />
+          </motion.div>
+        )}
+      </AnimatePresence>
+      {/* </div> */}
+      <HudEmail open={{ state: openEmail, set: setOpenEmail }} />
+    </>
   );
 }
 
@@ -209,7 +239,7 @@ const AboutContent = ({
   return (
     <motion.div
       // onClick={() => setShowNav((prev) => !prev)}
-      className="py-20 px-10 w-full h-full"
+      className="pt-20 px-10 w-full h-fit"
       onMouseMove={handleMouse}
       onWheel={handleWheelScroll}
       ref={scrollRef}
@@ -238,7 +268,7 @@ const QuoteInitializing = ({
         initial={{ opacity: 0 }}
         animate={{ opacity: 100, y: 0 }}
         transition={{ duration: 1, delay: 3.5, ease: "easeInOut" }}
-        // onClick={() => setInit(true)} //! REMOVE When Finished
+        //onClick={() => setInit(true)} //! REMOVE When Finished
         className="flex flex-col items-center justify-center p-6 w-full"
       >
         <Image
