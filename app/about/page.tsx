@@ -33,6 +33,7 @@ import {
   teamMembers as user,
 } from "@/lib/extractHeaders/types";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
+import { useRouter } from "next/navigation";
 
 export default function About() {
   const [loading, setLoading] = useState(false);
@@ -85,11 +86,16 @@ const UserCard = ({
   y: MotionValue<number>;
   user: TeamMember;
 }) => {
-  const rotateX = useTransform(y, [0, 400], [15, -15]);
-  const rotateY = useTransform(x, [0, 520], [-15, 15]);
+  const CARDHEIGHT = 800;
+  const CARDWIDTH = 500;
 
-  const rotateCardX = useTransform(y, [0, 400], [10, -10]);
-  const rotateCardY = useTransform(x, [0, 520], [-10, 10]);
+  const rotateX = useTransform(y, [0, CARDWIDTH], [15, -15]);
+  const rotateY = useTransform(x, [0, CARDHEIGHT], [-15, 15]);
+
+  const rotateCardX = useTransform(y, [0, CARDWIDTH], [5, -5]);
+  const rotateCardY = useTransform(x, [0, CARDHEIGHT], [-15, 15]);
+
+  const router = useRouter();
 
   function handleMouse(event: {
     currentTarget: { getBoundingClientRect: () => any };
@@ -105,11 +111,12 @@ const UserCard = ({
     <motion.div
       className="bg-OffWhite/90 text-VoidBlack w-[500px] h-[800px] p-2 font-[CygnitoMono-011] uppercase relative rounded-md hud-border perspective-[400px]"
       style={{
-        width: 500,
-        height: 800,
+        width: CARDWIDTH,
+        height: CARDHEIGHT,
         rotateX: rotateCardX,
         rotateY: rotateCardY,
       }}
+      onDoubleClick={() => router.push(`/about/${user.UID}`)}
     >
       <div className="text-4xl font-bold  w-full flex border-VoidBlack rounded-md select-none">
         <div className="text-left">Fragile Creative Services</div>
@@ -121,6 +128,8 @@ const UserCard = ({
           height={80}
           style={{ objectFit: "contain" }}
           priority
+          onDragStart={(e) => e.preventDefault()}
+          onClick={() => router.push(`/about/${user.UID}`)}
         />
       </div>
       <div className="w-full text-left select-none">
@@ -130,7 +139,7 @@ const UserCard = ({
       </div>
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none">
         <h1 className="text-[450px]">
-          {formatNumberWithLeadingZeros(user.id, 2)}
+          {formatNumberWithLeadingZeros(user.id, 2).toString().slice(-2)}
         </h1>
       </div>
       <motion.div

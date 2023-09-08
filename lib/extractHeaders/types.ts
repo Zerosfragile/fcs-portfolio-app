@@ -22,6 +22,7 @@ export type TeamMember = {
   description: string;
   profilePicture: string;
   image: string;
+  UID: string;
 };
 
 export const teamMembers: TeamMember[] = [
@@ -35,6 +36,7 @@ export const teamMembers: TeamMember[] = [
       "I want to tell a story unheard, with words so inspiring, the very gravity of their pull slows time.",
     profilePicture: "/profiles/PFP-000.png",
     image: "/profiles/illustration/663riv-002.png",
+    UID: "M-000",
   },
   {
     id: 1,
@@ -46,6 +48,7 @@ export const teamMembers: TeamMember[] = [
       "Creativity knows no bounds; it's a canvas where imagination paints the world's possibilities.",
     profilePicture: "/profiles/PFP-001.jpg",
     image: "/profiles/illustration/663riv-001.png",
+    UID: "Emily-001",
   },
   {
     id: 2,
@@ -57,6 +60,7 @@ export const teamMembers: TeamMember[] = [
       "Engineering is the art of turning dreams into reality, one line of code at a time.",
     profilePicture: "/profiles/PFP-002.jpg",
     image: "/profiles/illustration/663riv-003.png",
+    UID: "Alex-002",
   },
   {
     id: 3,
@@ -68,6 +72,7 @@ export const teamMembers: TeamMember[] = [
       "As a model, I embody the essence of art and beauty, using my form to tell stories beyond words.",
     profilePicture: "/profiles/PFP-003.jpg",
     image: "/profiles/illustration/663riv-004.png",
+    UID: "Sophia-003",
   },
   {
     id: 4,
@@ -79,6 +84,7 @@ export const teamMembers: TeamMember[] = [
       "In the world of creativity, I orchestrate ideas into a symphony of visual and emotional experiences.",
     profilePicture: "/profiles/PFP-004.jpg",
     image: "/profiles/illustration/663riv-005.png",
+    UID: "Oliver-004",
   },
   {
     id: 5,
@@ -90,6 +96,7 @@ export const teamMembers: TeamMember[] = [
       "Media is the tapestry that weaves stories into the fabric of society, and I'm here to ensure its resonance.",
     profilePicture: "/profiles/PFP-005.jpg",
     image: "/profiles/illustration/mettaflix-001.png",
+    UID: "Megan-005",
   },
   {
     id: 6,
@@ -101,6 +108,7 @@ export const teamMembers: TeamMember[] = [
       "With pixels as my clay and imagination as my chisel, I sculpt virtual worlds that transcend reality.",
     profilePicture: "/profiles/PFP-006.jpg",
     image: "/profiles/illustration/mettaflix-002.png",
+    UID: "Nathan-006",
   },
   {
     id: 7,
@@ -112,6 +120,7 @@ export const teamMembers: TeamMember[] = [
       "I shape digital experiences that fuse beauty with functionality, making technology a joy to interact with.",
     profilePicture: "/profiles/PFP-007.jpg",
     image: "/profiles/illustration/mettaflix-003.png",
+    UID: "Isabella-007",
   },
   {
     id: 8,
@@ -123,6 +132,7 @@ export const teamMembers: TeamMember[] = [
       "Words have the power to shape perceptions and ignite minds; I wield them to craft compelling narratives.",
     profilePicture: "/profiles/PFP-008.jpg",
     image: "/profiles/illustration/mettaflix-004.png",
+    UID: "William-008",
   },
   {
     id: 9,
@@ -134,6 +144,7 @@ export const teamMembers: TeamMember[] = [
       "Guiding our brand's journey through the labyrinth of trends and markets, I make waves in the business world.",
     profilePicture: "/profiles/PFP-009.jpg",
     image: "/profiles/illustration/mettaflix-005.png",
+    UID: "Ava-009",
   },
   {
     id: 10,
@@ -145,6 +156,7 @@ export const teamMembers: TeamMember[] = [
       "Motion breathes life into art, and I breathe magic into still images, giving them a heartbeat of their own.",
     profilePicture: "/profiles/PFP-010.jpg",
     image: "/profiles/illustration/mettaflix-006.png",
+    UID: "Ethan-010",
   },
   {
     id: 11,
@@ -156,6 +168,7 @@ export const teamMembers: TeamMember[] = [
       "Designing interfaces that blend aesthetics with usability, I create digital landscapes where users find joy.",
     profilePicture: "/profiles/PFP-011.jpg",
     image: "/profiles/illustration/663riv-005.png",
+    UID: "Lily-011",
   },
   {
     id: 12,
@@ -167,6 +180,7 @@ export const teamMembers: TeamMember[] = [
       "Behind the lens, I capture moments that tell stories, stitching frames into tales that move hearts.",
     profilePicture: "/profiles/PFP-012.jpg",
     image: "/profiles/illustration/663riv-003.png",
+    UID: "Jackson-012",
   },
   {
     id: 13,
@@ -178,6 +192,7 @@ export const teamMembers: TeamMember[] = [
       "I orchestrate the harmony between our brand and the world, crafting relationships that resonate.",
     profilePicture: "/profiles/PFP-013.jpg",
     image: "/profiles/illustration/663riv-001.png",
+    UID: "Grace-013",
   },
   {
     id: 14,
@@ -189,6 +204,7 @@ export const teamMembers: TeamMember[] = [
       "Soundscapes enrich our experiences, and I sculpt audio that immerses, awakens, and lingers.",
     profilePicture: "/profiles/PFP-014.jpg",
     image: "/profiles/illustration/mettaflix-001.png",
+    UID: "Noah-014",
   },
   {
     id: 15,
@@ -200,5 +216,6 @@ export const teamMembers: TeamMember[] = [
       "In the dance of creativity, I'm the choreographer who ensures every step leads to a flawless performance.",
     profilePicture: "/profiles/PFP-015.jpg",
     image: "/profiles/illustration/mettaflix-006.png",
+    UID: "Sofia-015",
   },
 ];
