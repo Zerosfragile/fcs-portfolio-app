@@ -8,11 +8,7 @@ export function HudNavAbout({ eventHandlers }: Props) {
   return (
     <>
       <HUDN.container eventHandlers={eventHandlers}>
-        <HUDN.btn
-
-          defaultLabel="Home"
-          route="/"
-        />
+        <HUDN.btn defaultLabel="Home" route="/" />
         <HUDN.btn
           defaultLabel="Projects"
           route="/Projects"
@@ -86,7 +82,7 @@ export function HudNavAbout({ eventHandlers }: Props) {
       </HUDN.container>
     </>
   );
-};
+}
 
 const HudNav = ({ eventHandlers }: Props) => {
   return (
@@ -142,9 +138,8 @@ const HudNav = ({ eventHandlers }: Props) => {
               route: "/about/resume",
             },
           ]}
+          className="max-md:hidden"
         />
-      </HUDN.container>
-      <HUDN.container eventHandlers={eventHandlers}>
         <HUDN.btn
           prefix={{
             breakpoint: 1100,
@@ -170,6 +165,36 @@ const HudNav = ({ eventHandlers }: Props) => {
               route: "/contact",
             },
           ]}
+          className="md:hidden"
+        />
+      </HUDN.container>
+      <HUDN.container eventHandlers={eventHandlers} className="max-md:hidden">
+        <HUDN.btn
+          prefix={{
+            breakpoint: 1100,
+            text: "04 // ",
+          }}
+          defaultLabel="Contact"
+          route="/contact"
+          sites={[
+            {
+              title: "Email",
+              event: "showEmail",
+            },
+            {
+              title: "Github",
+              route: "https://github.com/zerofcs",
+            },
+            {
+              title: "Linkedin",
+              route: "https://www.linkedin.com/in/marcus-lim-b6a721260/",
+            },
+            {
+              title: "More",
+              route: "/contact",
+            },
+          ]}
+          className="max-md:hidden"
         />
         <HUDN.btn
           prefix={{
@@ -179,6 +204,7 @@ const HudNav = ({ eventHandlers }: Props) => {
           defaultLabel="Refresh"
           event="refresh"
           sites={[]}
+          className="max-md:hidden"
         />
       </HUDN.container>
     </>

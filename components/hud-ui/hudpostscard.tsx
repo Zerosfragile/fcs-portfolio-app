@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { RefObject } from "react";
+import { RefObject, use, useEffect } from "react";
 import { PostMetaData } from "@/lib/posts";
 
 export const HudPostsCard = ({
@@ -7,8 +7,9 @@ export const HudPostsCard = ({
 }: {
   data: PostMetaData;
 }) => {
-
-  console.log(preview)
+  useEffect(() => {
+    console.log(preview);
+  }, []);
   return (
     <a
       href={`/projects/${id}`}

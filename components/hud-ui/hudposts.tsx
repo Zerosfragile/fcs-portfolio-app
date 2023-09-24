@@ -4,10 +4,12 @@ import { PostMetaData, BlogData } from "@/lib/posts";
 import { getBlogData } from "@/lib/posts.ts";
 import { TypingLabel } from "../hud-nav-system";
 import { HudPostsCard, handleCardMouseMove } from "./hudpostscard";
+import { cn } from "@/lib/utils";
 
 interface Props {
   posts: string;
   limit?: number;
+  className?: string;
 }
 
 async function getPostData() {
@@ -15,7 +17,7 @@ async function getPostData() {
   return postData;
 }
 
-const HudPosts = ({ posts }: Props) => {
+const HudPosts = ({ posts, className }: Props) => {
   const [postData, setPostData] = useState<BlogData | null>(null);
   const cardParentRef = useRef<HTMLDivElement>(null);
 
@@ -31,7 +33,12 @@ const HudPosts = ({ posts }: Props) => {
   if (!postData) {
     return (
       <div className="flex w-full items-center justify-center">
-        <div className="hud-border group m-[18px] flex min-w-[calc(100%-36px)] flex-wrap justify-center gap-4 p-[25px]">
+        <div
+          className={cn(
+            className,
+            "hud-border group m-[18px] flex min-w-[calc(100%-36px)] flex-wrap justify-center gap-4 p-[25px]"
+          )}
+        >
           <p className="text-center font-[CygnitoMono-011] text-sm font-light leading-5 text-OffWhite/[0.66]">
             <TypingLabel text={" Initializing Data Link..."} />
           </p>
@@ -42,7 +49,10 @@ const HudPosts = ({ posts }: Props) => {
   return (
     <div className="flex w-full items-center justify-center">
       <div
-        className="hud-border group m-[18px] flex min-w-[calc(100%-36px)] flex-wrap justify-center gap-4 p-[25px]"
+        className={cn(
+          className,
+          "hud-border group m-[18px] flex min-w-[calc(100%-36px)] flex-wrap justify-center gap-4 p-[25px]"
+        )}
         ref={cardParentRef}
         onMouseMove={(e) => handleCardMouseMove(e, cardParentRef)}
       >
