@@ -163,9 +163,12 @@ module.exports = {
             },
             li: {
               color: "#e2e2e254",
+              "&::marker": {
+                color: "#e2e2e254",
+              },
             },
             a: {
-              color: "#551A8B",
+              color: "#6b7280",
               transition: "all cubic-bezier(.4, 0, .2, 1) .25s",
               "&:hover": {
                 color: "#2c5282",
