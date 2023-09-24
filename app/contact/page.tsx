@@ -42,9 +42,7 @@ export default function Contact() {
       <div
         className={cn(
           "bg-black hud-border ease relative flex justify-center overflow-x-hidden text-center duration-500 ease-cubic",
-          showNav
-            ? "h-[calc(100vh-129px)] max-md:h-[calc(100vh-130px-2em)]"
-            : "h-[calc(100vh-39px)]"
+          showNav ? "h-[calc(100vh-129px)]" : "h-[calc(100vh-39px)]"
         )}
       >
         <div className="w-full h-full">
@@ -93,7 +91,7 @@ export default function Contact() {
             animate={{ opacity: 100, y: 0 }}
             exit={{ opacity: 0, y: 100 }}
             transition={{ duration: 1, delay: 0, ease: "easeInOut" }}
-            className="hud-border max-md:align-center bottom-0 flex h-[75px] items-center justify-between text-center max-md:h-[calc(calc(75px+2em))] max-md:flex-wrap max-md:justify-center max-md:overflow-hidden max-md:p-4"
+            className="hud-border max-md:align-center bottom-0 flex h-[75px] items-center justify-between text-center max-md:flex-wrap max-md:justify-center max-md:overflow-hidden max-md:p-4"
           >
             <HudNav eventHandlers={eventHandlers} />
           </motion.div>
