@@ -65,8 +65,8 @@ export default function Contact() {
                     width={250}
                     height={250}
                     className="
-            ease absolute top-0 z-20 m-2 w-20 min-w-[150px] opacity-25 invert duration-500 ease-cubic
-            hover:animate-shake-slow hover:opacity-75 max-md:right-0
+            ease absolute top-0 z-20 m-2 w-40 opacity-25 invert duration-500 ease-cubic
+            hover:animate-shake-slow hover:opacity-75 max-md:right-0 max-md:w-20
           "
                   />
                 </Link>
@@ -130,7 +130,7 @@ const ContactContent = ({
     },
   ];
   return (
-    <div className="w-full flex justify-center max-md:mt-[55px]">
+    <div className="w-full flex justify-center ">
       <div className="max-w-[800px] md:min-w-[400px] h-full flex flex-wrap justify-center my-10 mx-10">
         <div className="w-full">
           <div className="space-y-1">
