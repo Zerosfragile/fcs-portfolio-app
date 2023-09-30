@@ -44,7 +44,7 @@ export default function Home() {
           showNav ? "h-[calc(100vh-129px)]" : "h-[calc(100vh-39px)]"
         )}
       >
-        <div className="flex w-full flex-col items-center justify-center">
+        <div className="center w-full grid place-items-center">
           <AnimatePresence mode="popLayout">
             {logoVisible && (
               <motion.div
@@ -68,65 +68,32 @@ export default function Home() {
                 />
               </motion.div>
             )}
-
             <motion.div
-              initial={{ opacity: 0, y: 250 }}
-              animate={{ opacity: 100, y: 0 }}
+              initial={{ opacity: 0, y: 250, width: "100%" }}
+              animate={{
+                opacity: 100,
+                y: 0,
+              }}
               exit={{ opacity: 0, y: 100 }}
               transition={{ duration: 1.5, delay: 2, ease: "easeInOut" }}
-              className="ease flex w-[90%] justify-between font-[CygnitoMono-011] font-light text-OffWhite/[.33] duration-500 ease-cubic max-sm:mt-8"
+              className="flex justify-center"
               key="Subtitles"
             >
-              <p>CODE</p>
-              <p>PROJECTS</p>
-              <p>DESIGN</p>
+              <div className="flex w-[90%] justify-between font-[CygnitoMono-011] font-light text-OffWhite/[.33] duration-500 ease-cubic max-sm:mt-8 ease">
+                <p>CODE</p>
+                <p>PROJECTS</p>
+                <p>DESIGN</p>
+              </div>
             </motion.div>
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 100, y: 0 }}
+              initial={{ opacity: 0, width: "100%" }}
+              animate={{ opacity: 100, y: 0, width: "90%" }}
               exit={{ opacity: 0, y: 100 }}
               transition={{ duration: 1, delay: 4, ease: "easeInOut" }}
               className="my-20"
               key="cards"
             >
               <HudPosts posts={"projects"} />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 250 }}
-              animate={{ opacity: 100, y: 0 }}
-              exit={{ opacity: 0, y: 100 }}
-              transition={{ duration: 1, delay: 4.5, ease: "easeInOut" }}
-              className="absolute bottom-0 left-0 w-screen flex justify-center"
-              key="face"
-            >
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger className="hover:animate-pulse-slow">
-                    <Image
-                      src="/images/001-Down_Hands.png"
-                      alt=""
-                      className="ease opacity-25 invert duration-500 ease-cubic
-             hover:opacity-75 max-sm:m-4 max-sm:w-[80px]"
-                      width={150}
-                      height={150}
-                      style={{ objectFit: "contain" }}
-                      onClick={() => setShowNav((prev) => !prev)}
-                      priority
-                    />
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p className="flex gap-2">
-                      Scroll{" "}
-                      {showNav ? (
-                        <DoubleArrowDownIcon />
-                      ) : (
-                        <DoubleArrowUpIcon />
-                      )}
-                      to Toggle Nav
-                    </p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
             </motion.div>
           </AnimatePresence>
         </div>
@@ -141,6 +108,46 @@ export default function Home() {
             className="hud-border max-md:align-center bottom-0 flex h-[75px] items-center justify-between text-center max-md:flex-wrap max-md:justify-center max-md:overflow-hidden max-md:p-4"
           >
             <HudNav eventHandlers={eventHandlers} />
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {!logoVisible && (
+          <motion.div
+            initial={{ opacity: 0, y: 250 }}
+            animate={{ opacity: 100, y: 0 }}
+            exit={{ opacity: 0, y: 100 }}
+            transition={{ duration: 1, delay: 0, ease: "easeInOut" }}
+            className={cn(
+              "absolute bottom-0 left-0 w-full flex justify-center transition-all duration-500 ease",
+              showNav ? "mb-[100px]" : "mb-[25px]"
+            )}
+            key="face"
+          >
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger className="hover:animate-pulse-slow">
+                  <Image
+                    src="/images/001-Down_Hands.png"
+                    alt=""
+                    className="ease opacity-25 invert duration-500 ease-cubic
+               hover:opacity-75 max-sm:m-4 max-sm:w-[80px]"
+                    width={150}
+                    height={150}
+                    style={{ objectFit: "contain" }}
+                    onClick={() => setShowNav((prev) => !prev)}
+                    priority
+                  />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p className="flex gap-2">
+                    Scroll{" "}
+                    {showNav ? <DoubleArrowDownIcon /> : <DoubleArrowUpIcon />}
+                    to Toggle Nav
+                  </p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </motion.div>
         )}
       </AnimatePresence>
