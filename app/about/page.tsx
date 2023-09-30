@@ -20,6 +20,7 @@ import {
 import { useRouter } from "next/navigation";
 import { HudEmail, HudNavAbout } from "@/components/hud-ui";
 import useScrollDirection from "@/components/hud-ui/hooks/useScrollDirection";
+import { isMobile } from "react-device-detect";
 
 export default function About() {
   const [loading, setLoading] = useState(false);
@@ -41,12 +42,23 @@ export default function About() {
 
   if (loading) return <Initializing />;
   return (
-    <>
+    <div
+      className={cn(
+        "overflow-hidden",
+        isMobile
+          ? "h-[calc(100svh)] w-[calc(100svw)]"
+          : "w-[calc(100vh)] h-[calc(100vw)]"
+      )}
+    >
       <div
         className={cn(
           "bg-black hud-border ease relative flex justify-center overflow-x-hidden text-center duration-500 ease-cubic",
           showNav
-            ? "h-[calc(100vh-129px)] max-md:h-[calc(100vh-130px-2em)]"
+            ? isMobile
+              ? "h-[calc(100svh-129px)] max-md:h-[calc(100svh-130px-2em)]"
+              : "h-[calc(100vh-129px)] max-md:h-[calc(100vh-130px-2em)]"
+            : isMobile
+            ? "h-[calc(100svh-39px)]"
             : "h-[calc(100vh-39px)]"
         )}
       >
@@ -101,7 +113,7 @@ export default function About() {
       </AnimatePresence>
       {/* </div> */}
       <HudEmail open={{ state: openEmail, set: setOpenEmail }} />
-    </>
+    </div>
   );
 }
 

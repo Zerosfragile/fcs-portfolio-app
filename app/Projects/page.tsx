@@ -16,6 +16,8 @@ import {
   HudInfolay,
 } from "@/components/hud-ui";
 import Link from "next/link";
+import { isMobile } from "react-device-detect";
+import { cn } from "@/lib/utils";
 
 async function getPostData() {
   const postData: BlogData = await getBlogData();
@@ -59,10 +61,10 @@ const BtnContainer = ({ eventHandlers }: { eventHandlers: EventHandlers }) => {
 const Loading = () => {
   return (
     <div
-      className="
-          bg-black hud-border ease relative flex h-[calc(100vh-39px)] justify-center overflow-x-hidden
-          text-center duration-500 ease-cubic
-        "
+      className={cn(
+        " bg-black hud-border ease relative flex justify-center overflow-x-hidden text-center duration-500 ease-cubic",
+        isMobile ? "h-[calc(100svh-39px)]" : "h-[calc(100vh-39px)]"
+      )}
     >
       <div className="ease m-8 flex h-fit w-full cursor-default justify-between font-[CygnitoMono-011] font-light text-OffWhite/[.05] duration-500 ease-cubic hover:text-OffWhite/[.15]">
         <p>CODE</p>
@@ -150,9 +152,10 @@ export default function Projects() {
   return (
     <>
       <div
-        className="
-          bg-black hud-border ease relative h-[calc(100vh-129px)] overflow-x-hidden text-center duration-500 ease-cubic
-        "
+        className={cn(
+          "bg-black hud-border ease relative overflow-x-hidden text-center duration-500 ease-cubic",
+          isMobile ? "h-[calc(100svh-129px)]" : "h-[calc(100vh-129px)]"
+        )}
       >
         <AnimatePresence>
           {!allProjects && postData ? (

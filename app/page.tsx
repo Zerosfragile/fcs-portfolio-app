@@ -11,6 +11,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { isMobile } from "react-device-detect";
 import { DoubleArrowDownIcon, DoubleArrowUpIcon } from "@radix-ui/react-icons";
 
 export default function Home() {
@@ -37,14 +38,27 @@ export default function Home() {
   }, []);
 
   return (
-    <>
+    <div
+      className={cn(
+        "overflow-hidden",
+        isMobile
+          ? "h-[calc(100svh)] w-[calc(100svw)]"
+          : "w-[calc(100vh)] h-[calc(100vw)]"
+      )}
+    >
       <div
         className={cn(
           "bg-black hud-border ease relative flex justify-center overflow-x-hidden text-center duration-500 ease-cubic flex-wrap",
-          showNav ? "h-[calc(100vh-129px)]" : "h-[calc(100vh-39px)]"
+          showNav
+            ? isMobile
+              ? "h-[calc(100svh-129px)]"
+              : "h-[calc(100vh-129px)]"
+            : isMobile
+            ? "h-[calc(100svh-39px)]"
+            : "h-[calc(100vh-39px)]"
         )}
       >
-        <div className="center w-full grid place-items-center">
+        <div className="w-full flex flex-col justify-center items-center">
           <AnimatePresence mode="popLayout">
             {logoVisible && (
               <motion.div
@@ -76,7 +90,7 @@ export default function Home() {
               }}
               exit={{ opacity: 0, y: 100 }}
               transition={{ duration: 1.5, delay: 2, ease: "easeInOut" }}
-              className="flex justify-center"
+              className={cn("flex justify-center", isMobile && "mt-10")}
               key="Subtitles"
             >
               <div className="flex w-[90%] justify-between font-[CygnitoMono-011] font-light text-OffWhite/[.33] duration-500 ease-cubic max-sm:mt-8 ease">
@@ -117,10 +131,11 @@ export default function Home() {
             initial={{ opacity: 0, y: 250 }}
             animate={{ opacity: 100, y: 0 }}
             exit={{ opacity: 0, y: 100 }}
-            transition={{ duration: 1, delay: 0, ease: "easeInOut" }}
+            transition={{ duration: 2.5, delay: 0, ease: "easeInOut" }}
             className={cn(
-              "absolute bottom-0 left-0 w-full justify-center transition-all duration-500 ease hidden md:flex",
-              showNav ? "mb-[100px]" : "mb-[25px]"
+              "absolute bottom-0 left-0 w-full justify-center transition-all duration-500 ease flex",
+              showNav ? "mb-[100px]" : "mb-[25px]",
+              isMobile && "hidden"
             )}
             key="face"
           >
@@ -152,6 +167,6 @@ export default function Home() {
         )}
       </AnimatePresence>
       <HudEmail open={{ state: openEmail, set: setOpenEmail }} />
-    </>
+    </div>
   );
 }

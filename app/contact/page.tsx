@@ -17,6 +17,7 @@ import {
   EnvelopeClosedIcon,
 } from "@radix-ui/react-icons";
 import { useRouter } from "next/navigation";
+import { isMobile } from "react-device-detect";
 
 export default function Contact() {
   const [loading, setLoading] = useState(false);
@@ -38,11 +39,24 @@ export default function Contact() {
 
   if (loading) return <Initializing />;
   return (
-    <>
+    <div
+      className={cn(
+        "overflow-hidden",
+        isMobile
+          ? "h-[calc(100svh)] w-[calc(100svw)]"
+          : "w-[calc(100vh)] h-[calc(100vw)]"
+      )}
+    >
       <div
         className={cn(
           "bg-black hud-border ease relative flex justify-center overflow-x-hidden text-center duration-500 ease-cubic",
-          showNav ? "h-[calc(100vh-129px)]" : "h-[calc(100vh-39px)]"
+          showNav
+            ? isMobile
+              ? "h-[calc(100svh-129px)]"
+              : "h-[calc(100vh-129px)]"
+            : isMobile
+            ? "h-[calc(100svh-39px)]"
+            : "h-[calc(100vh-39px)]"
         )}
       >
         <div className="w-full h-full">
@@ -98,7 +112,7 @@ export default function Contact() {
         )}
       </AnimatePresence>
       <HudEmail open={{ state: openEmail, set: setOpenEmail }} />
-    </>
+    </div>
   );
 }
 
