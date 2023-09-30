@@ -119,7 +119,7 @@ export default function Home() {
             exit={{ opacity: 0, y: 100 }}
             transition={{ duration: 1, delay: 0, ease: "easeInOut" }}
             className={cn(
-              "absolute bottom-0 left-0 w-full flex justify-center transition-all duration-500 ease",
+              "absolute bottom-0 left-0 w-full justify-center transition-all duration-500 ease hidden md:flex",
               showNav ? "mb-[100px]" : "mb-[25px]"
             )}
             key="face"
