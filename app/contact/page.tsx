@@ -109,7 +109,15 @@ const ContactContent = ({
 }) => {
   const router = useRouter();
 
-  const tags = ["React", "NextJS", "TailwindCSS", "Typescript", "NodeJS"];
+  const tags = [
+    "React",
+    "NextJS",
+    "TailwindCSS",
+    "Typescript",
+    "NodeJS",
+    "Framer Motion",
+    "AI",
+  ];
   const socials = [
     {
       name: "Github",
@@ -129,7 +137,7 @@ const ContactContent = ({
   ];
   return (
     <div className="w-full flex justify-center ">
-      <div className="max-w-[800px] md:min-w-[400px] h-full flex flex-wrap justify-center my-10 mx-10">
+      <div className="max-md:max-w-[800px] md:min-w-[400px] h-full flex flex-wrap justify-center my-10 mx-10">
         <div className="w-full">
           <div className="space-y-1">
             <h4 className="text-sm font-medium leading-none text-left">
@@ -138,16 +146,21 @@ const ContactContent = ({
             <p className="text-sm text-muted-foreground text-left">
               Fullstack Developer
             </p>
-            <div className="py-2 flex flex-wrap justify-start gap-x-4 gap-y-1">
+            <TranslateWrapper
+              wrapperClassName="max-w-[500px] w-[80vw]"
+              className="py-2 gap-x-4 gap-y-1 w-full "
+              repeat={3}
+              duration={20}
+            >
               {tags.map((tag, index) => (
                 <span
                   key={index}
-                  className="rounded-[5px] border border-OffWhite/[.33] px-[1.5em] py-[0.25em] text-center font-[CygnitoMono-011] text-[10px] font-bold uppercase leading-[1em] text-LunarGrey-light"
+                  className="rounded-[5px] border border-OffWhite/[.33] px-[1.5em] py-[0.25em] text-center font-[CygnitoMono-011] text-[10px] font-bold uppercase leading-[1em] text-LunarGrey-light text-balance whitespace-nowrap"
                 >
                   {tag}
                 </span>
               ))}
-            </div>
+            </TranslateWrapper>
           </div>
           <Separator className="my-4" />
           <div className="flex flex-wrap gap-6">
@@ -173,6 +186,38 @@ const ContactContent = ({
           </div>
         </div>
       </div>
+    </div>
+  );
+};
+
+const TranslateWrapper = ({
+  children,
+  reverse,
+  wrapperClassName,
+  className,
+  duration = 50,
+  repeat = 1,
+}: {
+  children?: any;
+  reverse?: boolean;
+  wrapperClassName?: string;
+  className?: string;
+  duration?: number;
+  repeat?: number;
+}) => {
+  return (
+    <div className={cn(wrapperClassName, "flex overflow-hidden")}>
+      {Array.from({ length: repeat }, (_, index) => (
+        <motion.div
+          key={index}
+          initial={{ translateX: reverse ? "-100%" : "0%" }}
+          animate={{ translateX: reverse ? "0%" : "-100%" }}
+          transition={{ duration: duration, repeat: Infinity, ease: "linear" }}
+          className={cn(className, "flex gap-4 px-2 flex-shrink-0 min-w-fit")}
+        >
+          {children}
+        </motion.div>
+      ))}
     </div>
   );
 };
