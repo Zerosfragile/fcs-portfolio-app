@@ -43,7 +43,7 @@ export default function Home() {
         "overflow-hidden",
         isMobile
           ? "h-[calc(100svh)] w-[calc(100svw)]"
-          : "w-[calc(100vh)] h-[calc(100vw)]"
+          : "w-[calc(100vw)] h-[calc(100vh)]"
       )}
     >
       <div
