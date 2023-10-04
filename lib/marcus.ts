@@ -13,6 +13,7 @@ export const tags = [
   "Framer Motion",
   "AI",
   "Fullstack",
+  "GCP Certified",
 ];
 export const socials = [
   {
