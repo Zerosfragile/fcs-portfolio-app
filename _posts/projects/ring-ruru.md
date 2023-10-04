@@ -13,7 +13,7 @@ draft: false
 
 A mobile-responsive, one-page website created to enhance the brand visibility of the [YouTube channel RingRuru](https://www.youtube.com/@RingRuru). Designed with a y2k theme, the website targets existing fans, subscribers, and prospective viewers.
 
-![Ruru Portfolio Preview](/posts/projects/preview-ringruru.png)
+![Ruru Portfolio Preview](/posts/projects/preview-ring-ruru.png)
 
 ## Development Timeline
 
