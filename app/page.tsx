@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/tooltip";
 import { isMobile } from "react-device-detect";
 import { DoubleArrowDownIcon, DoubleArrowUpIcon } from "@radix-ui/react-icons";
-
+import { serverTestEvent } from "@/lib/analytics/logger";
 export default function Home() {
   const [openEmail, setOpenEmail] = useState(false);
   const [showNav, setShowNav]: [boolean, Dispatch<SetStateAction<boolean>>] =
