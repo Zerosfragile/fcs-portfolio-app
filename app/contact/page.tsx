@@ -18,6 +18,8 @@ import {
 } from "@radix-ui/react-icons";
 import { useRouter } from "next/navigation";
 import { isMobile } from "react-device-detect";
+import TranslateWrapper from "@/components/hud-ui/translatewrapper";
+import { socials, tags } from "@/lib/marcus";
 
 export default function Contact() {
   const [loading, setLoading] = useState(false);
@@ -44,7 +46,7 @@ export default function Contact() {
         "overflow-hidden",
         isMobile
           ? "h-[calc(100svh)] w-[calc(100svw)]"
-          : "w-[calc(100vh)] h-[calc(100vw)]"
+          : "w-[calc(100vw)] h-[calc(100vh)]"
       )}
     >
       <div
@@ -122,33 +124,6 @@ const ContactContent = ({
   setOpenEmail: Dispatch<SetStateAction<boolean>>;
 }) => {
   const router = useRouter();
-
-  const tags = [
-    "React",
-    "NextJS",
-    "TailwindCSS",
-    "Typescript",
-    "NodeJS",
-    "Framer Motion",
-    "AI",
-  ];
-  const socials = [
-    {
-      name: "Github",
-      icon: GitHubLogoIcon,
-      link: "https://github.com/zerofcs",
-    },
-    {
-      name: "LinkedIn",
-      icon: LinkedInLogoIcon,
-      link: "https://www.linkedin.com/in/marcus-lim-b6a721260/",
-    },
-    {
-      name: "Instagram",
-      icon: InstagramLogoIcon,
-      link: "https://www.instagram.com/1.m.0s/",
-    },
-  ];
   return (
     <div className="w-full flex justify-center ">
       <div className="max-md:max-w-[800px] md:min-w-[400px] h-full flex flex-wrap justify-center my-10 mx-10">
@@ -200,38 +175,6 @@ const ContactContent = ({
           </div>
         </div>
       </div>
-    </div>
-  );
-};
-
-const TranslateWrapper = ({
-  children,
-  reverse,
-  wrapperClassName,
-  className,
-  duration = 50,
-  repeat = 1,
-}: {
-  children?: any;
-  reverse?: boolean;
-  wrapperClassName?: string;
-  className?: string;
-  duration?: number;
-  repeat?: number;
-}) => {
-  return (
-    <div className={cn(wrapperClassName, "flex overflow-hidden")}>
-      {Array.from({ length: repeat }, (_, index) => (
-        <motion.div
-          key={index}
-          initial={{ translateX: reverse ? "-100%" : "0%" }}
-          animate={{ translateX: reverse ? "0%" : "-100%" }}
-          transition={{ duration: duration, repeat: Infinity, ease: "linear" }}
-          className={cn(className, "flex gap-4 px-2 flex-shrink-0 min-w-fit")}
-        >
-          {children}
-        </motion.div>
-      ))}
     </div>
   );
 };

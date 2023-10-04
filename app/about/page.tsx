@@ -21,6 +21,12 @@ import { useRouter } from "next/navigation";
 import { HudEmail, HudNavAbout } from "@/components/hud-ui";
 import useScrollDirection from "@/components/hud-ui/hooks/useScrollDirection";
 import { isMobile } from "react-device-detect";
+import TranslateWrapper from "@/components/hud-ui/translatewrapper";
+import { EnvelopeClosedIcon } from "@radix-ui/react-icons";
+import { Separator } from "@radix-ui/react-separator";
+import router from "next/router";
+import { Button } from "@/components/ui/button";
+import { tags } from "@/lib/marcus";
 
 export default function About() {
   const [loading, setLoading] = useState(false);
@@ -47,7 +53,7 @@ export default function About() {
         "overflow-hidden",
         isMobile
           ? "h-[calc(100svh)] w-[calc(100svw)]"
-          : "w-[calc(100vh)] h-[calc(100vw)]"
+          : "w-[calc(100vw)] h-[calc(100vh)]"
       )}
     >
       <div
@@ -73,15 +79,6 @@ export default function About() {
                 transition={{ duration: 1, delay: 0, ease: "easeInOut" }}
               >
                 <AboutContent setShowNav={setShowNav} />
-                {/* <button
-                  className="text-size-auto max-h-45 relative z-50 mx-[11.25px] my-0 min-h-[33.25px] rounded-[6px] 
-                  border border-solid border-OffWhite/[0] bg-LunarGrey-darkest/[.9] px-[18px] pb-[7.5px] 
-                  pt-[9.75px] font-[CygnitoMono-011] text-[11.25px] font-normal uppercase leading-extra-tight 
-                 text-OffWhite transition-all duration-500 hover:text-OffWhite-light hover:shadow-glow"
-                  onClick={() => setShowNav((prev) => !prev)}
-                >
-                  Show Nav
-                </button> */}
               </motion.div>
             ) : (
               <motion.div
@@ -97,7 +94,6 @@ export default function About() {
           </AnimatePresence>
         </div>
       </div>
-      {/* <div className="h-[75px] w-full overflow-hidden"> */}
       <AnimatePresence mode="wait">
         {showNav && (
           <motion.div
@@ -111,159 +107,112 @@ export default function About() {
           </motion.div>
         )}
       </AnimatePresence>
-      {/* </div> */}
       <HudEmail open={{ state: openEmail, set: setOpenEmail }} />
     </div>
   );
 }
-
-const UserCard = ({
-  x,
-  y,
-  user,
-}: {
-  x: MotionValue<number>;
-  y: MotionValue<number>;
-  user: TeamMember;
-}) => {
-  const CARDHEIGHT = 800;
-  const CARDWIDTH = 500;
-
-  const rotateX = useTransform(y, [0, CARDWIDTH], [15, -15]);
-  const rotateY = useTransform(x, [0, CARDHEIGHT], [-15, 15]);
-
-  const rotateCardX = useTransform(y, [0, CARDWIDTH], [5, -5]);
-  const rotateCardY = useTransform(x, [0, CARDHEIGHT], [-15, 15]);
-
-  const router = useRouter();
-
-  function handleMouse(event: {
-    currentTarget: { getBoundingClientRect: () => any };
-    clientX: number;
-    clientY: number;
-  }) {
-    const rect = event.currentTarget.getBoundingClientRect();
-
-    x.set(event.clientX - rect.left);
-    y.set(event.clientY - rect.top);
-  }
-  return (
-    <motion.div
-      className="bg-OffWhite/90 text-VoidBlack w-[500px] h-[800px] p-2 font-[CygnitoMono-011] uppercase relative rounded-md hud-border perspective-[400px]"
-      style={{
-        width: CARDWIDTH,
-        height: CARDHEIGHT,
-        rotateX: rotateCardX,
-        rotateY: rotateCardY,
-      }}
-      onDoubleClick={() => router.push(`/about/${user.UID}`)}
-    >
-      <div className="text-4xl font-bold  w-full flex border-VoidBlack rounded-md select-none">
-        <div className="text-left">Fragile Creative Services</div>
-        <Image
-          src={user.profilePicture}
-          alt={`${user.firstName} profile picture`}
-          className="ease duration-500 ease-cubic rounded-lg grayscale hover:grayscale-0"
-          width={80}
-          height={80}
-          style={{ objectFit: "contain" }}
-          priority
-          onDragStart={(e) => e.preventDefault()}
-          onClick={() => router.push(`/about/${user.UID}`)}
-        />
-      </div>
-      <div className="w-full text-left select-none">
-        <p>{user.dateJoined}</p>
-        <p>{user.title}</p>
-        <p>{formatNumberWithLeadingZeros(user.id, 3)}</p>
-      </div>
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none">
-        <h1 className="text-[450px]">
-          {formatNumberWithLeadingZeros(user.id, 2).toString().slice(-2)}
-        </h1>
-      </div>
-      <motion.div
-        style={{
-          display: "flex",
-          placeItems: "center",
-          placeContent: "center",
-          userSelect: "none",
-          width: 484,
-          height: 520,
-          rotateX: rotateX,
-          rotateY: rotateY,
-        }}
-      >
-        <Image
-          src={user.image}
-          alt={user.image.split("/")[3]}
-          className="ease duration-500 ease-cubic select-none "
-          width={400}
-          height={300}
-          style={{ objectFit: "contain" }}
-          priority
-          onDragStart={(e) => e.preventDefault()}
-        />
-      </motion.div>
-      <div className=" font-bold absolute bottom-0 right-0 p-2 text-right select-none">
-        <div className="pl-[50%] text-[11.25px]">{user.description}</div>
-        <div className="text-6xl">
-          {user.firstName} {user.lastName}
-        </div>
-      </div>
-    </motion.div>
-  );
-};
 
 const AboutContent = ({
   setShowNav,
 }: {
   setShowNav: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const x = useMotionValue(200);
-  const y = useMotionValue(200);
-
-  function handleMouse(event: {
-    currentTarget: { getBoundingClientRect: () => any };
-    clientX: number;
-    clientY: number;
-  }) {
-    const rect = event.currentTarget.getBoundingClientRect();
-
-    x.set(event.clientX - rect.left);
-    y.set(event.clientY - rect.top);
-  }
-
-  const scrollRef = useRef<HTMLDivElement | null>(null);
-  const handleWheelScroll = (e: React.WheelEvent<HTMLDivElement>) => {
-    const container = scrollRef.current;
-    if (container) {
-      if (e.deltaY > 0) {
-        container.scrollLeft += 100;
-      } else {
-        container.scrollLeft -= 100;
-      }
-    }
-  };
-
   return (
-    <motion.div
-      // onClick={() => setShowNav((prev) => !prev)}
-      className="pt-20 px-10 w-full h-fit"
-      onMouseMove={handleMouse}
-      onWheel={handleWheelScroll}
-      ref={scrollRef}
-    >
-      <motion.div
-        className="w-fit flex overflow-x-auto cursor-grab h-full items-center"
-        drag="x"
-        dragConstraints={scrollRef}
-      >
-        {teamMembers.map((user) => (
-          <UserCard key={user.id} x={x} y={y} user={user} />
-        ))}
-      </motion.div>
-    </motion.div>
+    <div className="w-full flex justify-center ">
+      <div className="max-md:max-w-[800px] md:min-w-[400px] h-full flex flex-wrap justify-center my-10 mx-10 relative">
+        <div className="w-full">
+          <div className="space-y-1">
+            <h4 className="text-sm font-medium leading-none text-left">
+              Marcus Lim
+            </h4>
+            <p className="text-sm text-muted-foreground text-left">About Me</p>
+            <TranslateWrapper
+              wrapperClassName="max-w-[500px] w-[80vw]"
+              className="py-2 gap-x-4 gap-y-1 w-full "
+              repeat={3}
+              duration={20}
+            >
+              {tags.map((tag, index) => (
+                <span
+                  key={index}
+                  className="rounded-[5px] border border-OffWhite/[.33] px-[1.5em] py-[0.25em] text-center font-[CygnitoMono-011] text-[10px] font-bold uppercase leading-[1em] text-LunarGrey-light text-balance whitespace-nowrap"
+                >
+                  {tag}
+                </span>
+              ))}
+            </TranslateWrapper>
+          </div>
+          <Separator className="my-4" />
+          <div className="flex flex-wrap max-w-[500px] w-[80vw] text-left text-muted-foreground items-center">
+            <p className="flex items-center flex-wrap">I&lsquo;m </p>
+            <span className="mx-2 text-foreground uppercase font-[cygnitomono-011]">
+              Marcus
+            </span>
+            , a{" "}
+            <span className="mx-2 rounded-[5px] border border-OffWhite/[.33] px-[1.5em] py-[0.25em] text-center font-[CygnitoMono-011] text-[10px] font-bold uppercase leading-[1em] text-LunarGrey-light text-balance whitespace-nowrap">
+              Full Stack Developer
+            </span>
+            , specializing in crafting creative solutions using a modern tech
+            stack that includes
+            <span className="mx-2 rounded-[5px] border border-OffWhite/[.33] px-[1.5em] py-[0.25em] text-center font-[CygnitoMono-011] text-[10px] font-bold uppercase leading-[1em] text-LunarGrey-light text-balance whitespace-nowrap">
+              Next.js
+            </span>
+            ,{" "}
+            <span className="mx-2 rounded-[5px] border border-OffWhite/[.33] px-[1.5em] py-[0.25em] text-center font-[CygnitoMono-011] text-[10px] font-bold uppercase leading-[1em] text-LunarGrey-light text-balance whitespace-nowrap">
+              TypeScript
+            </span>
+            ,{" "}
+            <span className="mx-2 rounded-[5px] border border-OffWhite/[.33] px-[1.5em] py-[0.25em] text-center font-[CygnitoMono-011] text-[10px] font-bold uppercase leading-[1em] text-LunarGrey-light text-balance whitespace-nowrap">
+              Tailwind
+            </span>
+            , and
+            <span className="mx-2 rounded-[5px] border border-OffWhite/[.33] px-[1.5em] py-[0.25em] text-center font-[CygnitoMono-011] text-[10px] font-bold uppercase leading-[1em] text-LunarGrey-light text-balance whitespace-nowrap">
+              Planetscale
+            </span>
+            , all hosted on{" "}
+            <span className="mx-2 rounded-[5px] border border-OffWhite/[.33] px-[1.5em] py-[0.25em] text-center font-[CygnitoMono-011] text-[10px] font-bold uppercase leading-[1em] text-LunarGrey-light text-balance whitespace-nowrap">
+              Vercel
+            </span>
+            .
+            <p>
+              My expertise isn&lsquo;t just limited to new technologies;
+              I&lsquo;ve contributed to products attracting 175K monthly
+              impressions and businesses generating over $2 million in sales,
+              utilizing stacks like React and Node.js, as well as e-commerce
+              platforms like OpenCart.
+            </p>
+            <p>
+              My roles have facilitated interactions with diverse stakeholders,
+              including businessmen, engineers, technical leads, content
+              creators, creatives, and medical professionals.
+            </p>
+            <br />
+            <p>
+              As I advance my academic pursuits, I&lsquo;m eager to expand my
+              portfolio and collaborate with talented individuals and teams.
+            </p>
+            <p>
+              I&lsquo;m open to professional and networking opportunities to
+              further hone my skills. Outside of tech, I&lsquo;m intrigued by
+              philosophy, particularly its connections to the arts and
+              historical narratives.
+            </p>
+            <br />
+            <p>
+              If you&lsquo;ve read this far, feel free to
+              <Link href={"/contact"}>
+                <Button
+                  variant="outline"
+                  className="w-fit mx-2 uppercase font-[cygnitomono-011] text-xs"
+                >
+                  Get In Touch
+                </Button>
+              </Link>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
