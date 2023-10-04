@@ -109,7 +109,7 @@ const HudMarkdown = ({
             transition-all duration-[250ms] hover:bg-transparent hover:text-OffWhite/[.66]
           "
           >
-            Vist Project
+            Visit Project
           </LoggedNavigationBTN>
         </nav>
         <article
@@ -126,7 +126,7 @@ const HudMarkdown = ({
             transition-all duration-[250ms] hover:bg-transparent hover:text-OffWhite/[.66] md:hidden
           "
           >
-            Vist Project
+            Visit Project
           </LoggedNavigationBTN>
           <div className="min-h-[50px]" />
         </article>
