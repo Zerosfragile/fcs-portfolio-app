@@ -104,7 +104,7 @@ const HudMarkdown = ({
             href={route}
             projectID={title}
             className="
-            transition-margin ease min-w-[50px] max-w-[180px] rounded-xl border border-OffWhite bg-OffWhite px-8 py-1 text-center
+            transition-margin ease min-w-[50px] max-w-[200px] rounded-xl border border-OffWhite bg-OffWhite px-8 py-1 text-center
             font-[CygnitoMono-011] text-[15px] font-bold uppercase text-VoidBlack-lightest no-underline
             transition-all duration-[250ms] hover:bg-transparent hover:text-OffWhite/[.66]
           "
