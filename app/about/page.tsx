@@ -27,6 +27,7 @@ import { Separator } from "@radix-ui/react-separator";
 import router from "next/router";
 import { Button } from "@/components/ui/button";
 import { tags } from "@/lib/marcus";
+import { Badge } from "@/components/ui/badge";
 
 export default function About() {
   const [loading, setLoading] = useState(false);
@@ -77,6 +78,7 @@ export default function About() {
                 animate={{ opacity: 100 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 1, delay: 0, ease: "easeInOut" }}
+                className="h-full"
               >
                 <AboutContent setShowNav={setShowNav} />
               </motion.div>
@@ -118,69 +120,38 @@ const AboutContent = ({
   setShowNav: Dispatch<SetStateAction<boolean>>;
 }) => {
   return (
-    <div className="w-full flex justify-center ">
+    <div className="w-full h-full flex justify-center ">
       <div className="max-md:max-w-[800px] md:min-w-[400px] h-full flex flex-wrap justify-center my-10 mx-10 relative">
-        <div className="w-full">
+        <div className="w-full h-full grid place-content-center">
           <div className="space-y-1">
-            <h4 className="text-sm font-medium leading-none text-left">
-              Marcus Lim
-            </h4>
-            <p className="text-sm text-muted-foreground text-left">About Me</p>
-            <TranslateWrapper
-              wrapperClassName="max-w-[500px] w-[80vw]"
-              className="py-2 gap-x-4 gap-y-1 w-full "
-              repeat={3}
-              duration={20}
-            >
-              {tags.map((tag, index) => (
-                <span
-                  key={index}
-                  className="rounded-[5px] border border-OffWhite/[.33] px-[1.5em] py-[0.25em] text-center font-[CygnitoMono-011] text-[10px] font-bold uppercase leading-[1em] text-LunarGrey-light text-balance whitespace-nowrap"
-                >
-                  {tag}
-                </span>
-              ))}
-            </TranslateWrapper>
+            <Badge variant={"outline"} className="rounded-full py-1 px-4">
+              About Me
+            </Badge>
           </div>
           <Separator className="my-4" />
-          <div className="flex flex-wrap max-w-[500px] w-[80vw] text-left text-muted-foreground items-center">
-            <p className="flex items-center flex-wrap">I&lsquo;m </p>
-            <span className="mx-2 text-foreground uppercase font-[cygnitomono-011]">
-              Marcus
-            </span>
-            , a{" "}
-            <span className="mx-2 rounded-[5px] border border-OffWhite/[.33] px-[1.5em] py-[0.25em] text-center font-[CygnitoMono-011] text-[10px] font-bold uppercase leading-[1em] text-LunarGrey-light text-balance whitespace-nowrap">
-              Full Stack Developer
-            </span>
-            , specializing in crafting creative solutions using a modern tech
-            stack that includes
-            <span className="mx-2 rounded-[5px] border border-OffWhite/[.33] px-[1.5em] py-[0.25em] text-center font-[CygnitoMono-011] text-[10px] font-bold uppercase leading-[1em] text-LunarGrey-light text-balance whitespace-nowrap">
-              Next.js
-            </span>
-            ,{" "}
-            <span className="mx-2 rounded-[5px] border border-OffWhite/[.33] px-[1.5em] py-[0.25em] text-center font-[CygnitoMono-011] text-[10px] font-bold uppercase leading-[1em] text-LunarGrey-light text-balance whitespace-nowrap">
-              TypeScript
-            </span>
-            ,{" "}
-            <span className="mx-2 rounded-[5px] border border-OffWhite/[.33] px-[1.5em] py-[0.25em] text-center font-[CygnitoMono-011] text-[10px] font-bold uppercase leading-[1em] text-LunarGrey-light text-balance whitespace-nowrap">
-              Tailwind
-            </span>
-            , and
-            <span className="mx-2 rounded-[5px] border border-OffWhite/[.33] px-[1.5em] py-[0.25em] text-center font-[CygnitoMono-011] text-[10px] font-bold uppercase leading-[1em] text-LunarGrey-light text-balance whitespace-nowrap">
-              Planetscale
-            </span>
-            , all hosted on{" "}
-            <span className="mx-2 rounded-[5px] border border-OffWhite/[.33] px-[1.5em] py-[0.25em] text-center font-[CygnitoMono-011] text-[10px] font-bold uppercase leading-[1em] text-LunarGrey-light text-balance whitespace-nowrap">
-              Vercel
-            </span>
-            .
+          <div className="max-w-[500px] w-[80vw] text-left text-muted-foreground items-center">
             <p>
-              My expertise isn&lsquo;t just limited to new technologies;
-              I&lsquo;ve contributed to products attracting 175K monthly
-              impressions and businesses generating over $2 million in sales,
+              <b className="mr-2 text-OffWhite/75">
+                Full Stack Developer, specializing in crafting creative
+                solutions.
+              </b>
+              Currently, I&lsquo;m using a modern tech stack that includes
+              Next.js, TypeScript and Tailwind.
+            </p>
+            <br />
+            <p>
+              I&lsquo;ve contributed to products attracting
+              <span className="mx-1 text-OffWhite-dark/75 italic">
+                175K monthly
+              </span>
+              impressions and businesses generating over
+              <span className="mx-1 text-OffWhite-dark/75 italic">
+                $2 million in sales,
+              </span>
               utilizing stacks like React and Node.js, as well as e-commerce
               platforms like OpenCart.
             </p>
+            <br />
             <p>
               My roles have facilitated interactions with diverse stakeholders,
               including businessmen, engineers, technical leads, content
@@ -192,23 +163,24 @@ const AboutContent = ({
               portfolio and collaborate with talented individuals and teams.
             </p>
             <p>
-              I&lsquo;m open to professional and networking opportunities to
-              further hone my skills. Outside of tech, I&lsquo;m intrigued by
-              philosophy, particularly its connections to the arts and
-              historical narratives.
+              I&lsquo;m
+              <b className="mx-1 text-OffWhite-dark/60">
+                open to professional and networking opportunities
+              </b>
+              to further hone my skills.
             </p>
             <br />
             <p>
               If you&lsquo;ve read this far, feel free to
               <Link href={"/contact"}>
-                <Button
-                  variant="outline"
-                  className="w-fit mx-2 uppercase font-[cygnitomono-011] text-xs"
-                >
-                  Get In Touch
-                </Button>
+                <span className="font-[cygnitomono-011] underline underline-offset-2 font-thin text-OffWhite-dark/75 hover:text-OffWhite/90 transition-color duration-500 ease mx-2">
+                  contact
+                </span>
               </Link>
+              me.
             </p>
+            <br />
+            <p>- Marcus Lim</p>
           </div>
         </div>
       </div>
@@ -223,23 +195,23 @@ const QuoteInitializing = ({
 }) => {
   return (
     <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 group">
-      <Link href={"/"}>
-        <motion.button
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 100, y: 0 }}
-          transition={{ duration: 1, delay: 3.5, ease: "easeInOut" }}
-          // onClick={() => setInit(true)} //! REMOVE When Finished
-          className="flex flex-col items-center justify-center p-6 w-full"
-        >
-          <Image
-            src={"/images/056-Modern_Icons.png"}
-            alt={""}
-            width={75}
-            height={75}
-            className="opacity-10 invert transition-all duration-500 ease-linear group-hover:opacity-50"
-          />
-        </motion.button>
-      </Link>
+      {/* <Link href={"/"}> */}
+      <motion.button
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 100, y: 0 }}
+        transition={{ duration: 1, delay: 3.5, ease: "easeInOut" }}
+        onClick={() => setInit(true)} //! REMOVE When Finished
+        className="flex flex-col items-center justify-center p-6 w-full"
+      >
+        <Image
+          src={"/images/056-Modern_Icons.png"}
+          alt={""}
+          width={75}
+          height={75}
+          className="opacity-10 invert transition-all duration-500 ease-linear group-hover:opacity-50"
+        />
+      </motion.button>
+      {/* </Link> */}
       <div className="font-[CygnitoMono-011] text-[11.25px] font-normal uppercase text-OffWhite/[.33] transition-all duration-500 ease-linear group-hover:text-OffWhite/[.66] text-center min-w-[90vw]">
         <motion.p
           initial={{ opacity: 0, y: -100 }}

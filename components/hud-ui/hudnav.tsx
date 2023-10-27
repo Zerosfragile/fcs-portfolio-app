@@ -17,10 +17,10 @@ export function HudNavAbout({ eventHandlers }: Props) {
               title: "Ascii-Hud",
               route: "https://fragileservices.com",
             },
-            {
-              title: "Playground",
-              route: "/Projects/playground",
-            },
+            // {
+            //   title: "Playground",
+            //   route: "/Projects/playground",
+            // },
             {
               title: "More",
               route: "/Projects",
@@ -115,10 +115,10 @@ const HudNav = ({ eventHandlers }: Props) => {
               title: "Ascii-Hud",
               route: "https://fragileservices.com",
             },
-            {
-              title: "Playground",
-              route: "/Projects/playground",
-            },
+            // {
+            //   title: "Playground",
+            //   route: "/Projects/playground",
+            // },
             {
               title: "More",
               route: "/Projects",
