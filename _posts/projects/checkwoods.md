@@ -2,8 +2,8 @@
 title: "Checkwoods"
 subtitle: "Invasive Species Tracking System - A centralized database to effectively track and manage data regarding invasive species."
 route: "https://www.checkwoods.com"
-date: '2023-07-18'
-tags: ['Scientific', 'FullStack', 'Data Orientated']
+date: "2023-07-18"
+tags: ["Scientific", "FullStack", "Data Orientated"]
 draft: false
 ---
 
@@ -16,7 +16,9 @@ The Checkwoods project, still in development as of `2023-08-29`, has a special s
 ### Project Overview
 
 The main goal of this project is to develop an integrated application capable of scanning plants and collecting location data, thereby aiding in the identification and tracking of invasive species.
-[Checkwoods V1 Preview](/posts/projects/checkwoods-v1-video-home-view.mov)
+[Checkwoods V1 Preview](https://www.youtube-nocookie.com/embed/ERm-JLephC4?si=p1146J8BMDZ_cvqm)
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/ERm-JLephC4?si=p1146J8BMDZ_cvqm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## II. Architecture
 
@@ -54,7 +56,9 @@ The website will have the following views:
 - **Data Insights View:** Analytical data representation and trends.
 - **Donation View:** Allow users to donate a monthly or a one time contribution to help cover our overhead.
 
-[Checkwoods V1 Data Preview](/posts/projects/checkwoods-v1-video-data-view.mov)
+[Checkwoods V1 Data Preview](https://www.youtube.com/embed/QJCI5A6ENTs?si=hcKQjNUnVqF5uZCk&controls=0)
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/QJCI5A6ENTs?si=hcKQjNUnVqF5uZCk&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## III. Development Roadmap
 

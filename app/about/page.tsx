@@ -19,12 +19,22 @@ import {
 
 import { useRouter } from "next/navigation";
 import { HudEmail, HudNavAbout } from "@/components/hud-ui";
+import useScrollDirection from "@/components/hud-ui/hooks/useScrollDirection";
+import { isMobile } from "react-device-detect";
+import TranslateWrapper from "@/components/hud-ui/translatewrapper";
+import { EnvelopeClosedIcon } from "@radix-ui/react-icons";
+import { Separator } from "@radix-ui/react-separator";
+import router from "next/router";
+import { Button } from "@/components/ui/button";
+import { tags } from "@/lib/marcus";
+import { Badge } from "@/components/ui/badge";
 
 export default function About() {
   const [loading, setLoading] = useState(false);
   const [userInit, setUserInit] = useState(false);
   const [showNav, setShowNav] = useState(false);
   const [openEmail, setOpenEmail] = useState(false);
+  useScrollDirection(showNav, setShowNav, 100, userInit);
 
   const eventHandlers = {
     showEmail: () => {
@@ -37,18 +47,25 @@ export default function About() {
     },
   };
 
-  useEffect(() => {
-    console.log(showNav);
-  }, [showNav]);
-
   if (loading) return <Initializing />;
   return (
-    <>
+    <div
+      className={cn(
+        "overflow-hidden",
+        isMobile
+          ? "h-[calc(100svh)] w-[calc(100svw)]"
+          : "w-[calc(100vw)] h-[calc(100vh)]"
+      )}
+    >
       <div
         className={cn(
           "bg-black hud-border ease relative flex justify-center overflow-x-hidden text-center duration-500 ease-cubic",
           showNav
-            ? "h-[calc(100vh-129px)] max-md:h-[calc(100vh-130px-2em)]"
+            ? isMobile
+              ? "h-[calc(100svh-129px)] max-md:h-[calc(100svh-130px-2em)]"
+              : "h-[calc(100vh-129px)] max-md:h-[calc(100vh-130px-2em)]"
+            : isMobile
+            ? "h-[calc(100svh-39px)]"
             : "h-[calc(100vh-39px)]"
         )}
       >
@@ -61,17 +78,9 @@ export default function About() {
                 animate={{ opacity: 100 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 1, delay: 0, ease: "easeInOut" }}
+                className="h-full"
               >
                 <AboutContent setShowNav={setShowNav} />
-                <button
-                  className="text-size-auto max-h-45 relative z-50 mx-[11.25px] my-0 min-h-[33.25px] rounded-[6px] 
-                  border border-solid border-OffWhite/[0] bg-LunarGrey-darkest/[.9] px-[18px] pb-[7.5px] 
-                  pt-[9.75px] font-[CygnitoMono-011] text-[11.25px] font-normal uppercase leading-extra-tight 
-                 text-OffWhite transition-all duration-500 hover:text-OffWhite-light hover:shadow-glow"
-                  onClick={() => setShowNav((prev) => !prev)}
-                >
-                  Show Nav
-                </button>
               </motion.div>
             ) : (
               <motion.div
@@ -87,7 +96,6 @@ export default function About() {
           </AnimatePresence>
         </div>
       </div>
-      {/* <div className="h-[75px] w-full overflow-hidden"> */}
       <AnimatePresence mode="wait">
         {showNav && (
           <motion.div
@@ -101,159 +109,82 @@ export default function About() {
           </motion.div>
         )}
       </AnimatePresence>
-      {/* </div> */}
       <HudEmail open={{ state: openEmail, set: setOpenEmail }} />
-    </>
+    </div>
   );
 }
-
-const UserCard = ({
-  x,
-  y,
-  user,
-}: {
-  x: MotionValue<number>;
-  y: MotionValue<number>;
-  user: TeamMember;
-}) => {
-  const CARDHEIGHT = 800;
-  const CARDWIDTH = 500;
-
-  const rotateX = useTransform(y, [0, CARDWIDTH], [15, -15]);
-  const rotateY = useTransform(x, [0, CARDHEIGHT], [-15, 15]);
-
-  const rotateCardX = useTransform(y, [0, CARDWIDTH], [5, -5]);
-  const rotateCardY = useTransform(x, [0, CARDHEIGHT], [-15, 15]);
-
-  const router = useRouter();
-
-  function handleMouse(event: {
-    currentTarget: { getBoundingClientRect: () => any };
-    clientX: number;
-    clientY: number;
-  }) {
-    const rect = event.currentTarget.getBoundingClientRect();
-
-    x.set(event.clientX - rect.left);
-    y.set(event.clientY - rect.top);
-  }
-  return (
-    <motion.div
-      className="bg-OffWhite/90 text-VoidBlack w-[500px] h-[800px] p-2 font-[CygnitoMono-011] uppercase relative rounded-md hud-border perspective-[400px]"
-      style={{
-        width: CARDWIDTH,
-        height: CARDHEIGHT,
-        rotateX: rotateCardX,
-        rotateY: rotateCardY,
-      }}
-      onDoubleClick={() => router.push(`/about/${user.UID}`)}
-    >
-      <div className="text-4xl font-bold  w-full flex border-VoidBlack rounded-md select-none">
-        <div className="text-left">Fragile Creative Services</div>
-        <Image
-          src={user.profilePicture}
-          alt={`${user.firstName} profile picture`}
-          className="ease duration-500 ease-cubic rounded-lg grayscale hover:grayscale-0"
-          width={80}
-          height={80}
-          style={{ objectFit: "contain" }}
-          priority
-          onDragStart={(e) => e.preventDefault()}
-          onClick={() => router.push(`/about/${user.UID}`)}
-        />
-      </div>
-      <div className="w-full text-left select-none">
-        <p>{user.dateJoined}</p>
-        <p>{user.title}</p>
-        <p>{formatNumberWithLeadingZeros(user.id, 3)}</p>
-      </div>
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none">
-        <h1 className="text-[450px]">
-          {formatNumberWithLeadingZeros(user.id, 2).toString().slice(-2)}
-        </h1>
-      </div>
-      <motion.div
-        style={{
-          display: "flex",
-          placeItems: "center",
-          placeContent: "center",
-          userSelect: "none",
-          width: 484,
-          height: 520,
-          rotateX: rotateX,
-          rotateY: rotateY,
-        }}
-      >
-        <Image
-          src={user.image}
-          alt={user.image.split("/")[3]}
-          className="ease duration-500 ease-cubic select-none "
-          width={400}
-          height={300}
-          style={{ objectFit: "contain" }}
-          priority
-          onDragStart={(e) => e.preventDefault()}
-        />
-      </motion.div>
-      <div className=" font-bold absolute bottom-0 right-0 p-2 text-right select-none">
-        <div className="pl-[50%] text-[11.25px]">{user.description}</div>
-        <div className="text-6xl">
-          {user.firstName} {user.lastName}
-        </div>
-      </div>
-    </motion.div>
-  );
-};
 
 const AboutContent = ({
   setShowNav,
 }: {
   setShowNav: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const x = useMotionValue(200);
-  const y = useMotionValue(200);
-
-  function handleMouse(event: {
-    currentTarget: { getBoundingClientRect: () => any };
-    clientX: number;
-    clientY: number;
-  }) {
-    const rect = event.currentTarget.getBoundingClientRect();
-
-    x.set(event.clientX - rect.left);
-    y.set(event.clientY - rect.top);
-  }
-
-  const scrollRef = useRef<HTMLDivElement | null>(null);
-  const handleWheelScroll = (e: React.WheelEvent<HTMLDivElement>) => {
-    const container = scrollRef.current;
-    if (container) {
-      if (e.deltaY > 0) {
-        container.scrollLeft += 100;
-      } else {
-        container.scrollLeft -= 100;
-      }
-    }
-  };
-
   return (
-    <motion.div
-      // onClick={() => setShowNav((prev) => !prev)}
-      className="pt-20 px-10 w-full h-fit"
-      onMouseMove={handleMouse}
-      onWheel={handleWheelScroll}
-      ref={scrollRef}
-    >
-      <motion.div
-        className="w-fit flex overflow-x-auto cursor-grab h-full items-center"
-        drag="x"
-        dragConstraints={scrollRef}
-      >
-        {teamMembers.map((user) => (
-          <UserCard key={user.id} x={x} y={y} user={user} />
-        ))}
-      </motion.div>
-    </motion.div>
+    <div className="w-full h-full flex justify-center ">
+      <div className="max-md:max-w-[800px] md:min-w-[400px] h-full flex flex-wrap justify-center my-10 mx-10 relative">
+        <div className="w-full h-full grid place-content-center">
+          <div className="space-y-1">
+            <Badge variant={"outline"} className="rounded-full py-1 px-4">
+              About Me
+            </Badge>
+          </div>
+          <Separator className="my-4" />
+          <div className="max-w-[500px] w-[80vw] text-left text-muted-foreground items-center">
+            <p>
+              <b className="mr-2 text-OffWhite/75">
+                Full Stack Developer, specializing in crafting creative
+                solutions.
+              </b>
+              Currently, I&lsquo;m using a modern tech stack that includes
+              Next.js, TypeScript and Tailwind.
+            </p>
+            <br />
+            <p>
+              I&lsquo;ve contributed to products attracting
+              <span className="mx-1 text-OffWhite-dark/75 italic">
+                175K monthly
+              </span>
+              impressions and businesses generating over
+              <span className="mx-1 text-OffWhite-dark/75 italic">
+                $2 million in sales,
+              </span>
+              utilizing stacks like React and Node.js, as well as e-commerce
+              platforms like OpenCart.
+            </p>
+            <br />
+            <p>
+              My roles have facilitated interactions with diverse stakeholders,
+              including businessmen, engineers, technical leads, content
+              creators, creatives, and medical professionals.
+            </p>
+            <br />
+            <p>
+              As I advance my academic pursuits, I&lsquo;m eager to expand my
+              portfolio and collaborate with talented individuals and teams.
+            </p>
+            <p>
+              I&lsquo;m
+              <b className="mx-1 text-OffWhite-dark/60">
+                open to professional and networking opportunities
+              </b>
+              to further hone my skills.
+            </p>
+            <br />
+            <p>
+              If you&lsquo;ve read this far, feel free to
+              <Link href={"/contact"}>
+                <span className="font-[cygnitomono-011] underline underline-offset-2 font-thin text-OffWhite-dark/75 hover:text-OffWhite/90 transition-color duration-500 ease mx-2">
+                  contact
+                </span>
+              </Link>
+              me.
+            </p>
+            <br />
+            <p>- Marcus Lim</p>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
@@ -264,11 +195,12 @@ const QuoteInitializing = ({
 }) => {
   return (
     <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 group">
+      {/* <Link href={"/"}> */}
       <motion.button
         initial={{ opacity: 0 }}
         animate={{ opacity: 100, y: 0 }}
         transition={{ duration: 1, delay: 3.5, ease: "easeInOut" }}
-        //onClick={() => setInit(true)} //! REMOVE When Finished
+        onClick={() => setInit(true)} //! REMOVE When Finished
         className="flex flex-col items-center justify-center p-6 w-full"
       >
         <Image
@@ -279,7 +211,8 @@ const QuoteInitializing = ({
           className="opacity-10 invert transition-all duration-500 ease-linear group-hover:opacity-50"
         />
       </motion.button>
-      <div className="font-[CygnitoMono-011] text-[11.25px] font-normal uppercase text-OffWhite/[.33] transition-all duration-500 ease-linear group-hover:text-OffWhite/[.66] text-center">
+      {/* </Link> */}
+      <div className="font-[CygnitoMono-011] text-[11.25px] font-normal uppercase text-OffWhite/[.33] transition-all duration-500 ease-linear group-hover:text-OffWhite/[.66] text-center min-w-[90vw]">
         <motion.p
           initial={{ opacity: 0, y: -100 }}
           animate={{ opacity: 100, y: 0 }}

@@ -9,7 +9,7 @@ import { extractHTMLHeaders } from "@/lib/extractHeaders";
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
-import rehypeSanitize from "rehype-sanitize";
+import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeReact from "rehype-react";
@@ -17,6 +17,7 @@ import { HeadingTagName } from "@/lib/extractHeaders/types";
 import useCurrentHeading, {
   flattenDotNavItems,
 } from "./hooks/useCurrentHeading";
+import LoggedNavigationBTN from "./loggednavigationbutton";
 
 type Props = {
   data: {
@@ -99,32 +100,34 @@ const HudMarkdown = ({
             ))}
           </div>
           <HudDotNav data={headingElements} focusedSection={currentHeading} />
-          <a
+          <LoggedNavigationBTN
             href={route}
+            projectID={title}
             className="
-            transition-margin ease min-w-[50px] max-w-[180px] rounded-xl border border-OffWhite bg-OffWhite px-8 py-1 text-center
+            transition-margin ease min-w-[50px] max-w-[200px] rounded-xl border border-OffWhite bg-OffWhite px-8 py-1 text-center
             font-[CygnitoMono-011] text-[15px] font-bold uppercase text-VoidBlack-lightest no-underline
             transition-all duration-[250ms] hover:bg-transparent hover:text-OffWhite/[.66]
           "
           >
-            Vist Project
-          </a>
+            Visit Project
+          </LoggedNavigationBTN>
         </nav>
         <article
           ref={articleRef}
           className="hud-border prose prose-offwhite my-6 overflow-x-hidden p-11 max-lg:border-hidden md:max-w-[calc(100%-350px)] 2xl:ml-[calc(280px+4rem-8px)] 2xl:mr-[15%] 2xl:prose-h1:text-[4em]"
         >
           {htmlMarkdown}
-          <a
+          <LoggedNavigationBTN
             href={route}
+            projectID={title}
             className="
             transition-margin ease w-full rounded-xl border border-OffWhite bg-OffWhite px-8 py-2 text-center
             font-[CygnitoMono-011] text-[15px] font-bold uppercase text-VoidBlack-lightest no-underline
             transition-all duration-[250ms] hover:bg-transparent hover:text-OffWhite/[.66] md:hidden
           "
           >
-            Vist Project
-          </a>
+            Visit Project
+          </LoggedNavigationBTN>
           <div className="min-h-[50px]" />
         </article>
         <a href="#img001">

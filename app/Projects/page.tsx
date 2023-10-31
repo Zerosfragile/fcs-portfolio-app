@@ -16,6 +16,8 @@ import {
   HudInfolay,
 } from "@/components/hud-ui";
 import Link from "next/link";
+import { isMobile } from "react-device-detect";
+import { cn } from "@/lib/utils";
 
 async function getPostData() {
   const postData: BlogData = await getBlogData();
@@ -24,8 +26,8 @@ async function getPostData() {
 
 const BtnContainer = ({ eventHandlers }: { eventHandlers: EventHandlers }) => {
   return (
-    <div className="hud-border max-md:align-center bottom-0 flex h-[75px] items-center justify-between text-center max-md:h-[calc(calc(75px+2em))] max-md:flex-wrap max-md:justify-center max-md:overflow-hidden max-md:p-4">
-      <HUDN.container eventHandlers={eventHandlers}>
+    <div className="hud-border max-md:align-center bottom-0 flex h-[75px] items-center justify-between text-center max-md:flex-wrap max-md:justify-center max-md:overflow-hidden max-md:p-4">
+      <HUDN.container eventHandlers={eventHandlers} className="max-sm:hidden">
         <HUDN.btn
           labels={[{ breakpoint: 850, text: "PREV" }]}
           defaultLabel="Previous Project"
@@ -59,10 +61,10 @@ const BtnContainer = ({ eventHandlers }: { eventHandlers: EventHandlers }) => {
 const Loading = () => {
   return (
     <div
-      className="
-          bg-black hud-border ease relative flex h-[calc(100vh-39px)] justify-center overflow-x-hidden
-          text-center duration-500 ease-cubic
-        "
+      className={cn(
+        " bg-black hud-border ease relative flex justify-center overflow-x-hidden text-center duration-500 ease-cubic",
+        isMobile ? "h-[calc(100svh-39px)]" : "h-[calc(100vh-39px)]"
+      )}
     >
       <div className="ease m-8 flex h-fit w-full cursor-default justify-between font-[CygnitoMono-011] font-light text-OffWhite/[.05] duration-500 ease-cubic hover:text-OffWhite/[.15]">
         <p>CODE</p>
@@ -150,10 +152,10 @@ export default function Projects() {
   return (
     <>
       <div
-        className="
-          bg-black hud-border ease relative h-[calc(100vh-129px)] overflow-x-hidden text-center duration-500 ease-cubic
-          max-md:h-[calc(100vh-130px-2em)]
-        "
+        className={cn(
+          "bg-black hud-border ease relative overflow-x-hidden text-center duration-500 ease-cubic",
+          isMobile ? "h-[calc(100svh-129px)]" : "h-[calc(100vh-129px)]"
+        )}
       >
         <AnimatePresence>
           {!allProjects && postData ? (
@@ -177,39 +179,39 @@ export default function Projects() {
                 )}
               </motion.div>
               <div className="group absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-        <Link
-          href={`/projects/${postData[imageIndex].id}`}
-          className="  flex flex-col items-center justify-center md:hidden"
-        >
-          <Image
-            src={"/images/056-Modern_Icons.png"}
-            alt={""}
-            width={75}
-            height={75}
-            className="opacity-10 invert transition-all duration-500 ease-linear group-hover:opacity-50"
-          />
-        </Link>
-        <p
-          className="m-6
+                <Link
+                  href={`/projects/${postData[imageIndex].id}`}
+                  className="  flex flex-col items-center justify-center md:hidden"
+                >
+                  <Image
+                    src={"/images/056-Modern_Icons.png"}
+                    alt={""}
+                    width={75}
+                    height={75}
+                    className="opacity-10 invert transition-all duration-500 ease-linear group-hover:opacity-50"
+                  />
+                </Link>
+                <p
+                  className="m-6
           font-[CygnitoMono-011] text-[11.25px] font-normal uppercase text-OffWhite/[.33] transition-all duration-500 md:hidden ease-linear group-hover:text-OffWhite/[.66]"
-        >
-          Vist Project
-        </p>
-      </div>
-      <div
-        className="
+                >
+                  Vist Project
+                </p>
+              </div>
+              <div
+                className="
           z-10 flex flex-col items-end justify-end  text-right font-[CygnitoMono-011]
           text-[11.25px] font-normal transition-all duration-100 ease-linear max-lg:text-[10px]
           absolute bottom-0 right-0 m-4 md:hidden
         "
-      >
-        <h1 className="text-[50px] text-OffWhite/[.50]">
-        {postData[imageIndex].title}
-        </h1>
-        <div className="min-h-5 text-OffWhite/[.33]">
-        {postData[imageIndex].subtitle}
-        </div>
-      </div>
+              >
+                <h1 className="text-[50px] text-OffWhite/[.50]">
+                  {postData[imageIndex].title}
+                </h1>
+                <div className="min-h-5 text-OffWhite/[.33]">
+                  {postData[imageIndex].subtitle}
+                </div>
+              </div>
             </>
           ) : (
             <motion.div

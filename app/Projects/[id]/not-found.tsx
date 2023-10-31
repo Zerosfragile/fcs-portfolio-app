@@ -3,14 +3,16 @@ import { TypingLabel } from "@/components/hud-nav-system";
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
+import { cn } from "@/lib/utils";
+import { isMobile } from "react-device-detect";
 
 export default function NotFound() {
   return (
     <div
-      className="
-          bg-black hud-border ease relative flex h-[calc(100vh-39px)] justify-center overflow-x-hidden
-          text-center duration-500 ease-cubic
-        "
+      className={cn(
+        " bg-black hud-border ease relative flex justify-center overflow-x-hidden text-center duration-500 ease-cubic",
+        isMobile ? "h-[calc(100svh-39px)]" : "h-[calc(100vh-39px)]"
+      )}
     >
       <div className="ease m-8 flex h-fit w-full cursor-default justify-between font-[CygnitoMono-011] font-light text-OffWhite/[.05] duration-500 ease-cubic hover:text-OffWhite/[.15]">
         <p>CODE</p>

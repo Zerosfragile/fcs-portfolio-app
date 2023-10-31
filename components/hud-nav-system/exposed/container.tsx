@@ -9,6 +9,7 @@ import {
 import { LayoutGroup } from "framer-motion";
 import { useRouter } from "next/navigation";
 import HNBack from "../internal/hn-back";
+import { cn } from "@/lib/utils";
 
 export interface EventHandlers {
   [key: string]: () => void;
@@ -17,6 +18,7 @@ export interface EventHandlers {
 type Props = {
   children?: React.ReactNode;
   eventHandlers?: EventHandlers;
+  className?: string;
 };
 
 export type HNContextType = {
@@ -29,7 +31,7 @@ export type HNContextType = {
 
 export const HNContext = createContext<HNContextType | null>(null);
 
-const Container = ({ children, eventHandlers }: Props) => {
+const Container = ({ children, eventHandlers, className }: Props) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const indexedChildren = useIndexPrefix(children);
   const { handleMouseEnter, handleMouseLeave, HNBControls } =
@@ -64,7 +66,10 @@ const Container = ({ children, eventHandlers }: Props) => {
       <LayoutGroup>
         <div
           ref={containerRef}
-          className="relative mx-[18px] flex items-center justify-center"
+          className={cn(
+            className,
+            "relative mx-[18px] flex items-center justify-center"
+          )}
         >
           {indexedChildren}
           <HNBack controls={HNBControls} handleMouseLeave={handleMouseLeave} />
