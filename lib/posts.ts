@@ -3,7 +3,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-
+import { basehub } from "basehub";
 const OUTPUTLOG = false;
 export interface PostMetaData {
   title: string;
@@ -18,7 +18,7 @@ export interface PostMetaData {
 class DirectoryError extends Error {
   constructor(message: string) {
     super(message);
-    this.name = 'DirectoryError';
+    this.name = "DirectoryError";
   }
 }
 export interface BlogData {
@@ -41,8 +41,9 @@ export const getBlogData = (key?: string, numPosts?: number): BlogData => {
       try {
         if (OUTPUTLOG) console.log(fs.readdirSync(currentDirectory));
 
-        const files = fs.readdirSync(currentDirectory)
-          .filter((file) => file !== ".DS_Store" && file.endsWith('.md'))
+        const files = fs
+          .readdirSync(currentDirectory)
+          .filter((file) => file !== ".DS_Store" && file.endsWith(".md"))
           .map((file) => {
             const id = file.replace(".md", "");
             const filePath = path.join(currentDirectory, file);
@@ -66,11 +67,17 @@ export const getBlogData = (key?: string, numPosts?: number): BlogData => {
         blogData[folder] = files;
       } catch (error) {
         if (error instanceof DirectoryError) {
-          console.error(`Error reading directory ${currentDirectory}: ${error.message}`);
+          console.error(
+            `Error reading directory ${currentDirectory}: ${error.message}`
+          );
         } else if (error instanceof Error) {
-          console.error(`Error reading directory ${currentDirectory}: An unknown error occurred: ${error.message}`);
+          console.error(
+            `Error reading directory ${currentDirectory}: An unknown error occurred: ${error.message}`
+          );
         } else {
-          console.error(`Error reading directory ${currentDirectory}: An unknown error occurred.`);
+          console.error(
+            `Error reading directory ${currentDirectory}: An unknown error occurred.`
+          );
         }
       }
     }
@@ -80,8 +87,6 @@ export const getBlogData = (key?: string, numPosts?: number): BlogData => {
 
   return blogData;
 };
-
-
 
 interface PostData {
   content: string;
@@ -107,7 +112,7 @@ export const getPost = (id: string): Post => {
       const markdownFile = fs.readFileSync(filePath, "utf8");
       const { content, data } = matter(markdownFile);
 
-      if (data.route.startsWith('www.')) {
+      if (data.route.startsWith("www.")) {
         // Log the error message
         console.error(`Invalid Route Format: The provided route "${data.route}" starts with "www.", which is treated as an internal route. 
         Internal routes should be in the format "/route". External routes should start with "https://" or "http://".`);
@@ -123,7 +128,9 @@ export const getPost = (id: string): Post => {
         date: data.date,
       };
 
-      if (OUTPUTLOG) {console.log(postData)};
+      if (OUTPUTLOG) {
+        console.log(postData);
+      }
 
       return true; // Stops the iteration once the file is found
     }
@@ -135,4 +142,48 @@ export const getPost = (id: string): Post => {
     data: postData,
     revalidate: 86400,
   };
+};
+
+export const getProjects = async (): Promise<PostMetaData[]> => {
+  const data = await basehub({ next: { revalidate: 30 } }).query({
+    posts: {
+      projects: {
+        __args: {
+          filter: {
+            isPublished: true,
+          },
+        },
+        _title: true,
+        items: {
+          _slug: true,
+          _title: true,
+          route: true,
+          subtitle: true,
+          coverImage: {
+            rawUrl: true,
+          },
+          date: true,
+          isPublished: true,
+          tags: {
+            items: {
+              _title: true,
+            },
+          },
+        },
+      },
+    },
+  });
+
+  const projects: PostMetaData[] = data.posts.projects.items.map((item) => ({
+    title: item._title,
+    subtitle: item.subtitle || "",
+    route: item.route || "",
+    date: item.date,
+    tags: item.tags.items.map((tag) => tag._title), // Extract tag titles
+    draft: !item.isPublished,
+    id: item._slug, // Assuming the slug is a unique identifier
+    preview: item.coverImage?.rawUrl || "/posts/missing.png",
+  }));
+
+  return projects;
 };

@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef, useState, useEffect } from "react";
-import { PostMetaData, BlogData } from "@/lib/posts";
+import { PostMetaData, BlogData, getProjects } from "@/lib/posts";
 import { getBlogData } from "@/lib/posts.ts";
 import { TypingLabel } from "../hud-nav-system";
 import { HudPostsCard, handleCardMouseMove } from "./hudpostscard";
@@ -12,19 +12,15 @@ interface Props {
   className?: string;
 }
 
-async function getPostData() {
-  const postData: BlogData = await getBlogData();
-  return postData;
-}
-
 const HudPosts = ({ posts, className }: Props) => {
-  const [postData, setPostData] = useState<BlogData | null>(null);
+  const [postData, setPostData] = useState<PostMetaData[] | null>(null);
   const cardParentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getPostData();
+      const data = await getProjects();
       setPostData(data);
+      console.log(data);
     };
 
     fetchData();
@@ -56,8 +52,8 @@ const HudPosts = ({ posts, className }: Props) => {
         ref={cardParentRef}
         onMouseMove={(e) => handleCardMouseMove(e, cardParentRef)}
       >
-        {postData[posts] &&
-          postData[posts].map((projectsData: PostMetaData, index: number) => (
+        {postData &&
+          postData.map((projectsData: PostMetaData, index: number) => (
             <HudPostsCard key={index} data={projectsData} />
           ))}
       </div>
