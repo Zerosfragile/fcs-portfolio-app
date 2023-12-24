@@ -1,25 +1,12 @@
 "use client";
 import Image from "next/image";
-import { TypingLabel } from "@/components/hud-nav-system";
 import Link from "next/link";
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-
 import { HudEmail, HudNav } from "@/components/hud-ui";
 import useScrollDirection from "@/components/hud-ui/hooks/useScrollDirection";
-import { Separator } from "@/components/ui/separator";
-import { Button } from "@/components/ui/button";
-import {
-  InstagramLogoIcon,
-  GitHubLogoIcon,
-  LinkedInLogoIcon,
-  EnvelopeClosedIcon,
-} from "@radix-ui/react-icons";
-import { useRouter } from "next/navigation";
 import { isMobile } from "react-device-detect";
-import TranslateWrapper from "@/components/hud-ui/translatewrapper";
-import { socials, tags } from "@/lib/marcus";
 import Initializing from "../initializing-page";
 import QuoteInitializing from "../initializing-quote";
 import ChristmasContent from "./content";
