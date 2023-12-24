@@ -57,7 +57,7 @@ const NameInput = ({
           Christmas Cards
         </h1>
         <p className="text-sm text-muted-foreground font-sans">
-          A collection of Christmas cards I've written for 2023.
+          A collection of Christmas cards I&apos;ve written for 2023.
         </p>
       </div>
       <Form {...form}>
