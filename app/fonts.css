@@ -370,3 +370,15 @@
     font-display: swap;
   }
 }
+
+/* Arthemys - Font Family */
+/* ------------------------------------------------- */
+@layer base {
+  @font-face {
+    font-family: "arthemys";
+    src: url("./Assets/Arthemys-Light.woff2") format("woff2");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+}

@@ -98,6 +98,13 @@
         hover:before:opacity-100 
         group-hover:after:opacity-100;
   }
+  .triangle {
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 100px solid white;
+  }
 }
 
 @keyframes dialog-show {

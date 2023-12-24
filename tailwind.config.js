@@ -28,6 +28,11 @@ module.exports = {
         light: "#111111",
         lightest: "#131313",
       },
+      christmas: {
+        red: "#ef4444",
+        green: "#22c55e",
+        tree: "#013220",
+      },
     },
     container: {
       center: true,

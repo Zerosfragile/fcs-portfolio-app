@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function useHorizontalScroll() {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -50,3 +50,27 @@ export function useHorizontalScroll2() {
     handleWheelScroll,
   };
 }
+
+export function useRotatingString(
+  listOfStrings: string[],
+  intervalDuration: number
+) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentString, setCurrentString] = useState(listOfStrings[0]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => {
+        const nextIndex = (prevIndex + 1) % listOfStrings.length;
+        setCurrentString(listOfStrings[nextIndex]);
+        return nextIndex;
+      });
+    }, intervalDuration);
+
+    return () => clearInterval(interval);
+  }, [listOfStrings, intervalDuration]);
+
+  return currentString;
+}
+
+export default useRotatingString;
