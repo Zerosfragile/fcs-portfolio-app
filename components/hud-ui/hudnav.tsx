@@ -26,6 +26,7 @@ export function HudNavAbout({ eventHandlers }: Props) {
               route: "/Projects",
             },
           ]}
+          className="max-md:hidden"
         />
         <HUDN.btn
           defaultLabel="Resume"
@@ -41,8 +42,35 @@ export function HudNavAbout({ eventHandlers }: Props) {
             },
           ]}
         />
+        <HUDN.btn
+          prefix={{
+            breakpoint: 1100,
+            text: "04 // ",
+          }}
+          defaultLabel="Contact"
+          route="/contact"
+          className="md:hidden"
+          sites={[
+            {
+              title: "Email",
+              event: "showEmail",
+            },
+            {
+              title: "Github",
+              route: "https://github.com/zerofcs",
+            },
+            {
+              title: "Linkedin",
+              route: "https://www.linkedin.com/in/marcus-lim-b6a721260/",
+            },
+            {
+              title: "More",
+              route: "/contact",
+            },
+          ]}
+        />
       </HUDN.container>
-      <HUDN.container eventHandlers={eventHandlers}>
+      <HUDN.container eventHandlers={eventHandlers} className="max-md:hidden">
         <HUDN.btn
           prefix={{
             breakpoint: 1100,
@@ -68,16 +96,6 @@ export function HudNavAbout({ eventHandlers }: Props) {
               route: "/contact",
             },
           ]}
-        />
-        <HUDN.btn
-          labels={[{ breakpoint: 850, text: "Toggle" }]}
-          prefix={{
-            breakpoint: 1100,
-            text: "05 // ",
-          }}
-          defaultLabel="Toggle Nav"
-          event="toggle"
-          sites={[]}
         />
       </HUDN.container>
     </>
