@@ -110,7 +110,7 @@ const HudEmail = ({ open }: Props) => {
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-20 bg-VoidBlack/[.25] backdrop-blur-sm data-[state=closed]:animate-[dialog-hide_1000ms] data-[state=open]:animate-[dialog-show_1000ms]" />
         <Dialog.Content
-          className="hud-border fixed left-1/2 top-1/2 z-30 flex h-1/2 w-6/12 -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden p-12 
+          className="hud-border fixed left-1/2 top-1/2 z-30 flex h-1/2 w-[calc(100%-78px)] md:w-6/12 -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden p-12 
         backdrop-blur data-[state=closed]:animate-[dialog-hide_1000ms] data-[state=open]:animate-[dialog-show_1000ms] max-md:p-5"
         >
           <Dialog.Title className="hidden">HUD-Email</Dialog.Title>
