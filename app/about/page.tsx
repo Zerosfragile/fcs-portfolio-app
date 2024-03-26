@@ -129,7 +129,7 @@ const AboutContent = ({
             </Badge>
           </div>
           <Separator className="my-4" />
-          <div className="max-w-[500px] w-[80vw] text-left text-muted-foreground items-center">
+          <div className="max-w-[500px] w-[80vw] text-left text-muted-foreground items-center max-md:py-20">
             <p>
               <b className="mr-2 text-OffWhite/75">
                 Full Stack Developer, specializing in crafting creative
