@@ -42,7 +42,7 @@ export default function Home() {
       className={cn(
         "overflow-hidden",
         isMobile
-          ? "h-[calc(100svh)] w-[calc(100svw)]"
+          ? "h-[calc(100dvh)] w-[calc(100dvw)]"
           : "w-[calc(100vw)] h-[calc(100vh)]"
       )}
     >
@@ -51,10 +51,10 @@ export default function Home() {
           "bg-black hud-border ease relative flex justify-center overflow-x-hidden text-center duration-500 ease-cubic flex-wrap",
           showNav
             ? isMobile
-              ? "h-[calc(100svh-129px)]"
+              ? "h-[calc(100dvh-129px)]"
               : "h-[calc(100vh-129px)]"
             : isMobile
-            ? "h-[calc(100svh-39px)]"
+            ? "h-[calc(100dvh-39px)]"
             : "h-[calc(100vh-39px)]"
         )}
       >
@@ -89,7 +89,11 @@ export default function Home() {
                 y: 0,
               }}
               exit={{ opacity: 0, y: 100 }}
-              transition={{ duration: 1.5, delay: 2, ease: "easeInOut" }}
+              transition={{
+                duration: 1.5,
+                delay: isMobile ? 0 : 2,
+                ease: "easeInOut",
+              }}
               className={cn("flex justify-center", isMobile && "mt-10")}
               key="Subtitles"
             >
@@ -103,7 +107,11 @@ export default function Home() {
               initial={{ opacity: 0, width: "100%" }}
               animate={{ opacity: 100, y: 0, width: "90%" }}
               exit={{ opacity: 0, y: 100 }}
-              transition={{ duration: 1, delay: 4, ease: "easeInOut" }}
+              transition={{
+                duration: 1,
+                delay: isMobile ? 1.5 : 4,
+                ease: "easeInOut",
+              }}
               className="my-20"
               key="cards"
             >
