@@ -1,12 +1,22 @@
 {
-    "files.exclude": {
-        "**/.git": true,
-        "**/.svn": true,
-        "**/.hg": true,
-        "**/CVS": true,
-        "**/.DS_Store": true,
-        "**/Thumbs.db": true,
-        "**/insperation": true
-    },
-    "explorerExclude.backup": {}
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/insperation": true,
+    "next.config.js": true,
+    "next-env.d.ts": true,
+    "fcs-portfolio-app.code-workspace": true,
+    "postcss.config.js": true,
+    ".eslintrc.json": true,
+    ".prettierrc.json": true,
+    "components.json": true,
+    "**/node_modules": true,
+    "**/.next": true,
+    "**/.vscode": true
+  },
+  "explorerExclude.backup": {}
 }

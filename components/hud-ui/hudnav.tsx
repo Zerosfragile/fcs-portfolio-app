@@ -11,7 +11,7 @@ export function HudNavAbout({ eventHandlers }: Props) {
         <HUDN.btn defaultLabel="Home" route="/" />
         <HUDN.btn
           defaultLabel="Projects"
-          route="/Projects"
+          route="/projects"
           sites={[
             {
               title: "Ascii-Hud",
@@ -23,7 +23,7 @@ export function HudNavAbout({ eventHandlers }: Props) {
             // },
             {
               title: "More",
-              route: "/Projects",
+              route: "/projects",
             },
           ]}
           className="max-md:hidden"
@@ -127,7 +127,7 @@ const HudNav = ({ eventHandlers }: Props) => {
         />
         <HUDN.btn
           defaultLabel="Projects"
-          route="/Projects"
+          route="/projects"
           sites={[
             {
               title: "Ascii-Hud",
@@ -139,7 +139,7 @@ const HudNav = ({ eventHandlers }: Props) => {
             // },
             {
               title: "More",
-              route: "/Projects",
+              route: "/projects",
             },
           ]}
         />

@@ -2,31 +2,13 @@
 import Image from "next/image";
 import { TypingLabel } from "@/components/hud-nav-system";
 import Link from "next/link";
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
-import {
-  AnimatePresence,
-  MotionValue,
-  motion,
-  useMotionValue,
-  useTransform,
-} from "framer-motion";
-import { cn, formatNumberWithLeadingZeros } from "@/lib/utils";
-import {
-  TeamMember,
-  teamMembers,
-  teamMembers as user,
-} from "@/lib/extractHeaders/types";
-
-import { useRouter } from "next/navigation";
+import { Dispatch, SetStateAction, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 import { HudEmail, HudNavAbout } from "@/components/hud-ui";
 import useScrollDirection from "@/components/hud-ui/hooks/useScrollDirection";
 import { isMobile } from "react-device-detect";
-import TranslateWrapper from "@/components/hud-ui/translatewrapper";
-import { EnvelopeClosedIcon } from "@radix-ui/react-icons";
 import { Separator } from "@radix-ui/react-separator";
-import router from "next/router";
-import { Button } from "@/components/ui/button";
-import { tags } from "@/lib/marcus";
 import { Badge } from "@/components/ui/badge";
 
 export default function About() {
@@ -62,8 +44,8 @@ export default function About() {
           "bg-black hud-border ease relative flex justify-center overflow-x-hidden text-center duration-500 ease-cubic",
           showNav
             ? isMobile
-              ? "h-[calc(100svh-129px)] max-md:h-[calc(100svh-130px-2em)]"
-              : "h-[calc(100vh-129px)] max-md:h-[calc(100vh-130px-2em)]"
+              ? "h-[calc(100svh-129px)]"
+              : "h-[calc(100vh-129px)]"
             : isMobile
             ? "h-[calc(100svh-39px)]"
             : "h-[calc(100vh-39px)]"
@@ -103,7 +85,7 @@ export default function About() {
             animate={{ opacity: 100, y: 0 }}
             exit={{ opacity: 0, y: 100 }}
             transition={{ duration: 1, delay: 0, ease: "easeInOut" }}
-            className="hud-border max-md:align-center bottom-0 flex h-[75px] items-center justify-between text-center max-md:h-[calc(calc(75px+2em))] max-md:flex-wrap max-md:justify-center max-md:overflow-hidden max-md:p-4"
+            className="hud-border max-md:align-center bottom-0 flex h-[75px] items-center justify-between text-center max-md:flex-wrap max-md:justify-center max-md:overflow-hidden max-md:p-4"
           >
             <HudNavAbout eventHandlers={eventHandlers} />
           </motion.div>
@@ -120,7 +102,7 @@ const AboutContent = ({
   setShowNav: Dispatch<SetStateAction<boolean>>;
 }) => {
   return (
-    <div className="w-full h-full flex justify-center ">
+    <div className="w-full h-fit flex justify-center ">
       <div className="max-md:max-w-[800px] md:min-w-[400px] h-full flex flex-wrap justify-center my-10 mx-10 relative">
         <div className="w-full h-full grid place-content-center">
           <div className="space-y-1">
@@ -129,7 +111,7 @@ const AboutContent = ({
             </Badge>
           </div>
           <Separator className="my-4" />
-          <div className="max-w-[500px] w-[80vw] text-left text-muted-foreground items-center max-md:py-20">
+          <div className="max-w-[500px] w-[80vw] text-left text-muted-foreground items-center max-md:pb-10">
             <p>
               <b className="mr-2 text-OffWhite/75">
                 Full Stack Developer, specializing in crafting creative
