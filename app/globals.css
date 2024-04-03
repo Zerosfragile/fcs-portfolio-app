@@ -105,6 +105,9 @@
     border-right: 50px solid transparent;
     border-bottom: 100px solid white;
   }
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
 }
 
 @keyframes dialog-show {
