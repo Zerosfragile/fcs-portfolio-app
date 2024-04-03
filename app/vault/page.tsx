@@ -27,7 +27,7 @@ export default async function VaultPage({}: Props) {
   );
 
   return (
-    <main className="grid grid-cols-3 gap-2 p-4">
+    <main className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2 p-4">
       <div>
         {col1.map((resource) => (
           <SiteCard key={resource.url} {...resource} />
