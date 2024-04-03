@@ -93,8 +93,8 @@ export default function SiteCard({
             </Link>
           </div>
         </SheetTrigger>
-        <SheetContent className="m-2 h-[100dvh-16px] bg-OffWhite/25 backdrop-blur-md border-OffWhite/10 supports-[backdrop-filter]:bg-OffWhite/5 rounded-md xl:min-w-[25vw] xl:w-[25vw]">
-          <section className="m-4 ">
+        <SheetContent className="md:m-2 h-[100dvh-16px] overflow-y-auto overflow-x-visible bg-OffWhite/25 backdrop-blur-md border-OffWhite/10 supports-[backdrop-filter]:bg-OffWhite/5 rounded-md xl:min-w-[25vw] xl:w-[25vw]">
+          <section className=" md:m-4">
             <SheetHeader>
               <SheetTitle>{title}</SheetTitle>
               <SheetDescription className="text-OffWhite/60">
@@ -115,7 +115,7 @@ export default function SiteCard({
               <Separator className="py-2" />
 
               {context ? (
-                <div className="flex flex-col gap-2 mb-10">
+                <div className="flex flex-col gap-2 mb-2 md:mb-10">
                   <label htmlFor="context" className="text-sm text-OffWhite/75">
                     Notes:
                   </label>
@@ -126,94 +126,90 @@ export default function SiteCard({
               ) : null}
             </div>
 
-            <ScrollArea>
-              <Tooltip>
-                <TooltipTrigger>
-                  <Link href={url} target="_blank">
-                    <Image
-                      alt={title + " site preview"}
-                      src={preview ? preview : "/posts/missing.png"}
-                      width="1200"
-                      height="630"
-                      className="rounded-md brightness-50 hover:brightness-100  border border-OffWhite/50 transition-all duration-200 ease-linear"
-                    />
-                  </Link>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p className="w-[350px] text-center">{context || url}</p>
-                </TooltipContent>
-              </Tooltip>
-              <Button className="mt-4 w-full" asChild>
+            <Tooltip>
+              <TooltipTrigger>
                 <Link href={url} target="_blank">
-                  Visit
+                  <Image
+                    alt={title + " site preview"}
+                    src={preview ? preview : "/posts/missing.png"}
+                    width="1200"
+                    height="630"
+                    className="rounded-md brightness-50 hover:brightness-100  border border-OffWhite/50 transition-all duration-200 ease-linear"
+                  />
                 </Link>
-              </Button>
-              {external_links && external_links?.length > 0 ? (
-                <section className=" py-8">
-                  <label
-                    htmlFor="Additional Links"
-                    className="text-sm text-LunarGrey-light"
-                  >
-                    Additional Links:
-                  </label>
-                  <Separator className="py-2 mb-2" />
-                  <div id="Additional Links" className="flex flex-col gap-4">
-                    {external_links.map((link) => (
-                      <Tooltip key={link.url}>
-                        <TooltipTrigger>
-                          <Link href={link.url} target="_blank">
-                            <div className="relative">
-                              <Avatar className="absolute top-0 left-0 m-2 h-4 w-4 z-10">
-                                <AvatarImage
-                                  src={
-                                    link.icon
-                                      ? link.icon
-                                      : "/images/001-Down_Hands.png"
-                                  }
-                                />
-                                <AvatarFallback>i</AvatarFallback>
-                              </Avatar>
-                              <div className="w-full h-10 gap-3 absolute bottom-0 px-4 left-0 z-10 transition-all duration-1000 delay-200 ease-linear whitespace-nowrap flex justify-between items-center flex-nowrap box-border">
-                                <div className="text-OffWhite overflow-hidden whitespace-nowrap text-ellipsis h-7 text-xs">
-                                  {link.title}
-                                </div>
-                                <div className="text-OffWhite/50 overflow-hidden whitespace-nowrap text-ellipsis h-7 text-xs">
-                                  {new Date(
-                                    link.lastEdited ?? 0
-                                  ).toLocaleDateString("en-US", {
-                                    month: "long",
-                                  }) +
-                                    " " +
-                                    new Date(
-                                      link.lastEdited ?? 0
-                                    ).getFullYear()}
-                                </div>
-                              </div>
-                              <Image
-                                alt={link.title + " site preview"}
+              </TooltipTrigger>
+              <TooltipContent className="hidden sm:block">
+                <p className="w-[350px] text-center">{context || url}</p>
+              </TooltipContent>
+            </Tooltip>
+            <Button className="mt-0 md:mt-4 w-full" asChild>
+              <Link href={url} target="_blank">
+                Visit
+              </Link>
+            </Button>
+            {external_links && external_links?.length > 0 ? (
+              <section className="py-4 md:py-8">
+                <label
+                  htmlFor="Additional Links"
+                  className="text-sm text-LunarGrey-light"
+                >
+                  Additional Links:
+                </label>
+                <Separator className="py-2 mb-2" />
+                <div id="Additional Links" className="flex flex-col gap-4">
+                  {external_links.map((link) => (
+                    <Tooltip key={link.url}>
+                      <TooltipTrigger>
+                        <Link href={link.url} target="_blank">
+                          <div className="relative">
+                            <Avatar className="absolute top-0 left-0 m-2 h-4 w-4 z-10">
+                              <AvatarImage
                                 src={
-                                  link.preview
-                                    ? link.preview
-                                    : "/posts/missing.png"
+                                  link.icon
+                                    ? link.icon
+                                    : "/images/001-Down_Hands.png"
                                 }
-                                width="1200"
-                                height="630"
-                                className="rounded-md brightness-50 hover:brightness-100  border border-OffWhite/50 transition-all duration-200 ease-linear"
                               />
+                              <AvatarFallback>i</AvatarFallback>
+                            </Avatar>
+                            <div className="w-full h-10 gap-3 absolute bottom-0 px-4 left-0 z-10 transition-all duration-1000 delay-200 ease-linear whitespace-nowrap flex justify-between items-center flex-nowrap box-border">
+                              <div className="text-OffWhite overflow-hidden whitespace-nowrap text-ellipsis h-7 text-xs">
+                                {link.title}
+                              </div>
+                              <div className="text-OffWhite/50 overflow-hidden whitespace-nowrap text-ellipsis h-7 text-xs">
+                                {new Date(
+                                  link.lastEdited ?? 0
+                                ).toLocaleDateString("en-US", {
+                                  month: "long",
+                                }) +
+                                  " " +
+                                  new Date(link.lastEdited ?? 0).getFullYear()}
+                              </div>
                             </div>
-                          </Link>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p className="w-[350px] text-center">
-                            {link.context || link.url}
-                          </p>
-                        </TooltipContent>
-                      </Tooltip>
-                    ))}
-                  </div>
-                </section>
-              ) : null}
-            </ScrollArea>
+                            <Image
+                              alt={link.title + " site preview"}
+                              src={
+                                link.preview
+                                  ? link.preview
+                                  : "/posts/missing.png"
+                              }
+                              width="1200"
+                              height="630"
+                              className="rounded-md brightness-50 hover:brightness-100  border border-OffWhite/50 transition-all duration-200 ease-linear"
+                            />
+                          </div>
+                        </Link>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p className="w-[350px] text-center">
+                          {link.context || link.url}
+                        </p>
+                      </TooltipContent>
+                    </Tooltip>
+                  ))}
+                </div>
+              </section>
+            ) : null}
           </section>
         </SheetContent>
       </Sheet>
