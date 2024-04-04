@@ -1,6 +1,7 @@
-import puppeteer, { Puppeteer } from "puppeteer";
+import puppeteer from "puppeteer";
 import fs from "fs-extra";
 import path from "path";
+import sharp from "sharp";
 import { InspirationResource } from "./insperation";
 
 const shouldRefetch = (resource: InspirationResource): boolean => {
@@ -112,8 +113,8 @@ const fetchResourceData = async (
     return {
       ...resource,
       title: title,
-      icon: iconPath,
-      preview: screenshotPath,
+      icon: iconPath.replace("\\", "/"),
+      preview: screenshotPath.replace("\\", "/"),
       lastEdited: new Date().toISOString(), // Update last edited time
     };
   } catch (error) {
@@ -147,3 +148,68 @@ export const iterateResources = async (
     }
   }
 };
+
+export async function saveSVGAsPNG({
+  svgContent,
+  dimensions = { w: 100, h: 100 },
+}: {
+  svgContent: string;
+  dimensions?: { w: number; h: number };
+}) {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  const htmlContent = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SVG Center</title>
+<style>
+  body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+  }
+  svg {
+    display: block; /* Removes extra space below SVG */
+  }
+</style>
+</head>
+<body>
+  ${svgContent}
+</body>
+</html>
+`;
+
+  // Load SVG content into the page
+  await page.setContent(svgContent);
+
+  await page.setContent(htmlContent, {
+    waitUntil: "networkidle0",
+  });
+
+  // Optional: Set the viewport if you want a specific window size
+  await page.setViewport({
+    width: dimensions.w,
+    height: dimensions.h,
+  });
+
+  // Take a screenshot of the SVG content
+  const buffer = await page.screenshot({
+    encoding: "binary",
+    omitBackground: true,
+  });
+
+  // Use Sharp to convert the screenshot (buffer) to PNG (if needed)
+  sharp(buffer)
+    .png()
+    .toFile("icon.png", (err, info) => {
+      if (err) throw err;
+      console.log("SVG has been converted to PNG.");
+    });
+
+  await browser.close();
+}
