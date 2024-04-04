@@ -113,7 +113,7 @@ export default function Projects() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 100 }}
               exit={{ opacity: 0 }}
-              className="flex h-full w-full flex-wrap gap-4 p-[25px] justify-center"
+              className="grid gap-4 p-[25px] grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 h-fit"
               ref={cardParentRef}
               onMouseMove={(e) => handleCardMouseMove(e, cardParentRef)}
             >
@@ -176,14 +176,12 @@ const HudNav = ({ eventHandlers }: { eventHandlers: EventHandlers }) => {
           ]}
           defaultLabel="UI Playground"
           route="/playground"
-          className="md:hidden"
         />
 
         <HUDN.btn
           labels={[{ breakpoint: 850, text: "Vault" }]}
           defaultLabel="Inspiration Vault"
           route="/vault"
-          className="md:hidden"
         />
       </HUDN.container>
       <HUDN.container eventHandlers={eventHandlers} className="max-md:hidden">
