@@ -59,7 +59,6 @@ const fetchResourceData = async (
       deviceScaleFactor: 1,
     });
     await page.goto(resource.url);
-    await setTimeout(() => {}, 10000); // Wait for page and potential animations to load
 
     //? 2. Title and Folder Setup
     // This regex matches any character not allowed in a folder name
@@ -74,6 +73,7 @@ const fetchResourceData = async (
     let screenshotPath = "";
 
     if (!resource.preview) {
+      await new Promise((r) => setTimeout(r, 10000));
       const screenshot = await page.screenshot({ encoding: "binary" });
       screenshotPath = await saveFile(screenshot, folderName, "preview.png");
       console.log(`Screenshot: ${screenshot ? "success" : "failed"}`);
