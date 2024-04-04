@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { RefObject, use, useEffect } from "react";
 import { PostMetaData } from "@/lib/posts";
+import Link from "next/link";
 
 export const HudPostsCard = ({
   data: { title, subtitle, preview, id },
@@ -11,7 +12,7 @@ export const HudPostsCard = ({
     console.log(preview);
   }, []);
   return (
-    <a
+    <Link
       href={`/projects/${id}`}
       className="
         card-hover-glow relative flex h-[260px] w-[300px] cursor-pointer flex-col rounded-[10px] 
@@ -38,7 +39,7 @@ export const HudPostsCard = ({
           </h4>
         </div>
       </div>
-    </a>
+    </Link>
   );
 };
 
