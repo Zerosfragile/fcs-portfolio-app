@@ -8,7 +8,7 @@ import { useScrollDirection } from "@/components/hud-ui/hooks";
 import { isMobile } from "react-device-detect";
 import { cn } from "@/lib/utils";
 import { useHudState } from "@/components/hud-ui/hud-state-context";
-import HUDN from "@/components/hud-nav-system";
+import HUDN, { EventHandlers } from "@/components/hud-nav-system";
 
 type Props = {
   quote: React.ReactNode;
