@@ -3,24 +3,15 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { BlogData, PostMetaData, getBlogData } from "@/lib/posts";
 import HUDN, { EventHandlers, TypingLabel } from "@/components/hud-nav-system";
-import {
-  AnimatePresence,
-  motion,
-  useAnimationControls,
-  wrap,
-} from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   HudPostsCard,
   handleCardMouseMove,
-  HudCarousel,
-  HudInfolay,
-  HudNav,
   HudEmail,
 } from "@/components/hud-ui";
 import Link from "next/link";
 import { isMobile } from "react-device-detect";
 import { cn } from "@/lib/utils";
-import { array } from "zod";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useScrollDirection } from "@/components/hud-ui/hooks";
 
@@ -158,3 +149,130 @@ export default function Projects() {
     </div>
   );
 }
+
+const HudNav = ({ eventHandlers }: { eventHandlers: EventHandlers }) => {
+  return (
+    <>
+      <HUDN.container eventHandlers={eventHandlers}>
+        <HUDN.btn
+          labels={[{ breakpoint: 850, text: "About" }]}
+          defaultLabel="About Me"
+          route="/about"
+          sites={[
+            {
+              title: "Github",
+              route: "https://github.com/Zerosfragile",
+            },
+            {
+              title: "More",
+              route: "/about",
+            },
+          ]}
+        />
+        <HUDN.btn
+          defaultLabel="Projects"
+          route="/projects"
+          sites={[
+            {
+              title: "Ascii-Hud",
+              route: "https://fragileservices.com",
+            },
+            {
+              title: "Inspiration Vault",
+              route: "/vault",
+            },
+            // {
+            //   title: "Playground",
+            //   route: "/Projects/playground",
+            // },
+            {
+              title: "More",
+              route: "/projects",
+            },
+          ]}
+        />
+        <HUDN.btn
+          defaultLabel="Resume"
+          route="/about/resume"
+          sites={[
+            {
+              title: "PDF View",
+              route: "/about/resume/pdf",
+            },
+            {
+              title: "More",
+              route: "/about/resume",
+            },
+          ]}
+          className="max-md:hidden"
+        />
+        <HUDN.btn
+          prefix={{
+            breakpoint: 1100,
+            text: "04 // ",
+          }}
+          defaultLabel="Contact"
+          route="/contact"
+          sites={[
+            {
+              title: "Email",
+              event: "showEmail",
+            },
+            {
+              title: "Github",
+              route: "https://github.com/zerofcs",
+            },
+            {
+              title: "Linkedin",
+              route: "https://www.linkedin.com/in/marcus-lim-b6a721260/",
+            },
+            {
+              title: "More",
+              route: "/contact",
+            },
+          ]}
+          className="md:hidden"
+        />
+      </HUDN.container>
+      <HUDN.container eventHandlers={eventHandlers} className="max-md:hidden">
+        <HUDN.btn
+          prefix={{
+            breakpoint: 1100,
+            text: "04 // ",
+          }}
+          defaultLabel="Contact"
+          route="/contact"
+          sites={[
+            {
+              title: "Email",
+              event: "showEmail",
+            },
+            {
+              title: "Github",
+              route: "https://github.com/zerofcs",
+            },
+            {
+              title: "Linkedin",
+              route: "https://www.linkedin.com/in/marcus-lim-b6a721260/",
+            },
+            {
+              title: "More",
+              route: "/contact",
+            },
+          ]}
+          className="max-md:hidden"
+        />
+        <HUDN.btn
+          prefix={{
+            breakpoint: 1100,
+            text: "05 // ",
+          }}
+          defaultLabel="Refresh"
+          event="refresh"
+          sites={[]}
+          className="max-md:hidden"
+        />
+      </HUDN.container>
+    </>
+  );
+};
