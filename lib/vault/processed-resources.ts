@@ -579,10 +579,9 @@ export const processedResources = [
   },
   {
     description:
-      "Awwwards is a website that recognizes and promotes the talent and effort of the best developers, designers, and web agencies in the world.",
+      "Awwwards is a massive collection of the best websites on the internet, great for inspiration and learning. The website recognizes and promotes the talent and effort of the best developers, designers, and web agencies in the world.",
     category: ["curated", "collection"],
-    context:
-      "Massive collection of the best websites on the internet. Great for inspiration and learning. It's a personal goal to have a site featured on here :3",
+    context: " It's a personal goal to have a site featured on here :3",
     title: "Awwwards",
     url: "https://www.awwwards.com",
     icon: "/vault/Awwwards/icon.png",
