@@ -1,4 +1,3 @@
-import { AppRouterInstance } from "next/dist/shared/lib/app-router-context";
 import React from "react";
 
 export const useIndexPrefix = (children: any) => {
