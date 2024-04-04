@@ -22,7 +22,7 @@ import { isMobile } from "react-device-detect";
 import { cn } from "@/lib/utils";
 import { array } from "zod";
 import { Skeleton } from "@/components/ui/skeleton";
-import useScrollDirection from "@/components/hud-ui/hooks/useScrollDirection";
+import { useScrollDirection } from "@/components/hud-ui/hooks";
 
 async function getPostData() {
   const postData: BlogData = await getBlogData();

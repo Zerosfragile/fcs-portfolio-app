@@ -61,7 +61,7 @@ export const handleScroll = (headingElements: DotNavItem[]) => {
   return heading;
 };
 
-const useCurrentHeading = (headingElements: DotNavItem[]) => {
+export const useCurrentHeading = (headingElements: DotNavItem[]) => {
   const [currentHeading, setCurrentHeading] = useState<string | null>(null);
 
   useEffect(() => {
@@ -78,5 +78,3 @@ const useCurrentHeading = (headingElements: DotNavItem[]) => {
 
   return currentHeading;
 };
-
-export default useCurrentHeading;

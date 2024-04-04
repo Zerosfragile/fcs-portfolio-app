@@ -14,9 +14,7 @@ import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeReact from "rehype-react";
 import { HeadingTagName } from "@/lib/extractHeaders/types";
-import useCurrentHeading, {
-  flattenDotNavItems,
-} from "./hooks/useCurrentHeading";
+import { useCurrentHeading, flattenDotNavItems } from "./hooks";
 import LoggedNavigationBTN from "./loggednavigationbutton";
 
 type Props = {

@@ -1,6 +1,7 @@
+"use client";
 import { useEffect, useRef, Dispatch, SetStateAction } from "react";
 
-const debounce = <T extends Function>(func: T, delay: number): T => {
+export const debounce = <T extends Function>(func: T, delay: number): T => {
   let debounceTimer: NodeJS.Timeout;
   return ((...args: any[]) => {
     clearTimeout(debounceTimer);
@@ -8,18 +9,27 @@ const debounce = <T extends Function>(func: T, delay: number): T => {
   }) as unknown as T;
 };
 
-const useScrollDirection = (
+export const useScrollDirection = (
   state: boolean,
-  setState: Dispatch<SetStateAction<boolean>>,
+  setState: Dispatch<SetStateAction<boolean>> | ((value: boolean) => void),
   debounceTime: number = 300,
   enabled: boolean = true,
   trackpadSensitivity: number = 1,
-  eventTarget: EventTarget = window // for testability
-): [boolean, Dispatch<SetStateAction<boolean>>] => {
+  eventTarget: EventTarget | undefined = typeof window !== "undefined"
+    ? window
+    : undefined
+): [
+  boolean,
+  Dispatch<SetStateAction<boolean>> | ((value: boolean) => void)
+] => {
   const lastTouchY = useRef(0); // Use useRef to preserve last Y-position for touch
   const accumulatedDeltaY = useRef(0); // New ref to accumulate deltaY for trackpad
 
   useEffect(() => {
+    if (typeof window === "undefined" || !eventTarget) {
+      // Exit early if we're rendering on the server or if no eventTarget is provided
+      return;
+    }
     if (!enabled) return;
 
     const handleWheel = debounce((e: WheelEvent) => {
@@ -71,5 +81,3 @@ const useScrollDirection = (
 
   return [state, setState];
 };
-
-export default useScrollDirection;

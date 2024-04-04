@@ -4,7 +4,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { HudEmail, HudPosts, HudNav } from "@/components/hud-ui";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
-import useScrollDirection from "@/components/hud-ui/hooks/useScrollDirection";
+import { useScrollDirection } from "@/components/hud-ui/hooks";
 import {
   Tooltip,
   TooltipContent,
@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/tooltip";
 import { isMobile } from "react-device-detect";
 import { DoubleArrowDownIcon, DoubleArrowUpIcon } from "@radix-ui/react-icons";
-import { serverTestEvent } from "@/lib/analytics/logger";
+
 export default function Home() {
   const [openEmail, setOpenEmail] = useState(false);
   const [showNav, setShowNav]: [boolean, Dispatch<SetStateAction<boolean>>] =

@@ -133,6 +133,10 @@ const HudNav = ({ eventHandlers }: Props) => {
               title: "Ascii-Hud",
               route: "https://fragileservices.com",
             },
+            {
+              title: "Inspiration Resources",
+              route: "/vault",
+            },
             // {
             //   title: "Playground",
             //   route: "/Projects/playground",

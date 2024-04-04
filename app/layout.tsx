@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { PHProvider, PostHogPageview } from "@/lib/analytics/context";
 import { Suspense } from "react";
 import localFont from "next/font/local";
+import { HudStateProvider } from "@/components/hud-ui/hud-state-context";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,12 +25,14 @@ export default function RootLayout({
       <Suspense>
         <PostHogPageview />
       </Suspense>
-      <PHProvider>
-        <body className={`${inter.className}`}>
-          <div className="h-full w-full overflow-y-hidden">{children}</div>
-          <Toaster />
-        </body>
-      </PHProvider>
+      <body className={`${inter.className}`}>
+        <PHProvider>
+          <HudStateProvider>
+            {children}
+            <Toaster />
+          </HudStateProvider>
+        </PHProvider>
+      </body>
     </html>
   );
 }
