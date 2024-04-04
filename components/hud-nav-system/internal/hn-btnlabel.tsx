@@ -1,3 +1,4 @@
+"use client";
 import { wrap } from "module";
 import React, { useEffect, useState } from "react";
 
