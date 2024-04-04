@@ -62,7 +62,11 @@ const TypingLabel: React.FC<TypingLabelProps> = ({
   if (size) {
     styles += ` text-${size}`;
   }
-  return <label className={`${styles}`}>{displayedText}</label>;
+  return (
+    <label className={`${styles}`} tabIndex={0}>
+      {displayedText}
+    </label>
+  );
 };
 
 export default TypingLabel;

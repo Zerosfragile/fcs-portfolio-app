@@ -35,7 +35,7 @@ export const useIndexPrefix = (children: any) => {
   return addIndexPrefix();
 };
 
-export const handleRoute = (route: string, router: AppRouterInstance) => {
+export const handleRoute = (route: string, router: any) => {
   if (!route) {
     throw new Error("Route parameter is required.");
   }
