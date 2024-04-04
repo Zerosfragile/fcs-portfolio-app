@@ -6,7 +6,7 @@ export default function NotFound() {
   return (
     <div
       className="
-          bg-black hud-border ease relative flex h-[calc(100vh-39px)] justify-center overflow-x-hidden
+          bg-black hud-border ease relative flex h-[calc(100svh-39px)] justify-center overflow-x-hidden
           text-center duration-500 ease-cubic
         "
     >
