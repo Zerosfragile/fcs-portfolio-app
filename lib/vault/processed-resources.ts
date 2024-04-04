@@ -542,4 +542,39 @@ export const processedResources = [
     preview: "/vault/Denise Agency/preview.png",
     lastEdited: "2024-04-04T16:19:03.582Z",
   },
+  {
+    description:
+      "Portfolio of motion illustrator and designer, Justine Soulie.",
+    context: "WebGL portfolio with a unique design and interactions.",
+    category: ["portfolio", "curated"],
+    title: "Justine Soulie",
+    url: "https://justinesoulie.fr",
+    external_links: [
+      {
+        description: "Portfolio of WebGL developer Patrick Heng",
+        context: "Portfolio of developer who worked on the site.",
+        category: ["portfolio"],
+        title: "Patrick Heng",
+        url: "https://patrickheng.com/about",
+        icon: "/vault/Justine Soulie/Patrick Heng/icon.png",
+        preview: "/vault/Justine Soulie/Patrick Heng/preview.png",
+        lastEdited: "2024-04-04T16:40:57.483Z",
+      },
+      {
+        description:
+          "headless page builder for Next.js, Nuxt, and SvelteKit sites.",
+        context:
+          "CDN used to create the Nuxt and WebGL portfolio of Justine Soulie.",
+        category: ["development library"],
+        title: "Prismic",
+        url: "https://prismic.io",
+        icon: "/vault/Justine Soulie/Prismic/icon.png",
+        preview: "/vault/Justine Soulie/Prismic/preview.png",
+        lastEdited: "2024-04-04T16:41:10.825Z",
+      },
+    ],
+    icon: "/vault/Justine Soulie/icon.png",
+    preview: "/vault/Justine Soulie/preview.png",
+    lastEdited: "2024-04-04T16:40:43.482Z",
+  },
 ];

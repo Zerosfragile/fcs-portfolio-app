@@ -35,31 +35,4 @@ export type InspirationResource = {
 
 // ---
 // The compile step will skip over that are already filled out in `processed-resources.ts`, so you can just delete the values you want to update and run `pnpm compile-vault` again if you need to update a resource
-export const nonCompiledInspiration: InspirationResource[] = [
-  {
-    description:
-      "Creative studio & Production representing talents that supports brands in the production of content, artistic direction and with the representation of talented artists.",
-    context: "Unique design and smooth animations",
-    category: ["agency", "curated"],
-    title: "Denise Agency",
-    url: "https://denise-agency.com/projects/",
-    external_links: [
-      {
-        url: "https://denise-agency.com/who-is/",
-        description:
-          "About page for Denise Agency, a creative studio & production.",
-        category: ["artist", "photographer", "portfolio"],
-        title: "Who is Denise Agency",
-        context: "Layout and use of subtle color in the 3d layering is nice",
-      },
-      {
-        url: "https://denise-agency.com/artist/ben-fourmi/",
-        description:
-          "Denis Agency - Ben Fourmi Profile | photographer and art director based in Paris.",
-        category: ["artist", "photographer", "portfolio"],
-        title: "Ben Fourmi",
-        context: "Gallery animation and interactions :3",
-      },
-    ],
-  },
-];
+export const nonCompiledInspiration: InspirationResource[] = [];
