@@ -577,4 +577,16 @@ export const processedResources = [
     preview: "/vault/Justine Soulie/preview.png",
     lastEdited: "2024-04-04T16:40:43.482Z",
   },
+  {
+    description:
+      "Awwwards is a website that recognizes and promotes the talent and effort of the best developers, designers, and web agencies in the world.",
+    category: ["curated", "collection"],
+    context:
+      "Massive collection of the best websites on the internet. Great for inspiration and learning. It's a personal goal to have a site featured on here :3",
+    title: "Awwwards",
+    url: "https://www.awwwards.com",
+    icon: "/vault/Awwwards/icon.png",
+    preview: "/vault/Awwwards/preview.png",
+    lastEdited: "2024-04-04T16:51:45.733Z",
+  },
 ];
