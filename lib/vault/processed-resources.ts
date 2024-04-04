@@ -7,7 +7,7 @@ export const processedResources = [
     title: "CSS Design Awards",
     icon: "/vault/CSS Design Awards/icon.png",
     preview: "/vault/CSS Design Awards/preview.png",
-    lastEdited: "2024-04-03T07:38:54.534Z",
+    lastEdited: "2024-04-04T15:05:56.454Z",
   },
   {
     description: "Portfolio of Emil Kowalski Design Engineer & Developer",
@@ -26,13 +26,13 @@ export const processedResources = [
         title: "Animations on the web",
         icon: "/vault/Emil Kowalski/Animations on the web/icon.png",
         preview: "/vault/Emil Kowalski/Animations on the web/preview.png",
-        lastEdited: "2024-04-03T07:38:59.701Z",
+        lastEdited: "2024-04-04T15:06:02.240Z",
       },
     ],
     title: "Emil Kowalski",
     icon: "/vault/Emil Kowalski/icon.png",
     preview: "/vault/Emil Kowalski/preview.png",
-    lastEdited: "2024-04-03T07:38:56.853Z",
+    lastEdited: "2024-04-04T15:06:00.031Z",
   },
   {
     description: "Portfolio of Paco Coursey Design Engineer & Developer",
@@ -48,7 +48,7 @@ export const processedResources = [
         url: "https://paco.me/craft",
         title: "Craft",
         preview: "/vault/Paco Coursey/Craft/preview.png",
-        lastEdited: "2024-04-03T08:08:07.283Z",
+        lastEdited: "2024-04-04T15:06:08.281Z",
         icon: "/vault/Paco Coursey/Craft/icon.png",
       },
       {
@@ -59,12 +59,12 @@ export const processedResources = [
         title: "Fast, composable, unstyled command menu for React — ⌘K",
         preview:
           "/vault/Paco Coursey/Fast, composable, unstyled command menu for React — ⌘K/preview.png",
-        lastEdited: "2024-04-03T08:08:09.198Z",
+        lastEdited: "2024-04-04T15:06:11.634Z",
         icon: "/vault/Paco Coursey/Fast, composable, unstyled command menu for React — ⌘K/icon.png",
       },
     ],
     title: "Paco Coursey",
-    lastEdited: "2024-04-03T08:08:05.331Z",
+    lastEdited: "2024-04-04T15:06:05.170Z",
     icon: "/vault/Paco Coursey/icon.png",
     preview: "/vault/Paco Coursey/preview.png",
   },
@@ -76,7 +76,7 @@ export const processedResources = [
     title: "Interface Futures",
     icon: "/vault/Interface Futures/icon.png",
     preview: "/vault/Interface Futures/preview.png",
-    lastEdited: "2024-04-03T08:08:13.147Z",
+    lastEdited: "2024-04-04T15:06:19.656Z",
   },
   {
     description:
@@ -87,7 +87,7 @@ export const processedResources = [
     title: "uiwtf",
     icon: "/vault/uiwtf/icon.png",
     preview: "/vault/uiwtf/preview.png",
-    lastEdited: "2024-04-03T07:39:14.208Z",
+    lastEdited: "2024-04-04T15:06:23.817Z",
   },
   {
     description:
@@ -97,7 +97,7 @@ export const processedResources = [
     url: "https://www.uilabs.dev",
     title: "uilabs",
     icon: "/vault/uilabs/icon.png",
-    lastEdited: "2024-04-03T08:08:15.829Z",
+    lastEdited: "2024-04-04T15:06:27.470Z",
     preview: "/vault/uilabs/preview.png",
   },
   {
@@ -108,7 +108,7 @@ export const processedResources = [
     title: "Curated Design",
     icon: "/vault/Curated Design/icon.png",
     preview: "/vault/Curated Design/preview.png",
-    lastEdited: "2024-04-03T08:08:19.916Z",
+    lastEdited: "2024-04-04T15:06:31.359Z",
   },
   {
     description: "Portfolio of product engineer Alexandru Ţurcanu",
@@ -127,7 +127,7 @@ export const processedResources = [
         icon: "/vault/Alexandru Ţurcanu - Product Engineer/Projects - Alexandru Ţurcanu/icon.png",
         preview:
           "/vault/Alexandru Ţurcanu - Product Engineer/Projects - Alexandru Ţurcanu/preview.png",
-        lastEdited: "2024-04-03T07:39:29.953Z",
+        lastEdited: "2024-04-04T15:06:36.851Z",
       },
       {
         description: "Playground of small experiments by Alexandru Ţurcanu",
@@ -138,12 +138,12 @@ export const processedResources = [
         icon: "/vault/Alexandru Ţurcanu - Product Engineer/Experiments - Alexandru Ţurcanu/icon.png",
         preview:
           "/vault/Alexandru Ţurcanu - Product Engineer/Experiments - Alexandru Ţurcanu/preview.png",
-        lastEdited: "2024-04-03T07:39:33.387Z",
+        lastEdited: "2024-04-04T15:06:39.484Z",
       },
     ],
     title: "Alexandru Ţurcanu - Product Engineer",
     icon: "/vault/Alexandru Ţurcanu - Product Engineer/icon.png",
-    lastEdited: "2024-04-03T08:08:24.630Z",
+    lastEdited: "2024-04-04T15:06:34.173Z",
     preview: "/vault/Alexandru Ţurcanu - Product Engineer/preview.png",
   },
   {
@@ -153,7 +153,7 @@ export const processedResources = [
     url: "https://reboot.studio",
     title: "reboot",
     preview: "/vault/reboot/preview.png",
-    lastEdited: "2024-04-03T08:08:27.153Z",
+    lastEdited: "2024-04-04T15:06:41.709Z",
     icon: "/vault/reboot/icon.png",
   },
   {
@@ -172,7 +172,7 @@ export const processedResources = [
         title: "Inline photos - Jamie Gray",
         icon: "/vault/Jamie Gray/Inline photos - Jamie Gray/icon.png",
         preview: "/vault/Jamie Gray/Inline photos - Jamie Gray/preview.png",
-        lastEdited: "2024-04-03T08:08:34.592Z",
+        lastEdited: "2024-04-04T15:06:47.914Z",
       },
       {
         description:
@@ -185,13 +185,13 @@ export const processedResources = [
         icon: "/vault/Jamie Gray/Reducing Clutter on the Map - Jamie Gray/icon.png",
         preview:
           "/vault/Jamie Gray/Reducing Clutter on the Map - Jamie Gray/preview.png",
-        lastEdited: "2024-04-03T08:08:37.698Z",
+        lastEdited: "2024-04-04T15:06:50.083Z",
       },
     ],
     title: "Jamie Gray",
     icon: "/vault/Jamie Gray/icon.png",
     preview: "/vault/Jamie Gray/preview.png",
-    lastEdited: "2024-04-03T08:08:31.168Z",
+    lastEdited: "2024-04-04T15:06:44.736Z",
   },
   {
     description:
@@ -208,7 +208,7 @@ export const processedResources = [
           'Drawsgood on X: "Interactive playing card demo in @rive_app https://t.co/FIr1jRo7kb" / X',
         icon: "/vault/Rive/icon.png",
         preview: "/vault/Rive/preview.png",
-        lastEdited: "2024-04-03T08:43:55.010Z",
+        lastEdited: "2024-04-04T15:07:00.303Z",
       },
       {
         description: "How Duolingo rebuilt all their characters with Rive",
@@ -220,7 +220,7 @@ export const processedResources = [
         icon: "/vault/Rive/How Duolingo Animates Its World Characters/icon.png",
         preview:
           "/vault/Rive/How Duolingo Animates Its World Characters/preview.png",
-        lastEdited: "2024-04-03T08:08:55.421Z",
+        lastEdited: "2024-04-04T15:07:03.695Z",
       },
       {
         description: "Figma's new homepage is full of Rive animations",
@@ -231,13 +231,13 @@ export const processedResources = [
         icon: "/vault/Rive/Figma's new homepage is full of Rive animations/icon.png",
         preview:
           "/vault/Rive/Figma's new homepage is full of Rive animations/preview.png",
-        lastEdited: "2024-04-03T08:08:58.110Z",
+        lastEdited: "2024-04-04T15:07:06.189Z",
       },
     ],
     title: "Rive",
     icon: "/vault/Rive/icon.png",
     preview: "/vault/Rive/preview.png",
-    lastEdited: "2024-04-03T08:08:47.496Z",
+    lastEdited: "2024-04-04T15:06:52.484Z",
   },
   {
     description: "Portfolio of designer and developer Rauno Freiberg",
@@ -254,13 +254,13 @@ export const processedResources = [
         url: "https://rauno.me/craft",
         title: "Craft",
         preview: "/vault/Rauno Freiberg/Craft/preview.png",
-        lastEdited: "2024-04-03T08:09:12.132Z",
+        lastEdited: "2024-04-04T15:07:11.411Z",
         icon: "/vault/Rauno Freiberg/Craft/icon.png",
       },
     ],
     title: "Rauno Freiberg",
     preview: "/vault/Rauno Freiberg/preview.png",
-    lastEdited: "2024-04-03T08:09:09.177Z",
+    lastEdited: "2024-04-04T15:07:09.609Z",
     icon: "/vault/Rauno Freiberg/icon.png",
   },
   {
@@ -276,14 +276,14 @@ export const processedResources = [
         category: ["portfolio"],
         url: "https://twitter.com/mannupaaji",
         title: "Manu Arora",
-        lastEdited: "2024-04-03T08:09:19.642Z",
+        lastEdited: "2024-04-04T15:07:19.198Z",
         icon: "/vault/Aceternity UI/Manu Arora/icon.png",
         preview: "/vault/Aceternity UI/Manu Arora/preview.png",
       },
     ],
     title: "Aceternity UI",
     icon: "/vault/Aceternity UI/icon.png",
-    lastEdited: "2024-04-03T08:09:15.369Z",
+    lastEdited: "2024-04-04T15:07:13.845Z",
     preview: "/vault/Aceternity UI/preview.png",
   },
   {
@@ -294,7 +294,7 @@ export const processedResources = [
     title: "Ethan Chng Design",
     icon: "/vault/Ethan Chng Design/icon.png",
     preview: "/vault/Ethan Chng Design/preview.png",
-    lastEdited: "2024-04-03T08:09:25.827Z",
+    lastEdited: "2024-04-04T15:07:22.307Z",
   },
   {
     description: "Collection of website footer design",
@@ -304,7 +304,7 @@ export const processedResources = [
     title: "Footer",
     icon: "/vault/Footer/icon.png",
     preview: "/vault/Footer/preview.png",
-    lastEdited: "2024-04-03T08:09:29.728Z",
+    lastEdited: "2024-04-04T15:07:24.532Z",
   },
   {
     description: "Collection of darkmode website design",
@@ -314,7 +314,7 @@ export const processedResources = [
     title: "Dark Mode Design",
     icon: "/vault/Dark Mode Design/icon.png",
     preview: "/vault/Dark Mode Design/preview.png",
-    lastEdited: "2024-04-03T08:09:33.232Z",
+    lastEdited: "2024-04-04T15:07:26.892Z",
   },
   {
     description: "Collection of website design details that feel like magic",
@@ -324,7 +324,7 @@ export const processedResources = [
     url: "https://www.designspells.com",
     title: "Design Spells",
     icon: "/vault/Design Spells/icon.png",
-    lastEdited: "2024-04-03T08:09:36.257Z",
+    lastEdited: "2024-04-04T15:07:29.409Z",
     preview: "/vault/Design Spells/preview.png",
   },
   {
@@ -335,7 +335,7 @@ export const processedResources = [
     title: "Minimal Gallery",
     icon: "/vault/Minimal Gallery/icon.png",
     preview: "/vault/Minimal Gallery/preview.png",
-    lastEdited: "2024-04-03T08:09:44.664Z",
+    lastEdited: "2024-04-04T15:07:38.501Z",
   },
   {
     description: "Anthropology Magazine",
@@ -346,7 +346,7 @@ export const processedResources = [
     title: "SAPIENS",
     icon: "/vault/SAPIENS/icon.png",
     preview: "/vault/SAPIENS/preview.png",
-    lastEdited: "2024-04-03T08:09:48.566Z",
+    lastEdited: "2024-04-04T15:07:41.185Z",
   },
   {
     description: "Portfolio of design studio OMSE",
@@ -355,7 +355,7 @@ export const processedResources = [
     url: "https://www.omse.co",
     title: "OMSE",
     icon: "/vault/OMSE/icon.png",
-    lastEdited: "2024-04-03T08:09:51.634Z",
+    lastEdited: "2024-04-04T15:07:43.289Z",
     preview: "/vault/OMSE/preview.png",
   },
   {
@@ -366,7 +366,7 @@ export const processedResources = [
     title: "Avara",
     icon: "/vault/Avara/icon.png",
     preview: "/vault/Avara/preview.png",
-    lastEdited: "2024-04-03T08:43:57.653Z",
+    lastEdited: "2024-04-04T15:07:45.383Z",
   },
   {
     description: "Portfolio of designer and developer Sang Jin Lee",
@@ -376,6 +376,170 @@ export const processedResources = [
     icon: "/vault/Sang Jin Lee/icon.png",
     preview: "/vault/Sang Jin Lee/preview.png",
     url: "https://www.sang.design",
-    lastEdited: "2024-04-03T08:09:54.724Z",
+    lastEdited: "2024-04-04T15:07:49.354Z",
+  },
+  {
+    description: "Geist Design System and component library for React",
+    context:
+      "Vercel's design system and component library, industry leading and filled with good design patterns.",
+    category: ["component library", "design system"],
+    url: "https://vercel.com/geist/introduction",
+    title: "Vercel Geist",
+    icon: "/vault/Vercel Geist/icon.png",
+    preview: "/vault/Vercel Geist/preview.png",
+    lastEdited: "2024-04-04T15:07:49.354Z",
+    external_links: [
+      {
+        description: "Geist - Modern and minimalist React UI library",
+        context:
+          "Documentation for Geist UI, Vercel's design system filled with extra components and developer react hooks.",
+        title: "Geist UI",
+        category: ["component library"],
+        icon: "/vault/Vercel Geist/Geist UI/icon.png",
+        preview: "/vault/Vercel Geist/Geist UI/preview.png",
+        url: "https://geist-ui.dev/",
+        lastEdited: "2024-04-04T15:07:49.354Z",
+      },
+    ],
+  },
+  {
+    description:
+      "programmatic MP4 videos using React with server-side rendering and parametrization.",
+    context:
+      "Open-source library for creating mp4 videos with react, used by vercel for ui and code showcase videos.",
+    category: ["development library"],
+    url: "https://www.remotion.dev",
+    title: "Remotion",
+    icon: "/vault/Remotion/icon.png",
+    preview: "/vault/Remotion/preview.png",
+    lastEdited: "2024-04-04T15:07:49.354Z",
+    external_links: [
+      {
+        description: "Next.js Filesystem Routing with Remotion",
+        title: "Next.js Filesystem Routing with Remotion",
+        context:
+          "X Video from @delba_oliveira, DX at Vercel, explaining filesystem routing with Remotion. Her other newer videos are also made with Remotion and really showcase the power of this tool.",
+        category: ["learning"],
+        url: "https://twitter.com/delba_oliveira/status/1707439537054535867",
+        icon: "/vault/Remotion/Next.js Filesystem Routing with Remotion/icon.png",
+        preview:
+          "/vault/Remotion/Next.js Filesystem Routing with Remotion/preview.png",
+        lastEdited: "2024-04-04T15:07:49.354Z",
+      },
+    ],
+  },
+  {
+    description:
+      "Best-in-class Design Systems with components and foundations references from top-tier tech companies and leading UI teams",
+    context:
+      "Large curated collection of industry-leading design systems. One of the best resources for learning web design.",
+    title: "Design Systems Surf",
+    category: ["collection", "learning", "design system"],
+    url: "https://designsystems.surf",
+    icon: "/vault/Design Systems Surf/icon.png",
+    preview: "/vault/Design Systems Surf/preview.png",
+    lastEdited: "2024-04-04T15:07:49.354Z",
+    external_links: [
+      {
+        description:
+          "X account of Ilya Greben, creator of Design Systems Surf.",
+        title: "Ilya Greben",
+        context: "X account of Ilya Greben, creator of Design Systems Surf.",
+        category: ["learning", "design system"],
+        url: "Ilya Greben",
+        icon: "/vault/Design Systems Surf/Ilya Greben/icon.png",
+        preview: "/vault/Design Systems Surf/Ilya Greben/preview.png",
+        lastEdited: "2024-04-04T15:07:49.354Z",
+      },
+      {
+        description:
+          "Component anatomy, states, usage, behavior, and best practices, enriched with practical usage examples.",
+        title: "Blueprints",
+        context:
+          "Comprehensive Design System Blueprints for individual components.",
+        category: ["learning", "design system"],
+        url: "https://designsystems.surf/blueprints",
+        icon: "/vault/Design Systems Surf/Blueprints/icon.png",
+        preview: "/vault/Design Systems Surf/Blueprints/preview.png",
+        lastEdited: "2024-04-04T15:07:49.354Z",
+      },
+      {
+        description:
+          "Directory of Accessibility, Color System, Typography, and more design system resources.",
+        title: "Directories",
+        context: "Collection of Design System Resources",
+        category: ["learning", "design system"],
+        url: "https://designsystems.surf/directories",
+        icon: "/vault/Design Systems Surf/Directories/icon.png",
+        preview: "/vault/Design Systems Surf/Directories/preview.png",
+        lastEdited: "2024-04-04T15:07:49.354Z",
+      },
+      {
+        description:
+          "Directory for individual components from industry-leading design systems.",
+        title: "Components",
+        context: "Search by component type and name",
+        category: ["learning", "design system"],
+        url: "https://designsystems.surf/components",
+        icon: "/vault/Design Systems Surf/Components/icon.png",
+        preview: "/vault/Design Systems Surf/Components/preview.png",
+        lastEdited: "2024-04-04T15:07:49.354Z",
+      },
+      {
+        description: "Directory for industry-leading design systems.",
+        title: "Design Systems",
+        context: "Featuring design systems from industry-leading companies.",
+        category: ["learning", "design system"],
+        url: "https://designsystems.surf/design-systems",
+        icon: "/vault/Design Systems Surf/Design Systems/icon.png",
+        preview: "/vault/Design Systems Surf/Design Systems/preview.png",
+        lastEdited: "2024-04-04T15:07:49.354Z",
+      },
+    ],
+  },
+  {
+    description:
+      "Beautifully designed components that you can copy and paste into your apps. Accessible. Customizable. Open Source.",
+    category: ["component library", "curated"],
+    url: "https://ui.shadcn.com",
+    title: "shadcn",
+    icon: "/vault/shadcn/icon.png",
+    preview: "/vault/shadcn/preview.png",
+    lastEdited: "2024-04-04T15:59:45.083Z",
+  },
+  {
+    description:
+      "Creative studio & Production representing talents that supports brands in the production of content, artistic direction and with the representation of talented artists.",
+    context: "Unique design and smooth animations",
+    category: ["agency", "curated"],
+    title: "Denise Agency",
+    url: "https://denise-agency.com/projects/",
+    external_links: [
+      {
+        url: "https://denise-agency.com/who-is/",
+        description:
+          "About page for Denise Agency, a creative studio & production.",
+        category: ["artist", "photographer", "portfolio"],
+        title: "Who is Denise Agency",
+        context: "Layout and use of subtle color in the 3d layering is nice",
+        icon: "/vault/Denise Agency/Who is Denise Agency/icon.png",
+        preview: "/vault/Denise Agency/Who is Denise Agency/preview.png",
+        lastEdited: "2024-04-04T16:19:08.657Z",
+      },
+      {
+        url: "https://denise-agency.com/artist/ben-fourmi/",
+        description:
+          "Denis Agency - Ben Fourmi Profile | photographer and art director based in Paris.",
+        category: ["artist", "photographer", "portfolio"],
+        title: "Ben Fourmi",
+        context: "Gallery animation and interactions :3",
+        icon: "/vault/Denise Agency/Ben Fourmi/icon.png",
+        preview: "/vault/Denise Agency/Ben Fourmi/preview.png",
+        lastEdited: "2024-04-04T16:19:13.878Z",
+      },
+    ],
+    icon: "/vault/Denise Agency/icon.png",
+    preview: "/vault/Denise Agency/preview.png",
+    lastEdited: "2024-04-04T16:19:03.582Z",
   },
 ];

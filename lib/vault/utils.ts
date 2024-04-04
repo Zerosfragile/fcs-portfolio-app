@@ -9,7 +9,7 @@ const shouldRefetch = (resource: InspirationResource): boolean => {
   const lastEditedDate = new Date(resource.lastEdited);
   const hoursSinceLastEdit =
     (new Date().getTime() - lastEditedDate.getTime()) / (1000 * 60 * 60);
-  return hoursSinceLastEdit > 24;
+  return hoursSinceLastEdit > 24 * 100; // Refetch if older than 100 days
 };
 
 export const saveFile = async (
@@ -62,7 +62,11 @@ const fetchResourceData = async (
     await setTimeout(() => {}, 10000); // Wait for page and potential animations to load
 
     //? 2. Title and Folder Setup
-    const title = resource.title ? resource.title : await page.title();
+    // This regex matches any character not allowed in a folder name
+    const forbiddenChars: RegExp = /[\\/:*?"<>|]/g;
+    const title = resource.title
+      ? resource.title
+      : (await page.title()).replace(forbiddenChars, " ");
     console.log(`Title: ${title}`);
     const folderName = titlePrefix + "/" + title;
 
@@ -113,8 +117,8 @@ const fetchResourceData = async (
     return {
       ...resource,
       title: title,
-      icon: iconPath.replace("\\", "/"),
-      preview: screenshotPath.replace("\\", "/"),
+      icon: iconPath.replace(/\\/g, "/"),
+      preview: screenshotPath.replace(/\\/g, "/"),
       lastEdited: new Date().toISOString(), // Update last edited time
     };
   } catch (error) {

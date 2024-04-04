@@ -45,7 +45,7 @@ function CardContent({
   url,
   external_links,
 }: InspirationResource) {
-  const lastEditedDate = new Date(lastEdited || 0);
+  const lastEditedDate = lastEdited ? new Date(lastEdited) : new Date();
 
   return (
     <div className="w-full h-fit border border-LunarGrey-dark relative overflow-hidden rounded-xl bg-LunarGrey-darkest p-1 font-mono flex flex-col gap-2">
