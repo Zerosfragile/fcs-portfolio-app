@@ -133,6 +133,7 @@ const HudNav = ({ eventHandlers }: { eventHandlers: EventHandlers }) => {
               route: "/about",
             },
           ]}
+          className="max-md:hidden"
         />
         <HUDN.btn
           defaultLabel="Projects"
@@ -169,6 +170,33 @@ const HudNav = ({ eventHandlers }: { eventHandlers: EventHandlers }) => {
               route: "/about/resume",
             },
           ]}
+        />
+        <HUDN.btn
+          prefix={{
+            breakpoint: 1100,
+            text: "04 // ",
+          }}
+          defaultLabel="Contact"
+          route="/contact"
+          sites={[
+            {
+              title: "Email",
+              event: "showEmail",
+            },
+            {
+              title: "Github",
+              route: "https://github.com/zerofcs",
+            },
+            {
+              title: "Linkedin",
+              route: "https://www.linkedin.com/in/marcus-lim-b6a721260/",
+            },
+            {
+              title: "More",
+              route: "/contact",
+            },
+          ]}
+          className="md:hidden"
         />
       </HUDN.container>
       <HUDN.container eventHandlers={eventHandlers} className="max-md:hidden">
