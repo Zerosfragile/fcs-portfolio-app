@@ -104,7 +104,12 @@ const fetchResourceData = async (
 
       const response = await page.goto(faviconUrl);
       if (response) {
-        const buffer = await response.buffer();
+        let buffer = await response.buffer();
+        if (faviconUrl.endsWith(".svg")) {
+          buffer = await bufferConvertSVGtoPNG({
+            svgContent: buffer.toString(),
+          });
+        }
         iconPath = await saveFile(buffer, folderName, "icon.png");
       }
       console.log(`Icon: ${response ? "success" : "failed"}`);
@@ -153,9 +158,9 @@ export const iterateResources = async (
   }
 };
 
-export async function saveSVGAsPNG({
+export async function bufferConvertSVGtoPNG({
   svgContent,
-  dimensions = { w: 100, h: 100 },
+  dimensions,
 }: {
   svgContent: string;
   dimensions?: { w: number; h: number };
@@ -195,10 +200,13 @@ export async function saveSVGAsPNG({
     waitUntil: "networkidle0",
   });
 
+  const svgWidth = await page.$eval("svg", (el) => el.clientWidth);
+  const svgHeight = await page.$eval("svg", (el) => el.clientHeight);
+
   // Optional: Set the viewport if you want a specific window size
   await page.setViewport({
-    width: dimensions.w,
-    height: dimensions.h,
+    width: dimensions ? dimensions.w : svgWidth,
+    height: dimensions ? dimensions.h : svgHeight,
   });
 
   // Take a screenshot of the SVG content
@@ -207,13 +215,7 @@ export async function saveSVGAsPNG({
     omitBackground: true,
   });
 
-  // Use Sharp to convert the screenshot (buffer) to PNG (if needed)
-  sharp(buffer)
-    .png()
-    .toFile("icon.png", (err, info) => {
-      if (err) throw err;
-      console.log("SVG has been converted to PNG.");
-    });
-
   await browser.close();
+
+  return sharp(buffer).png().toBuffer();
 }
