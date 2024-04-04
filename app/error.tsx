@@ -4,6 +4,8 @@ import posthog from "posthog-js";
 import Image from "next/image";
 import { useEffect } from "react";
 import { TypingLabel } from "@/components/hud-nav-system";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function Error({
   error,
@@ -33,28 +35,24 @@ export default function Error({
         <p>PROJECTS</p>
         <p>DESIGN</p>
       </div>
-      <div className="group absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-        <button
-          className="flex flex-col items-center justify-center"
-          onClick={
-            // Attempt to recover by trying to re-render the segment
-            () => reset()
-          }
-        >
+      <div className="group absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 grid place-items-center">
+        <Link className="grid place-items-center" href={"/"}>
           <Image
             src={"/images/056-Modern_Icons.png"}
             alt={""}
             width={75}
             height={75}
             className="opacity-10 invert transition-all duration-500 ease-linear group-hover:opacity-50"
+            priority
           />
-        </button>
+        </Link>
+
         <div
           className="m-6 grid place-items-center
           font-[CygnitoMono-011] text-[11.25px] font-normal uppercase text-OffWhite/[.33] transition-all duration-500 ease-linear group-hover:text-OffWhite/[.66]"
         >
-          <TypingLabel text={"Data Link Destroyed..."} />
-          <TypingLabel text={error.message} />
+          <TypingLabel text={`${error.name} | Data Link Destroyed...`} />
+          <Button onClick={() => reset()}>Retry Connection</Button>
         </div>
       </div>
     </div>

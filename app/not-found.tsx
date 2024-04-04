@@ -15,14 +15,15 @@ export default function NotFound() {
         <p>PROJECTS</p>
         <p>DESIGN</p>
       </div>
-      <div className="group absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-        <Link className="flex flex-col items-center justify-center" href={"/"}>
+      <div className="group absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 grid place-items-center">
+        <Link className="grid place-items-center" href={"/"}>
           <Image
             src={"/images/056-Modern_Icons.png"}
             alt={""}
             width={75}
             height={75}
             className="opacity-10 invert transition-all duration-500 ease-linear group-hover:opacity-50"
+            priority
           />
         </Link>
         <div
