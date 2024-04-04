@@ -364,6 +364,8 @@ export const processedResources = [
     category: ["misc"],
     url: "https://avara.xyz",
     title: "Avara",
+    icon: "/vault/Avara/icon.png",
+    preview: "/vault/Avara/preview.png",
     lastEdited: "2024-04-03T08:43:57.653Z",
   },
   {
