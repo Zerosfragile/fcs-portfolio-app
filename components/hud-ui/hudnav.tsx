@@ -112,10 +112,6 @@ const HudNav = ({ eventHandlers }: Props) => {
           route="/about"
           sites={[
             {
-              title: "Blog Posts",
-              route: "/blog",
-            },
-            {
               title: "Github",
               route: "https://github.com/Zerosfragile",
             },
@@ -134,7 +130,7 @@ const HudNav = ({ eventHandlers }: Props) => {
               route: "https://fragileservices.com",
             },
             {
-              title: "Inspiration Resources",
+              title: "Inspiration Vault",
               route: "/vault",
             },
             // {
