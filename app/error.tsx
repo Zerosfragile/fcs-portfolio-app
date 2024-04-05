@@ -49,10 +49,12 @@ export default function Error({
 
         <div
           className="m-6 grid place-items-center
-          font-[CygnitoMono-011] text-[11.25px] font-normal uppercase text-OffWhite/[.33] transition-all duration-500 ease-linear group-hover:text-OffWhite/[.66]"
+          font-[CygnitoMono-011] text-[11.25px] font-normal uppercase text-OffWhite/[.33] transition-all duration-500 ease-linear group-hover:text-OffWhite/[.66] gap-4"
         >
           <TypingLabel text={`${error.name} | Data Link Destroyed...`} />
-          <Button onClick={() => reset()}>Retry Connection</Button>
+          <Button variant={"outline"} onClick={() => reset()}>
+            Retry Connection
+          </Button>
         </div>
       </div>
     </div>
