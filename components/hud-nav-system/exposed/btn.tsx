@@ -6,7 +6,7 @@ import { HNContext } from "./container";
 import { HNBreakpointText, HNSite } from "..";
 import { cn } from "@/lib/utils";
 
-export type Props = {
+export type HUDButtonProps = {
   prefix?: HNBreakpointText;
   labels?: HNBreakpointText[];
   sites?: HNSite[];
@@ -16,17 +16,15 @@ export type Props = {
   className?: string;
 } & ({ event: string } | { route: string });
 
-const Btn = (props: Props) => {
-  const {
-    prefix = { breakpoint: 1100, text: "" },
-    sites = [],
-    labels,
-    defaultLabel,
-    route,
-    event,
-    className,
-  } = props;
-
+const Btn = ({
+  prefix = { breakpoint: 1100, text: "" },
+  sites = [],
+  labels,
+  defaultLabel,
+  route,
+  event,
+  className,
+}: HUDButtonProps) => {
   const dynamicLabel = useDynamicLabel({ labels, prefix, defaultLabel });
   const ref = useRef<HTMLButtonElement | null>(null);
 

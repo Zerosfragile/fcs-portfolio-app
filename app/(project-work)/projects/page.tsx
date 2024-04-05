@@ -8,12 +8,19 @@ import {
   HudPostsCard,
   handleCardMouseMove,
   HudEmail,
+  HudNav,
 } from "@/components/hud-ui";
 import Link from "next/link";
 import { isMobile } from "react-device-detect";
 import { cn } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useScrollDirection } from "@/components/hud-ui/hooks";
+import {
+  AboutMeButton,
+  DefaultNavButtons,
+  PlaygroundButton,
+  VaultButton,
+} from "@/components/hud-ui/hudnav";
 
 async function getPostData() {
   const postData: BlogData = await getBlogData();
@@ -141,7 +148,13 @@ export default function Projects() {
             transition={{ duration: 1, delay: 0, ease: "easeInOut" }}
             className="hud-border max-md:align-center bottom-0 flex h-[75px] items-center justify-between text-center max-md:flex-wrap max-md:justify-center max-md:overflow-hidden max-md:p-4"
           >
-            <HudNav eventHandlers={eventHandlers} />
+            <HudNav
+              eventHandlers={eventHandlers}
+              config={[
+                [AboutMeButton, PlaygroundButton, VaultButton],
+                DefaultNavButtons[1],
+              ]}
+            />
           </motion.div>
         )}
       </AnimatePresence>
@@ -149,89 +162,3 @@ export default function Projects() {
     </div>
   );
 }
-
-const HudNav = ({ eventHandlers }: { eventHandlers: EventHandlers }) => {
-  return (
-    <>
-      <HUDN.container eventHandlers={eventHandlers}>
-        <HUDN.btn
-          labels={[{ breakpoint: 850, text: "About" }]}
-          defaultLabel="About Me"
-          route="/about"
-          sites={[
-            {
-              title: "Github",
-              route: "https://github.com/Zerosfragile",
-            },
-            {
-              title: "More",
-              route: "/about",
-            },
-          ]}
-        />
-        <HUDN.btn
-          labels={[
-            { breakpoint: 350, text: "UI" },
-            { breakpoint: 850, text: "Playground" },
-          ]}
-          defaultLabel="UI Playground"
-          route="/playground"
-        />
-
-        <HUDN.btn
-          labels={[{ breakpoint: 850, text: "Vault" }]}
-          defaultLabel="Inspiration Vault"
-          route="/vault"
-        />
-      </HUDN.container>
-      <HUDN.container eventHandlers={eventHandlers} className="max-md:hidden">
-        <HUDN.btn
-          prefix={{
-            breakpoint: 1100,
-            text: "04 // ",
-          }}
-          defaultLabel="Contact"
-          route="/contact"
-          sites={[
-            {
-              title: "Email",
-              event: "showEmail",
-            },
-            {
-              title: "Github",
-              route: "https://github.com/zerofcs",
-            },
-            {
-              title: "Linkedin",
-              route: "https://www.linkedin.com/in/marcus-lim-b6a721260/",
-            },
-            {
-              title: "More",
-              route: "/contact",
-            },
-          ]}
-          className="max-md:hidden"
-        />
-        <HUDN.btn
-          prefix={{
-            breakpoint: 1100,
-            text: "05 // ",
-          }}
-          defaultLabel="Resume"
-          route="/about/resume"
-          sites={[
-            {
-              title: "PDF View",
-              route: "/about/resume/pdf",
-            },
-            {
-              title: "More",
-              route: "/about/resume",
-            },
-          ]}
-          className="max-md:hidden"
-        />
-      </HUDN.container>
-    </>
-  );
-};

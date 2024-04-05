@@ -9,6 +9,15 @@ import { isMobile } from "react-device-detect";
 import { cn } from "@/lib/utils";
 import { useHudState } from "@/components/hud-ui/hud-state-context";
 import HUDN, { EventHandlers } from "@/components/hud-nav-system";
+import {
+  ContactButton,
+  DefaultNavButtons,
+  HudNav,
+  PlaygroundButton,
+  ProjectsButton,
+  ResumeButton,
+  VaultButton,
+} from "@/components/hud-ui/hudnav";
 
 type Props = {
   quote: React.ReactNode;
@@ -101,7 +110,25 @@ export default function InitializingLayout({ quote, children }: Props) {
             transition={{ duration: 1, delay: 0, ease: "easeInOut" }}
             className="hud-border max-md:align-center bottom-0 flex h-[75px] items-center justify-between text-center max-md:flex-wrap max-md:justify-center max-md:overflow-hidden max-md:p-4"
           >
-            <HudNav eventHandlers={eventHandlers} />
+            <HudNav
+              eventHandlers={eventHandlers}
+              config={[
+                [
+                  ProjectsButton,
+                  { ...PlaygroundButton, className: "max-md:hidden" },
+                  { ...VaultButton, className: "max-md:hidden" },
+                  {
+                    ...ContactButton,
+                    className: "md:hidden",
+                  },
+                  {
+                    ...ResumeButton,
+                    className: "md:hidden",
+                  },
+                ],
+                DefaultNavButtons[1],
+              ]}
+            />
           </motion.div>
         )}
       </AnimatePresence>
@@ -114,130 +141,3 @@ export default function InitializingLayout({ quote, children }: Props) {
     </div>
   );
 }
-
-const HudNav = ({ eventHandlers }: { eventHandlers: EventHandlers }) => {
-  return (
-    <>
-      <HUDN.container eventHandlers={eventHandlers}>
-        <HUDN.btn
-          labels={[{ breakpoint: 850, text: "About" }]}
-          defaultLabel="About Me"
-          route="/about"
-          sites={[
-            {
-              title: "Github",
-              route: "https://github.com/Zerosfragile",
-            },
-            {
-              title: "More",
-              route: "/about",
-            },
-          ]}
-          className="max-md:hidden"
-        />
-        <HUDN.btn
-          defaultLabel="Projects"
-          route="/projects"
-          sites={[
-            {
-              title: "Ascii-Hud",
-              route: "https://fragileservices.com",
-            },
-            {
-              title: "Inspiration Vault",
-              route: "/vault",
-            },
-            // {
-            //   title: "Playground",
-            //   route: "/Projects/playground",
-            // },
-            {
-              title: "More",
-              route: "/projects",
-            },
-          ]}
-        />
-        <HUDN.btn
-          defaultLabel="Resume"
-          route="/about/resume"
-          sites={[
-            {
-              title: "PDF View",
-              route: "/about/resume/pdf",
-            },
-            {
-              title: "More",
-              route: "/about/resume",
-            },
-          ]}
-        />
-        <HUDN.btn
-          prefix={{
-            breakpoint: 1100,
-            text: "04 // ",
-          }}
-          defaultLabel="Contact"
-          route="/contact"
-          sites={[
-            {
-              title: "Email",
-              event: "showEmail",
-            },
-            {
-              title: "Github",
-              route: "https://github.com/zerofcs",
-            },
-            {
-              title: "Linkedin",
-              route: "https://www.linkedin.com/in/marcus-lim-b6a721260/",
-            },
-            {
-              title: "More",
-              route: "/contact",
-            },
-          ]}
-          className="md:hidden"
-        />
-      </HUDN.container>
-      <HUDN.container eventHandlers={eventHandlers} className="max-md:hidden">
-        <HUDN.btn
-          prefix={{
-            breakpoint: 1100,
-            text: "04 // ",
-          }}
-          defaultLabel="Contact"
-          route="/contact"
-          sites={[
-            {
-              title: "Email",
-              event: "showEmail",
-            },
-            {
-              title: "Github",
-              route: "https://github.com/zerofcs",
-            },
-            {
-              title: "Linkedin",
-              route: "https://www.linkedin.com/in/marcus-lim-b6a721260/",
-            },
-            {
-              title: "More",
-              route: "/contact",
-            },
-          ]}
-          className="max-md:hidden"
-        />
-        <HUDN.btn
-          prefix={{
-            breakpoint: 1100,
-            text: "05 // ",
-          }}
-          defaultLabel="Refresh"
-          event="refresh"
-          sites={[]}
-          className="max-md:hidden"
-        />
-      </HUDN.container>
-    </>
-  );
-};
