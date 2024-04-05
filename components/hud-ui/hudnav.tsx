@@ -32,15 +32,15 @@ export const ProjectsButton: HUDButtonProps = {
       route: "https://fragileservices.com",
     },
     {
-      title: "Inspiration Vault",
-      route: "/vault",
-    },
-    {
       title: "Playground",
       route: "/playground",
     },
     {
-      title: "More",
+      title: "Resource Vault",
+      route: "/vault",
+    },
+    {
+      title: "See Project Archives",
       route: "/projects",
     },
   ],
