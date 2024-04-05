@@ -4,6 +4,8 @@ import { processedResources } from "@/lib/vault/processed-resources";
 import { InspirationResource } from "@/lib/vault/insperation";
 import SiteCard from "./_components/site-card";
 import { useMediaQuery } from "@/lib/hooks";
+import { AnimatePresence, motion } from "framer-motion";
+import SiteCardCol from "./_components/site-card-col";
 
 function splitArrayAlphabetically(
   items: InspirationResource[],
@@ -50,30 +52,28 @@ export default async function VaultPage() {
   return (
     <main className="p-4">
       {/* Small Screens - 1 Column */}
-      <section className="grid md:hidden grid-cols-1 gap-2">
-        {resources.map((resource) => (
-          <SiteCard key={resource.url} {...resource} />
-        ))}
+      <section className="md:hidden">
+        <SiteCardCol resources={resources} delayInSeconds={0.1} />
       </section>
 
       {/* Medium Screens - 2 Columns */}
       <section className="hidden md:grid xl:hidden grid-cols-2 gap-2">
         {TwoColumns.map((col, index) => (
-          <div key={index} className="flex flex-col gap-2">
-            {col.map((resource) => (
-              <SiteCard key={resource.url} {...resource} />
-            ))}
-          </div>
+          <SiteCardCol
+            resources={col}
+            delayInSeconds={index * 0.1}
+            key={index}
+          />
         ))}
       </section>
       {/* Xlarge Screens - 3 Columns */}
       <section className="hidden xl:grid grid-cols-3 gap-2">
         {ThreeColumns.map((col, index) => (
-          <div key={index} className="flex flex-col gap-2">
-            {col.map((resource) => (
-              <SiteCard key={resource.url} {...resource} />
-            ))}
-          </div>
+          <SiteCardCol
+            resources={col}
+            delayInSeconds={index * 0.1}
+            key={index}
+          />
         ))}
       </section>
     </main>
