@@ -46,6 +46,7 @@ async function saveProcessedResources(resources: InspirationResource[]) {
   // Using fs.promises to handle this asynchronously
   await fs.promises.writeFile(filePath, content, "utf8");
   console.log(`Processed resources have been saved to ${filePath}`);
+  return;
 }
 
 iterateResources(resources).then(() => saveProcessedResources(resources));
