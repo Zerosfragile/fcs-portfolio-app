@@ -13,8 +13,6 @@ export async function generateStaticParams() {
       id: object.id,
     };
   });
-  console.log(paramIds);
-
   return paramIds;
 }
 
