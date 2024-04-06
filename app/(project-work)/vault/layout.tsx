@@ -108,7 +108,9 @@ export default function InitializingLayout({ quote, children }: Props) {
               eventHandlers={eventHandlers}
               config={DefaultNavButtons.map((container) =>
                 container.map((button) =>
-                  button.route === "/vault" ? PlaygroundButton : button
+                  button.route === "/vault"
+                    ? { ...PlaygroundButton, className: "max-md:hidden" }
+                    : button
                 )
               )}
             />
