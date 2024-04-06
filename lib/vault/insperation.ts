@@ -25,6 +25,7 @@ export type InspirationResource = {
 // Specify (URL) to be compiled into the app.
 // Provide a brief (description) of each site, as found on the site itself.
 // Explain the reason (context) for including each site in the vault.
+// Assign (category) tags to each site.
 // ---
 // run `pnpm compile-vault` will compile this into `processed-resources.ts`
 // Remove the urls from this file after they have been compiled for cleanliness
@@ -36,8 +37,3 @@ export type InspirationResource = {
 // ---
 // The compile step will skip over that are already filled out in `processed-resources.ts`, so you can just delete the values you want to update and run `pnpm compile-vault` again if you need to update a resource
 export const nonCompiledInspiration: InspirationResource[] = [];
-
-// https://ilovecreatives.com/
-// https://theud.tv/
-// https://angusemmerson.com/
-// https://www.gregorylalle.com/

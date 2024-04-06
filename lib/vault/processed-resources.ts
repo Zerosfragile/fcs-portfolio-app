@@ -509,41 +509,6 @@ export const processedResources = [
   },
   {
     description:
-      "Creative studio & Production representing talents that supports brands in the production of content, artistic direction and with the representation of talented artists.",
-    context: "Unique design and smooth animations",
-    category: ["agency", "curated"],
-    title: "Denise Agency",
-    url: "https://denise-agency.com/projects/",
-    external_links: [
-      {
-        url: "https://denise-agency.com/who-is/",
-        description:
-          "About page for Denise Agency, a creative studio & production.",
-        category: ["artist", "photographer", "portfolio"],
-        title: "Who is Denise Agency",
-        context: "Layout and use of subtle color in the 3d layering is nice",
-        icon: "/vault/Denise Agency/Who is Denise Agency/icon.png",
-        preview: "/vault/Denise Agency/Who is Denise Agency/preview.png",
-        lastEdited: "2024-04-04T16:19:08.657Z",
-      },
-      {
-        url: "https://denise-agency.com/artist/ben-fourmi/",
-        description:
-          "Denis Agency - Ben Fourmi Profile | photographer and art director based in Paris.",
-        category: ["artist", "photographer", "portfolio"],
-        title: "Ben Fourmi",
-        context: "Gallery animation and interactions :3",
-        icon: "/vault/Denise Agency/Ben Fourmi/icon.png",
-        preview: "/vault/Denise Agency/Ben Fourmi/preview.png",
-        lastEdited: "2024-04-04T16:19:13.878Z",
-      },
-    ],
-    icon: "/vault/Denise Agency/icon.png",
-    preview: "/vault/Denise Agency/preview.png",
-    lastEdited: "2024-04-04T16:19:03.582Z",
-  },
-  {
-    description:
       "Portfolio of motion illustrator and designer, Justine Soulie.",
     context: "WebGL portfolio with a unique design and interactions.",
     category: ["portfolio", "curated"],
@@ -587,5 +552,91 @@ export const processedResources = [
     preview: "/vault/Awwwards/preview.png",
     lastEdited: "2024-04-04T17:06:32.174Z",
     icon: "/vault/Awwwards/icon.png",
+  },
+  {
+    url: "https://ilovecreatives.com/",
+    description:
+      "A one-stop  portal  for multifaceted✹creatives looking to stack their digital skills alongside a good vibes✿ community.",
+    context:
+      "Find inspiration and creative resources and connect with talented individuals.",
+    category: ["collection"],
+    title: "ilovecreatives",
+    icon: "/vault/ilovecreatives/icon.png",
+    preview: "/vault/ilovecreatives/preview.png",
+    lastEdited: "2024-04-06T18:18:04.789Z",
+  },
+  {
+    url: "https://www.gregorylalle.com",
+    description: "Portfolio of developer and designer Gregory Lalle",
+    context:
+      "Developer of smooth and interactive content focused portfolios for creatives",
+    category: ["portfolio"],
+    external_links: [
+      {
+        url: "https://angusemmerson.com/",
+        description:
+          "Portfolio of Angus Emmerson, a video editor and creative.",
+        context: "A simple and clean portfolio with a focus on video content.",
+        category: ["portfolio", "design"],
+        title: "Video editor — Angus Emmerson",
+        icon: "/vault/Grégory Lallé — Creative developer/Video editor — Angus Emmerson/icon.png",
+        preview:
+          "/vault/Grégory Lallé — Creative developer/Video editor — Angus Emmerson/preview.png",
+        lastEdited: "2024-04-06T18:18:38.662Z",
+      },
+      {
+        url: "https://theud.tv",
+        description:
+          "Portfolio of Visual Art Director Thibault Remetter, aka Theud.",
+        context:
+          "Beautiful minimal and interactive gallery-content focused portfolio",
+        category: ["portfolio", "design"],
+        title: "Productive director & video maker — Theud",
+        icon: "/vault/Grégory Lallé — Creative developer/Productive director & video maker — Theud/icon.png",
+        preview:
+          "/vault/Grégory Lallé — Creative developer/Productive director & video maker — Theud/preview.png",
+        lastEdited: "2024-04-06T18:18:59.841Z",
+      },
+      {
+        description:
+          "Creative studio & Production representing talents that supports brands in the production of content, artistic direction and with the representation of talented artists.",
+        context: "Unique design and smooth animations",
+        category: ["agency", "curated"],
+        title: "Denise Agency",
+        url: "https://denise-agency.com/projects/",
+        external_links: [
+          {
+            url: "https://denise-agency.com/who-is/",
+            description:
+              "About page for Denise Agency, a creative studio & production.",
+            category: ["artist", "photographer", "portfolio"],
+            title: "Who is Denise Agency",
+            context:
+              "Layout and use of subtle color in the 3d layering is nice",
+            icon: "/vault/Denise Agency/Who is Denise Agency/icon.png",
+            preview: "/vault/Denise Agency/Who is Denise Agency/preview.png",
+            lastEdited: "2024-04-04T16:19:08.657Z",
+          },
+          {
+            url: "https://denise-agency.com/artist/ben-fourmi/",
+            description:
+              "Denis Agency - Ben Fourmi Profile | photographer and art director based in Paris.",
+            category: ["artist", "photographer", "portfolio"],
+            title: "Ben Fourmi",
+            context: "Gallery animation and interactions :3",
+            icon: "/vault/Denise Agency/Ben Fourmi/icon.png",
+            preview: "/vault/Denise Agency/Ben Fourmi/preview.png",
+            lastEdited: "2024-04-04T16:19:13.878Z",
+          },
+        ],
+        icon: "/vault/Denise Agency/icon.png",
+        preview: "/vault/Denise Agency/preview.png",
+        lastEdited: "2024-04-04T16:19:03.582Z",
+      },
+    ],
+    title: "Grégory Lallé — Creative developer",
+    icon: "/vault/Grégory Lallé — Creative developer/icon.png",
+    preview: "/vault/Grégory Lallé — Creative developer/preview.png",
+    lastEdited: "2024-04-06T18:18:20.916Z",
   },
 ];
