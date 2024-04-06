@@ -36,3 +36,8 @@ export type InspirationResource = {
 // ---
 // The compile step will skip over that are already filled out in `processed-resources.ts`, so you can just delete the values you want to update and run `pnpm compile-vault` again if you need to update a resource
 export const nonCompiledInspiration: InspirationResource[] = [];
+
+// https://ilovecreatives.com/
+// https://theud.tv/
+// https://angusemmerson.com/
+// https://www.gregorylalle.com/
