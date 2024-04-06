@@ -1,8 +1,9 @@
 "use server";
 
-import fs from "fs";
+// import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import fs from "fs/promises";
 
 const OUTPUTLOG = false;
 export interface PostMetaData {
@@ -25,63 +26,68 @@ export interface BlogData {
   [key: string]: PostMetaData[];
 }
 
-export const getBlogData = (key?: string, numPosts?: number): BlogData => {
+export const getBlogData = async (
+  key?: string,
+  numPosts?: number
+): Promise<BlogData> => {
   const blogData: BlogData = {};
-
   const postsDirectory = path.join(process.cwd(), "_posts");
 
-  const postFolders = fs.readdirSync(postsDirectory);
+  try {
+    const postFolders = await fs.readdir(postsDirectory);
 
-  if (OUTPUTLOG) console.log(postFolders);
+    if (OUTPUTLOG) console.log(postFolders);
 
-  postFolders.forEach((folder) => {
-    if (folder !== ".DS_Store") {
-      const currentDirectory = path.join(postsDirectory, folder);
+    for (const folder of postFolders) {
+      if (folder !== ".DS_Store") {
+        const currentDirectory = path.join(postsDirectory, folder);
 
-      try {
-        if (OUTPUTLOG) console.log(fs.readdirSync(currentDirectory));
+        try {
+          const directoryFiles = await fs.readdir(currentDirectory);
+          if (OUTPUTLOG) console.log(directoryFiles);
 
-        const files = fs
-          .readdirSync(currentDirectory)
-          .filter((file) => file !== ".DS_Store" && file.endsWith(".md"))
-          .map((file) => {
-            const id = file.replace(".md", "");
-            const filePath = path.join(currentDirectory, file);
-            const markdownFile = fs.readFileSync(filePath, "utf8");
-            const { data } = matter(markdownFile);
+          const files = (
+            await Promise.all(
+              directoryFiles
+                .filter((file) => file !== ".DS_Store" && file.endsWith(".md"))
+                .map(async (file) => {
+                  const id = file.replace(".md", "");
+                  const filePath = path.join(currentDirectory, file);
+                  const markdownFile = await fs.readFile(filePath, "utf8");
+                  const { data } = matter(markdownFile);
 
-            if (data.draft === true) {
-              return null;
-            }
+                  if (data.draft === true) {
+                    return null;
+                  }
 
-            const previewImage = `/posts/${folder}/preview-${id}.png`;
+                  const previewImage = `/posts/${folder}/preview-${id}.png`;
+                  return { ...data, id, preview: previewImage } as PostMetaData;
+                })
+            )
+          ).filter((post) => post !== null) as PostMetaData[];
 
-            return { ...data, id: id, preview: previewImage } as PostMetaData;
-          })
-          .filter((post) => post !== null) as PostMetaData[];
-
-        files.sort(
-          (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-        );
-
-        blogData[folder] = files;
-      } catch (error) {
-        if (error instanceof DirectoryError) {
-          console.error(
-            `Error reading directory ${currentDirectory}: ${error.message}`
+          files.sort(
+            (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
           );
-        } else if (error instanceof Error) {
+          blogData[folder] = files;
+        } catch (error) {
           console.error(
-            `Error reading directory ${currentDirectory}: An unknown error occurred: ${error.message}`
-          );
-        } else {
-          console.error(
-            `Error reading directory ${currentDirectory}: An unknown error occurred.`
+            `Error reading directory ${currentDirectory}: ${
+              error instanceof Error
+                ? error.message
+                : "An unknown error occurred."
+            }`
           );
         }
       }
     }
-  });
+  } catch (error) {
+    console.error(
+      `Error reading posts directory: ${
+        error instanceof Error ? error.message : "An unknown error occurred."
+      }`
+    );
+  }
 
   if (OUTPUTLOG) console.log(blogData);
 
@@ -101,42 +107,55 @@ interface Post {
   revalidate: number;
 }
 
-export const getPost = (id: string): Post => {
+export const getPost = async (
+  id: string
+): Promise<{ data: null | PostData; revalidate: number }> => {
   const postsDirectory = path.join(process.cwd(), "_posts");
-  const postFolders = fs.readdirSync(postsDirectory);
   let postData: null | PostData = null;
 
-  postFolders.some((folder) => {
-    const filePath = path.join(postsDirectory, folder, id + ".md");
-    if (fs.existsSync(filePath)) {
-      const markdownFile = fs.readFileSync(filePath, "utf8");
-      const { content, data } = matter(markdownFile);
+  try {
+    const postFolders = await fs.readdir(postsDirectory);
 
-      if (data.route.startsWith("www.")) {
-        // Log the error message
-        console.error(`Invalid Route Format: The provided route "${data.route}" starts with "www.", which is treated as an internal route. 
-        Internal routes should be in the format "/route". External routes should start with "https://" or "http://".`);
+    for (const folder of postFolders) {
+      const filePath = path.join(postsDirectory, folder, `${id}.md`);
+      try {
+        // Check if the file exists
+        await fs.access(filePath);
+        // Read the file if it exists
+        const markdownFile = await fs.readFile(filePath, "utf8");
+        const { content, data } = matter(markdownFile);
 
-        return true; // Stops the iteration once the file is found
+        if (data.route.startsWith("www.")) {
+          console.error(`Invalid Route Format: The provided route "${data.route}" starts with "www.", which is treated as an internal route. 
+          Internal routes should be in the format "/route". External routes should start with "https://" or "http://".`);
+          break; // Exit the loop early
+        }
+
+        postData = {
+          content,
+          title: data.title,
+          route: data.route,
+          tags: data.tags,
+          date: data.date,
+        };
+
+        if (OUTPUTLOG) {
+          console.log(postData);
+        }
+
+        break; // Exit the loop once the file is found and processed
+      } catch (error) {
+        // File does not exist or other error, continue to the next iteration
+        continue;
       }
-
-      postData = {
-        content,
-        title: data.title,
-        route: data.route,
-        tags: data.tags,
-        date: data.date,
-      };
-
-      if (OUTPUTLOG) {
-        console.log(postData);
-      }
-
-      return true; // Stops the iteration once the file is found
     }
-
-    return false;
-  });
+  } catch (error) {
+    console.error(
+      `Error accessing posts directory: ${
+        error instanceof Error ? error.message : "An unknown error occurred."
+      }`
+    );
+  }
 
   return {
     data: postData,

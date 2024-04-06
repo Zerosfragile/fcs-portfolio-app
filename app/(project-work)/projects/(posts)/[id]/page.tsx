@@ -4,17 +4,14 @@ import React from "react";
 import { notFound } from "next/navigation";
 import { HudMarkdown } from "@/components/hud-ui";
 
-// export async function generateMetadata({ params }: { params: { id: string } }) {
-//   const posts = getBlogData();
-//   const { id } = params;
-// }
-
 export async function generateStaticParams() {
   const data = await getBlogData();
   const posts = data["projects"];
 
-  const paramIds = posts.map((post) => {
-    id: post.id;
+  const paramIds = await posts.map((object) => {
+    return {
+      id: object.id,
+    };
   });
   console.log(paramIds);
 
@@ -37,7 +34,7 @@ export default async function projectPost({
   if (!posts.find((post) => post.id === id)) {
     return notFound();
   }
-  const post = getPost(id);
+  const post = await getPost(id);
 
   if (!post.data) {
     return notFound();
