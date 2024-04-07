@@ -639,4 +639,15 @@ export const processedResources = [
     preview: "/vault/Grégory Lallé — Creative developer/preview.png",
     lastEdited: "2024-04-06T18:18:20.916Z",
   },
+  {
+    url: "https://recharts.org/en-US",
+    description:
+      "A React components composable charting library built on SVG elements with a lightweight dependency on D3 submodules.",
+    context: "Charting library used by OpenAI, taobao, ahrefs among others.",
+    category: ["component library"],
+    icon: "/vault/Recharts/icon.png",
+    preview: "/vault/Recharts/preview.png",
+    title: "Recharts",
+    lastEdited: "2024-04-07T21:43:41.277Z",
+  },
 ];
