@@ -613,8 +613,9 @@ export const processedResources = [
             title: "Who is Denise Agency",
             context:
               "Layout and use of subtle color in the 3d layering is nice",
-            icon: "/vault/Denise Agency/Who is Denise Agency/icon.png",
-            preview: "/vault/Denise Agency/Who is Denise Agency/preview.png",
+            icon: "/vault/Grégory Lallé — Creative developer/Denise Agency/Who is Denise Agency/icon.png",
+            preview:
+              "/vault/Grégory Lallé — Creative developer/Denise Agency/Who is Denise Agency/preview.png",
             lastEdited: "2024-04-04T16:19:08.657Z",
           },
           {
@@ -624,13 +625,15 @@ export const processedResources = [
             category: ["artist", "photographer", "portfolio"],
             title: "Ben Fourmi",
             context: "Gallery animation and interactions :3",
-            icon: "/vault/Denise Agency/Ben Fourmi/icon.png",
-            preview: "/vault/Denise Agency/Ben Fourmi/preview.png",
+            icon: "/vault/Grégory Lallé — Creative developer/Denise Agency/Ben Fourmi/icon.png",
+            preview:
+              "/vault/Grégory Lallé — Creative developer/Denise Agency/Ben Fourmi/preview.png",
             lastEdited: "2024-04-04T16:19:13.878Z",
           },
         ],
-        icon: "/vault/Denise Agency/icon.png",
-        preview: "/vault/Denise Agency/preview.png",
+        icon: "/vault/Grégory Lallé — Creative developer/Denise Agency/icon.png",
+        preview:
+          "/vault/Grégory Lallé — Creative developer/Denise Agency/preview.png",
         lastEdited: "2024-04-04T16:19:03.582Z",
       },
     ],
