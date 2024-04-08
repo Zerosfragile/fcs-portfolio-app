@@ -104,16 +104,7 @@ export default function InitializingLayout({ quote, children }: Props) {
             transition={{ duration: 1, delay: 0, ease: "easeInOut" }}
             className="hud-border max-md:align-center bottom-0 flex h-[75px] items-center justify-between text-center max-md:flex-wrap max-md:justify-center max-md:overflow-hidden max-md:p-4"
           >
-            <HudNav
-              eventHandlers={eventHandlers}
-              config={DefaultNavButtons.map((container) =>
-                container.map((button) =>
-                  button.route === "/vault"
-                    ? { ...PlaygroundButton, className: "max-md:hidden" }
-                    : button
-                )
-              )}
-            />
+            <HudNav eventHandlers={eventHandlers} />
           </motion.div>
         )}
       </AnimatePresence>

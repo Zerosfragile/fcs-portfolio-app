@@ -7,7 +7,7 @@ export default function PlaygroundPage() {
   return (
     <main className="p-4 flex flex-col items-center">
       {/* Small Screens - 1 Column */}
-      <section className="max-w-4xl">
+      <section className="max-w-4xl flex flex-col gap-2">
         {playground.map((item, i) => (
           <ComponentCard key={item.title} {...item} />
         ))}
