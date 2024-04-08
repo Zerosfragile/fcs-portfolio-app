@@ -25,14 +25,14 @@ export default function QuoteInitializing() {
           animate={{ opacity: 100, y: 0 }}
           transition={{ duration: 2.5 }}
         >
-          Everything is an Eternal Circle,
+          Out of the night that covers me, Black as the pit from pole to pole,
         </motion.p>
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 100, y: 0 }}
           transition={{ duration: 1, delay: 2, ease: "easeInOut" }}
         >
-          and it repeats and repeats itself.
+          I thank whatever gods may be For my unconquerable soul.
         </motion.p>
       </div>
     </div>
