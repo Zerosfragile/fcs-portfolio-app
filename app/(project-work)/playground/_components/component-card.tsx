@@ -6,9 +6,9 @@ import React from "react";
 export default function ComponentCard(item: PlaygroundComponent) {
   const Component = item.component;
   return (
-    <div className="grid md:grid-cols-2 min-h-[400px] p-1 border-b border-OffWhite-dark/10">
-      <div className="flex flex-col gap-4 font-mono p-4 min-h-[200px]">
-        <div className="flex flex-col text-left  gap-2">
+    <div className="grid md:grid-cols-2 min-h-[400px] p-1 border-b border-OffWhite-dark/25 md:border-OffWhite-dark/10">
+      <div className="flex flex-col gap-4 font-mono md:p-4 min-h-[200px]">
+        <div className="flex flex-col text-left gap-2">
           <h2 className="font-bold text-2xl">{item.title}</h2>
           <p className="text-sm text-OffWhite/75">{item.description}</p>
         </div>
@@ -17,7 +17,7 @@ export default function ComponentCard(item: PlaygroundComponent) {
         </div>
       </div>
 
-      <div className="hud-border grid place-items-center bg-VoidBlack rounded-xl p-4 min-h-[300px] relative">
+      <div className="md:hud-border grid place-items-center bg-VoidBlack rounded-xl md:p-4 min-h-[300px] relative">
         <Component />
       </div>
     </div>

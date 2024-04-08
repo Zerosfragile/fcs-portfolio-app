@@ -25,7 +25,8 @@ export default function QuoteInitializing() {
           animate={{ opacity: 100, y: 0 }}
           transition={{ duration: 2.5 }}
         >
-          Out of the night that covers me, Black as the pit from pole to pole,
+          Out of the night that covers me, <br className="md:hidden" /> Black as
+          the pit from pole to pole,
         </motion.p>
         <motion.p
           initial={{ opacity: 0 }}
