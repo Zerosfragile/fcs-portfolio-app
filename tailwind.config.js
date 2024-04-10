@@ -143,33 +143,60 @@ module.exports = {
               fontWeight: "700",
               textAlign: "center",
               margin: "1em 0",
+              '@media (max-width: theme("screens.md"))': {
+                fontSize: theme("fontSize.lg"),
+              },
             },
             h2: {
               color: "#e2e2e2",
               fontWeight: "700",
               borderTop: "1px solid #e2e2e254",
               padding: "1em 0",
+              '@media (max-width: theme("screens.md"))': {
+                margin: "0.5em 0",
+                fontSize: theme("fontSize.base"),
+              },
             },
             h3: {
               color: "#e2e2e2CC",
               fontWeight: "700",
+              '@media (max-width: theme("screens.md"))': {
+                margin: "0.5em 0",
+                fontSize: theme("fontSize.sm"),
+              },
             },
             h4: {
               color: "#e2e2e2BF",
               fontWeight: "700",
+              '@media (max-width: theme("screens.md"))': {
+                margin: "0.5em 0",
+                fontSize: theme("fontSize.sm"),
+              },
             },
             h5: {
               color: "#e2e2e2BF",
               fontWeight: "700",
+              '@media (max-width: theme("screens.md"))': {
+                margin: "0.5em 0",
+                fontSize: theme("fontSize.sm"),
+              },
             },
             h6: {
               color: "#e2e2e2BF",
               fontWeight: "700",
+              '@media (max-width: theme("screens.md"))': {
+                margin: "0.5em 0",
+                fontSize: theme("fontSize.sm"),
+              },
             },
             li: {
               color: "#e2e2e254",
               "&::marker": {
                 color: "#e2e2e254",
+              },
+              '@media (max-width: theme("screens.md"))': {
+                margin: "0.5em 0",
+                fontSize: theme("fontSize.xs"),
               },
             },
             a: {
@@ -190,7 +217,7 @@ module.exports = {
               backgroundColor: "#111",
               color: "#e2e2e254",
               padding: "2em",
-              borderRadius: "18.75px",
+              borderRadius: "10px",
               border: "1px solid #e2e2e254",
               overflowX: "scroll",
               "&::-webkit-scrollbar": {
@@ -207,9 +234,34 @@ module.exports = {
                   backgroundColor: "#8B8B8B",
                 },
               },
+              '@media (max-width: theme("screens.md"))': {
+                padding: "1em",
+                fontSize: theme("fontSize.xs"),
+                "&::-webkit-scrollbar": {
+                  maxHeight: "3px",
+                  backgroundColor: "transparent",
+                },
+                "&::-webkit-scrollbar-thumb": {
+                  borderRadius: "2px",
+                },
+              },
             },
             code: {
               color: "#e2e2e2A8",
+              '@media (max-width: theme("screens.md"))': {
+                margin: "0.5em",
+                fontSize: theme("fontSize.xs"),
+              },
+            },
+            p: {
+              '@media (max-width: theme("screens.md"))': {
+                margin: "0.5em 0",
+                fontSize: theme("fontSize.xs"),
+              },
+            },
+            img: {
+              margin: "1em 0",
+              borderRadius: "4px",
             },
           },
         },

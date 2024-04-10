@@ -112,21 +112,22 @@ const HudMarkdown = ({
         </nav>
         <article
           ref={articleRef}
-          className="hud-border prose prose-offwhite my-6 overflow-x-hidden p-11 max-lg:border-hidden md:max-w-[calc(100%-350px)] 2xl:ml-[calc(280px+4rem-8px)] 2xl:mr-[15%] 2xl:prose-h1:text-[4em]"
+          className="hud-border prose prose-offwhite my-6 overflow-x-hidden md:p-11 max-lg:border-hidden md:max-w-[calc(100%-350px)] 2xl:ml-[calc(280px+4rem-8px)] 2xl:mr-[15%] 2xl:prose-h1:text-[4em]"
         >
           {htmlMarkdown}
-          <LoggedNavigationBTN
-            href={route}
-            projectID={title}
-            className="
-            transition-margin ease w-full rounded-xl border border-OffWhite bg-OffWhite px-8 py-2 text-center
-            font-[CygnitoMono-011] text-[15px] font-bold uppercase text-VoidBlack-lightest no-underline
-            transition-all duration-[250ms] hover:bg-transparent hover:text-OffWhite/[.66] md:hidden
-          "
-          >
-            Visit Project
-          </LoggedNavigationBTN>
-          <div className="min-h-[50px]" />
+          <div className="grid place-items-center my-[50px] mb-[100px]">
+            <LoggedNavigationBTN
+              href={route}
+              projectID={title}
+              className="
+              transition-margin ease w-full rounded-xl border border-OffWhite bg-OffWhite px-8 py-2 text-center
+              font-[CygnitoMono-011] text-xs font-bold uppercase text-VoidBlack-lightest no-underline
+              transition-all duration-[250ms] hover:bg-transparent hover:text-OffWhite/[.66] md:hidden
+            "
+            >
+              Visit Project
+            </LoggedNavigationBTN>
+          </div>
         </article>
         <a href="#img001">
           <Image
