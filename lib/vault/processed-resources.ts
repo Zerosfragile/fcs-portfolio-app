@@ -653,4 +653,15 @@ export const processedResources = [
     title: "Recharts",
     lastEdited: "2024-04-07T21:43:41.277Z",
   },
+  {
+    url: "https://designresourc.es",
+    description: "A curated list of design resources",
+    context:
+      "Curated list of Design Inspiration, Books, Tools, Jobs, Resources, Photos & much more.",
+    category: ["curated", "learning"],
+    title: "Design Resources",
+    icon: "/vault/Design Resources/preview.png",
+    preview: "/vault/Design Resources/preview.png",
+    lastEdited: "2024-04-12T09:10:11.647Z",
+  },
 ];
