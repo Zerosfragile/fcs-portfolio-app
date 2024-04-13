@@ -685,4 +685,27 @@ export const processedResources = [
     preview: "/vault/Toolfolio/preview.png",
     lastEdited: "2024-04-13T04:35:00.575Z",
   },
+  {
+    url: "https://www.nan.fyi",
+    description: "Blog of designer and devloper Nanda Syahrasyad",
+    context:
+      "Extreamly valuable, informative and interative blog posts of coding patterns, animation and design",
+    category: ["portfolio", "design", "learning"],
+    title: "Not a Number",
+    icon: "/vault/Not a Number/icon.png",
+    preview: "/vault/Not a Number/preview.png",
+    external_links: [
+      {
+        url: "https://twitter.com/nandafyi",
+        description: "i write about computers and stuff",
+        context: "Twitter account of Nanda Syahrasyad",
+        category: ["social"],
+        title: "nandafyi",
+        icon: "/vault/Not a Number/nandafyi/icon.png",
+        preview: "/vault/Not a Number/nandafyi/preview.png",
+        lastEdited: "2024-04-13T04:52:43.060Z",
+      },
+    ],
+    lastEdited: "2024-04-13T04:52:40.262Z",
+  },
 ];
