@@ -4,39 +4,45 @@ import React from "react";
 import { PlaygroundComponent } from ".";
 
 export function HUDBTN() {
+  const eventHandlers = {
+    nothing: () => {
+      console.log("Nothing Happened!");
+    },
+  };
+
   const AboutMeButton: HUDButtonProps = {
     labels: [{ breakpoint: 850, text: "About" }],
     defaultLabel: "About Me",
-    route: "/about",
+    event: "nothing",
     sites: [
       {
         title: "Github",
-        route: "https://github.com/Zerosfragile",
+        event: "nothing",
       },
       {
         title: "More",
-        route: "/about",
+        event: "nothing",
       },
     ],
   };
 
   const ProjectsButton: HUDButtonProps = {
     defaultLabel: "Projects",
-    route: "/projects",
+    event: "nothing",
     sites: [
       {
         title: "Playground",
-        route: "/playground",
+        event: "nothing",
       },
       {
         title: "See Project Archives",
-        route: "/projects",
+        event: "nothing",
       },
     ],
   };
 
   return (
-    <HUDN.container>
+    <HUDN.container eventHandlers={eventHandlers}>
       <HUDN.btn {...AboutMeButton} />
       <HUDN.btn {...ProjectsButton} />
     </HUDN.container>
