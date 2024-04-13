@@ -674,4 +674,15 @@ export const processedResources = [
     preview: "/vault/Wojtek Witkowski/preview.png",
     lastEdited: "2024-04-12T09:33:01.636Z",
   },
+  {
+    url: "https://toolfolio.io",
+    description: "An ever growing portfolio of tools.",
+    context:
+      "Contains a collection of design, content creation, startup, ai and web tools.",
+    category: ["collection"],
+    title: "Toolfolio",
+    icon: "/vault/Toolfolio/icon.png",
+    preview: "/vault/Toolfolio/preview.png",
+    lastEdited: "2024-04-13T04:35:00.575Z",
+  },
 ];
