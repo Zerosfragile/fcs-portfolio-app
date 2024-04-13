@@ -708,4 +708,38 @@ export const processedResources = [
     ],
     lastEdited: "2024-04-13T04:52:40.262Z",
   },
+  {
+    url: "https://virgilabloh.com/free-game/",
+    description: "A resource center for brands in their earliest phases",
+    context:
+      "Founded by Virgil Abloh's Free Game is meant to democritize branding, art and information to and uplift more than a few...",
+    category: ["learning", "design"],
+    external_links: [
+      {
+        url: "https://canary---yellow.com/category/lecture/",
+        title: "Canary Yellow",
+        description: "A collection of lectures and resources by Virgil Abloh",
+        context:
+          "Converge the fields of arts, craft, and design. Those notions merged with contemporary culture make up his inter-disciplinary practice today; stemming from his last 15 years, which is summarized below.",
+        category: ["learning", "design"],
+        icon: "/vault/FREE-GAME/Canary Yellow/icon.png",
+        preview: "/vault/FREE-GAME/Canary Yellow/preview.png",
+        lastEdited: "2024-04-13T05:03:42.130Z",
+      },
+      {
+        url: "https://virgilabloh.com",
+        title: "Virgil Abloh",
+        description: "A collection of all online resources by Virgil Abloh",
+        context:
+          "Archives of one of the most influential designers of the 21st century",
+        category: ["portfolio", "design", "learning", "archive"],
+        icon: "/vault/FREE-GAME/Virgil Abloh/icon.png",
+        preview: "/vault/FREE-GAME/Virgil Abloh/preview.png",
+      },
+    ],
+    title: "FREE-GAME",
+    icon: "/vault/FREE-GAME/icon.png",
+    preview: "/vault/FREE-GAME/preview.png",
+    lastEdited: "2024-04-13T05:03:14.026Z",
+  },
 ];
