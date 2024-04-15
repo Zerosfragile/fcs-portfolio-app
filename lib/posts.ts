@@ -40,6 +40,9 @@ export const getBlogData = async (
 
     for (const folder of postFolders) {
       if (folder !== ".DS_Store") {
+        if (folder == "refactor") {
+          continue;
+        }
         const currentDirectory = path.join(postsDirectory, folder);
 
         try {
