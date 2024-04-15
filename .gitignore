@@ -38,5 +38,5 @@ next-env.d.ts
 # contentlayer
 .contentlayer
 
-# #Obsidian 
-# */.obsidian/
+#Obsidian 
+*/.obsidian/
