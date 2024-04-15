@@ -11,11 +11,28 @@
             "id": "d119de4abe7afb53",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "projects/sakura-sound.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "4f07140d429ae0db",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "refactor/ascii-hud.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -81,6 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "refactor/ascii-hud.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "refactor/ascii-hud.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +137,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "refactor/ascii-hud.md"
+              }
             }
           }
         ]
@@ -138,12 +159,36 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "d119de4abe7afb53",
+  "active": "4f07140d429ae0db",
   "lastOpenFiles": [
-    "Untitled.canvas",
-    "projects/fcs-portfolio.md",
+    "FCS-PROJECT-GUIDELINES.md",
+    "refactor/ascii-hud.md",
+    "projects/ascii-hud.md",
+    "refactor",
+    "projects/sakura-sound.md",
     "projects/moment-maps.md",
     "projects/checkwoods.md",
-    "projects/ascii-hud.md"
+    "projects/ring-ruru.md",
+    "projects/fcs-portfolio.md",
+    "posts/projects/sugar-high-mobile.mp4",
+    "posts/projects/sugar-high-mobile.mov",
+    "posts/projects/sugar-high-desktop.mp4",
+    "posts/projects/sugar-high-desktop.mov",
+    "posts/projects/ruru-preview-001.png",
+    "posts/projects/ruru-preview-000.png",
+    "posts/projects/ruru-conceptboard-002.png",
+    "posts/projects/ruru-conceptboard-001.png",
+    "posts/projects/ruru-conceptboard-000.png",
+    "posts/projects/preview-sakura-sound.png",
+    "posts/projects/preview-ring-ruru.png",
+    "posts/projects/preview-moment-maps.png",
+    "posts/projects/preview-fcs-portfolio.png",
+    "posts/projects/preview-checkwoods.png",
+    "posts/projects/checkwoods-v1-video-home-view.mov",
+    "posts/projects/checkwoods-v1-video-data-view.mov",
+    "posts/projects",
+    "posts/papers",
+    "posts",
+    "Untitled.canvas"
   ]
 }
