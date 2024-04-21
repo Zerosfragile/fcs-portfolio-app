@@ -47,7 +47,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { CodeInput } from "@/components/hud-ui/code-block";
 import { useHandleCopyCode } from "@/components/hud-ui/handle-copy-code";
-import { mergeUniqueByKey } from "@/lib/utils";
+import { cn, mergeUniqueByKey } from "@/lib/utils";
 
 export default function ComponentCard(props: InspirationComponentResource) {
   return (
@@ -370,7 +370,15 @@ function TypesSection({ types }: { types: ComponentTypeInformation[] | null }) {
   );
 }
 
-function LargeCodeBlock({ code, title }: { code: string; title: string }) {
+function LargeCodeBlock({
+  code,
+  title,
+  size = "lg",
+}: {
+  code: string;
+  title: string;
+  size?: "sm" | "md" | "lg";
+}) {
   const { handleCopyCode } = useHandleCopyCode();
   return (
     <div className="flex flex-col relative gap-4">
@@ -384,7 +392,16 @@ function LargeCodeBlock({ code, title }: { code: string; title: string }) {
         <span className="text-OffWhite/75">{title}: </span>
         <CopyIcon className=" text-OffWhite/75 group-hover:text-OffWhite" />
       </button>
-      <ScrollArea className="text-xs text-OffWhite/70 peer-hover:opacity-25 transition-all duration-200 ease-out max-sm:max-h-[400px] max-h-[50vh] w-full">
+      <ScrollArea
+        className={cn(
+          "text-xs text-OffWhite/70 peer-hover:opacity-25 transition-all duration-200 ease-out w-full",
+          size === "sm"
+            ? "max-sm:h-[200px] h-[20vh]"
+            : size === "md"
+            ? "max-sm:h-[300px] h-[40vh]"
+            : "max-sm:h-[400px] h-[50vh]"
+        )}
+      >
         <CodeInput code={code ?? "No code"} />
         <ScrollBar orientation="horizontal" />
       </ScrollArea>
@@ -435,7 +452,7 @@ function CodeTabSection({
         </TabsList>
       </div>
       <TabsContent value={tabs[0]}>
-        <ScrollArea className="text-xs text-OffWhite/70 peer-hover:opacity-25 transition-all duration-200 ease-out max-sm:h-[400px] h-[50vh] w-full">
+        <ScrollArea className="text-xs text-OffWhite/70 peer-hover:opacity-25 transition-all duration-200 ease-out max-sm:h-[400px] h-full w-full">
           {display}
           <ScrollBar orientation="horizontal" />
         </ScrollArea>
@@ -501,7 +518,7 @@ function UtilContentLayout({
       <ListBox>Category = [ {category.join(", ") || ""} ]</ListBox>
       <CreditsSection credits={credits} createdAt={createdAt ?? ""} />
       <DependenciesSection dependencies={dependencies ?? null} />
-      <LargeCodeBlock code={code} title={"Copy Function"} />
+      <LargeCodeBlock code={code} title={"Copy Function"} size="sm" />
     </div>
   );
 }
