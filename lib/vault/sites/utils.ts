@@ -2,9 +2,9 @@ import puppeteer from "puppeteer";
 import fs from "fs-extra";
 import path from "path";
 import sharp from "sharp";
-import { InspirationResource } from "./insperation";
+import { InspirationSiteResource } from "./inspiration";
 
-const shouldRefetch = (resource: InspirationResource): boolean => {
+const shouldRefetch = (resource: InspirationSiteResource): boolean => {
   if (!resource.lastEdited) return true; // No timestamp, needs fetch
   const lastEditedDate = new Date(resource.lastEdited);
   const hoursSinceLastEdit =
@@ -24,7 +24,7 @@ export const saveFile = async (
 };
 
 const fetchResourceData = async (
-  resource: InspirationResource,
+  resource: InspirationSiteResource,
   titlePrefix: string = ""
 ) => {
   if (
@@ -133,7 +133,7 @@ const fetchResourceData = async (
 };
 
 export const iterateResources = async (
-  resources: InspirationResource[],
+  resources: InspirationSiteResource[],
   titlePrefix: string = ""
 ) => {
   for (let i = 0; i < resources.length; i++) {
@@ -144,7 +144,7 @@ export const iterateResources = async (
       resources[i] = (await fetchResourceData(
         resources[i],
         titlePrefix
-      )) as InspirationResource;
+      )) as InspirationSiteResource;
 
       if (resources[i].external_links) {
         await iterateResources(

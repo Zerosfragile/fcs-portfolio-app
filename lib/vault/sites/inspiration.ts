@@ -10,13 +10,14 @@ export const inspirationCategories = [
 ] as const;
 export type InspirationCategory = (typeof inspirationCategories)[number];
 
-export type InspirationResource = {
+export type InspirationSiteResource = {
+  type?: "sites";
   title?: string;
   description: string;
   context?: string;
   category: InspirationCategory[] | string[];
   url: string;
-  external_links?: InspirationResource[];
+  external_links?: InspirationSiteResource[];
   icon?: string;
   preview?: string;
   lastEdited?: string; // ISO 8601 format date string
@@ -36,4 +37,4 @@ export type InspirationResource = {
 
 // ---
 // The compile step will skip over that are already filled out in `processed-resources.ts`, so you can just delete the values you want to update and run `pnpm compile-vault` again if you need to update a resource
-export const nonCompiledInspiration: InspirationResource[] = [];
+export const nonCompiledInspiration: InspirationSiteResource[] = [];

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import { InspirationResource } from "@/lib/vault/insperation";
+import { InspirationResource } from "@/lib/vault/sites/inspiration";
 import Link from "next/link";
 import {
   Sheet,
@@ -103,8 +103,8 @@ function CardSheet({
     <SheetContent className="md:m-2 h-[100dvh-16px] overflow-y-auto overflow-x-visible bg-OffWhite/25 backdrop-blur-md border-OffWhite/10 supports-[backdrop-filter]:bg-OffWhite/5 rounded-md xl:min-w-[25vw] xl:w-[25vw]">
       <section className=" md:m-4">
         <SheetHeader>
-          <SheetTitle>{title}</SheetTitle>
-          <SheetDescription className="text-OffWhite/60">
+          <SheetTitle className="max-sm:text-left">{title}</SheetTitle>
+          <SheetDescription className="text-OffWhite/60 max-sm:text-left">
             {description}
           </SheetDescription>
         </SheetHeader>

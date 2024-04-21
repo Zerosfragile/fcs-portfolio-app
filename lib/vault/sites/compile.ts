@@ -2,14 +2,14 @@ import fs from "fs-extra";
 import path from "path";
 import { processedResources } from "./processed-resources";
 import { iterateResources } from "./utils";
-import { InspirationResource, nonCompiledInspiration } from "./insperation";
+import { InspirationSiteResource, nonCompiledInspiration } from "./inspiration";
 
-let resources = processedResources as InspirationResource[];
+let resources = processedResources as InspirationSiteResource[];
 
 function joinUniqueByUrl(
-  priorityArray: InspirationResource[],
-  mergingArray: InspirationResource[]
-): InspirationResource[] {
+  priorityArray: InspirationSiteResource[],
+  mergingArray: InspirationSiteResource[]
+): InspirationSiteResource[] {
   // Create a new Set with urls from the first array for quick lookup
   const urlsSet = new Set(priorityArray.map((obj) => obj.url));
 
@@ -31,7 +31,7 @@ nonCompiledInspiration
 
 console.log("\n Iterating Resources...\n");
 
-async function saveProcessedResources(resources: InspirationResource[]) {
+async function saveProcessedResources(resources: InspirationSiteResource[]) {
   resources = resources.filter((resource) => resource.title);
 
   const content = `export const processedResources = ${JSON.stringify(
