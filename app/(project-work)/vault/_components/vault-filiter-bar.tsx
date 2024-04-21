@@ -15,7 +15,7 @@ type Props = {
   items: { value: string; label: string }[];
 };
 
-export default function VaultFilterBar({ items }: Props) {
+export function VaultFilterBar({ items }: Props) {
   const [value, setValue] = React.useState("");
   const router = useRouter();
   const pathname = usePathname();

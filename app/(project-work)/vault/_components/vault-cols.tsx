@@ -1,9 +1,9 @@
 "use client";
 import { InspirationSiteResource } from "@/lib/vault/sites/inspiration";
 import React from "react";
-import { InspirationResource } from "../page";
 import SiteCardCol from "./vault-card-col";
 import { useSearchParams } from "next/navigation";
+import { InspirationResource } from "@/lib/vault";
 
 function splitArrayAlphabetically(
   items: InspirationResource[],
@@ -13,10 +13,7 @@ function splitArrayAlphabetically(
   const sortedItems = items.sort((a, b) => {
     if (a.title && b.title) {
       return a.title.localeCompare(b.title);
-    } else if (a.type == "site" && b.type == "site" && a.url && b.url) {
-      return a.url.localeCompare(b.url);
-    }
-    return 0;
+    } else return 0;
   });
 
   // Initialize columns

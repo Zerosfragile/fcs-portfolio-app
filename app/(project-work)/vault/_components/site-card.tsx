@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import { InspirationResource } from "@/lib/vault/sites/inspiration";
+import { InspirationSiteResource } from "@/lib/vault/sites/inspiration";
 import Link from "next/link";
 import {
   Sheet,
@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
 
-export default function SiteCard(props: InspirationResource) {
+export default function SiteCard(props: InspirationSiteResource) {
   return (
     <TooltipProvider>
       <Sheet>
@@ -44,7 +44,7 @@ function CardContent({
   lastEdited,
   url,
   external_links,
-}: InspirationResource) {
+}: InspirationSiteResource) {
   const lastEditedDate = lastEdited ? new Date(lastEdited) : new Date();
 
   return (
@@ -98,7 +98,7 @@ function CardSheet({
   lastEdited,
   url,
   external_links,
-}: InspirationResource) {
+}: InspirationSiteResource) {
   return (
     <SheetContent className="md:m-2 h-[100dvh-16px] overflow-y-auto overflow-x-visible bg-OffWhite/25 backdrop-blur-md border-OffWhite/10 supports-[backdrop-filter]:bg-OffWhite/5 rounded-md xl:min-w-[25vw] xl:w-[25vw]">
       <section className=" md:m-4">

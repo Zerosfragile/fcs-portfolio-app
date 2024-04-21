@@ -2,6 +2,12 @@
 
 const { withContentlayer } = require("next-contentlayer");
 
-const nextConfig = { reactStrictMode: true, swcMinify: true };
+const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
+  experimental: {
+    missingSuspenseWithCSRBailout: false,
+  },
+};
 
 module.exports = withContentlayer(nextConfig);
