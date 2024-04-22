@@ -436,7 +436,7 @@ function CodeTabSection({
 
   return (
     <Tabs defaultValue={tabs[0]} className="min-h-[500px]">
-      <ScrollArea className="text-xs text-OffWhite/70 peer-hover:opacity-25 transition-all duration-200 ease-out max-sm:h-[400px] h-full w-full">
+      <ScrollArea className="text-xs text-OffWhite/70 peer-hover:opacity-25 transition-all duration-200 ease-out h-full w-full">
         <div className="grid place-items-center">
           <TabsList className="font-mono border-b border-OffWhite/25 text-OffWhite/75 hover:text-OffWhite bg-transparent rounded-none w-full justify-start gap-4">
             {tabs.map((tab) => (
