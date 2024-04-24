@@ -475,7 +475,7 @@ function CodeTabSection({
                 <AccordionTrigger className="text-xs text-OffWhite/75 py-1.5 font-normal  data-[state=open]:text-OffWhite/90 data-[state=open]:font-medium data-[state=open]:underline underline-offset-2 transition-all duration-500">
                   {component.title}
                 </AccordionTrigger>
-                <AccordionContent>
+                <AccordionContent className="pl-2 rounded-sm border-l border-dashed border-border/20">
                   <span className="text-OffWhite/60 text-xs">
                     {component.description}
                   </span>
@@ -493,7 +493,7 @@ function CodeTabSection({
               <AccordionTrigger className="text-xs text-OffWhite/75 py-1.5 font-normal  data-[state=open]:text-OffWhite/90 data-[state=open]:font-medium data-[state=open]:underline underline-offset-2 transition-all duration-500">
                 {util.name}
               </AccordionTrigger>
-              <AccordionContent>
+              <AccordionContent className="pl-2 rounded-sm border-l border-dashed border-border/20">
                 <UtilContentLayout {...util} />
               </AccordionContent>
             </AccordionItem>
