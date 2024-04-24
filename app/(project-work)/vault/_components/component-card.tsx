@@ -115,7 +115,7 @@ function CardContent({
 
 function CardSheet({ ...Props }: InspirationComponentResource) {
   return (
-    <SheetContent className="md:m-2 h-[100dvh-16px] overflow-y-auto overflow-x-visible bg-OffWhite/25 backdrop-blur-md border-OffWhite/10 supports-[backdrop-filter]:bg-OffWhite/5 rounded-md min-w-[75vw] 2xl:min-w-[25vw] 2xl:w-[25vw]">
+    <SheetContent className="md:m-2 h-[100dvh-16px] overflow-y-auto overflow-x-visible bg-OffWhite/25 backdrop-blur-md border-OffWhite/10 supports-[backdrop-filter]:bg-OffWhite/5 rounded-md min-w-[75vw] md:min-w-[30vw]  2xl:min-w-[25vw] 2xl:w-[25vw]">
       <section className=" md:m-4">
         <SheetHeader>
           <SheetTitle className="max-sm:text-left">{Props.title}</SheetTitle>
