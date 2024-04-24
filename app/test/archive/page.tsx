@@ -1,89 +1,29 @@
+"use client";
 import {
+  CARD_TEST_001,
   MinimalistItemSocialCardPreviewDisplay,
   MinimalistItemSocialCardProps,
 } from "@/lib/vault/components/minimalist-item-social-card";
 
-// /**
-//  * Archive page - Displays all vault components, to ensure the tailwind css is generated on build
-//  */
-// export default function Archive({}: Props) {
-//   return (
-//     <div className="grid place-items-center min-h-screen bg-OffWhite">
-//       <MinimalistItemSocialCardPreviewDisplay />
-//     </div>
-//   );
-// }
-
-import TranslateWrapper from "@/components/hud-ui/translatewrapper";
-import { CircleIcon, DotFilledIcon } from "@radix-ui/react-icons";
-import { ar } from "date-fns/locale";
-import Image from "next/image";
-import Link from "next/link";
-import React, { Fragment } from "react";
-
-type Props = {};
-
-type Card = {
-  image: {
-    src: string;
-    alt: string;
-  };
-  insights: {
-    views: number;
-    likes: number;
-    comments?: number;
-    shares?: number;
-    saves?: number;
-  };
-  credit: {
-    name: string;
-    tag?: string;
-    link: string;
-  };
-  title: string;
-  description: string;
-  details: { [key: string]: string | number };
-  tags: string[];
-};
-
-export const CARD_TEST_001: Card = {
-  image: {
-    src: "/images/test-preview-001.jpg",
-    alt: "Test preview 001",
-  },
-  insights: {
-    views: 159258,
-    likes: 63123,
-    comments: 15273,
-    shares: 53890,
-    saves: 9385,
-  },
-  credit: {
-    name: "Vinne",
-    tag: "@vinne.art",
-    link: "https://www.instagram.com/vinne.art",
-  },
-  title: "Untitled Artwork",
-  description:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam et sapien nec nunc.",
-  details: {
-    artist: "Vinne",
-    caption: "tell her you like her eyes",
-    creation_date: "2024-04-18",
-    instagram_id: "Cu2lm3HLfuJ",
-  },
-  tags: ["illustration", "digital art"],
-};
-
-export default function page({}: Props) {
+/**
+ * Archive page - Displays all vault components, to ensure the tailwind css is generated on build
+ */
+export default function Archive() {
   return (
     <div className="grid place-items-center min-h-screen bg-OffWhite">
       <MinimalistItemSocialCardPreviewDisplay />
+      <MinimalistItemSocialCardTest card={CARD_TEST_001} />
     </div>
   );
 }
 
-export function MinimalistItemSocialCard({
+import TranslateWrapper from "@/components/hud-ui/translatewrapper";
+import { DotFilledIcon } from "@radix-ui/react-icons";
+import Image from "next/image";
+import Link from "next/link";
+import React, { Fragment } from "react";
+
+function MinimalistItemSocialCardTest({
   card,
 }: {
   card: MinimalistItemSocialCardProps;
