@@ -789,4 +789,27 @@ export const processedResources = [
     preview: "/vault/Ian Jones/preview.png",
     lastEdited: "2024-04-15T19:46:57.812Z",
   },
+  {
+    url: "https://openpurpose.com",
+    description: "Portfolio for Design Partner Agency for Founders.",
+    context:
+      "Showcase of clean and professional design with content focused layout.",
+    category: ["portfolio"],
+    external_links: [
+      {
+        description: "X - @openpurpose",
+        context: "Community page of openpurpose, showcases design.",
+        category: ["portfolio"],
+        url: "https://twitter.com/openpurpose",
+        title: "OP",
+        icon: "/vault/OpenPurpose/OP/icon.png",
+        preview: "/vault/OpenPurpose/OP/preview.png",
+        lastEdited: "2024-04-25T22:31:19.702Z",
+      },
+    ],
+    title: "OpenPurpose",
+    icon: "/vault/OpenPurpose/icon.png",
+    preview: "/vault/OpenPurpose/preview.png",
+    lastEdited: "2024-04-25T22:31:04.626Z",
+  },
 ];
