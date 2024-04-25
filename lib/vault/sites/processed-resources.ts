@@ -789,4 +789,14 @@ export const processedResources = [
     preview: "/vault/Ian Jones/preview.png",
     lastEdited: "2024-04-15T19:46:57.812Z",
   },
+  {
+    url: "https://www.dark.design/",
+    description: "A curated collection of dark-themed websites.",
+    context: "A collection of dark-themed websites.",
+    category: ["curated"],
+    title: "Dark Themed Web Design Inspiration",
+    icon: "/vault/Dark Themed Web Design Inspiration/icon.png",
+    preview: "/vault/Dark Themed Web Design Inspiration/preview.png",
+    lastEdited: "2024-04-25T07:12:14.202Z",
+  },
 ];
