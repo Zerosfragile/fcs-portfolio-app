@@ -15,7 +15,7 @@ import {
 } from "./dependencies";
 import { cnInfo } from "@/lib/utils";
 
-type MinimalistItemSocialCardProps = {
+export type MinimalistItemSocialCardProps = {
   image: {
     src: string;
     alt: string;
@@ -309,9 +309,7 @@ export function MinimalistItemSocialCard({
         <div className="grid grid-cols-[auto_1fr_auto] w-full gap-2">
           <span className="flex items-center border-b border-transparent hover:border-LunarGrey-light/50">
             {card.credit.name} <DotFilledIcon />{" "}
-            <Link href={card.credit.link} target="_blank">
-              {card.credit.tag}
-            </Link>
+            <Link href={card.credit.link}>{card.credit.tag}</Link>
           </span>
           <div className="border-t border-LunarGrey-light/25" />
           <span className="whitespace-nowrap">{card.title}</span>
@@ -374,7 +372,6 @@ export function MinimalistItemSocialCard({
       {/* Design Credit */}
       <Link
         href={"https://twitter.com/raphaelsalaja/status/1772210566297199098"}
-        target="_blank"
         className="text-xs text-center font-light font-mono text-LunarGrey-light tracking-normal normal-case flex items-center border-b border-transparent hover:border-LunarGrey-light/50 mt-3"
       >
         Design Credit - @raphaelsalaja
