@@ -5,14 +5,14 @@ import { DotFilledIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 import Link from "next/link";
 import React, { Fragment } from "react";
-import { InspirationComponentResource } from ".";
+import { InspirationComponentResource } from "..";
 import {
   Clsx,
   FramerMotion,
   NextJS,
   RadixUIIcons,
   TailwindMerge,
-} from "./dependencies";
+} from "../dependencies";
 import { cnInfo } from "@/lib/utils";
 
 export type MinimalistItemSocialCardProps = {

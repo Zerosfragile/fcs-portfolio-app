@@ -3,8 +3,13 @@ import {
   CARD_TEST_001,
   MinimalistItemSocialCardPreviewDisplay,
   MinimalistItemSocialCardProps,
-} from "@/lib/vault/components/minimalist-item-social-card";
-
+} from "@/lib/vault/components/src/minimalist-item-social-card";
+import TranslateWrapper from "@/components/hud-ui/translatewrapper";
+import { DotFilledIcon } from "@radix-ui/react-icons";
+import Image from "next/image";
+import Link from "next/link";
+import React, { Fragment } from "react";
+import { AnimatedLinesPreviewDisplay } from "@/lib/vault/components/src/animated-lines";
 /**
  * Archive page - Displays all vault components, to ensure the tailwind css is generated on build
  */
@@ -13,15 +18,16 @@ export default function Archive() {
     <div className="grid place-items-center min-h-screen bg-OffWhite">
       <MinimalistItemSocialCardPreviewDisplay />
       <MinimalistItemSocialCardTest card={CARD_TEST_001} />
+      <AnimatedLinesPreviewDisplay />
+      <Link
+        href={"https://x.com/verse_/status/1783536836976992608"}
+        className="text-xs text-center font-light font-mono text-LunarGrey-light/50 tracking-normal normal-case flex items-center border-b border-transparent hover:border-LunarGrey-light/50 mt-3"
+      >
+        Design Credit - @verse_
+      </Link>
     </div>
   );
 }
-
-import TranslateWrapper from "@/components/hud-ui/translatewrapper";
-import { DotFilledIcon } from "@radix-ui/react-icons";
-import Image from "next/image";
-import Link from "next/link";
-import React, { Fragment } from "react";
 
 function MinimalistItemSocialCardTest({
   card,

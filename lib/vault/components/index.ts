@@ -1,4 +1,5 @@
-import { MinimalistItemSocialCardInfo } from "./minimalist-item-social-card";
+import { AnimatedLinesInfo } from "./src/animated-lines";
+import { MinimalistItemSocialCardInfo } from "./src/minimalist-item-social-card";
 
 export type ComponentDependencyInformation = {
   name: string;
@@ -51,4 +52,4 @@ export type InspirationComponentResource = {
   componentDependencies?: InspirationComponentResource[];
 };
 
-export const components = [MinimalistItemSocialCardInfo];
+export const components = [MinimalistItemSocialCardInfo, AnimatedLinesInfo];

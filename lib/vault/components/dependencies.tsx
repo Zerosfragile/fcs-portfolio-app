@@ -86,3 +86,20 @@ export const TailwindMerge: ComponentDependencyInformation = {
     github: "https://github.com/dcastil/tailwind-merge",
   },
 };
+
+export const ReactInfo: ComponentDependencyInformation = {
+  name: "React",
+  installCommands: {
+    pnpm: "pnpm add react",
+    npm: "npm install react",
+    yarn: "yarn add react",
+    bun: "bunx add react",
+  },
+  version: "17.0.2",
+  description: "A JavaScript library for building user interfaces.",
+  links: {
+    documentation: "https://reactjs.org/docs/getting-started.html",
+    npm: "https://www.npmjs.com/package/react",
+    github: "https://github.com/facebook/react",
+  },
+};
