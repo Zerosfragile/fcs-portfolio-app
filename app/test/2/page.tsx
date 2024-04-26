@@ -58,9 +58,15 @@ export default function Page({}: Props) {
   useEffect(() => {
     console.log(containerWidth, scrollYProgress);
   }, [containerWidth, scrollYProgress]);
+
+  const variants: Variants = {
+    hidden: { opacity: 0, scale: 0 },
+    visible: { opacity: 1, scale: 1 },
+  };
+
   return (
     <div className="flex flex-col bg-gradient-earth h-[200vh]" ref={ref}>
-      <div className="flex flex-col items-center justify-center w-full my-10 sticky top-0 translate-y-1/2">
+      <div className="flex flex-col items-center justify-center w-full my-4 sticky top-0 translate-y-1/2">
         <motion.div
           style={{ width: containerWidth, height: containerHeight }}
           animate={{
