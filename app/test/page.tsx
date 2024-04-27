@@ -83,18 +83,18 @@ export default function Page({}: Props) {
       className="flex flex-col bg-gradient-earth h-[400vh] relative"
       ref={container}
     >
-      <div className="h-screen flex flex-col items-center fixed top-0 left-1/2 -translate-x-1/2 gap-4 py-4">
+      <div className="h-screen flex flex-col items-center fixed top-0 left-1/2 -translate-x-1/2 gap-4 py-4 w-full max-w-[90vw] lg:max-w-4xl  ">
         <motion.div
-          style={{ width: containerWidth, height: containerHeight }}
+          style={{ height: containerHeight }}
           animate={{
             placeItems: "flex-start",
           }}
           transition={{ duration: 1, delay: 1 }}
-          className="bg-VoidBlack p-4 rounded-md shadow-lg grid place-items-center relative overflow-hidden"
+          className="bg-VoidBlack p-4 rounded-md shadow-lg grid place-items-center relative overflow-hidden "
           layout
           ref={section}
         >
-          <section className="max-w-xl font-mono text-OffWhite-dark flex flex-col gap-4">
+          <section className=" font-mono text-OffWhite-dark flex flex-col gap-4">
             <motion.div className="flex justify-between items-center">
               <motion.div className="flex flex-col">
                 <motion.span className="text-sm" key="tag">
@@ -143,7 +143,7 @@ export default function Page({}: Props) {
                 x: imageX,
                 right: imageRight,
               }}
-              className="absolute"
+              className="absolute "
             >
               <Image
                 src={"/images/test-preview-002.jpg"}
@@ -156,6 +156,9 @@ export default function Page({}: Props) {
             </motion.div>
           </section>
         </motion.div>
+        {/* <div className="flex-1 bg-VoidBlack w-full p-4 rounded-md shadow-lg grid place-items-center relative overflow-hidden">
+          Test
+        </div> */}
         <div className="flex-1 bg-VoidBlack w-full p-4 rounded-md shadow-lg grid place-items-center relative overflow-hidden">
           Test
         </div>
