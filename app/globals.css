@@ -211,3 +211,22 @@ pre code {
     #e8e7e3 89.44%
   );
 }
+
+.bg-gradient-nordic-dark {
+  background-image: linear-gradient(
+    #17184b 18.9%,
+    #273287 37.58%,
+    #d6b4fc 64.4%,
+    #d3dde7 79.2%,
+    #f0eee9 96.44%
+  );
+}
+
+.bg-gradient-nordic-light {
+  background-image: linear-gradient(
+    #f0eee9 16.94%,
+    #d3dde7 28.58%,
+    #d6b4fc 64.4%,
+    #6c78d4 89.44%
+  );
+}
