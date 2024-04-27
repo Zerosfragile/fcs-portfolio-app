@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from "react";
 import {
   cubicBezier,
   motion,
+  useMotionValueEvent,
   useScroll,
   useTransform,
   Variant,
@@ -13,62 +14,85 @@ import Image from "next/image";
 type Props = {};
 
 export default function Page({}: Props) {
-  const ref = useRef<HTMLDivElement>(null);
+  const container = useRef<HTMLDivElement>(null);
+  const section = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
-    target: ref,
+    layoutEffect: true,
+    smooth: 1,
+
+    offset: ["start start", "end center"],
   });
 
-  const containerWidth = useTransform(scrollYProgress, [0, 1], [576, 551], {
-    ease: cubicBezier(0.17, 0.67, 0.83, 0.67),
-  });
-  const containerHeight = useTransform(scrollYProgress, [0, 1], [900, 68], {
-    ease: cubicBezier(0.17, 0.67, 0.83, 0.67),
-  });
+  const section1 = 1 / 2;
+
+  const initHeight = 900;
+  const initWidth = 576;
+
+  const imageInitHeight = 535;
+
+  const margin = 16;
+
+  const initImgTop = initHeight - imageInitHeight - margin;
+  const imgHalfHeight = 390;
+  const tophalf = initHeight / 2 - imgHalfHeight + margin;
+
+  console.log("initImgTop", initImgTop);
+
+  const containerWidth = useTransform(
+    scrollYProgress,
+    [0, section1],
+    [576, 551]
+  );
+  const containerHeight = useTransform(
+    scrollYProgress,
+    [0, section1],
+    [900, 68]
+  );
 
   const imageWidth = useTransform(
     scrollYProgress,
-    [0, 0.25, 1],
-    [544, 100, 48],
-    {
-      ease: cubicBezier(0.17, 0.67, 0.83, 0.67),
-    }
+    [0, section1 / 2, section1],
+    [544, 544, 48]
+  );
+  const imageHeight = useTransform(
+    scrollYProgress,
+    [0, section1 / 2, section1],
+    [535, imgHalfHeight, 60]
   );
   const imageTop = useTransform(
     scrollYProgress,
-    [0, 0.25, 0.75, 1],
-    [348, 250, 190, 4],
-    {
-      ease: cubicBezier(0.17, 0.67, 0.83, 0.67),
-    }
+    [0, section1 / 2, section1],
+    [initImgTop, tophalf, 4]
   );
-  const imageX = useTransform(scrollYProgress, [0, 1], [0, -16], {
-    ease: cubicBezier(0.17, 0.67, 0.83, 0.67),
-  });
-  const imageRight = useTransform(scrollYProgress, [0, 1], [16, 0], {
-    ease: cubicBezier(0.17, 0.67, 0.83, 0.67),
+  const imageX = useTransform(
+    scrollYProgress,
+    [0, section1 / 2, section1],
+    [0, -2, -16]
+  );
+  const imageRight = useTransform(scrollYProgress, [0, section1], [16, 0]);
+
+  const textY = useTransform(scrollYProgress, [0, section1 / 2], [0, -150]);
+  const textOpacity = useTransform(scrollYProgress, [0, section1 / 2], [1, 0]);
+
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    console.log("x changed to", latest);
   });
 
-  const textY = useTransform(scrollYProgress, [0, 0.5], [0, -150], {
-    ease: cubicBezier(0.17, 0.67, 0.83, 0.67),
-  });
-  const textOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0], {
-    ease: cubicBezier(0.17, 0.67, 0.83, 0.67),
-  });
-
-  useEffect(() => {
-    console.log(containerWidth, scrollYProgress);
-  }, [containerWidth, scrollYProgress]);
   return (
-    <div className="flex flex-col bg-gradient-earth h-[200vh]" ref={ref}>
-      <div className="flex flex-col items-center justify-center w-full my-10 sticky top-0 translate-y-1/2">
+    <div
+      className="flex flex-col bg-gradient-earth h-[400vh] relative"
+      ref={container}
+    >
+      <div className="h-screen flex flex-col items-center fixed top-0 left-1/2 -translate-x-1/2 gap-4 py-4">
         <motion.div
           style={{ width: containerWidth, height: containerHeight }}
           animate={{
             placeItems: "flex-start",
           }}
           transition={{ duration: 1, delay: 1 }}
-          className="bg-VoidBlack p-4 rounded-md shadow-lg grid place-items-center relative"
+          className="bg-VoidBlack p-4 rounded-md shadow-lg grid place-items-center relative overflow-hidden"
           layout
+          ref={section}
         >
           <section className="max-w-xl font-mono text-OffWhite-dark flex flex-col gap-4">
             <motion.div className="flex justify-between items-center">
@@ -114,7 +138,7 @@ export default function Page({}: Props) {
               key="header-image"
               style={{
                 width: imageWidth,
-
+                height: imageHeight,
                 top: imageTop,
                 x: imageX,
                 right: imageRight,
@@ -124,13 +148,17 @@ export default function Page({}: Props) {
               <Image
                 src={"/images/test-preview-002.jpg"}
                 alt={"art by @vinne.art"}
-                width={544}
-                height={535}
+                layout="fill"
+                // width={544}
+                // height={535}
                 className="max-h-[535px] object-cover rounded-sm"
               />
             </motion.div>
           </section>
         </motion.div>
+        <div className="flex-1 bg-VoidBlack w-full p-4 rounded-md shadow-lg grid place-items-center relative overflow-hidden">
+          Test
+        </div>
       </div>
     </div>
   );
