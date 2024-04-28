@@ -12,6 +12,7 @@ import {
 } from "framer-motion";
 import Image from "next/image";
 import { trace } from "console";
+import { TypingLabel } from "@/components/hud-nav-system";
 
 type Props = {};
 
@@ -64,7 +65,16 @@ export default function Page({}: Props) {
 
   // section 2
   const [showIcon, setShowIcon] = useState<boolean>(false);
-  const [showS2QuoteText, setShowS2QuoteText] = useState<boolean>(false);
+  const [showS2QuoteTextVisibility, setShowS2QuoteTextVisibility] =
+    useState<boolean>(false);
+  const [s2QuoteText, setS2QuoteText] = useState<string>(
+    "Amor Fati, Agnostos Theos"
+  );
+
+  const [
+    s2FeaturedProjectsSectionVisibility,
+    setS2FeaturedProjectsSectionVisibility,
+  ] = useState<boolean>(false);
 
   const s2GroupOpacity = useTransform(
     scrollYProgress,
@@ -75,13 +85,23 @@ export default function Page({}: Props) {
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     latest > section1 / 8 ? setShowHeaderText(false) : setShowHeaderText(true);
 
+    const toggleQuote = (state: boolean) => {
+      showS2QuoteTextVisibility !== state
+        ? setS2QuoteText("Amor Fati, Agnostos Theos")
+        : null;
+      setShowS2QuoteTextVisibility(state);
+    };
     latest > (section1 / 10) * 6 && latest < section1
-      ? setShowS2QuoteText(true)
-      : setShowS2QuoteText(false);
+      ? toggleQuote(true)
+      : toggleQuote(false);
 
     latest > (section1 / 10) * 4 && latest < section1
       ? setShowIcon(true)
       : setShowIcon(false);
+
+    latest > section1 && latest < section2
+      ? setS2FeaturedProjectsSectionVisibility(true)
+      : setS2FeaturedProjectsSectionVisibility(false);
     console.log(latest, section2, section1);
   });
 
@@ -178,7 +198,10 @@ export default function Page({}: Props) {
         </motion.div>
 
         <div className="flex-1 bg-VoidBlack w-full p-4 rounded-md shadow-lg grid place-items-center relative overflow-hidden">
-          <motion.div style={{ opacity: s2GroupOpacity }}>
+          <motion.div
+            style={{ opacity: s2GroupOpacity }}
+            className="group absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+          >
             <motion.button
               variants={{
                 hidden: { opacity: 0, y: 100 },
@@ -190,32 +213,56 @@ export default function Page({}: Props) {
                 duration: 3,
                 ease: cubicBezier(0.19, 1, 0.22, 1),
               }}
-              className="flex flex-col items-center justify-center p-6 mx-auto mb-2"
+              onClick={() => setS2QuoteText("Scroll down to load projects")}
+              className="flex flex-col items-center justify-center p-6 mx-auto mb-2  "
             >
               <Image
                 src={"/images/056-Modern_Icons.png"}
                 alt={""}
                 width={75}
                 height={75}
-                className="invert transition-all duration-500 ease-linear"
+                className="invert transition-all duration-500 ease-linear opacity-50 group-hover:opacity-100 "
               />
             </motion.button>
-            <div className="font-[CygnitoMono-011] text-[11.25px] font-normal uppercase text-OffWhite transition-all duration-500 ease-linear  text-center">
+            <div className="font-[CygnitoMono-011] text-[11.25px] font-normal uppercase text-OffWhite/50 group-hover:text-OffWhite transition-all duration-500 ease-linear  text-center">
               <motion.p
                 variants={{
                   hidden: { opacity: 0, y: 100 },
                   visible: { opacity: 1, y: 0 },
                 }}
                 initial="hidden"
-                animate={showS2QuoteText ? "visible" : "hidden"}
+                animate={showS2QuoteTextVisibility ? "visible" : "hidden"}
                 transition={{
                   duration: 2.5,
                   ease: cubicBezier(0.19, 1, 0.22, 1),
                 }}
+                className="min-h-[2em] min-w-1"
               >
-                Amor Fati, Agnostos Theos
+                <TypingLabel text={s2QuoteText} speed={50} />
               </motion.p>
             </div>
+          </motion.div>
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: -100 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            initial="hidden"
+            animate={s2FeaturedProjectsSectionVisibility ? "visible" : "hidden"}
+            transition={{
+              duration: 3,
+              ease: cubicBezier(0.19, 1, 0.22, 1),
+            }}
+            className=""
+          >
+            <motion.div className="relative h-[400px] w-[800px]">
+              <Image
+                src={"/posts/projects/preview-musou.png"}
+                alt={""}
+                layout="fill"
+                className="object-fit rounded-sm"
+              />
+            </motion.div>
           </motion.div>
         </div>
       </div>
