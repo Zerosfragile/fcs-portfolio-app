@@ -15,24 +15,28 @@ export default function SiteCardCol({ resources, delayInSeconds }: Props) {
         {resources.map((resource, i) => (
           <motion.div
             key={resource.title}
-            initial={{
-              opacity: 0,
-              y: -50,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            exit={{
-              opacity: 0,
-              y: -50,
-            }}
+            exit={"hidden"}
             transition={{
-              delay: i * delayInSeconds,
+              delay: 0,
               duration: 0.5,
               ease: "easeOut",
             }}
             layoutId={resource.title}
+            initial="hidden"
+            whileInView={{
+              opacity: 1,
+              y: 0,
+              transition: {
+                delay: i * delayInSeconds,
+                duration: 0.5,
+                ease: "easeOut",
+              },
+            }}
+            viewport={{ once: true }}
+            variants={{
+              hidden: { opacity: 0, y: -50 },
+              visible: { opacity: 1, y: 0 },
+            }}
           >
             {resource.type == "sites" ? (
               <SiteCard {...resource} />
