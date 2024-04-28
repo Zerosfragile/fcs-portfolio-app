@@ -27,7 +27,7 @@ export default function SiteCardCol({ resources, delayInSeconds }: Props) {
               opacity: 1,
               y: 0,
               transition: {
-                delay: i * delayInSeconds,
+                delay: delayInSeconds,
                 duration: 0.5,
                 ease: "easeOut",
               },
