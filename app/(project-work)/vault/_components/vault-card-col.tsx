@@ -14,7 +14,7 @@ export default function SiteCardCol({ resources, delayInSeconds }: Props) {
       <AnimatePresence>
         {resources.map((resource, i) => (
           <motion.div
-            key={resource.type == "sites" ? resource.url : resource.title || i}
+            key={resource.title}
             initial={{
               opacity: 0,
               y: -50,
@@ -32,6 +32,7 @@ export default function SiteCardCol({ resources, delayInSeconds }: Props) {
               duration: 0.5,
               ease: "easeOut",
             }}
+            layoutId={resource.title}
           >
             {resource.type == "sites" ? (
               <SiteCard {...resource} />

@@ -4,6 +4,7 @@ import React from "react";
 import SiteCardCol from "./vault-card-col";
 import { useSearchParams } from "next/navigation";
 import { InspirationResource } from "@/lib/vault";
+import { AnimatePresence, motion } from "framer-motion";
 
 function splitArrayAlphabetically(
   items: InspirationResource[],
