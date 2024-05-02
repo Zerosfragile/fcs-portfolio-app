@@ -41,6 +41,8 @@
     --sh-keyword: #f47067;
     --sh-comment: #a19595;
     --sh-jsxliterals: #6266d1;
+
+    --debug-lime: #d4ed31;
   }
 
   .dark {
