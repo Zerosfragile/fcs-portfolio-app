@@ -14,8 +14,8 @@
     ".eslintrc.json": true,
     ".prettierrc.json": true,
     "components.json": true,
-    "**/node_modules": true,
-    "**/.next": true,
+    "**/node_modules": false,
+    "**/.next": false,
     "**/.vscode": true
   },
   "explorerExclude.backup": {}
