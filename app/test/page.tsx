@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
+  AnimatePresence,
   cubicBezier,
   motion,
   useMotionTemplate,
@@ -82,6 +83,12 @@ export default function Page({}: Props) {
     [0, 1]
   );
 
+  const s2ProjectsScrollProgress = useTransform(
+    scrollYProgress,
+    [section1 + section1 / 2, section2 * 2],
+    [0, -1500]
+  );
+
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     latest > section1 / 8 ? setShowHeaderText(false) : setShowHeaderText(true);
 
@@ -99,7 +106,7 @@ export default function Page({}: Props) {
       ? setShowIcon(true)
       : setShowIcon(false);
 
-    latest > section1 && latest < section2
+    latest > section1 && latest < section2 * 2.5
       ? setS2FeaturedProjectsSectionVisibility(true)
       : setS2FeaturedProjectsSectionVisibility(false);
     console.log(latest, section2, section1);
@@ -197,51 +204,60 @@ export default function Page({}: Props) {
           </section>
         </motion.div>
 
-        <div className="flex-1 bg-VoidBlack w-full p-4 rounded-md shadow-lg grid place-items-center relative overflow-hidden">
-          <motion.div
-            style={{ opacity: s2GroupOpacity }}
-            className="group absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-          >
-            <motion.button
-              variants={{
-                hidden: { opacity: 0, y: 100 },
-                visible: { opacity: 1, y: 0 },
-              }}
-              initial="hidden"
-              animate={showIcon ? "visible" : "hidden"}
-              transition={{
-                duration: 3,
-                ease: cubicBezier(0.19, 1, 0.22, 1),
-              }}
-              onClick={() => setS2QuoteText("Scroll down to load projects")}
-              className="flex flex-col items-center justify-center p-6 mx-auto mb-2  "
-            >
-              <Image
-                src={"/images/056-Modern_Icons.png"}
-                alt={""}
-                width={75}
-                height={75}
-                className="invert transition-all duration-500 ease-linear opacity-50 group-hover:opacity-100 "
-              />
-            </motion.button>
-            <div className="font-[CygnitoMono-011] text-[11.25px] font-normal uppercase text-OffWhite/50 group-hover:text-OffWhite transition-all duration-500 ease-linear  text-center">
-              <motion.p
-                variants={{
-                  hidden: { opacity: 0, y: 100 },
-                  visible: { opacity: 1, y: 0 },
-                }}
-                initial="hidden"
-                animate={showS2QuoteTextVisibility ? "visible" : "hidden"}
-                transition={{
-                  duration: 2.5,
-                  ease: cubicBezier(0.19, 1, 0.22, 1),
-                }}
-                className="min-h-[2em] min-w-1"
+        <div className="flex-1 bg-VoidBlack w-full p-4 rounded-md shadow-lg flex justify-center items-center relative overflow-hidden">
+          <AnimatePresence>
+            {!s2FeaturedProjectsSectionVisibility ? (
+              <motion.div
+                style={{ opacity: s2GroupOpacity }}
+                className="group absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
               >
-                <TypingLabel text={s2QuoteText} speed={50} />
-              </motion.p>
-            </div>
-          </motion.div>
+                <motion.button
+                  variants={{
+                    hidden: { opacity: 0, y: 100 },
+                    visible: { opacity: 1, y: 0 },
+                  }}
+                  initial="hidden"
+                  animate={showIcon ? "visible" : "hidden"}
+                  exit="hidden"
+                  transition={{
+                    duration: 3,
+                    ease: cubicBezier(0.19, 1, 0.22, 1),
+                  }}
+                  onClick={() => {
+                    setS2QuoteText("Scroll down to load projects");
+                    setS2FeaturedProjectsSectionVisibility(true);
+                  }}
+                  className="flex flex-col items-center justify-center p-6 mx-auto mb-2  "
+                >
+                  <Image
+                    src={"/images/056-Modern_Icons.png"}
+                    alt={""}
+                    width={75}
+                    height={75}
+                    className="invert transition-all duration-500 ease-linear opacity-50 group-hover:opacity-100 "
+                  />
+                </motion.button>
+                <div className="font-[CygnitoMono-011] text-[11.25px] font-normal uppercase text-OffWhite/50 group-hover:text-OffWhite transition-all duration-500 ease-linear  text-center">
+                  <motion.p
+                    variants={{
+                      hidden: { opacity: 0, y: 100 },
+                      visible: { opacity: 1, y: 0 },
+                    }}
+                    initial="hidden"
+                    animate={showS2QuoteTextVisibility ? "visible" : "hidden"}
+                    exit="hidden"
+                    transition={{
+                      duration: 2.5,
+                      ease: cubicBezier(0.19, 1, 0.22, 1),
+                    }}
+                    className="min-h-[2em] min-w-1"
+                  >
+                    <TypingLabel text={s2QuoteText} speed={50} />
+                  </motion.p>
+                </div>
+              </motion.div>
+            ) : null}
+          </AnimatePresence>
           <motion.div
             variants={{
               hidden: { opacity: 0, y: -100 },
@@ -251,21 +267,120 @@ export default function Page({}: Props) {
             animate={s2FeaturedProjectsSectionVisibility ? "visible" : "hidden"}
             transition={{
               duration: 3,
+
               ease: cubicBezier(0.19, 1, 0.22, 1),
             }}
-            className=""
+            className="flex flex-col p-2 w-full h-full"
           >
-            <motion.div className="relative h-[400px] w-[800px]">
-              <Image
-                src={"/posts/projects/preview-musou.png"}
-                alt={""}
-                layout="fill"
-                className="object-fit rounded-sm"
-              />
-            </motion.div>
+            <motion.h2 className="text-OffWhite font-mono font-black text-2xl uppercase tracking-widest">
+              Featured Projects
+            </motion.h2>
+
+            <div className="w-full flex-1 h-full overflow-hidden">
+              <motion.div
+                className="flex flex-col gap-2 py-4"
+                style={{ translateY: s2ProjectsScrollProgress }}
+              >
+                <AnimatePresence>
+                  <CardTest
+                    img="/posts/projects/preview-musou.png"
+                    title="Musou"
+                    tags={["Game", "Unity"]}
+                    description="A game project"
+                    date="2021"
+                  />
+                  <CardTest
+                    img="/posts/projects/preview-ascii-hud.png"
+                    title="Ascii Hud"
+                    tags={["Game", "Unity"]}
+                    description="A game project"
+                    date="2021"
+                  />
+                  <CardTest
+                    img="/posts/projects/preview-ascii-hud.png"
+                    title="Ascii Hud"
+                    tags={["Game", "Unity"]}
+                    description="A game project"
+                    date="2021"
+                  />
+                  <CardTest
+                    img="/posts/projects/preview-ascii-hud.png"
+                    title="Ascii Hud"
+                    tags={["Game", "Unity"]}
+                    description="A game project"
+                    date="2021"
+                  />
+                </AnimatePresence>
+              </motion.div>
+            </div>
           </motion.div>
         </div>
       </div>
     </div>
+  );
+}
+
+function CardTest({
+  img,
+  title,
+  tags,
+  description,
+  date,
+}: {
+  img: string;
+  title: string;
+  tags: string[];
+  description: string;
+  date: string;
+}) {
+  return (
+    <motion.div
+      key={title}
+      exit={"hidden"}
+      transition={{
+        delay: 0,
+        duration: 0.5,
+        ease: "easeOut",
+      }}
+      layoutId={title}
+      initial="hidden"
+      whileInView={{
+        opacity: 1,
+        y: 0,
+        transition: {
+          delay: 1,
+          duration: 0.5,
+          ease: "easeOut",
+        },
+      }}
+      viewport={{ once: true }}
+      variants={{
+        hidden: { opacity: 0, y: -50 },
+        visible: { opacity: 1, y: 0 },
+      }}
+      className="flex flex-col p-2 gap-2 rounded-lg font-mono border border-dashed border-[#d4ed31]/25"
+    >
+      <span>{title}</span>
+      <div className="grid grid-cols-2 gap-2 text-xs text-OffWhite/90  border-t border-dashed border-[#d4ed31]/25 py-2">
+        <div className="flex flex-col">
+          <span className="font-light">Year</span>
+          <span className="text-OffWhite/75">{date}</span>
+        </div>
+        <div className="flex flex-col">
+          <span className="font-light">Tags</span>
+          <span className="text-OffWhite/75">{tags.join(", ")}</span>
+        </div>
+
+        <p className="col-span-2 font-light text-OffWhite">{description}</p>
+      </div>
+      <div className="w-full aspect-video h-full flex-1 flex rounded-lg overflow-hidden border relative">
+        <Image
+          src={img}
+          alt={title + " preview"}
+          fill={true}
+          className=" object-contain rounded-sm"
+        />
+      </div>
+    </motion.div>
   );
 }
