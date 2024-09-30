@@ -370,7 +370,7 @@ function TypesSection({ types }: { types: ComponentTypeInformation[] | null }) {
   );
 }
 
-function LargeCodeBlock({
+export function LargeCodeBlock({
   code,
   title,
   size = "lg",
